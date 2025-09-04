@@ -5,204 +5,80 @@
   <title>SLX Combat</title>
   <script src="https://cdn.jsdelivr.net/npm/phaser@3.80.0/dist/phaser.min.js"></script>
   <style>
-    html,body{margin:0;height:100%;background:#13151a;color:#fff;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial}
+    html,body{margin:0;height:100%;background:#101217;color:#fff;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial;overflow:hidden}
     #game{width:100vw;height:100vh;}
-    .ui{position:fixed;inset:0;pointer-events:none}
-    .btn{position:absolute;width:64px;height:64px;border-radius:50%;background:#ffffff20;border:2px solid #ffffff50;backdrop-filter:blur(2px);pointer-events:auto;display:flex;align-items:center;justify-content:center;font-weight:700}
-    .btn:active{transform:scale(.95)}
-    #kick{right:18px;bottom:22px}
-    #punch{right:98px;bottom:70px}
-    #special{right:178px;bottom:22px}
-    #block{right:98px;bottom:140px}
-    .joyWrap{position:absolute;left:18px;bottom:18px;width:200px;height:200px;border-radius:50%;background:#ffffff12;pointer-events:auto;touch-action:none}
-    .stick{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:100px;height:100px;border-radius:50%;background:#ffffff30;border:2px solid #ffffff55}
-    .topbar{position:fixed;left:0;right:0;top:0;padding:10px;display:flex;align-items:center;gap:10px;justify-content:space-between;pointer-events:none}
-    .hpbar{height:12px;border-radius:8px;background:#0006;border:1px solid #ffffff40;overflow:hidden;width:40vw}
-    .hp{height:100%;width:100%;background:linear-gradient(90deg,#24d06a,#ffd54a,#ff4d4f)}
-    .timer{font-weight:800;font-size:20px;letter-spacing:1px}
-    .msg{position:fixed;left:50%;top:15%;transform:translateX(-50%);font-size:32px;font-weight:900;text-shadow:0 4px 24px #0008}
+    .ui{position:fixed;inset:0;pointer-events:none;}
+    .btn{position:absolute;width:72px;height:72px;border-radius:50%;background:#ffffff15;border:2px solid #ffffff40;backdrop-filter:blur(6px);pointer-events:auto;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;color:#fff;box-shadow:0 4px 12px #0006;transition:transform .1s}
+    .btn:active{transform:scale(.9)}
+    #kick{right:22px;bottom:26px}
+    #punch{right:112px;bottom:84px}
+    #special{right:202px;bottom:26px;background:#1e88e5}
+    #block{right:112px;bottom:152px;background:#ffb300}
+    .joyWrap{position:absolute;left:18px;bottom:18px;width:200px;height:200px;border-radius:50%;background:#ffffff12;pointer-events:auto;touch-action:none;box-shadow:0 4px 10px #0005}
+    .stick{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:100px;height:100px;border-radius:50%;background:#ffffff30;border:2px solid #ffffff66;box-shadow:0 0 10px #fff4 inset}
+    .topbar{position:fixed;left:0;right:0;top:0;padding:10px;display:flex;align-items:center;gap:10px;justify-content:space-between;pointer-events:none;font-size:14px}
+    .hpbar{height:14px;border-radius:8px;background:#0006;border:1px solid #ffffff40;overflow:hidden;width:40vw;box-shadow:inset 0 0 6px #0008}
+    .hp{height:100%;width:100%;background:linear-gradient(90deg,#24d06a,#ffd54a,#ff4d4f);transition:width .2s ease-out}
+    .timer{font-weight:800;font-size:22px;letter-spacing:1px;text-shadow:0 2px 8px #000}
+    .msg{position:fixed;left:50%;top:15%;transform:translateX(-50%);font-size:40px;font-weight:900;text-shadow:0 4px 24px #0008;animation:pop .6s ease-out}
+    @keyframes pop{0%{transform:translateX(-50%) scale(0.5);opacity:0}60%{transform:translateX(-50%) scale(1.1);opacity:1}100%{transform:translateX(-50%) scale(1)} }
   </style>
 </head>
 <body>
-  <div id="game"></div>  <!-- HUD / Mobile Controls -->  <div class="ui">
+  <div id="game"></div>
+  <div class="ui">
     <div class="topbar">
       <div class="hpbar"><div id="hp1" class="hp"></div></div>
       <div class="timer" id="timer">60</div>
       <div class="hpbar" style="transform:scaleX(-1)"><div id="hp2" class="hp"></div></div>
     </div>
-    <div id="msg" class="msg"></div><div class="joyWrap" id="joy"><div class="stick" id="stick"></div></div>
-<button class="btn" id="punch">A</button>
-<button class="btn" id="kick">B</button>
-<button class="btn" id="special">S</button>
-<button class="btn" id="block">■</button>
-
-  </div><script>
-// --- Tiny sound helper (beeps)
-function tone(freq, dur=0.06){
-  try{const actx = tone.ctx||(tone.ctx=new (window.AudioContext||window.webkitAudioContext)());
-  const o = actx.createOscillator();const g = actx.createGain();o.connect(g);g.connect(actx.destination);
-  o.type='square';o.frequency.value=freq;g.gain.value=.03;o.start();g.gain.exponentialRampToValueAtTime(0.0001, actx.currentTime+dur);o.stop(actx.currentTime+dur);}catch(e){}
-}
-
+    <div id="msg" class="msg"></div>
+    <div class="joyWrap" id="joy"><div class="stick" id="stick"></div></div>
+    <button class="btn" id="punch">🥊</button>
+    <button class="btn" id="kick">🦵</button>
+    <button class="btn" id="special">⚡</button>
+    <button class="btn" id="block">🛡</button>
+  </div>
+<script>
+function tone(freq,dur=0.06){try{const actx=tone.ctx||(tone.ctx=new (window.AudioContext||window.webkitAudioContext)());const o=actx.createOscillator();const g=actx.createGain();o.connect(g);g.connect(actx.destination);o.type='square';o.frequency.value=freq;g.gain.value=.03;o.start();g.gain.exponentialRampToValueAtTime(0.0001, actx.currentTime+dur);o.stop(actx.currentTime+dur);}catch(e){}}
 class FightScene extends Phaser.Scene{
   constructor(){super({key:'fight'})}
-  preload(){
-    // no external assets – build shapes in runtime
-  }
   create(){
-    const W = this.scale.width, H = this.scale.height;
-    this.physics.world.setBounds(0,0,W,H*0.78);
-
-    // background
-    this.add.rectangle(W/2,H/2,W,H,0x1f2330).setDepth(-5);
-    // floor
-    this.add.rectangle(W/2,H*0.78,W,10,0x3a4157).setDepth(-4);
-
-    // Player factory
+    const W=this.scale.width,H=this.scale.height;
+    this.physics.world.setBounds(0,0,W,H*0.8);
+    this.add.rectangle(W/2,H/2,W,H,0x202533).setDepth(-5);
+    this.add.rectangle(W/2,H*0.8,W,10,0x3a4157).setDepth(-4);
     const mkFighter=(x,flip=false,color=0x5ad7ff)=>{
-      const body = this.add.container(x,H*0.74);
-      const torso = this.add.rectangle(0,-40,36,60,color).setStrokeStyle(2,0xffffff);
-      const head = this.add.circle(0,-80,16,0xf0e4d7).setStrokeStyle(2,0x000000);
-      const armL = this.add.rectangle(-26,-42,12,38,color);
-      const armR = this.add.rectangle(26,-42,12,38,color);
-      const legL = this.add.rectangle(-10,-6,14,40,color);
-      const legR = this.add.rectangle(10,-6,14,40,color);
-      [torso,head,armL,armR,legL,legR].forEach(p=>body.add(p));
-
-      this.physics.add.existing(body);
-      body.body.setSize(40,80).setOffset(-20,-86).setCollideWorldBounds(true);
-      body.flipX = flip; body.facing = flip?-1:1; body.color=color;
-      body.state = 'idle'; body.canHit=true; body.isCPU=false; body.blocking=false; body.hp=100;
-
-      body.hitbox = this.add.rectangle(0,-50,30,30,0xffffff,0).setDepth(10);
-      this.physics.add.existing(body.hitbox); body.hitbox.body.setAllowGravity(false);
-
-      body.playAttack=(type)=>{
-        if(body.state!=='idle' && body.state!=='walk') return; // cancel rules
-        body.state = type;
-        const dir = body.flipX?-1:1;
-        let power=8, reach=42, dur=160, freq=600;
-        if(type==='kick'){ power=12; reach=60; dur=200; freq=420; }
-        if(type==='special'){ power=18; reach=70; dur=260; freq=300; }
-        if(type==='block'){ body.blocking=true; tone(200,0.12); this.time.delayedCall(350,()=>{body.blocking=false; body.state='idle';}); return; }
-        tone(freq,0.08);
-        // simple pose
-        this.tweens.add({targets:body, x: body.x + dir*12, y: body.y-2, yoyo:true, duration:dur});
-        // activate hitbox
-        body.hitbox.setPosition(body.x + dir*reach, body.y-50);
-        body.hitbox.active=true; body.hitbox.visible=false; body.canHit=true;
-        this.time.delayedCall(dur,()=>{ body.state='idle'; body.hitbox.active=false; });
-      };
-      return body;
+      const c=this.add.container(x,H*0.76);
+      const parts=[this.add.rectangle(0,-40,36,60,color).setStrokeStyle(2,0xffffff),this.add.circle(0,-80,16,0xf0e4d7).setStrokeStyle(2,0),this.add.rectangle(-26,-42,12,38,color),this.add.rectangle(26,-42,12,38,color),this.add.rectangle(-10,-6,14,40,color),this.add.rectangle(10,-6,14,40,color)];
+      parts.forEach(p=>c.add(p));
+      this.physics.add.existing(c);c.body.setSize(40,80).setOffset(-20,-86).setCollideWorldBounds(true);
+      c.flipX=flip;c.facing=flip?-1:1;c.state='idle';c.hp=100;c.blocking=false;c.hitbox=this.add.rectangle(0,-50,30,30,0xffffff,0);this.physics.add.existing(c.hitbox);c.hitbox.body.setAllowGravity(false);
+      c.playAttack=(type)=>{if(c.state!=='idle'&&c.state!=='walk')return;c.state=type;const dir=c.flipX?-1:1;let dmg=8,reach=42,dur=160,f=600;if(type==='kick'){dmg=12;reach=60;dur=200;f=420}if(type==='special'){dmg=18;reach=70;dur=260;f=300}if(type==='block'){c.blocking=true;tone(200,0.12);this.time.delayedCall(350,()=>{c.blocking=false;c.state='idle'});return;}tone(f,0.08);this.tweens.add({targets:c,x:c.x+dir*12,y:c.y-2,yoyo:true,duration:dur});c.hitbox.setPosition(c.x+dir*reach,c.y-50);c.hitbox.active=true;c.canHit=true;this.time.delayedCall(dur,()=>{c.state='idle';c.hitbox.active=false;});};
+      return c;
     }
-
-    this.p1 = mkFighter(W*0.3,false,0x5ad7ff);
-    this.p2 = mkFighter(W*0.7,true,0xff9a6b); this.p2.isCPU=true;
-
-    // collisions
-    this.physics.add.overlap(this.p1.hitbox,this.p2,(hb,enemy)=>this.onHit(this.p1,this.p2));
-    this.physics.add.overlap(this.p2.hitbox,this.p1,(hb,enemy)=>this.onHit(this.p2,this.p1));
-
-    // controls
-    this.cursors = this.input.keyboard.createCursorKeys();
-    this.keys = this.input.keyboard.addKeys('Z,X,C,V'); // punch, kick, special, block
-
-    // mobile buttons
+    this.p1=mkFighter(W*0.3,false,0x5ad7ff);
+    this.p2=mkFighter(W*0.7,true,0xff9a6b);this.p2.isCPU=true;
+    this.physics.add.overlap(this.p1.hitbox,this.p2,()=>this.onHit(this.p1,this.p2));
+    this.physics.add.overlap(this.p2.hitbox,this.p1,()=>this.onHit(this.p2,this.p1));
+    this.cursors=this.input.keyboard.createCursorKeys();
+    this.keys=this.input.keyboard.addKeys('Z,X,C,V');
     const btn=(id,fn)=>document.getElementById(id).addEventListener('touchstart',e=>{e.preventDefault();fn();},{passive:false});
     btn('punch',()=>this.p1.playAttack('punch'));
     btn('kick',()=>this.p1.playAttack('kick'));
     btn('special',()=>this.p1.playAttack('special'));
     btn('block',()=>this.p1.playAttack('block'));
-
-    // joystick
-    this.joy = {wrap:document.getElementById('joy'), stick:document.getElementById('stick'), dx:0};
-    let dragging=false, ox=0, oy=0;
-    const clamp=(v,m)=>Math.max(-m,Math.min(m,v));
-    const start=e=>{dragging=true; const t=e.changedTouches[0]; ox=t.clientX; oy=t.clientY;}
-    const move=e=>{if(!dragging) return; const t=e.changedTouches[0]; let dx=t.clientX-ox, dy=t.clientY-oy; const r=72; dx=clamp(dx,r); dy=clamp(dy,r); this.joy.dx=dx/r; this.joy.stick.style.transform=`translate(${dx+100-50}px,${dy+100-50}px)`;}
-    const end=()=>{dragging=false; this.joy.dx=0; this.joy.stick.style.transform='translate(-50%,-50%)';}
-    this.joy.wrap.addEventListener('touchstart',start); this.joy.wrap.addEventListener('touchmove',move); this.joy.wrap.addEventListener('touchend',end);
-
-    // HUD
-    this.hp1El = document.getElementById('hp1');
-    this.hp2El = document.getElementById('hp2');
-    this.timerEl = document.getElementById('timer');
-    this.msgEl = document.getElementById('msg');
-
-    this.roundTime = 60; this.time.addEvent({delay:1000, loop:true, callback:()=>{if(this.roundOver) return; this.roundTime--; this.timerEl.textContent=this.roundTime; if(this.roundTime<=0) this.stopRound('TIME UP!');}});
-
-    this.cameras.main.setBackgroundColor('#0f1117');
+    this.joy={wrap:document.getElementById('joy'),stick:document.getElementById('stick'),dx:0};let drag=false,ox=0,oy=0;const clamp=(v,m)=>Math.max(-m,Math.min(m,v));const start=e=>{drag=true;const t=e.changedTouches[0];ox=t.clientX;oy=t.clientY;}const move=e=>{if(!drag)return;const t=e.changedTouches[0];let dx=t.clientX-ox,dy=t.clientY-oy;const r=72;dx=clamp(dx,r);dy=clamp(dy,r);this.joy.dx=dx/r;this.joy.stick.style.transform=`translate(${dx+100-50}px,${dy+100-50}px)`;}const end=()=>{drag=false;this.joy.dx=0;this.joy.stick.style.transform='translate(-50%,-50%)';};this.joy.wrap.addEventListener('touchstart',start);this.joy.wrap.addEventListener('touchmove',move);this.joy.wrap.addEventListener('touchend',end);
+    this.hp1El=document.getElementById('hp1');this.hp2El=document.getElementById('hp2');this.timerEl=document.getElementById('timer');this.msgEl=document.getElementById('msg');this.roundTime=60;this.time.addEvent({delay:1000,loop:true,callback:()=>{if(this.roundOver)return;this.roundTime--;this.timerEl.textContent=this.roundTime;if(this.roundTime<=0)this.stopRound('TIME UP!')}});
   }
-
-  onHit(attacker, victim){
-    if(!attacker.hitbox.active || !attacker.canHit) return;
-    attacker.canHit=false;
-    let dmg=8; if(attacker.state==='kick') dmg=12; if(attacker.state==='special') dmg=18;
-    if(victim.blocking){ dmg=Math.floor(dmg*0.3); tone(160,0.1);} else { tone(880,0.06); }
-    victim.hp = Math.max(0, victim.hp - dmg);
-    const kb = (attacker.flipX?-1:1) * (victim.blocking?50:120);
-    this.tweens.add({targets:victim, x: victim.x + kb, duration:120, ease:'quad.out'});
-    this.flashHit(victim.x, victim.y-60);
-    this.updateHP();
-    if(victim.hp<=0) this.stopRound(attacker===this.p1? 'YOU WIN!':'YOU LOSE');
-  }
-
-  flashHit(x,y){
-    const s = this.add.circle(x,y,6,0xffffff).setDepth(20);
-    this.tweens.add({targets:s, radius:36, alpha:0, duration:180, onComplete:()=>s.destroy()});
-  }
-
-  updateHP(){
-    this.hp1El.style.width = this.p1.hp+"%";
-    this.hp2El.style.width = this.p2.hp+"%";
-  }
-
-  stopRound(text){
-    if(this.roundOver) return; this.roundOver=true; this.msgEl.textContent=text; tone(180,0.2); tone(140,0.2);
-    this.time.delayedCall(1800,()=>this.scene.restart());
-  }
-
-  cpuLogic(){
-    const dist = this.p2.x - this.p1.x;
-    const approach = Math.abs(dist) > 110;
-    if(approach){ this.p2.body.setVelocityX(dist>0?-120:120); this.p2.flipX = dist<0; }
-    else { this.p2.body.setVelocityX(0); }
-
-    if(Phaser.Math.Between(0,100)<2){ // random action
-      const choices=['punch','kick','special','block'];
-      this.p2.playAttack(Phaser.Utils.Array.GetRandom(choices));
-    }
-  }
-
-  update(){
-    if(this.roundOver) return;
-    const speed = 200;
-    let vx = 0;
-    // keyboard
-    if(this.cursors.left.isDown) vx = -speed;
-    else if(this.cursors.right.isDown) vx = speed;
-    // mobile
-    if(Math.abs(this.joy?.dx||0) > 0.05) vx = this.joy.dx * speed;
-
-    this.p1.body.setVelocityX(vx);
-    if(vx!==0){ this.p1.flipX = vx<0; }
-
-    // attacks (keyboard)
-    if(Phaser.Input.Keyboard.JustDown(this.keys.Z)) this.p1.playAttack('punch');
-    if(Phaser.Input.Keyboard.JustDown(this.keys.X)) this.p1.playAttack('kick');
-    if(Phaser.Input.Keyboard.JustDown(this.keys.C)) this.p1.playAttack('special');
-    if(Phaser.Input.Keyboard.JustDown(this.keys.V)) this.p1.playAttack('block');
-
-    // keep hitboxes synced
-    this.p1.hitbox.setPosition(this.p1.x + (this.p1.flipX?-1:1)*50, this.p1.y-50);
-    this.p2.hitbox.setPosition(this.p2.x + (this.p2.flipX?-1:1)*50, this.p2.y-50);
-
-    // CPU
-    this.cpuLogic();
-  }
+  onHit(a,v){if(!a.hitbox.active||!a.canHit)return;a.canHit=false;let dmg=8;if(a.state==='kick')dmg=12;if(a.state==='special')dmg=18;if(v.blocking)dmg=Math.floor(dmg*0.3);v.hp=Math.max(0,v.hp-dmg);const kb=(a.flipX?-1:1)*(v.blocking?50:120);this.tweens.add({targets:v,x:v.x+kb,duration:120,ease:'quad.out'});this.flashHit(v.x,v.y-60);this.updateHP();if(v.hp<=0)this.stopRound(a===this.p1?'YOU WIN!':'YOU LOSE');}
+  flashHit(x,y){const s=this.add.circle(x,y,6,0xffffff).setDepth(20);this.tweens.add({targets:s,radius:36,alpha:0,duration:180,onComplete:()=>s.destroy()});}
+  updateHP(){this.hp1El.style.width=this.p1.hp+"%";this.hp2El.style.width=this.p2.hp+"%";}
+  stopRound(text){if(this.roundOver)return;this.roundOver=true;this.msgEl.textContent=text;tone(180,0.2);tone(140,0.2);this.time.delayedCall(2000,()=>this.scene.restart());}
+  cpuLogic(){const d=this.p2.x-this.p1.x;if(Math.abs(d)>120){this.p2.body.setVelocityX(d>0?-100:100);this.p2.flipX=d<0}else{this.p2.body.setVelocityX(0);}if(Phaser.Math.Between(0,100)<2){const c=['punch','kick','special','block'];this.p2.playAttack(Phaser.Utils.Array.GetRandom(c));}}
+  update(){if(this.roundOver)return;const spd=200;let vx=0;if(this.cursors.left.isDown)vx=-spd;else if(this.cursors.right.isDown)vx=spd;if(Math.abs(this.joy.dx)>0.05)vx=this.joy.dx*spd;this.p1.body.setVelocityX(vx);if(vx!==0)this.p1.flipX=vx<0;if(Phaser.Input.Keyboard.JustDown(this.keys.Z))this.p1.playAttack('punch');if(Phaser.Input.Keyboard.JustDown(this.keys.X))this.p1.playAttack('kick');if(Phaser.Input.Keyboard.JustDown(this.keys.C))this.p1.playAttack('special');if(Phaser.Input.Keyboard.JustDown(this.keys.V))this.p1.playAttack('block');this.p1.hitbox.setPosition(this.p1.x+(this.p1.flipX?-1:1)*50,this.p1.y-50);this.p2.hitbox.setPosition(this.p2.x+(this.p2.flipX?-1:1)*50,this.p2.y-50);this.cpuLogic();}
 }
-
-const config={ type:Phaser.AUTO, parent:'game', backgroundColor:'#0f1117', scale:{mode:Phaser.Scale.RESIZE,autoCenter:Phaser.Scale.CENTER_BOTH}, physics:{ default:'arcade', arcade:{ gravity:{y:900}, debug:false }}, scene:[FightScene] };
-new Phaser.Game(config);
-</script></body>
+const config={type:Phaser.AUTO,parent:'game',scale:{mode:Phaser.Scale.RESIZE,autoCenter:Phaser.Scale.CENTER_BOTH},physics:{default:'arcade',arcade:{gravity:{y:900}}},scene:[FightScene]};new Phaser.Game(config);
+</script>
+</body>
 </html>
