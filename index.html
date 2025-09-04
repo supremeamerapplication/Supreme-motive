@@ -1,791 +1,208 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mortal Kombat Browser Edition</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
-        
-        body {
-            background: linear-gradient(to bottom, #1a1a1a, #2a2a2a);
-            color: white;
-            min-height: 100vh;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        #game-container {
-            width: 1000px;
-            height: 600px;
-            position: relative;
-            border: 4px solid #ff0000;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
-        }
-        
-        canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 1;
-        }
-        
-        #ui-layer {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 2;
-            pointer-events: none;
-        }
-        
-        .screen {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 3;
-            pointer-events: all;
-        }
-        
-        .hidden {
-            display: none !important;
-        }
-        
-        h1 {
-            font-size: 48px;
-            color: #ff0000;
-            text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
-            margin-bottom: 20px;
-        }
-        
-        h2 {
-            font-size: 32px;
-            color: #ffd700;
-            margin-bottom: 30px;
-        }
-        
-        .health-bar {
-            height: 30px;
-            width: 300px;
-            background: #8b0000;
-            border: 2px solid #fff;
-            position: relative;
-            margin: 10px 0;
-        }
-        
-        .health-fill {
-            height: 100%;
-            background: #ff0000;
-            transition: width 0.3s;
-        }
-        
-        #player1-health {
-            position: absolute;
-            top: 20px;
-            left: 50px;
-        }
-        
-        #player2-health {
-            position: absolute;
-            top: 20px;
-            right: 50px;
-        }
-        
-        .player-name {
-            position: absolute;
-            top: 60px;
-            font-size: 20px;
-            font-weight: bold;
-        }
-        
-        #player1-name {
-            left: 50px;
-            color: #ff0000;
-        }
-        
-        #player2-name {
-            right: 50px;
-            color: #0066ff;
-        }
-        
-        .cooldown-bar {
-            width: 100px;
-            height: 20px;
-            background: #4b0082;
-            border: 1px solid #fff;
-            position: absolute;
-            bottom: 80px;
-        }
-        
-        .cooldown-fill {
-            height: 100%;
-            background: #9370db;
-            width: 0%;
-        }
-        
-        #player1-cooldown {
-            left: 50px;
-        }
-        
-        #player2-cooldown {
-            right: 50px;
-        }
-        
-        .button {
-            background: #ff0000;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            font-size: 20px;
-            border-radius: 5px;
-            margin: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .button:hover {
-            background: #ff3333;
-            transform: scale(1.05);
-        }
-        
-        .controls {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
-            max-width: 80%;
-        }
-        
-        .controls h3 {
-            color: #ffd700;
-            margin-bottom: 10px;
-        }
-        
-        .controls p {
-            margin: 5px 0;
-            font-size: 16px;
-        }
-        
-        #round-info {
-            position: absolute;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 24px;
-            color: #ffd700;
-        }
-        
-        #timer {
-            position: absolute;
-            top: 60px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 32px;
-            color: #ffd700;
-        }
-        
-        #score {
-            position: absolute;
-            top: 100px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 24px;
-            color: #00ff00;
-        }
-        
-        .blood-effect {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background: #ff0000;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 2;
-        }
-        
-        #pause-button {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            pointer-events: all;
-            z-index: 4;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>SLX Combat</title>
+  <script src="https://cdn.jsdelivr.net/npm/phaser@3.80.0/dist/phaser.min.js"></script>
+  <style>
+    html,body{margin:0;height:100%;background:#13151a;color:#fff;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial}
+    #game{width:100vw;height:100vh;}
+    .ui{position:fixed;inset:0;pointer-events:none}
+    .btn{position:absolute;width:64px;height:64px;border-radius:50%;background:#ffffff20;border:2px solid #ffffff50;backdrop-filter:blur(2px);pointer-events:auto;display:flex;align-items:center;justify-content:center;font-weight:700}
+    .btn:active{transform:scale(.95)}
+    #kick{right:18px;bottom:22px}
+    #punch{right:98px;bottom:70px}
+    #special{right:178px;bottom:22px}
+    #block{right:98px;bottom:140px}
+    .joyWrap{position:absolute;left:18px;bottom:18px;width:200px;height:200px;border-radius:50%;background:#ffffff12;pointer-events:auto;touch-action:none}
+    .stick{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:100px;height:100px;border-radius:50%;background:#ffffff30;border:2px solid #ffffff55}
+    .topbar{position:fixed;left:0;right:0;top:0;padding:10px;display:flex;align-items:center;gap:10px;justify-content:space-between;pointer-events:none}
+    .hpbar{height:12px;border-radius:8px;background:#0006;border:1px solid #ffffff40;overflow:hidden;width:40vw}
+    .hp{height:100%;width:100%;background:linear-gradient(90deg,#24d06a,#ffd54a,#ff4d4f)}
+    .timer{font-weight:800;font-size:20px;letter-spacing:1px}
+    .msg{position:fixed;left:50%;top:15%;transform:translateX(-50%);font-size:32px;font-weight:900;text-shadow:0 4px 24px #0008}
+  </style>
 </head>
 <body>
-    <div id="game-container">
-        <canvas id="game-canvas" width="1000" height="600"></canvas>
-        
-        <div id="ui-layer">
-            <div id="player1-health" class="health-bar">
-                <div id="player1-health-fill" class="health-fill" style="width: 100%"></div>
-            </div>
-            <div id="player2-health" class="health-bar">
-                <div id="player2-health-fill" class="health-fill" style="width: 100%"></div>
-            </div>
-            
-            <div id="player1-name" class="player-name">SCORPION</div>
-            <div id="player2-name" class="player-name">SUB-ZERO</div>
-            
-            <div id="player1-cooldown" class="cooldown-bar">
-                <div id="player1-cooldown-fill" class="cooldown-fill"></div>
-            </div>
-            <div id="player2-cooldown" class="cooldown-bar">
-                <div id="player2-cooldown-fill" class="cooldown-fill"></div>
-            </div>
-            
-            <div id="round-info">Round 1</div>
-            <div id="timer">99</div>
-            <div id="score">0 - 0</div>
-            
-            <button id="pause-button" class="button">Pause</button>
-        </div>
-        
-        <div id="menu-screen" class="screen">
-            <h1>MORTAL KOMBAT</h1>
-            <h2>Browser Edition</h2>
-            <button id="start-button" class="button">Start Game</button>
-            
-            <div class="controls">
-                <h3>Controls</h3>
-                <p>Player 1: A/D to move, W to jump, F to attack, G for special</p>
-                <p>Player 2: Arrow keys to move, K to attack, L for special</p>
-                <p>Press P to pause during gameplay</p>
-            </div>
-        </div>
-        
-        <div id="pause-screen" class="screen hidden">
-            <h1>GAME PAUSED</h1>
-            <button id="resume-button" class="button">Resume</button>
-            <button id="menu-button" class="button">Main Menu</button>
-        </div>
-        
-        <div id="gameover-screen" class="screen hidden">
-            <h1 id="winner-text">SCORPION WINS!</h1>
-            <button id="restart-button" class="button">Restart Match</button>
-            <button id="gameover-menu-button" class="button">Main Menu</button>
-        </div>
+  <div id="game"></div>  <!-- HUD / Mobile Controls -->  <div class="ui">
+    <div class="topbar">
+      <div class="hpbar"><div id="hp1" class="hp"></div></div>
+      <div class="timer" id="timer">60</div>
+      <div class="hpbar" style="transform:scaleX(-1)"><div id="hp2" class="hp"></div></div>
     </div>
+    <div id="msg" class="msg"></div><div class="joyWrap" id="joy"><div class="stick" id="stick"></div></div>
+<button class="btn" id="punch">A</button>
+<button class="btn" id="kick">B</button>
+<button class="btn" id="special">S</button>
+<button class="btn" id="block">■</button>
 
-    <script>
-        // Game constants and variables
-        const GAME_WIDTH = 1000;
-        const GAME_HEIGHT = 600;
-        const FLOOR_HEIGHT = 50;
-        const FLOOR_LEVEL = GAME_HEIGHT - 150;
-        
-        // Game states
-        const MENU = 0;
-        const PLAYING = 1;
-        const GAME_OVER = 2;
-        const PAUSED = 3;
-        
-        let gameState = MENU;
-        let canvas, ctx;
-        let player1, player2;
-        let backgroundElements = [];
-        let bloodEffects = [];
-        let keys = {};
-        let roundTime = 99;
-        let roundStartTime = 0;
-        let currentRound = 1;
-        let player1Wins = 0;
-        let player2Wins = 0;
-        
-        // Fighter class
-        class Fighter {
-            constructor(x, y, width, height, color, controls, name) {
-                this.x = x;
-                this.y = y;
-                this.width = width;
-                this.height = height;
-                this.color = color;
-                this.vel = 8;
-                this.jumpVel = 20;
-                this.isJumping = false;
-                this.jumpCount = 10;
-                this.health = 100;
-                this.controls = controls;
-                this.name = name;
-                this.attacking = false;
-                this.attackCooldown = 0;
-                this.attackPower = 10;
-                this.kicks = [];
-                this.specialCooldown = 0;
-                this.facingRight = x < GAME_WIDTH / 2;
-                this.hitEffect = false;
-                this.hitTimer = 0;
-            }
-            
-            draw() {
-                // Draw character with hit effect
-                ctx.fillStyle = this.hitEffect ? '#ffd700' : this.color;
-                ctx.fillRect(this.x, this.y, this.width, this.height);
-                
-                // Draw face details
-                ctx.fillStyle = '#000';
-                if (this.facingRight) {
-                    ctx.fillRect(this.x + this.width - 25, this.y + 15, 10, 10);
-                    ctx.fillRect(this.x + this.width - 25, this.y + 40, 15, 5);
-                } else {
-                    ctx.fillRect(this.x + 15, this.y + 15, 10, 10);
-                    ctx.fillRect(this.x + 15, this.y + 40, 15, 5);
-                }
-                
-                // Draw kicks
-                ctx.fillStyle = '#ffd700';
-                for (let kick of this.kicks) {
-                    ctx.fillRect(kick.x, kick.y, kick.width, kick.height);
-                }
-            }
-            
-            move(opponent) {
-                if (this.attacking) return;
-                
-                if (keys[this.controls.left] && this.x > 0) {
-                    this.x -= this.vel;
-                    this.facingRight = false;
-                }
-                if (keys[this.controls.right] && this.x < GAME_WIDTH - this.width) {
-                    this.x += this.vel;
-                    this.facingRight = true;
-                }
-                
-                // Prevent characters from overlapping
-                if (this.x + this.width > opponent.x && this.x < opponent.x + opponent.width) {
-                    if (this.x < opponent.x) {
-                        this.x = opponent.x - this.width;
-                    } else {
-                        this.x = opponent.x + opponent.width;
-                    }
-                }
-                
-                // Jump mechanics
-                if (!this.isJumping) {
-                    if (keys[this.controls.up] && this.y === FLOOR_LEVEL) {
-                        this.isJumping = true;
-                    }
-                } else {
-                    if (this.jumpCount >= -10) {
-                        let neg = 1;
-                        if (this.jumpCount < 0) neg = -1;
-                        this.y -= (this.jumpCount ** 2) * 0.5 * neg;
-                        this.jumpCount--;
-                    } else {
-                        this.isJumping = false;
-                        this.jumpCount = 10;
-                        this.y = FLOOR_LEVEL;
-                    }
-                }
-            }
-            
-            attack() {
-                if (!this.attacking && this.attackCooldown === 0) {
-                    this.attacking = true;
-                    this.attackCooldown = 20;
-                    
-                    // Create a kick rectangle based on which way the fighter is facing
-                    if (this.facingRight) {
-                        this.kicks.push({
-                            x: this.x + this.width,
-                            y: this.y + 20,
-                            width: 30,
-                            height: 20
-                        });
-                    } else {
-                        this.kicks.push({
-                            x: this.x - 30,
-                            y: this.y + 20,
-                            width: 30,
-                            height: 20
-                        });
-                    }
-                }
-            }
-            
-            specialAttack() {
-                if (!this.attacking && this.specialCooldown === 0) {
-                    this.attacking = true;
-                    this.specialCooldown = 60;
-                    
-                    // Create 3 kicks for special attack
-                    for (let i = 0; i < 3; i++) {
-                        if (this.facingRight) {
-                            this.kicks.push({
-                                x: this.x + this.width + i * 40,
-                                y: this.y + 20,
-                                width: 30,
-                                height: 20
-                            });
-                        } else {
-                            this.kicks.push({
-                                x: this.x - 30 - i * 40,
-                                y: this.y + 20,
-                                width: 30,
-                                height: 20
-                            });
-                        }
-                    }
-                }
-            }
-            
-            update(opponent) {
-                // Update hit effect timer
-                if (this.hitEffect) {
-                    this.hitTimer--;
-                    if (this.hitTimer <= 0) {
-                        this.hitEffect = false;
-                    }
-                }
-                
-                // Update attack cooldown
-                if (this.attackCooldown > 0) this.attackCooldown--;
-                if (this.specialCooldown > 0) this.specialCooldown--;
-                
-                // Update UI cooldown indicators
-                if (this.name === "Scorpion") {
-                    document.getElementById('player1-cooldown-fill').style.width = 
-                        `${(this.specialCooldown / 60) * 100}%`;
-                } else {
-                    document.getElementById('player2-cooldown-fill').style.width = 
-                        `${(this.specialCooldown / 60) * 100}%`;
-                }
-                
-                // Update kicks
-                const kickSpeed = 15;
-                for (let i = this.kicks.length - 1; i >= 0; i--) {
-                    let kick = this.kicks[i];
-                    
-                    if (this.facingRight) {
-                        kick.x += kickSpeed;
-                    } else {
-                        kick.x -= kickSpeed;
-                    }
-                    
-                    // Check if kick hits opponent
-                    if (kick.x < opponent.x + opponent.width &&
-                        kick.x + kick.width > opponent.x &&
-                        kick.y < opponent.y + opponent.height &&
-                        kick.y + kick.height > opponent.y) {
-                        
-                        opponent.health -= this.attackPower;
-                        opponent.hitEffect = true;
-                        opponent.hitTimer = 5;
-                        
-                        // Create blood effect
-                        bloodEffects.push(new BloodEffect(kick.x, kick.y));
-                        
-                        // Update health bars
-                        if (opponent.name === "Scorpion") {
-                            document.getElementById('player1-health-fill').style.width = `${opponent.health}%`;
-                        } else {
-                            document.getElementById('player2-health-fill').style.width = `${opponent.health}%`;
-                        }
-                        
-                        this.kicks.splice(i, 1);
-                    } else if (kick.x > GAME_WIDTH || kick.x < -30) {
-                        // Remove kick if it goes off screen
-                        this.kicks.splice(i, 1);
-                    }
-                }
-                
-                // Reset attacking state
-                if (this.attacking && this.kicks.length === 0 && this.attackCooldown === 0) {
-                    this.attacking = false;
-                }
-            }
-        }
-        
-        // Blood effect class
-        class BloodEffect {
-            constructor(x, y) {
-                this.x = x;
-                this.y = y;
-                this.particles = [];
-                
-                for (let i = 0; i < 15; i++) {
-                    this.particles.push({
-                        x: x,
-                        y: y,
-                        dx: Math.random() * 6 - 3,
-                        dy: Math.random() * 6 - 3,
-                        size: Math.random() * 3 + 2,
-                        life: Math.floor(Math.random() * 40 + 20)
-                    });
-                }
-            }
-            
-            update() {
-                for (let i = this.particles.length - 1; i >= 0; i--) {
-                    let p = this.particles[i];
-                    p.x += p.dx;
-                    p.y += p.dy;
-                    p.life--;
-                    
-                    if (p.life <= 0) {
-                        this.particles.splice(i, 1);
-                    }
-                }
-                
-                return this.particles.length > 0;
-            }
-            
-            draw() {
-                ctx.fillStyle = '#ff0000';
-                for (let p of this.particles) {
-                    ctx.beginPath();
-                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                    ctx.fill();
-                }
-            }
-        }
-        
-        // Background element class
-        class BackgroundElement {
-            constructor() {
-                this.size = Math.random() * 15 + 5;
-                this.x = Math.random() * GAME_WIDTH;
-                this.y = Math.random() * (GAME_HEIGHT - 200) + 50;
-                this.color = `rgb(${Math.random() * 100 + 100}, ${Math.random() * 100 + 100}, ${Math.random() * 100 + 100})`;
-                this.speed = Math.random() * 2 + 0.5;
-            }
-            
-            update() {
-                this.x -= this.speed;
-                if (this.x < -this.size) {
-                    this.x = GAME_WIDTH + Math.random() * 100;
-                    this.y = Math.random() * (GAME_HEIGHT - 200) + 50;
-                }
-            }
-            
-            draw() {
-                ctx.fillStyle = this.color;
-                ctx.fillRect(this.x, this.y, this.size, this.size);
-            }
-        }
-        
-        // Initialize the game
-        function init() {
-            canvas = document.getElementById('game-canvas');
-            ctx = canvas.getContext('2d');
-            
-            // Create fighters
-            player1 = new Fighter(200, FLOOR_LEVEL, 60, 100, '#dc143c', 
-                {left: 'KeyA', right: 'KeyD', up: 'KeyW', attack: 'KeyF', special: 'KeyG'}, 
-                "Scorpion");
-                
-            player2 = new Fighter(700, FLOOR_LEVEL, 60, 100, '#1e90ff', 
-                {left: 'ArrowLeft', right: 'ArrowRight', up: 'ArrowUp', attack: 'KeyK', special: 'KeyL'}, 
-                "Sub-Zero");
-            
-            // Create background elements
-            for (let i = 0; i < 15; i++) {
-                backgroundElements.push(new BackgroundElement());
-            }
-            
-            // Set up event listeners
-            document.addEventListener('keydown', (e) => {
-                keys[e.code] = true;
-                
-                if (gameState === PLAYING) {
-                    if (e.code === player1.controls.attack) player1.attack();
-                    if (e.code === player1.controls.special) player1.specialAttack();
-                    if (e.code === player2.controls.attack) player2.attack();
-                    if (e.code === player2.controls.special) player2.specialAttack();
-                    if (e.code === 'KeyP') pauseGame();
-                }
-            });
-            
-            document.addEventListener('keyup', (e) => {
-                keys[e.code] = false;
-            });
-            
-            // UI event listeners
-            document.getElementById('start-button').addEventListener('click', startGame);
-            document.getElementById('pause-button').addEventListener('click', pauseGame);
-            document.getElementById('resume-button').addEventListener('click', resumeGame);
-            document.getElementById('menu-button').addEventListener('click', goToMenu);
-            document.getElementById('restart-button').addEventListener('click', restartGame);
-            document.getElementById('gameover-menu-button').addEventListener('click', goToMenu);
-            
-            // Start game loop
-            requestAnimationFrame(gameLoop);
-        }
-        
-        // Game loop
-        function gameLoop() {
-            update();
-            render();
-            requestAnimationFrame(gameLoop);
-        }
-        
-        // Update game state
-        function update() {
-            if (gameState !== PLAYING) return;
-            
-            // Update fighters
-            player1.move(player2);
-            player2.move(player1);
-            
-            player1.update(player2);
-            player2.update(player1);
-            
-            // Update background elements
-            for (let element of backgroundElements) {
-                element.update();
-            }
-            
-            // Update blood effects
-            for (let i = bloodEffects.length - 1; i >= 0; i--) {
-                if (!bloodEffects[i].update()) {
-                    bloodEffects.splice(i, 1);
-                }
-            }
-            
-            // Update timer
-            const elapsedTime = Math.floor((Date.now() - roundStartTime) / 1000);
-            const remainingTime = Math.max(0, roundTime - elapsedTime);
-            document.getElementById('timer').textContent = remainingTime;
-            
-            // Check for game over
-            if (player1.health <= 0 || player2.health <= 0 || remainingTime <= 0) {
-                // Determine round winner
-                if (player1.health > player2.health) {
-                    player1Wins++;
-                } else if (player2.health > player1.health) {
-                    player2Wins++;
-                }
-                
-                document.getElementById('score').textContent = `${player1Wins} - ${player2Wins}`;
-                
-                // Check if match is over
-                if (player1Wins >= 2 || player2Wins >= 2 || currentRound >= 3) {
-                    endGame();
-                } else {
-                    // Next round
-                    currentRound++;
-                    resetRound();
-                }
-            }
-        }
-        
-        // Render the game
-        function render() {
-            // Clear canvas
-            ctx.fillStyle = '#1a1a1a';
-            ctx.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
-            
-            // Draw floor
-            ctx.fillStyle = '#646464';
-            ctx.fillRect(0, GAME_HEIGHT - FLOOR_HEIGHT, GAME_WIDTH, FLOOR_HEIGHT);
-            
-            // Draw background elements
-            for (let element of backgroundElements) {
-                element.draw();
-            }
-            
-            // Draw blood effects
-            for (let effect of bloodEffects) {
-                effect.draw();
-            }
-            
-            // Draw fighters
-            player1.draw();
-            player2.draw();
-        }
-        
-        // Game state functions
-        function startGame() {
-            gameState = PLAYING;
-            document.getElementById('menu-screen').classList.add('hidden');
-            resetGame();
-        }
-        
-        function pauseGame() {
-            if (gameState === PLAYING) {
-                gameState = PAUSED;
-                document.getElementById('pause-screen').classList.remove('hidden');
-            }
-        }
-        
-        function resumeGame() {
-            if (gameState === PAUSED) {
-                gameState = PLAYING;
-                document.getElementById('pause-screen').classList.add('hidden');
-                roundStartTime = Date.now() - (roundTime - parseInt(document.getElementById('timer').textContent)) * 1000;
-            }
-        }
-        
-        function goToMenu() {
-            gameState = MENU;
-            document.getElementById('pause-screen').classList.add('hidden');
-            document.getElementById('gameover-screen').classList.add('hidden');
-            document.getElementById('menu-screen').classList.remove('hidden');
-        }
-        
-        function endGame() {
-            gameState = GAME_OVER;
-            
-            let winnerText = "DRAW!";
-            if (player1Wins > player2Wins) {
-                winnerText = "SCORPION WINS!";
-            } else if (player2Wins > player1Wins) {
-                winnerText = "SUB-ZERO WINS!";
-            }
-            
-            document.getElementById('winner-text').textContent = winnerText;
-            document.getElementById('gameover-screen').classList.remove('hidden');
-        }
-        
-        function restartGame() {
-            gameState = PLAYING;
-            document.getElementById('gameover-screen').classList.add('hidden');
-            resetGame();
-        }
-        
-        function resetGame() {
-            player1Wins = 0;
-            player2Wins = 0;
-            currentRound = 1;
-            resetRound();
-            document.getElementById('score').textContent = "0 - 0";
-        }
-        
-        function resetRound() {
-            player1.health = 100;
-            player2.health = 100;
-            player1.x = 200;
-            player2.x = 700;
-            player1.kicks = [];
-            player2.kicks = [];
-            
-            document.getElementById('player1-health-fill').style.width = '100%';
-            document.getElementById('player2-health-fill').style.width = '100%';
-            document.getElementById('round-info').textContent = `Round ${currentRound}`;
-            
-            roundStartTime = Date.now();
-        }
-        
-        // Start the game when the page loads
-        window.addEventListener('load', init);
-    </script>
-</body>
+  </div><script>
+// --- Tiny sound helper (beeps)
+function tone(freq, dur=0.06){
+  try{const actx = tone.ctx||(tone.ctx=new (window.AudioContext||window.webkitAudioContext)());
+  const o = actx.createOscillator();const g = actx.createGain();o.connect(g);g.connect(actx.destination);
+  o.type='square';o.frequency.value=freq;g.gain.value=.03;o.start();g.gain.exponentialRampToValueAtTime(0.0001, actx.currentTime+dur);o.stop(actx.currentTime+dur);}catch(e){}
+}
+
+class FightScene extends Phaser.Scene{
+  constructor(){super({key:'fight'})}
+  preload(){
+    // no external assets – build shapes in runtime
+  }
+  create(){
+    const W = this.scale.width, H = this.scale.height;
+    this.physics.world.setBounds(0,0,W,H*0.78);
+
+    // background
+    this.add.rectangle(W/2,H/2,W,H,0x1f2330).setDepth(-5);
+    // floor
+    this.add.rectangle(W/2,H*0.78,W,10,0x3a4157).setDepth(-4);
+
+    // Player factory
+    const mkFighter=(x,flip=false,color=0x5ad7ff)=>{
+      const body = this.add.container(x,H*0.74);
+      const torso = this.add.rectangle(0,-40,36,60,color).setStrokeStyle(2,0xffffff);
+      const head = this.add.circle(0,-80,16,0xf0e4d7).setStrokeStyle(2,0x000000);
+      const armL = this.add.rectangle(-26,-42,12,38,color);
+      const armR = this.add.rectangle(26,-42,12,38,color);
+      const legL = this.add.rectangle(-10,-6,14,40,color);
+      const legR = this.add.rectangle(10,-6,14,40,color);
+      [torso,head,armL,armR,legL,legR].forEach(p=>body.add(p));
+
+      this.physics.add.existing(body);
+      body.body.setSize(40,80).setOffset(-20,-86).setCollideWorldBounds(true);
+      body.flipX = flip; body.facing = flip?-1:1; body.color=color;
+      body.state = 'idle'; body.canHit=true; body.isCPU=false; body.blocking=false; body.hp=100;
+
+      body.hitbox = this.add.rectangle(0,-50,30,30,0xffffff,0).setDepth(10);
+      this.physics.add.existing(body.hitbox); body.hitbox.body.setAllowGravity(false);
+
+      body.playAttack=(type)=>{
+        if(body.state!=='idle' && body.state!=='walk') return; // cancel rules
+        body.state = type;
+        const dir = body.flipX?-1:1;
+        let power=8, reach=42, dur=160, freq=600;
+        if(type==='kick'){ power=12; reach=60; dur=200; freq=420; }
+        if(type==='special'){ power=18; reach=70; dur=260; freq=300; }
+        if(type==='block'){ body.blocking=true; tone(200,0.12); this.time.delayedCall(350,()=>{body.blocking=false; body.state='idle';}); return; }
+        tone(freq,0.08);
+        // simple pose
+        this.tweens.add({targets:body, x: body.x + dir*12, y: body.y-2, yoyo:true, duration:dur});
+        // activate hitbox
+        body.hitbox.setPosition(body.x + dir*reach, body.y-50);
+        body.hitbox.active=true; body.hitbox.visible=false; body.canHit=true;
+        this.time.delayedCall(dur,()=>{ body.state='idle'; body.hitbox.active=false; });
+      };
+      return body;
+    }
+
+    this.p1 = mkFighter(W*0.3,false,0x5ad7ff);
+    this.p2 = mkFighter(W*0.7,true,0xff9a6b); this.p2.isCPU=true;
+
+    // collisions
+    this.physics.add.overlap(this.p1.hitbox,this.p2,(hb,enemy)=>this.onHit(this.p1,this.p2));
+    this.physics.add.overlap(this.p2.hitbox,this.p1,(hb,enemy)=>this.onHit(this.p2,this.p1));
+
+    // controls
+    this.cursors = this.input.keyboard.createCursorKeys();
+    this.keys = this.input.keyboard.addKeys('Z,X,C,V'); // punch, kick, special, block
+
+    // mobile buttons
+    const btn=(id,fn)=>document.getElementById(id).addEventListener('touchstart',e=>{e.preventDefault();fn();},{passive:false});
+    btn('punch',()=>this.p1.playAttack('punch'));
+    btn('kick',()=>this.p1.playAttack('kick'));
+    btn('special',()=>this.p1.playAttack('special'));
+    btn('block',()=>this.p1.playAttack('block'));
+
+    // joystick
+    this.joy = {wrap:document.getElementById('joy'), stick:document.getElementById('stick'), dx:0};
+    let dragging=false, ox=0, oy=0;
+    const clamp=(v,m)=>Math.max(-m,Math.min(m,v));
+    const start=e=>{dragging=true; const t=e.changedTouches[0]; ox=t.clientX; oy=t.clientY;}
+    const move=e=>{if(!dragging) return; const t=e.changedTouches[0]; let dx=t.clientX-ox, dy=t.clientY-oy; const r=72; dx=clamp(dx,r); dy=clamp(dy,r); this.joy.dx=dx/r; this.joy.stick.style.transform=`translate(${dx+100-50}px,${dy+100-50}px)`;}
+    const end=()=>{dragging=false; this.joy.dx=0; this.joy.stick.style.transform='translate(-50%,-50%)';}
+    this.joy.wrap.addEventListener('touchstart',start); this.joy.wrap.addEventListener('touchmove',move); this.joy.wrap.addEventListener('touchend',end);
+
+    // HUD
+    this.hp1El = document.getElementById('hp1');
+    this.hp2El = document.getElementById('hp2');
+    this.timerEl = document.getElementById('timer');
+    this.msgEl = document.getElementById('msg');
+
+    this.roundTime = 60; this.time.addEvent({delay:1000, loop:true, callback:()=>{if(this.roundOver) return; this.roundTime--; this.timerEl.textContent=this.roundTime; if(this.roundTime<=0) this.stopRound('TIME UP!');}});
+
+    this.cameras.main.setBackgroundColor('#0f1117');
+  }
+
+  onHit(attacker, victim){
+    if(!attacker.hitbox.active || !attacker.canHit) return;
+    attacker.canHit=false;
+    let dmg=8; if(attacker.state==='kick') dmg=12; if(attacker.state==='special') dmg=18;
+    if(victim.blocking){ dmg=Math.floor(dmg*0.3); tone(160,0.1);} else { tone(880,0.06); }
+    victim.hp = Math.max(0, victim.hp - dmg);
+    const kb = (attacker.flipX?-1:1) * (victim.blocking?50:120);
+    this.tweens.add({targets:victim, x: victim.x + kb, duration:120, ease:'quad.out'});
+    this.flashHit(victim.x, victim.y-60);
+    this.updateHP();
+    if(victim.hp<=0) this.stopRound(attacker===this.p1? 'YOU WIN!':'YOU LOSE');
+  }
+
+  flashHit(x,y){
+    const s = this.add.circle(x,y,6,0xffffff).setDepth(20);
+    this.tweens.add({targets:s, radius:36, alpha:0, duration:180, onComplete:()=>s.destroy()});
+  }
+
+  updateHP(){
+    this.hp1El.style.width = this.p1.hp+"%";
+    this.hp2El.style.width = this.p2.hp+"%";
+  }
+
+  stopRound(text){
+    if(this.roundOver) return; this.roundOver=true; this.msgEl.textContent=text; tone(180,0.2); tone(140,0.2);
+    this.time.delayedCall(1800,()=>this.scene.restart());
+  }
+
+  cpuLogic(){
+    const dist = this.p2.x - this.p1.x;
+    const approach = Math.abs(dist) > 110;
+    if(approach){ this.p2.body.setVelocityX(dist>0?-120:120); this.p2.flipX = dist<0; }
+    else { this.p2.body.setVelocityX(0); }
+
+    if(Phaser.Math.Between(0,100)<2){ // random action
+      const choices=['punch','kick','special','block'];
+      this.p2.playAttack(Phaser.Utils.Array.GetRandom(choices));
+    }
+  }
+
+  update(){
+    if(this.roundOver) return;
+    const speed = 200;
+    let vx = 0;
+    // keyboard
+    if(this.cursors.left.isDown) vx = -speed;
+    else if(this.cursors.right.isDown) vx = speed;
+    // mobile
+    if(Math.abs(this.joy?.dx||0) > 0.05) vx = this.joy.dx * speed;
+
+    this.p1.body.setVelocityX(vx);
+    if(vx!==0){ this.p1.flipX = vx<0; }
+
+    // attacks (keyboard)
+    if(Phaser.Input.Keyboard.JustDown(this.keys.Z)) this.p1.playAttack('punch');
+    if(Phaser.Input.Keyboard.JustDown(this.keys.X)) this.p1.playAttack('kick');
+    if(Phaser.Input.Keyboard.JustDown(this.keys.C)) this.p1.playAttack('special');
+    if(Phaser.Input.Keyboard.JustDown(this.keys.V)) this.p1.playAttack('block');
+
+    // keep hitboxes synced
+    this.p1.hitbox.setPosition(this.p1.x + (this.p1.flipX?-1:1)*50, this.p1.y-50);
+    this.p2.hitbox.setPosition(this.p2.x + (this.p2.flipX?-1:1)*50, this.p2.y-50);
+
+    // CPU
+    this.cpuLogic();
+  }
+}
+
+const config={ type:Phaser.AUTO, parent:'game', backgroundColor:'#0f1117', scale:{mode:Phaser.Scale.RESIZE,autoCenter:Phaser.Scale.CENTER_BOTH}, physics:{ default:'arcade', arcade:{ gravity:{y:900}, debug:false }}, scene:[FightScene] };
+new Phaser.Game(config);
+</script></body>
 </html>
