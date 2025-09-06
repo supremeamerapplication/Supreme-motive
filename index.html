@@ -6,8 +6,8 @@
     <title>Supreme Motive - Daily Inspiration & Motivation</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
-    <!-- PWA Manifest -->
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#4a154b">
     <style>
         /* Global Styles */
         * {
@@ -15,420 +15,270 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         :root {
-            --primary: #4e54c8;
-            --secondary: #8f94fb;
-            --accent: #ff6b6b;
-            --dark: #333;
+            --primary: #4a154b;
+            --secondary: #f86464;
+            --accent: #8a2be2;
             --light: #f9f9f9;
-            --text: #333;
-            --background: #f9f9f9;
-            --card-bg: #ffffff;
-            --header-bg: rgba(78, 84, 200, 0.95);
-            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            --footer-bg: #333;
+            --dark: #333;
+            --gray: #777;
+            --transition: all 0.3s ease;
         }
-        
-        .dark-mode {
-            --primary: #6a6fd9;
-            --secondary: #a8abff;
-            --accent: #ff8a8a;
-            --dark: #f0f0f0;
-            --light: #222;
-            --text: #f0f0f0;
-            --background: #121212;
-            --card-bg: #1e1e1e;
-            --header-bg: rgba(42, 42, 62, 0.95);
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            --footer-bg: #1a1a1a;
-        }
-        
+
         body {
-            background-color: var(--background);
-            color: var(--text);
-            line-height: 1.6;
-            font-family: 'Merriweather', serif;
-            overflow-x: hidden;
-            transition: background-color 0.5s ease, color 0.5s ease;
-        }
-        
-        h1, h2, h3, h4, h5, h6 {
             font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            color: var(--text);
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+            transition: var(--transition);
         }
-        
+
+        body.dark-mode {
+            --light: #222;
+            --dark: #f9f9f9;
+            --gray: #aaa;
+            background-color: var(--light);
+            color: var(--dark);
+        }
+
         .container {
             width: 90%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 15px;
         }
-        
+
+        section {
+            padding: 80px 0;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            margin-bottom: 20px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-family: 'Merriweather', serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--secondary);
+        }
+
         .btn {
             display: inline-block;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
+            padding: 12px 30px;
+            background: var(--primary);
             color: white;
-            padding: 14px 28px;
+            border: none;
             border-radius: 30px;
-            text-decoration: none;
+            cursor: pointer;
             font-weight: 600;
             transition: var(--transition);
-            border: none;
-            cursor: pointer;
-            font-family: 'Montserrat', sans-serif;
             text-transform: uppercase;
             letter-spacing: 1px;
-            font-size: 0.9rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            font-size: 14px;
         }
-        
+
         .btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            background: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            color: white;
         }
-        
-        section {
-            padding: 100px 0;
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
         }
-        
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
         .section-title {
             text-align: center;
             margin-bottom: 60px;
-            font-size: 2.8rem;
-            color: var(--primary);
             position: relative;
         }
-        
+
         .section-title:after {
             content: '';
             display: block;
-            width: 100px;
-            height: 5px;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            margin: 20px auto;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            margin: 15px auto;
             border-radius: 2px;
         }
-        
-        /* Header Styles */
+
+        /* Header */
         header {
-            background: var(--header-bg);
-            color: white;
-            padding: 20px 0;
             position: fixed;
-            width: 100%;
             top: 0;
+            left: 0;
+            width: 100%;
             z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             transition: var(--transition);
         }
-        
-        header.scrolled {
-            padding: 15px 0;
+
+        body.dark-mode header {
+            background: rgba(34, 34, 34, 0.95);
         }
-        
+
+        header.scrolled {
+            padding: 10px 0;
+        }
+
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 20px 0;
         }
-        
-        .logo-container {
+
+        .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            font-weight: 700;
+            font-size: 24px;
+            color: var(--primary);
         }
-        
-        .logo {
-            width: 50px;
-            height: 50px;
+
+        body.dark-mode .logo {
+            color: var(--dark);
+        }
+
+        .logo-icon {
+            font-size: 28px;
+            margin-right: 10px;
+            color: var(--secondary);
             animation: pulse 2s infinite;
         }
-        
+
         @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+            0% {
+                transform: scale(1);
+                text-shadow: 0 0 0 rgba(248, 100, 100, 0.7);
+            }
+            50% {
+                transform: scale(1.05);
+                text-shadow: 0 0 10px rgba(248, 100, 100, 0.4);
+            }
+            100% {
+                transform: scale(1);
+                text-shadow: 0 0 0 rgba(248, 100, 100, 0.7);
+            }
         }
-        
-        .logo-text {
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-        
-        .nav-controls {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .theme-toggle, .music-toggle, .connect-toggle {
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: var(--transition);
-            color: white;
-        }
-        
-        .theme-toggle:hover, .music-toggle:hover, .connect-toggle:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-3px);
-        }
-        
+
         .nav-links {
             display: flex;
             list-style: none;
         }
-        
+
         .nav-links li {
             margin-left: 30px;
-            position: relative;
         }
-        
+
         .nav-links a {
-            color: white;
-            text-decoration: none;
+            color: var(--dark);
             font-weight: 600;
-            transition: var(--transition);
-            font-family: 'Montserrat', sans-serif;
-        }
-        
-        .nav-links a:after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            left: 0;
-            bottom: -5px;
+            font-size: 16px;
             transition: var(--transition);
         }
-        
-        .nav-links a:hover:after {
-            width: 100%;
+
+        body.dark-mode .nav-links a {
+            color: var(--dark);
         }
-        
+
         .nav-links a:hover {
-            color: var(--accent);
+            color: var(--secondary);
         }
-        
+
+        .nav-controls {
+            display: flex;
+            align-items: center;
+        }
+
+        .theme-toggle, .music-toggle {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            margin-left: 15px;
+            color: var(--dark);
+            transition: var(--transition);
+        }
+
+        body.dark-mode .theme-toggle, 
+        body.dark-mode .music-toggle {
+            color: var(--dark);
+        }
+
+        .theme-toggle:hover, .music-toggle:hover {
+            color: var(--secondary);
+        }
+
         .menu-toggle {
             display: none;
-            font-size: 1.5rem;
+            font-size: 24px;
             cursor: pointer;
-            color: white;
+            margin-left: 20px;
         }
-        
-        /* Connect & Coffee Modal */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-        }
-        
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .connect-modal {
-            background: var(--card-bg);
-            border-radius: 20px;
-            width: 90%;
-            max-width: 600px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transform: translateY(50px);
-            opacity: 0;
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .modal-overlay.active .connect-modal {
-            transform: translateY(0);
-            opacity: 1;
-        }
-        
-        .modal-header {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: white;
-            padding: 25px;
-            text-align: center;
-            position: relative;
-        }
-        
-        .modal-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        
-        .modal-close:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: rotate(90deg);
-        }
-        
-        .modal-body {
-            padding: 30px;
-        }
-        
-        .social-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-        
-        .social-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-decoration: none;
-            color: var(--text);
-            transition: var(--transition);
-            padding: 15px 10px;
-            border-radius: 10px;
-            background: var(--light);
-        }
-        
-        .social-item:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow);
-            color: var(--primary);
-        }
-        
-        .social-icon {
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-        
-        .social-name {
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-align: center;
-        }
-        
-        .coffee-section {
-            background: var(--light);
-            border-radius: 15px;
-            padding: 25px;
-            text-align: center;
-            margin-top: 20px;
-        }
-        
-        .coffee-icon {
-            font-size: 2.5rem;
-            color: #ffdd00;
-            margin-bottom: 15px;
-        }
-        
-        .coffee-section h3 {
-            margin-bottom: 15px;
-            color: var(--primary);
-        }
-        
-        .coffee-section p {
-            margin-bottom: 20px;
-            color: var(--text);
-        }
-        
-        .coffee-btn {
-            background: linear-gradient(to right, #ffdd00, #ff9500);
-            color: #333;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 30px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .coffee-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
+
         /* Hero Section */
         .hero {
-            padding-top: 180px;
-            padding-bottom: 120px;
+            padding: 160px 0 100px;
             text-align: center;
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1498243751580-4e0a89c271f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            background: linear-gradient(135deg, rgba(74, 21, 75, 0.9) 0%, rgba(138, 43, 226, 0.8) 100%);
             color: white;
             position: relative;
             overflow: hidden;
         }
-        
-        .hero:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' fill-opacity='0.1' d='M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,224C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
-            background-size: cover;
-            background-position: bottom;
-        }
-        
+
         .hero-content {
-            position: relative;
             max-width: 800px;
             margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
-        
+
         .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 25px;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
             animation: fadeInUp 1s ease;
         }
-        
-        .hero p {
-            font-size: 1.3rem;
-            max-width: 700px;
-            margin: 0 auto 40px;
-            animation: fadeInUp 1.2s ease;
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        
-        .hero .btn {
-            animation: fadeInUp 1.4s ease;
-        }
-        
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -439,510 +289,102 @@
                 transform: translateY(0);
             }
         }
-        
-        /* Daily Quote */
-        .daily-quote {
-            background-color: var(--card-bg);
-            border-radius: 15px;
-            padding: 50px;
-            box-shadow: var(--shadow);
+
+        /* Quote Section */
+        .quote-container {
+            background: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             text-align: center;
-            margin-top: -90px;
-            position: relative;
-            z-index: 2;
+            margin: 0 auto;
+            max-width: 800px;
             transition: var(--transition);
-            background-size: cover;
-            background-position: center;
-            background-blend-mode: overlay;
-            background-color: rgba(255, 255, 255, 0.9);
         }
-        
-        .dark-mode .daily-quote {
-            background-color: rgba(30, 30, 30, 0.9);
+
+        body.dark-mode .quote-container {
+            background: #333;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
-        
-        .daily-quote:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
-        }
-        
-        .quote-icon {
-            font-size: 3rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
-        
+
         .quote-text {
-            font-size: 2rem;
+            font-size: 24px;
             font-style: italic;
-            margin-bottom: 25px;
-            color: var(--text);
-            line-height: 1.5;
-            font-weight: 300;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            color: var(--primary);
         }
-        
+
+        body.dark-mode .quote-text {
+            color: var(--secondary);
+        }
+
         .quote-author {
             font-weight: 600;
-            color: var(--primary);
-            font-size: 1.2rem;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            color: var(--gray);
         }
-        
+
         .quote-controls {
             margin-top: 30px;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
         }
-        
-        .quote-btn {
-            background: var(--light);
-            border: 2px solid var(--primary);
-            color: var(--primary);
-            padding: 10px 20px;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-        }
-        
-        .quote-btn:hover {
-            background: var(--primary);
-            color: white;
-        }
-        
-        /* Quote Categories */
-        .quote-categories {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin: 40px 0;
-        }
-        
-        .category-btn {
-            padding: 10px 20px;
-            border-radius: 30px;
-            border: 2px solid var(--primary);
-            background: transparent;
-            color: var(--primary);
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-        }
-        
-        .category-btn.active, .category-btn:hover {
-            background: var(--primary);
-            color: white;
-        }
-        
+
         /* Categories */
-        .categories {
-            background-color: var(--background);
-            position: relative;
-        }
-        
-        .categories:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 50%;
-            background: linear-gradient(to bottom, var(--secondary), transparent);
-            opacity: 0.1;
-            z-index: 0;
-        }
-        
-        .category-grid {
+        .categories-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-            position: relative;
-            z-index: 1;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
         }
-        
+
         .category-card {
-            background: var(--card-bg);
-            border-radius: 15px;
-            padding: 40px 30px;
-            text-align: center;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-        
-        .category-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-        
-        .category-card i {
-            font-size: 3.5rem;
-            color: var(--primary);
-            margin-bottom: 25px;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .category-card h3 {
-            margin-bottom: 20px;
-            color: var(--text);
-            font-size: 1.5rem;
-        }
-        
-        .category-card p {
-            color: #666;
-            margin-bottom: 25px;
-        }
-        
-        /* Featured Posts */
-        .featured-posts {
-            background: linear-gradient(to bottom, var(--background), var(--light);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .featured-posts:before {
-            content: '';
-            position: absolute;
-            top: -100px;
-            right: -100px;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            opacity: 0.1;
-        }
-        
-        .featured-posts:after {
-            content: '';
-            position: absolute;
-            bottom: -100px;
-            left: -100px;
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-            background: linear-gradient(to right, var(--accent), var(--primary));
-            opacity: 0.1;
-        }
-        
-        .posts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .post-card {
-            background-color: var(--card-bg);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            transform: translateY(50px);
-            opacity: 0;
-        }
-        
-        .post-card.visible {
-            transform: translateY(0);
-            opacity: 1;
-        }
-        
-        .post-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-        
-        .post-img {
-            height: 220px;
-            background-size: cover;
-            background-position: center;
-            transition: var(--transition);
-        }
-        
-        .post-card:hover .post-img {
-            transform: scale(1.05);
-        }
-        
-        .post-content {
-            padding: 25px;
-        }
-        
-        .post-content h3 {
-            margin-bottom: 15px;
-            color: var(--text);
-            font-size: 1.4rem;
-        }
-        
-        .post-content p {
-            margin-bottom: 20px;
-            color: 666;
-        }
-        
-        .post-meta {
-            display: flex;
-            justify-content: space-between;
-            color: #888;
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 15px;
-        }
-        
-        /* Testimonials */
-        .testimonials {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: white;
-            text-align: center;
-            position: relative;
-        }
-        
-        .testimonials:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' fill-opacity='0.1' d='M0,128L48,117.3C96,107,192,85,288,112C384,139,480,213,576,224C672,235,768,181,864,160C960,139,1056,149,1152,144C1248,139,1344,117,1392,106.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/pash3%3E%3C/svg%3E");
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .testimonials .section-title {
-            color: white;
-        }
-        
-        .testimonial-slider {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            overflow: hidden;
-            height: 300px;
-        }
-        
-        .testimonial {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 0 20px;
-        }
-        
-        .testimonial.active {
-            opacity: 1;
-        }
-        
-        .testimonial-text {
-            font-size: 1.4rem;
-            font-style: italic;
-            margin-bottom: 30px;
-            max-width: 700px;
-        }
-        
-        .testimonial-author {
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-        
-        .testimonial-controls {
-            margin-top: 40px;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-        }
-        
-        .testimonial-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        
-        .testimonial-dot.active {
             background: white;
-            transform: scale(1.3);
-        }
-        
-        /* Newsletter */
-        .newsletter {
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            color: white;
-            text-align: center;
-            padding: 80px 0;
-            position: relative;
+            border-radius: 10px;
             overflow: hidden;
-        }
-        
-        .newsletter:before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
-        }
-        
-        .newsletter-content {
-            position: relative;
-            z-index: 1;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .newsletter h2 {
-            margin-bottom: 20px;
-            font-size: 2.5rem;
-        }
-        
-        .newsletter p {
-            max-width: 600px;
-            margin: 0 auto 40px;
-            font-size: 1.1rem;
-        }
-        
-        .newsletter-form {
-            display: flex;
-            max-width: 500px;
-            margin: 0 auto;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            border-radius: 60px;
-            overflow: hidden;
-        }
-        
-        .newsletter-form input {
-            flex: 1;
-            padding: 18px 25px;
-            border: none;
-            outline: none;
-            font-family: 'Merriweather', serif;
-            font-size: 1rem;
-        }
-        
-        .newsletter-form button {
-            padding: 18px 30px;
-            background-color: var(--accent);
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-            font-family: 'Montserrat', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             transition: var(--transition);
+            text-align: center;
         }
-        
-        .newsletter-form button:hover {
-            background-color: #ff5252;
+
+        body.dark-mode .category-card {
+            background: #333;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
-        
-        /* Footer */
-        footer {
-            background-color: var(--footer-bg);
-            color: white;
-            padding: 80px 0 30px;
-            position: relative;
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
-        
-        .footer-content {
+
+        .category-icon {
+            font-size: 40px;
+            padding: 30px 0;
+            color: var(--primary);
+        }
+
+        .category-content {
+            padding: 20px;
+        }
+
+        .category-content h3 {
+            margin-bottom: 10px;
+        }
+
+        /* Contact Section */
+        .contact-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 50px;
-            margin-bottom: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
         }
-        
-        .footer-column h3 {
-            margin-bottom: 25px;
-            font-size: 1.3rem;
-            position: relative;
-            display: inline-block;
+
+        .contact-info {
+            margin-bottom: 30px;
         }
-        
-        .footer-column h3:after {
-            content: '';
-            position: absolute;
-            width: 40px;
-            height: 3px;
-            background: var(--accent);
-            left: 0;
-            bottom: -10px;
-        }
-        
-        .footer-column p {
-            margin-bottom: 20px;
-            color: #ddd;
-        }
-        
-        .footer-column ul {
-            list-style: none;
-        }
-        
-        .footer-column ul li {
-            margin-bottom: 12px;
-        }
-        
-        .footer-column a {
-            color: #ddd;
-            text-decoration: none;
-            transition: var(--transition);
-            display: inline-block;
-        }
-        
-        .footer-column a:hover {
-            color: var(--accent);
-            transform: translateX(5px);
-        }
-        
-        .social-icons {
+
+        .contact-item {
             display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .social-icons a {
-            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            width: 45px;
-            height: 45px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            transition: var(--transition);
+            margin-bottom: 20px;
         }
-        
-        .social-icons a:hover {
-            background-color: var(--accent);
-            transform: translateY(-5px);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #aaa;
-            font-size: 0.9rem;
-        }
-        
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
+
+        .contact-icon {
             width: 50px;
             height: 50px;
             background: var(--primary);
@@ -951,260 +393,293 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            text-decoration: none;
-            opacity: 0;
+            font-size: 20px;
+            margin-right: 15px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Merriweather', serif;
             transition: var(--transition);
-            z-index: 999;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
-        
-        .back-to-top.visible {
-            opacity: 1;
-            bottom: 30px;
+
+        body.dark-mode .contact-form input,
+        body.dark-mode .contact-form textarea {
+            background: #444;
+            border-color: #555;
+            color: white;
         }
-        
-        .back-to-top:hover {
-            background: var(--accent);
-            transform: translateY(-5px);
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--primary);
+            outline: none;
         }
-        
-        /* Music Player */
-        .music-player {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background: var(--card-bg);
-            border-radius: 50px;
-            padding: 10px 15px;
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
-            gap: 10px;
-            box-shadow: var(--shadow);
-            z-index: 998;
+        }
+
+        .footer-about p {
+            margin-bottom: 20px;
+        }
+
+        .footer-links h3,
+        .footer-newsletter h3 {
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-links h3:after,
+        .footer-newsletter h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--secondary);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ddd;
             transition: var(--transition);
-            opacity: 0.9;
         }
-        
-        .music-player:hover {
-            opacity: 1;
+
+        .footer-links a:hover {
+            color: var(--secondary);
         }
-        
-        .music-info {
-            max-width: 0;
-            overflow: hidden;
-            transition: var(--transition);
-            white-space: nowrap;
-        }
-        
-        .music-player.expanded .music-info {
-            max-width: 200px;
-            margin-right: 10px;
-        }
-        
-        .music-title {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--text);
-            margin: 0;
-        }
-        
-        .music-artist {
-            font-size: 0.8rem;
-            color: #666;
-            margin: 0;
-        }
-        
-        .music-controls {
+
+        .footer-newsletter form {
             display: flex;
-            gap: 5px;
+            margin-bottom: 20px;
         }
-        
-        .music-btn {
-            background: none;
+
+        .footer-newsletter input {
+            flex: 1;
+            padding: 12px 15px;
             border: none;
-            color: var(--primary);
+            border-radius: 4px 0 0 4px;
+            outline: none;
+        }
+
+        .footer-newsletter button {
+            padding: 0 20px;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 0 4px 4px 0;
             cursor: pointer;
-            font-size: 1rem;
-            width: 35px;
-            height: 35px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: var(--transition);
         }
-        
-        .music-btn:hover {
-            background: rgba(0, 0, 0, 0.1);
+
+        .social-icons a:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
         }
-        
-        .volume-control {
-            width: 0;
-            overflow: hidden;
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 10px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        body.dark-mode .modal-content {
+            background: #333;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--gray);
             transition: var(--transition);
         }
-        
-        .music-player.expanded .volume-control {
-            width: 80px;
-            margin-left: 5px;
+
+        .close-modal:hover {
+            color: var(--secondary);
         }
-        
-        /* Responsive Design */
+
+        .modal-title {
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        body.dark-mode .modal-title {
+            color: var(--secondary);
+        }
+
+        .coffee-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .coffee-option {
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .coffee-option:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .coffee-option.selected {
+            border-color: var(--primary);
+            background: rgba(74, 21, 75, 0.1);
+        }
+
+        body.dark-mode .coffee-option.selected {
+            background: rgba(74, 21, 75, 0.3);
+        }
+
+        /* Install Button */
+        .install-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 25px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .install-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive */
         @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 3rem;
-            }
-            
-            .section-title {
-                font-size: 2.5rem;
-            }
-            
             .nav-links {
-                position: fixed;
-                top: 0;
-                right: -300px;
-                width: 300px;
-                height: 100vh;
-                background: var(--header-bg);
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                transition: var(--transition);
-                z-index: 1001;
+                display: none;
             }
-            
-            .nav-links.active {
-                right: 0;
-            }
-            
-            .nav-links li {
-                margin: 15px 0;
-            }
-            
+
             .menu-toggle {
                 display: block;
-                z-index: 1002;
             }
-            
-            .newsletter-form {
-                flex-direction: column;
-                border-radius: 15px;
-            }
-            
-            .newsletter-form input,
-            .newsletter-form button {
-                width: 100%;
-                border-radius: 0;
-                text-align: center;
-            }
-            
-            .music-player {
-                bottom: 70px;
-            }
-            
-            .social-grid {
-                grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
-            }
-            
-            .social-icon {
-                font-size: 1.8rem;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            section {
-                padding: 80px 0;
-            }
-            
-            .hero {
-                padding-top: 150px;
-                padding-bottom: 100px;
-            }
-            
+
             .hero h1 {
                 font-size: 2.5rem;
             }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .daily-quote {
-                padding: 30px;
-                margin-top: -70px;
-            }
-            
-            .quote-text {
-                font-size: 1.6rem;
-            }
-            
-            .testimonial-text {
-                font-size: 1.2rem;
-            }
-            
-            .modal-body {
-                padding: 20px;
-            }
-            
-            .social-grid {
-                grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
-                gap: 10px;
-            }
-            
-            .social-icon {
-                font-size: 1.5rem;
-            }
-            
-            .social-name {
-                font-size: 0.7rem;
-            }
-            
-            .coffee-section {
-                padding: 20px 15px;
-            }
         }
-        
-        @media (max-width: 576px) {
-            .hero h1 {
-                font-size: 2rem;
+
+        @media (max-width: 768px) {
+            section {
+                padding: 60px 0;
             }
-            
-            .hero p {
-                font-size: 1.1rem;
+
+            .hero {
+                padding: 140px 0 80px;
             }
-            
-            .section-title {
-                font-size: 1.8rem;
+
+            .contact-container {
+                grid-template-columns: 1fr;
             }
-            
-            .daily-quote {
-                padding: 25px 20px;
-            }
-            
-            .quote-text {
-                font-size: 1.4rem;
-            }
-            
-            .post-card {
-                grid-column: 1 / -1;
-            }
-            
-            .quote-categories {
-                gap: 10px;
-            }
-            
-            .category-btn {
-                padding: 8px 15px;
-                font-size: 0.9rem;
-            }
-            
-            .logo-text {
-                font-size: 1.5rem;
-            }
-            
-            .logo {
-                width: 40px;
-                height: 40px;
+
+            .coffee-options {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -1214,33 +689,9 @@
     <header id="header">
         <div class="container">
             <nav>
-                <div class="logo-container">
-                    <!-- Animated SVG Logo -->
-                    <svg class="logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#4e54c8">
-                                    <animate attributeName="stop-color" values="#4e54c8;#8f94fb;#4e54c8" dur="5s" repeatCount="indefinite" />
-                                </stop>
-                                <stop offset="100%" stop-color="#8f94fb">
-                                    <animate attributeName="stop-color" values="#8f94fb;#4e54c8;#8f94fb" dur="5s" repeatCount="indefinite" />
-                                </stop>
-                            </linearGradient>
-                        </defs>
-                        <circle cx="50" cy="50" r="45" fill="url(#gradient)" />
-                        <path d="M30,30 L70,30 L70,70 L30,70 Z" fill="none" stroke="white" stroke-width="5">
-                            <animate attributeName="stroke-dasharray" values="0,200;160,200;160,200" dur="2s" repeatCount="indefinite" />
-                            <animate attributeName="stroke-dashoffset" values="0;0;-160" dur="2s" repeatCount="indefinite" />
-                        </path>
-                        <path d="M40,40 L60,40 L60,60 L40,60 Z" fill="none" stroke="white" stroke-width="3">
-                            <animate attributeName="stroke-dasharray" values="0,100;80,100;80,100" dur="2s" repeatCount="indefinite" begin="0.5s" />
-                            <animate attributeName="stroke-dashoffset" values="0;0;-80" dur="2s" repeatCount="indefinite" begin="0.5s" />
-                        </path>
-                        <circle cx="50" cy="50" r="10" fill="white" opacity="0.8">
-                            <animate attributeName="r" values="8;12;8" dur="2s" repeatCount="indefinite" />
-                        </circle>
-                    </svg>
-                    <span class="logo-text">Supreme Motive</span>
+                <div class="logo">
+                    <i class="fas fa-fire logo-icon"></i>
+                    <span>Supreme Motive</span>
                 </div>
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
@@ -1257,9 +708,6 @@
                     <button class="music-toggle" id="musicToggle" title="Toggle music">
                         <i class="fas fa-music"></i>
                     </button>
-                    <button class="connect-toggle" id="connectToggle" title="Connect with us">
-                        <i class="fas fa-share-alt"></i>
-                    </button>
                     <div class="menu-toggle">
                         <i class="fas fa-bars"></i>
                     </div>
@@ -1273,150 +721,120 @@
         <div class="container">
             <div class="hero-content">
                 <h1>Ignite Your Inner Drive</h1>
-                <p>Daily inspiration, motivational quotes, and resources to help you achieve your goals and live your best life.</p>
-                <a href="#categories" class="btn">Get Inspired Today</a>
+                <p>Daily inspiration and motivation to help you achieve your goals and live your best life.</p>
+                <a href="#quote" class="btn">Get Inspired</a>
             </div>
         </div>
     </section>
 
-    <!-- Daily Quote -->
-    <section class="daily-quote" id="dailyQuote">
+    <!-- Quote Section -->
+    <section id="quote">
         <div class="container">
-            <div class="quote-icon">
-                <i class="fas fa-quote-left"></i>
-            </div>
-            <p class="quote-text" id="quote-text">"The only way to do great work is to love what you do."</p>
-            <p class="quote-author" id="quote-author">- Steve Jobs</p>
-            <div class="quote-controls">
-                <button class="quote-btn" id="new-quote">New Quote</button>
-                <button class="quote-btn" id="share-quote">Share Quote</button>
-            </div>
-            
-            <div class="quote-categories">
-                <button class="category-btn active" data-category="all">All</button>
-                <button class="category-btn" data-category="success">Success</button>
-                <button class="category-btn" data-category="life">Life</button>
-                <button class="category-btn" data-category="wisdom">Wisdom</button>
-                <button class="category-btn" data-category="motivation">Motivation</button>
-                <button class="category-btn" data-category="love">Love</button>
+            <div class="quote-container">
+                <p class="quote-text">"The only way to do great work is to love what you do."</p>
+                <p class="quote-author">- Steve Jobs</p>
+                <div class="quote-controls">
+                    <button class="btn" id="newQuote">New Quote</button>
+                    <button class="btn btn-outline" id="shareQuote">Share Quote</button>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Categories Section -->
-    <section class="categories" id="categories">
+    <section id="categories">
         <div class="container">
-            <h2 class="section-title">Motivation Categories</h2>
-            <div class="category-grid">
+            <h2 class="section-title">Categories</h2>
+            <div class="categories-grid">
                 <div class="category-card">
-                    <i class="fas fa-briefcase"></i>
-                    <h3>Career Success</h3>
-                    <p>Inspiration to excel in your professional life and achieve career goals.</p>
-                    <a href="#" class="btn">Explore</a>
-                </div>
-                <div class="category-card">
-                    <i class="fas fa-heart"></i>
-                    <h3>Personal Growth</h3>
-                    <p>Quotes and advice for self-improvement and becoming your best self.</p>
-                    <a href="#" class="btn">Explore</a>
-                </div>
-                <div class="category-card">
-                    <i class="fas fa-dumbbell"></i>
-                    <h3>Health & Fitness</h3>
-                    <p>Motivation to maintain a healthy lifestyle and fitness routine.</p>
-                    <a href="#" class="btn">Explore</a>
-                </div>
-                <div class="category-card">
-                    <i class="fas fa-brain"></i>
-                    <h3>Mindset</h3>
-                    <p>Developing a positive mindset and overcoming mental barriers.</p>
-                    <a href="#" class="btn">Explore</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Featured Posts -->
-    <section class="featured-posts" id="posts">
-        <div class="container">
-            <h2 class="section-title">Featured Posts</h2>
-            <div class="posts-grid">
-                <div class="post-card">
-                    <div class="post-img" style="background-image: url('https://images.unsplash.com/photo-1506784983877-45594efa4cbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
-                    <div class="post-content">
-                        <div class="post-meta">
-                            <span><i class="far fa-calendar"></i> June 15, 2023</span>
-                            <span><i class="far fa-clock"></i> 5 min read</span>
-                        </div>
-                        <h3>10 Habits of Highly Successful People</h3>
-                        <p>Discover the daily routines and habits that set successful individuals apart from the rest.</p>
-                        <a href="#" class="btn">Read More</a>
+                    <div class="category-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>Career</h3>
+                        <p>Get motivated to excel in your professional life.</p>
                     </div>
                 </div>
-                <div class="post-card">
-                    <div class="post-img" style="background-image: url('https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
-                    <div class="post-content">
-                        <div class="post-meta">
-                            <span><i class="far fa-calendar"></i> June 10, 2023</span>
-                            <span><i class="far fa-clock"></i> 7 min read</span>
-                        </div>
-                        <h3>Overcoming Self-Doubt</h3>
-                        <p>Learn practical strategies to silence your inner critic and build unshakable confidence.</p>
-                    <a href="#" class="btn">Read More</a>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>Relationships</h3>
+                        <p>Inspiration for meaningful connections.</p>
                     </div>
                 </div>
-                <div class="post-card">
-                    <div class="post-img" style="background-image: url('https://images.unsplash.com/photo-1533090368676-1fd25485db88?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
-                    <div class="post-content">
-                        <div class="post-meta">
-                            <span><i class="far fa-calendar"></i> June 5, 2023</span>
-                            <span><i class="far fa-clock"></i> 6 min read</span>
-                        </div>
-                        <h3>The Power of Morning Routines</h3>
-                        <p>How starting your day with intention can transform your productivity and mindset.</p>
-                        <a href="#" class="btn">Read More</a>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>Mindset</h3>
+                        <p>Develop a growth mindset for success.</p>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>Fitness</h3>
+                        <p>Stay motivated to keep your body healthy.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials -->
-    <section class="testimonials" id="testimonials">
+    <!-- Contact Section -->
+    <section id="contact">
         <div class="container">
-            <h2 class="section-title">What People Say</h2>
-            <div class="testimonial-slider">
-                <div class="testimonial active">
-                    <p class="testimonial-text">"Supreme Motive has completely transformed my morning routine. The daily quotes give me the motivation I need to tackle my goals with enthusiasm!"</p>
-                    <p class="testimonial-author">- Sarah Johnson, Entrepreneur</p>
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <p>Have questions or feedback? We'd love to hear from you!</p>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h4>Location</h4>
+                            <p>123 Inspiration St, Motivation City</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>info@suprememotive.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="testimonial">
-                    <p class="testimonial-text">"I've tried many motivation apps and websites, but Supreme Motive stands out. The content is genuine and has helped me through some tough times."</p>
-                    <p class="testimonial-author">- Michael Chen, Software Engineer</p>
+                
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
+                        <input type="text" placeholder="Subject" required>
+                        <textarea placeholder="Your Message" rows="5" required></textarea>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
                 </div>
-                <div class="testimonial">
-                    <p class="testimonial-text">"The articles on Supreme Motive are not only inspiring but also practical. I've implemented many of the tips and seen real changes in my life."</p>
-                    <p class="testimonial-author">- Emily Rodriguez, Teacher</p>
-                </div>
-            </div>
-            <div class="testimonial-controls">
-                <div class="testimonial-dot active" data-index="0"></div>
-                <div class="testimonial-dot" data-index="1"></div>
-                <div class="testimonial-dot" data-index="2"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Newsletter -->
-    <section class="newsletter">
-        <div class="container">
-            <div class="newsletter-content">
-                <h2>Get Daily Motivation</h2>
-                <p>Subscribe to our newsletter and receive inspirational quotes and articles directly to your inbox.</p>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="Your Email Address" required>
-                    <button type="submit">Subscribe Now</button>
-                </form>
             </div>
         </div>
     </section>
@@ -1425,160 +843,259 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Supreme Motive</h3>
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <i class="fas fa-fire"></i>
+                        <span>Supreme Motive</span>
+                    </div>
                     <p>Your daily dose of motivation and inspiration to help you achieve your dreams and live a fulfilling life.</p>
                     <div class="social-icons">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-pinterest"></i></a>
                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
-                <div class="footer-column">
+                
+                <div class="footer-links">
                     <h3>Quick Links</h3>
                     <ul>
                         <li><a href="#home">Home</a></li>
                         <li><a href="#categories">Categories</a></li>
-                        <li><a href="#posts">Blog</a></li>
+                        <li><a href="#posts">Posts</a></li>
                         <li><a href="#testimonials">Testimonials</a></li>
-                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#about">About</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
-                <div class="footer-column">
-                    <h3>Resources</h3>
-                    <ul>
-                        <li><a href="#">Free eBooks</a></li>
-                        <li><a href="#">Motivational Videos</a></li>
-                        <li><a href="#">Podcasts</a></li>
-                        <li><a href="#">Recommended Books</a></li>
-                        <li><a href="#">Daily Planner</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> 123 Inspiration St, Motive City</p>
-                    <p><i class="fas fa-envelope"></i> info@suprememotive.com</p>
-                    <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                
+                <div class="footer-newsletter">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get daily motivation in your inbox</p>
+                    <form>
+                        <input type="email" placeholder="Your Email" required>
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                    <button class="btn btn-outline" id="coffeeBtn">Buy Us a Coffee</button>
                 </div>
             </div>
-            <div class="copyright">
+            
+            <div class="footer-bottom">
                 <p>&copy; 2023 Supreme Motive. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Connect & Coffee Modal -->
-    <div class="modal-overlay" id="connectModal">
-        <div class="connect-modal">
-            <div class="modal-header">
-                <h2>Connect With Us</h2>
-                <p>Follow us on social media for daily inspiration and updates</p>
-                <div class="modal-close" id="modalClose">
-                    <i class="fas fa-times"></i>
+    <!-- Coffee Modal -->
+    <div class="modal" id="coffeeModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <h2 class="modal-title">Buy Us a Coffee</h2>
+            <p>Your support helps us continue providing daily motivation and inspiration.</p>
+            
+            <div class="coffee-options">
+                <div class="coffee-option" data-amount="3">
+                    <h3>Small Coffee</h3>
+                    <p>$3</p>
+                </div>
+                <div class="coffee-option" data-amount="5">
+                    <h3>Medium Coffee</h3>
+                    <p>$5</p>
+                </div>
+                <div class="coffee-option" data-amount="10">
+                    <h3>Large Coffee</h3>
+                    <p>$10</p>
                 </div>
             </div>
-            <div class="modal-body">
-                <div class="social-grid">
-                    <a href="https://facebook.com" class="social-item" target="_blank">
-                        <i class="fab fa-facebook social-icon" style="color: #1877f2;"></i>
-                        <span class="social-name">Facebook</span>
-                    </a>
-                    <a href="https://twitter.com" class="social-item" target="_blank">
-                        <i class="fab fa-twitter social-icon" style="color: #1da1f2;"></i>
-                        <span class="social-name">Twitter</span>
-                    </a>
-                    <a href="https://youtube.com" class="social-item" target="_blank">
-                        <i class="fab fa-youtube social-icon" style="color: #ff0000;"></i>
-                        <span class="social-name">YouTube</span>
-                    </a>
-                    <a href="https://telegram.org" class="social-item" target="_blank">
-                        <i class="fab fa-telegram social-icon" style="color: #0088cc;"></i>
-                        <span class="social-name">Telegram</span>
-                    </a>
-                    <a href="https://tiktok.com" class="social-item" target="_blank">
-                        <i class="fab fa-tiktok social-icon" style="color: #000000;"></i>
-                        <span class="social-name">TikTok</span>
-                    </a>
-                    <a href="https://linkedin.com" class="social-item" target="_blank">
-                        <i class="fab fa-linkedin social-icon" style="color: #0a66c2;"></i>
-                        <span class="social-name">LinkedIn</span>
-                    </a>
-                    <a href="https://instagram.com" class="social-item" target="_blank">
-                        <i class="fab fa-instagram social-icon" style="color: #e4405f;"></i>
-                        <span class="social-name">Instagram</span>
-                    </a>
-                    <a href="https://pinterest.com" class="social-item" target="_blank">
-                        <i class="fab fa-pinterest social-icon" style="color: #bd081c;"></i>
-                        <span class="social-name">Pinterest</span>
-                    </a>
-                </div>
-                
-                <div class="coffee-section">
-                    <div class="coffee-icon">
-                        <i class="fas fa-mug-hot"></i>
-                    </div>
-                    <h3>Support Our Mission</h3>
-                    <p>Help us continue providing daily motivation and inspiration by buying us a coffee</p>
-                    <button class="coffee-btn">
-                        <i class="fas fa-coffee"></i> Buy Me a Coffee
-                    </button>
-                </div>
-            </div>
+            
+            <form id="donationForm">
+                <input type="number" placeholder="Or enter custom amount" min="1" step="1">
+                <button type="submit" class="btn" style="width: 100%;">Continue to Payment</button>
+            </form>
         </div>
     </div>
 
-    <!-- Music Player -->
-    <div class="music-player" id="musicPlayer">
-        <div class="music-info">
-            <p class="music-title">Inspirational Piano</p>
-            <p class="music-artist">Motivation Mix</p>
-        </div>
-        <div class="music-controls">
-            <button class="music-btn" id="prevBtn"><i class="fas fa-step-backward"></i></button>
-            <button class="music-btn" id="playPauseBtn"><i class="fas fa-play"></i></button>
-            <button class="music-btn" id="nextBtn"><i class="fas fa-step-forward"></i></button>
-        </div>
-        <div class="volume-control">
-            <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="0.5">
-        </div>
-    </div>
-
-    <a href="#" class="back-to-top" id="backToTop">
-        <i class="fas fa-arrow-up"></i>
-    </a>
-
-    <audio id="backgroundMusic" loop>
-        <source src="https://cdn.pixabay.com/download/audio/2022/01/20/audio_dc39bbc811.mp3?filename=inspirational-background-ampiano-119135.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
+    <!-- Install Button -->
+    <button class="install-btn" id="installBtn">
+        <i class="fas fa-download"></i> Install App
+    </button>
 
     <script>
-        // Enhanced JavaScript for Supreme Motive
-        document.addEventListener('DOMContentLoaded', function() {
-            // Quote data organized by categories
-            const quoteCategories = {
-                success: [
-                    {
-                        text: "The only way to do great work is to love what you do.",
-                        author: "Steve Jobs",
-                        background: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-                    },
-                    {
-                        text: "Success is not the key to happiness. Happiness is the key to success.",
-                        author: "Albert Schweitzer",
-                        background: "https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1147&q=80"
-                    },
-                    {
-                        text: "Success usually comes to those who are too busy to be looking for it.",
-                        author: "Henry David Thoreau",
-                        background: "https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80"
-                    }
-                ],
-                life: [
-                    {
-                        text: "Life is what happens when you're busy making other plans.",
-                        author: "John Lennon",
-                        background: "https://images.unsplash.com/photo-1459478309853-2c33a60058e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto
+        // DOM Elements
+        const themeToggle = document.getElementById('themeToggle');
+        const coffeeModal = document.getElementById('coffeeModal');
+        const coffeeBtn = document.getElementById('coffeeBtn');
+        const closeModal = document.getElementById('closeModal');
+        const installBtn = document.getElementById('installBtn');
+        const coffeeOptions = document.querySelectorAll('.coffee-option');
+        const newQuoteBtn = document.getElementById('newQuote');
+        const shareQuoteBtn = document.getElementById('shareQuote');
+        const quoteText = document.querySelector('.quote-text');
+        const quoteAuthor = document.querySelector('.quote-author');
+
+        // Quotes Array
+        const quotes = [
+            {
+                text: "The only way to do great work is to love what you do.",
+                author: "Steve Jobs"
+            },
+            {
+                text: "Believe you can and you're halfway there.",
+                author: "Theodore Roosevelt"
+            },
+            {
+                text: "Your time is limited, so don't waste it living someone else's life.",
+                author: "Steve Jobs"
+            },
+            {
+                text: "It does not matter how slowly you go as long as you do not stop.",
+                author: "Confucius"
+            },
+            {
+                text: "Everything you've ever wanted is on the other side of fear.",
+                author: "George Addair"
+            },
+            {
+                text: "Success is not final, failure is not fatal: it is the courage to continue that counts.",
+                author: "Winston Churchill"
+            },
+            {
+                text: "The only impossible journey is the one you never begin.",
+                author: "Tony Robbins"
+            },
+            {
+                text: "In the middle of every difficulty lies opportunity.",
+                author: "Albert Einstein"
+            }
+        ];
+
+        // Theme Toggle
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Check saved theme
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        }
+
+        // Coffee Modal
+        coffeeBtn.addEventListener('click', () => {
+            coffeeModal.style.display = 'flex';
+        });
+
+        closeModal.addEventListener('click', () => {
+            coffeeModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === coffeeModal) {
+                coffeeModal.style.display = 'none';
+            }
+        });
+
+        // Coffee Options Selection
+        coffeeOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                coffeeOptions.forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+                document.querySelector('#donationForm input').value = option.getAttribute('data-amount');
+            });
+        });
+
+        // Donation Form
+        document.getElementById('donationForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const amount = document.querySelector('#donationForm input').value;
+            if (amount) {
+                alert(`Thank you for your donation of $${amount}! This is a demo - no real payment will be processed.`);
+                coffeeModal.style.display = 'none';
+            }
+        });
+
+        // Contact Form
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your message! This is a demo - no message was actually sent.');
+            e.target.reset();
+        });
+
+        // Newsletter Form
+        document.querySelector('.footer-newsletter form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for subscribing to our newsletter!');
+            e.target.reset();
+        });
+
+        // Quote Generation
+        function getRandomQuote() {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            const quote = quotes[randomIndex];
+            quoteText.textContent = `"${quote.text}"`;
+            quoteAuthor.textContent = `- ${quote.author}`;
+        }
+
+        newQuoteBtn.addEventListener('click', getRandomQuote);
+
+        // Share Quote
+        shareQuoteBtn.addEventListener('click', () => {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Inspirational Quote',
+                    text: `${quoteText.textContent} ${quoteAuthor.textContent}`,
+                    url: window.location.href
+                })
+                .catch(error => {
+                    console.log('Error sharing:', error);
+                });
+            } else {
+                alert('Web Share API not supported in your browser. You can manually copy the quote.');
+            }
+        });
+
+        // PWA Installation
+        let deferredPrompt;
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installBtn.style.display = 'flex';
+        });
+
+        installBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                if (outcome === 'accepted') {
+                    installBtn.style.display = 'none';
+                }
+                deferredPrompt = null;
+            }
+        });
+
+        // Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                .then(registration => {
+                    console.log('SW registered: ', registration);
+                })
+                .catch(registrationError => {
+                    console.log('SW registration failed: ', registrationError);
+                });
+            });
+        }
+
+        // Initialize with a random quote
+        getRandomQuote();
+    </script>
+</body>
+</html>
