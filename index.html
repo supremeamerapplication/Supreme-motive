@@ -6,7 +6,7 @@
     <title>Supreme Motive - Daily Inspiration & Motivation</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="manifest" id="manifestLink" href="data:application/json;base64,ewogICJuYW1lIjogIlN1cHJlbWUgTW90aXZlIiwKICAic2hvcnRfbmFtZSI6ICJTdXByZW1lIE1vdGl2ZSIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjNGExNTRiIiwKICAidGhlbWVfY29sb3IiOiAiIzRhMTU0YiIsCiAgImljb25zIjogWwogICAgewogICAgICAic3JjIjogImh0dHBzOi8vY2RuaW9uLmljb25maW5kZXIuY29tL2RhdGEvaWNvbnM9Y3NzLXZvbC0zLzEyOC9maXJlLTI1Ni5wbmciLAogICAgICAic2l6ZXMiOiAiMjU2eDI1NiIsCiAgICAgICJ0eXBlIjogImltYWdlL3BuZyIsCiAgICAgICJwdXJwb3NlIjogImFueSBtYXNrYWJsZSIKICAgIH0KICBdCn0=">
+    <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#4a154b">
     <style>
         /* Global Styles */
@@ -163,26 +163,11 @@
             color: var(--dark);
         }
 
-        .logo-icon {
-            font-size: 28px;
+        .logo-img {
+            width: 40px;
+            height: 40px;
             margin-right: 10px;
-            color: var(--secondary);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-                text-shadow: 0 0 0 rgba(248, 100, 100, 0.7);
-            }
-            50% {
-                transform: scale(1.05);
-                text-shadow: 0 0 10px rgba(248, 100, 100, 0.4);
-            }
-            100% {
-                transform: scale(1);
-                text-shadow: 0 0 0 rgba(248, 100, 100, 0.7);
-            }
+            object-fit: contain;
         }
 
         .nav-links {
@@ -239,6 +224,57 @@
             font-size: 24px;
             cursor: pointer;
             margin-left: 20px;
+        }
+
+        /* Mobile Navigation */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 70%;
+            height: 100vh;
+            background: var(--primary);
+            z-index: 2000;
+            padding: 80px 30px 30px;
+            transition: right 0.3s ease;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+        }
+
+        .mobile-nav-links li {
+            margin-bottom: 20px;
+        }
+
+        .mobile-nav-links a {
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            display: block;
+            padding: 10px 0;
+        }
+
+        .mobile-nav-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .close-mobile-nav {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
         }
 
         /* Hero Section */
@@ -930,12 +966,36 @@
         </div>
     </div>
 
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <button class="close-mobile-nav" id="closeMobileNav">
+            <i class="fas fa-times"></i>
+        </button>
+        <ul class="mobile-nav-links">
+            <li><a href="#home" class="mobile-nav-link">Home</a></li>
+            <li><a href="#categories" class="mobile-nav-link">Categories</a></li>
+            <li><a href="#quote" class="mobile-nav-link">Daily Quote</a></li>
+            <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
+        </ul>
+        <div class="mobile-nav-controls">
+            <button class="theme-toggle" id="mobileThemeToggle" title="Toggle dark mode">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button class="quote-type-toggle" id="mobileQuoteTypeToggle" title="Toggle quote type">
+                <i class="fas fa-image"></i>
+            </button>
+            <button class="music-toggle" id="mobileMusicToggle" title="Toggle music">
+                <i class="fas fa-music"></i>
+            </button>
+        </div>
+    </div>
+
     <!-- Header -->
     <header id="header">
         <div class="container">
             <nav>
                 <div class="logo">
-                    <i class="fas fa-fire logo-icon"></i>
+                    <img src="https://placehold.co/40x40/4a154b/FFFFFF?text=SM" alt="Supreme Motive Logo" class="logo-img">
                     <span>Supreme Motive</span>
                 </div>
                 <ul class="nav-links">
@@ -954,7 +1014,7 @@
                     <button class="music-toggle" id="musicToggle" title="Toggle music">
                         <i class="fas fa-music"></i>
                     </button>
-                    <div class="menu-toggle">
+                    <div class="menu-toggle" id="menuToggle">
                         <i class="fas fa-bars"></i>
                     </div>
                 </div>
@@ -1141,7 +1201,7 @@
                         <div class="contact-icon">
                             <i class="fas fa-phone"></i>
                         </div>
-                        <div>
+                    <div>
                             <h4>Phone</h4>
                             <p>+2347031924052</p>
                         </div>
@@ -1167,7 +1227,7 @@
             <div class="footer-content">
                 <div class="footer-about">
                     <div class="footer-logo">
-                        <i class="fas fa-fire"></i>
+                        <img src="https://placehold.co/40x40/FFFFFF/4a154b?text=SM" alt="Supreme Motive Logo" class="logo-img">
                         <span>Supreme Motive</span>
                     </div>
                     <p>Your daily dose of motivation and inspiration to help you achieve your dreams and live a fulfilling life.</p>
@@ -1201,7 +1261,7 @@
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2023 Supreme Motive. All rights reserved.</p>
+                <p>&copy; 2025 Supreme Motive. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -1258,6 +1318,7 @@
     <script>
         // DOM Elements
         const themeToggle = document.getElementById('themeToggle');
+        const mobileThemeToggle = document.getElementById('mobileThemeToggle');
         const coffeeModal = document.getElementById('coffeeModal');
         const coffeeBtn = document.getElementById('coffeeBtn');
         const closeModal = document.getElementById('closeModal');
@@ -1277,12 +1338,14 @@
         const acceptTerms = document.getElementById('acceptTerms');
         const declineTerms = document.getElementById('declineTerms');
         const musicToggle = document.getElementById('musicToggle');
+        const mobileMusicToggle = document.getElementById('mobileMusicToggle');
         const musicPlayer = document.getElementById('musicPlayer');
         const backgroundMusic = document.getElementById('backgroundMusic');
         const playPauseMusic = document.getElementById('playPauseMusic');
         const prevMusic = document.getElementById('prevMusic');
         const nextMusic = document.getElementById('nextMusic');
         const quoteTypeToggle = document.getElementById('quoteTypeToggle');
+        const mobileQuoteTypeToggle = document.getElementById('mobileQuoteTypeToggle');
         const textQuoteContainer = document.getElementById('textQuoteContainer');
         const imageQuoteContainer = document.getElementById('imageQuoteContainer');
         const imageQuote = document.getElementById('imageQuote');
@@ -1296,6 +1359,10 @@
         const totalImageQuotes = document.getElementById('totalImageQuotes');
         const quoteSearch = document.getElementById('quoteSearch');
         const searchBtn = document.getElementById('searchBtn');
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileNav = document.getElementById('mobileNav');
+        const closeMobileNav = document.getElementById('closeMobileNav');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
         // Quote type state
         let currentQuoteType = 'text'; // 'text' or 'image'
@@ -1462,68 +1529,101 @@
             alert('You must accept the terms to use Supreme Motive.');
         });
 
+        // Mobile Navigation
+        menuToggle.addEventListener('click', () => {
+            mobileNav.classList.add('active');
+        });
+
+        closeMobileNav.addEventListener('click', () => {
+            mobileNav.classList.remove('active');
+        });
+
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+            });
+        });
+
         // Theme Toggle
-        themeToggle.addEventListener('click', () => {
+        function toggleTheme() {
             document.body.classList.toggle('dark-mode');
             if (document.body.classList.contains('dark-mode')) {
                 themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                mobileThemeToggle.innerHTML = '<i class="fas fa-sun"></i>';
                 localStorage.setItem('theme', 'dark');
             } else {
                 themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                mobileThemeToggle.innerHTML = '<i class="fas fa-moon"></i>';
                 localStorage.setItem('theme', 'light');
             }
-        });
+        }
+
+        themeToggle.addEventListener('click', toggleTheme);
+        mobileThemeToggle.addEventListener('click', toggleTheme);
 
         // Check saved theme
         if (localStorage.getItem('theme') === 'dark') {
             document.body.classList.add('dark-mode');
             themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            mobileThemeToggle.innerHTML = '<i class="fas fa-sun"></i>';
         }
 
         // Quote Type Toggle
-        quoteTypeToggle.addEventListener('click', () => {
+        function toggleQuoteType() {
             if (currentQuoteType === 'text') {
                 currentQuoteType = 'image';
                 quoteTypeToggle.innerHTML = '<i class="fas fa-font"></i>';
+                mobileQuoteTypeToggle.innerHTML = '<i class="fas fa-font"></i>';
                 textQuoteContainer.style.display = 'none';
                 imageQuoteContainer.style.display = 'block';
                 displayImageQuote();
             } else {
                 currentQuoteType = 'text';
                 quoteTypeToggle.innerHTML = '<i class="fas fa-image"></i>';
+                mobileQuoteTypeToggle.innerHTML = '<i class="fas fa-image"></i>';
                 textQuoteContainer.style.display = 'block';
                 imageQuoteContainer.style.display = 'none';
                 displayQuote();
             }
             localStorage.setItem('quoteType', currentQuoteType);
-        });
+        }
+
+        quoteTypeToggle.addEventListener('click', toggleQuoteType);
+        mobileQuoteTypeToggle.addEventListener('click', toggleQuoteType);
 
         // Check saved quote type
         if (localStorage.getItem('quoteType') === 'image') {
             currentQuoteType = 'image';
             quoteTypeToggle.innerHTML = '<i class="fas fa-font"></i>';
+            mobileQuoteTypeToggle.innerHTML = '<i class="fas fa-font"></i>';
             textQuoteContainer.style.display = 'none';
             imageQuoteContainer.style.display = 'block';
         } else {
             currentQuoteType = 'text';
             quoteTypeToggle.innerHTML = '<i class="fas fa-image"></i>';
+            mobileQuoteTypeToggle.innerHTML = '<i class="fas fa-image"></i>';
             textQuoteContainer.style.display = 'block';
             imageQuoteContainer.style.display = 'none';
         }
 
         // Music Toggle
-        musicToggle.addEventListener('click', () => {
+        function toggleMusic() {
             if (musicPlayer.style.display === 'none') {
                 musicPlayer.style.display = 'flex';
                 backgroundMusic.play();
                 playPauseMusic.innerHTML = '<i class="fas fa-pause"></i>';
                 musicToggle.innerHTML = '<i class="fas fa-volume-up"></i>';
+                mobileMusicToggle.innerHTML = '<i class="fas fa-volume-up"></i>';
             } else {
                 musicPlayer.style.display = 'none';
                 backgroundMusic.pause();
                 musicToggle.innerHTML = '<i class="fas fa-music"></i>';
+                mobileMusicToggle.innerHTML = '<i class="fas fa-music"></i>';
             }
-        });
+        }
+
+        musicToggle.addEventListener('click', toggleMusic);
+        mobileMusicToggle.addEventListener('click', toggleMusic);
 
         // Music Controls
         playPauseMusic.addEventListener('click', () => {
@@ -1592,7 +1692,7 @@
         });
 
         // Newsletter Form
-        document.querySelector('.footer-newsletter form').addEventListener('submit', (e) => {
+        document.querySelector('.footer-newsletter form').add.addEventListener('submit', (e) => {
             e.preventDefault();
             alert('Thank you for subscribing to our newsletter!');
             e.target.reset();
@@ -1824,26 +1924,45 @@
         let deferredPrompt;
 
         window.addEventListener('beforeinstallprompt', (e) => {
+            // Prevent the mini-infobar from appearing on mobile
             e.preventDefault();
+            // Stash the event so it can be triggered later
             deferredPrompt = e;
+            // Show the install button
             installBtn.style.display = 'flex';
+            
+            // Log the event for debugging
+            console.log('beforeinstallprompt event fired');
         });
 
         installBtn.addEventListener('click', async () => {
             if (deferredPrompt) {
+                // Show the install prompt
                 deferredPrompt.prompt();
+                // Wait for the user to respond to the prompt
                 const { outcome } = await deferredPrompt.userChoice;
-                if (outcome === 'accepted') {
-                    installBtn.style.display = 'none';
-                }
+                // Optionally, send analytics event with outcome of user choice
+                console.log(`User response to the install prompt: ${outcome}`);
+                // We've used the prompt, and can't use it again, throw it away
                 deferredPrompt = null;
+                // Hide the install button
+                installBtn.style.display = 'none';
             }
+        });
+
+        window.addEventListener('appinstalled', () => {
+            // Hide the install button
+            installBtn.style.display = 'none';
+            // Clear the deferredPrompt so it can be garbage collected
+            deferredPrompt = null;
+            // Optionally, send analytics event to indicate successful installation
+            console.log('PWA was installed');
         });
 
         // Service Worker Registration
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
+                navigator.serviceWorker.register('sw.js')
                 .then(registration => {
                     console.log('SW registered: ', registration);
                 })
