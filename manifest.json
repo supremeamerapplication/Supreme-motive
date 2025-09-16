@@ -1,0 +1,23 @@
+{
+  "name": "Supreme Motive",
+  "short_name": "SupremeMotive",
+  "description": "Daily inspiration and motivation to help you achieve your goals",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#4a154b",
+  "theme_color": "#4a154b",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "img/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "img/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["lifestyle", "productivity", "education"]
+}
