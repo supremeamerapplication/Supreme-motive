@@ -5,19 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Supreme Motive - Daily Inspiration & Motivation</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #2563eb;      /* Vibrant blue */
-            --secondary: #f97316;    /* Bright orange */
-            --accent: #e11d48;       /* Energetic red */
-            --success: #22c55e;      /* Fresh green */
-            --light: #ffffff;        /* White */
-            --dark: #1f2937;         /* Dark gray */
-            --light-bg: #f9fafb;     /* Light background */
-            --transition: all 0.3s ease;
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -25,628 +14,453 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            color: #333;
             line-height: 1.6;
-            color: var(--dark);
-            background-color: var(--light-bg);
-            overflow-x: hidden;
+            transition: all 0.3s ease;
         }
 
         .container {
-            width: 90%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 15px;
+            padding: 20px;
         }
 
-        section {
-            padding: 80px 0;
-        }
-
-        h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-
-        h1 {
-            font-size: 3.5rem;
-        }
-
-        h2 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 50px;
-            position: relative;
-        }
-
-        h2:after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: var(--secondary);
-            margin: 15px auto;
-            border-radius: 2px;
-        }
-
-        p {
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-        }
-
-        a {
-            text-decoration: none;
-            color: var(--primary);
-            transition: var(--transition);
-        }
-
-        a:hover {
-            color: var(--secondary);
-        }
-
-        /* Header Styles */
         header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-            transition: var(--transition);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            font-weight: 700;
-            font-size: 24px;
-            color: var(--primary);
-        }
-
-        .logo-img {
-            width: 45px;
-            height: 45px;
-            margin-right: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            color: white;
-            font-weight: bold;
-            font-size: 22px;
-            border-radius: 10px;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-links li {
-            margin-left: 30px;
-        }
-
-        .nav-links a {
-            color: var(--dark);
-            font-weight: 600;
-            font-size: 16px;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .nav-links a:after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 3px;
-            background: var(--secondary);
-            transition: var(--transition);
-            border-radius: 2px;
-        }
-
-        .nav-links a:hover:after {
-            width: 100%;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 180px 0 100px;
             text-align: center;
-            background: linear-gradient(120deg, var(--primary) 0%, var(--accent) 100%);
+            padding: 30px 0;
+            background: linear-gradient(90deg, #1a56db 0%, #0a36a9 100%);
             color: white;
-            position: relative;
-            overflow: hidden;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
-        .hero-content {
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        header p {
+            font-size: 1.2rem;
             max-width: 800px;
             margin: 0 auto;
-            position: relative;
-            z-index: 2;
+            font-family: 'Merriweather', serif;
         }
 
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            animation: fadeInDown 1s ease;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 40px;
-            animation: fadeInUp 1s ease;
-            opacity: 0.9;
-        }
-
-        /* Buttons */
-        .btn {
-            display: inline-block;
-            padding: 14px 32px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: var(--transition);
-            font-size: 16px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .btn-primary {
-            background: var(--primary);
-        }
-
-        .btn-primary:hover {
-            background: #1d4ed8;
-        }
-
-        .btn-secondary {
-            background: var(--secondary);
-        }
-
-        .btn-secondary:hover {
-            background: #ea580c;
-        }
-
-        .btn-success {
-            background: var(--success);
-        }
-
-        .btn-success:hover {
-            background: #16a34a;
-        }
-
-        .btn-accent {
-            background: var(--accent);
-        }
-
-        .btn-accent:hover {
-            background: #be123c;
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-        }
-
-        .btn-outline:hover {
-            background: var(--primary);
-            color: white;
-        }
-
-        /* Quote Section */
         .quote-container {
             background: white;
-            border-radius: 15px;
-            padding: 50px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
             text-align: center;
-            margin: 0 auto;
-            max-width: 800px;
-            transition: var(--transition);
             position: relative;
-            overflow: hidden;
-        }
-
-        .quote-container:before {
-            content: """;
-            position: absolute;
-            top: -20px;
-            left: 20px;
-            font-size: 150px;
-            color: var(--primary);
-            opacity: 0.1;
-            font-family: 'Playfair Display', serif;
+            border-left: 5px solid #ff7846;
         }
 
         .quote-text {
-            font-size: 26px;
-            font-style: italic;
-            margin-bottom: 25px;
-            color: var(--dark);
-            min-height: 120px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            line-height: 1.5;
-            position: relative;
-            z-index: 2;
+            font-size: 1.8rem;
+            font-family: 'Merriweather', serif;
+            margin-bottom: 20px;
+            color: #2d3748;
+            line-height: 1.8;
         }
 
         .quote-author {
+            font-size: 1.2rem;
+            color: #1a56db;
             font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 40px;
-            font-size: 18px;
         }
 
-        .quote-controls {
-            margin-top: 30px;
+        .quote-category {
+            display: inline-block;
+            padding: 5px 15px;
+            background: #22c55e;
+            color: white;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 15px;
+        }
+
+        .buttons {
             display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
             justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
         }
 
-        /* Privacy Modal */
-        .modal {
+        button {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
             display: flex;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 3000;
             align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
+            gap: 8px;
         }
 
-        .modal.active {
-            opacity: 1;
-            visibility: visible;
+        .new-quote {
+            background: #1a56db;
+            color: white;
         }
 
-        .terms-content {
-            background: white;
-            border-radius: 15px;
-            padding: 40px;
-            max-width: 600px;
-            width: 90%;
-            max-height: 80vh;
-            overflow-y: auto;
-            position: relative;
-            transform: translateY(50px);
-            transition: transform 0.4s ease;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        .new-quote:hover {
+            background: #0a36a9;
+            transform: translateY(-2px);
         }
 
-        .modal.active .terms-content {
-            transform: translateY(0);
+        .share {
+            background: #ff7846;
+            color: white;
         }
 
-        .terms-content h2 {
-            color: var(--primary);
-            margin-bottom: 25px;
+        .share:hover {
+            background: #e65a2d;
+            transform: translateY(-2px);
         }
 
-        .terms-content p {
-            margin-bottom: 15px;
-            line-height: 1.6;
-            color: var(--dark);
-        }
-
-        .terms-content h3 {
-            margin-top: 25px;
-            color: var(--primary);
-        }
-
-        .terms-buttons {
+        .categories {
             display: flex;
-            justify-content: flex-end;
+            justify-content: center;
             gap: 15px;
-            margin-top: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
         }
 
-        /* Animations */
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .category-btn {
+            padding: 12px 25px;
+            background: #f1f5f9;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .category-btn.active, .category-btn:hover {
+            background: #1a56db;
+            color: white;
         }
 
-        /* Responsive */
-        @media (max-width: 992px) {
-            h1 {
-                font-size: 3rem;
-            }
-            
-            h2 {
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        /* Privacy Banner */
+        .privacy-banner {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 900px;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            border-top: 5px solid #22c55e;
+        }
+
+        .privacy-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .privacy-header i {
+            font-size: 1.8rem;
+            color: #1a56db;
+        }
+
+        .privacy-header h2 {
+            color: #1a56db;
+            font-size: 1.5rem;
+        }
+
+        .privacy-content p {
+            margin-bottom: 15px;
+            color: #4b5563;
+        }
+
+        .privacy-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+        }
+
+        .privacy-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .accept-btn {
+            background: #22c55e;
+            color: white;
+        }
+
+        .accept-btn:hover {
+            background: #16a34a;
+        }
+
+        .settings-btn {
+            background: #f1f5f9;
+            color: #4b5563;
+        }
+
+        .settings-btn:hover {
+            background: #e2e8f0;
+        }
+
+        /* Offline Notification */
+        .offline-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #ff7846;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            z-index: 1001;
+            display: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
                 font-size: 2.2rem;
             }
             
-            .nav-links {
-                display: none;
-            }
-            
-            .hero h1 {
-                font-size: 3rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            section {
-                padding: 60px 0;
-            }
-            
-            .hero {
-                padding: 150px 0 80px;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            .quote-container {
-                padding: 30px 20px;
-            }
-            
             .quote-text {
-                font-size: 22px;
+                font-size: 1.5rem;
             }
             
-            .quote-controls {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .quote-controls .btn {
-                width: 100%;
-                max-width: 300px;
-            }
-            
-            .terms-buttons {
+            .buttons {
                 flex-direction: column;
             }
             
-            .terms-buttons button {
-                width: 100%;
+            .privacy-banner {
+                bottom: 10px;
+                width: 95%;
+                padding: 20px;
+            }
+            
+            .privacy-buttons {
+                flex-direction: column;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Terms and Privacy Modal -->
-    <div class="modal" id="termsModal">
-        <div class="terms-content">
-            <h2>Terms of Service & Privacy Policy</h2>
-            <p>By using Supreme Motive, you agree to our Terms of Service and Privacy Policy.</p>
-            
-            <h3>Terms of Service</h3>
-            <p>1. You must be at least 13 years old to use this app.</p>
-            <p>2. The quotes provided are for inspirational purposes only.</p>
-            <p>3. We reserve the right to modify these terms at any time.</p>
-            
-            <h3>Privacy Policy</h3>
-            <p>1. We collect minimal data to improve your experience.</p>
-            <p>2. Your data is never sold to third parties.</p>
-            <p>3. We use cookies to remember your preferences.</p>
-            
-            <div class="terms-buttons">
-                <button class="btn btn-outline" id="declineTerms">Decline</button>
-                <button class="btn btn-success" id="acceptTerms">Accept</button>
-            </div>
+    <!-- Offline Notification -->
+    <div class="offline-notification" id="offlineNotification">
+        <i class="fas fa-wifi"></i>
+        <span>You are currently offline</span>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>Supreme Motive</h1>
+            <p>Daily inspiration and motivation to fuel your journey</p>
+        </header>
+
+        <div class="categories">
+            <button class="category-btn active" data-category="all">All Quotes</button>
+            <button class="category-btn" data-category="wisdom">Wisdom</button>
+            <button class="category-btn" data-category="love">Love</button>
+            <button class="category-btn" data-category="success">Success</button>
+        </div>
+
+        <div class="quote-container">
+            <p class="quote-text" id="quoteText">The best time to plant a tree was 20 years ago. The second best time is now.</p>
+            <p class="quote-author" id="quoteAuthor">Supreme-motive</p>
+            <span class="quote-category" id="quoteCategory">wisdom</span>
+        </div>
+
+        <div class="buttons">
+            <button class="new-quote" id="newQuoteBtn">
+                <i class="fas fa-sync-alt"></i> New Quote
+            </button>
+            <button class="share" id="shareBtn">
+                <i class="fas fa-share-alt"></i> Share
+            </button>
         </div>
     </div>
 
-    <!-- Header -->
-    <header id="header">
-        <div class="container">
-            <nav>
-                <div class="logo">
-                    <div class="logo-img">SM</div>
-                    <span>Supreme Motive</span>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#categories">Categories</a></li>
-                    <li><a href="#quote">Daily Quote</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+    <!-- Privacy Banner -->
+    <div class="privacy-banner" id="privacyBanner">
+        <div class="privacy-header">
+            <i class="fas fa-shield-alt"></i>
+            <h2>Privacy & Cookie Policy</h2>
         </div>
-    </header>
+        <div class="privacy-content">
+            <p>We use cookies and similar technologies to help personalize content and improve your experience. By clicking accept, you agree to our use of cookies as described in our Cookie Policy.</p>
+        </div>
+        <div class="privacy-buttons">
+            <button class="privacy-btn settings-btn" id="privacySettings">
+                <i class="fas fa-cog"></i> Settings
+            </button>
+            <button class="privacy-btn accept-btn" id="privacyAccept">
+                <i class="fas fa-check"></i> Accept
+            </button>
+        </div>
+    </div>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Ignite Your Inner Drive</h1>
-                <p>Daily inspiration and motivation to help you achieve your goals and live your best life.</p>
-                <a href="#quote" class="btn btn-secondary">Get Inspired</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Quote Section -->
-    <section id="quote">
-        <div class="container">
-            <h2>Daily Inspiration</h2>
-            
-            <div class="quote-container">
-                <p class="quote-text" id="quoteText">"The only way to do great work is to love what you do."</p>
-                <p class="quote-author" id="quoteAuthor">- Steve Jobs</p>
-                <div class="quote-controls">
-                    <button class="btn btn-primary" id="newQuote">New Quote</button>
-                    <button class="btn btn-outline" id="shareQuote">Share Quote</button>
-                    <button class="btn btn-success" id="favoriteQuote">Add to Favorites</button>
-                    <button class="btn btn-accent" id="copyQuote">Copy Quote</button>
-                </div>
-            </div>
-        </div>
-    </section>
+    <footer>
+        <p>&copy; 2023 Supreme Motive. All rights reserved.</p>
+    </footer>
 
     <script>
-        // DOM Elements
-        const termsModal = document.getElementById('termsModal');
-        const acceptTerms = document.getElementById('acceptTerms');
-        const declineTerms = document.getElementById('declineTerms');
-        const newQuoteBtn = document.getElementById('newQuote');
-        const shareQuoteBtn = document.getElementById('shareQuote');
-        const favoriteQuoteBtn = document.getElementById('favoriteQuote');
-        const copyQuoteBtn = document.getElementById('copyQuote');
-        const quoteText = document.getElementById('quoteText');
-        const quoteAuthor = document.getElementById('quoteAuthor');
-
-        // Sample Quotes
+        // Quote data
         const quotes = [
-            { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
-            { text: "Believe you can and you're halfway there.", author: "Theodore Roosevelt" },
-            { text: "It does not matter how slowly you go as long as you do not stop.", author: "Confucius" },
-            { text: "Everything you've ever wanted is on the other side of fear.", author: "George Addair" },
-            { text: "The future belongs to those who believe in the beauty of their dreams.", author: "Eleanor Roosevelt" },
-            { text: "Success is not final, failure is not fatal: it is the courage to continue that counts.", author: "Winston Churchill" },
-            { text: "The only impossible journey is the one you never begin.", author: "Tony Robbins" },
-            { text: "Your time is limited, so don't waste it living someone else's life.", author: "Steve Jobs" },
-            { text: "Life is what happens when you're busy making other plans.", author: "John Lennon" },
-            { text: "Get busy living or get busy dying.", author: "Stephen King" },
-            { text: "The greatest glory in living lies not in never falling, but in rising every time we fall.", author: "Nelson Mandela" },
-            { text: "The way to get started is to quit talking and begin doing.", author: "Walt Disney" },
-            { text: "If life were predictable it would cease to be life, and be without flavor.", author: "Eleanor Roosevelt" },
-            { text: "If you look at what you have in life, you'll always have more.", author: "Oprah Winfrey" },
-            { text: "Life is a daring adventure or nothing at all.", author: "Helen Keller" },
+            { text: "Do not seek to follow in the footsteps of the wise. Seek what they sought.", author: "Supreme-motive", category: "wisdom" },
+            { text: "A mind is like a parachute — it only works when open.", author: "Supreme-motive", category: "wisdom" },
+            { text: "Common sense is not so common.", author: "Supreme-motive", category: "wisdom" },
+            { text: "To know others is intelligence; to know yourself is true wisdom.", author: "Supreme-motive", category: "wisdom" },
+            { text: "One who is not courageous enough to take risks will accomplish nothing.", author: "Supreme-motive", category: "wisdom" },
+            { text: "The best thing to hold onto in life is each other.", author: "Supreme-motive", category: "love" },
+            { text: "Love isn't something you find. Love is something that finds you.", author: "Supreme-motive", category: "love" },
+            { text: "Success is not final, failure is not fatal: it is the courage to continue that counts.", author: "Winston Churchill", category: "success" },
+            { text: "The way to get started is to quit talking and begin doing.", author: "Walt Disney", category: "success" },
+            { text: "Your time is limited, so don't waste it living someone else's life.", author: "Steve Jobs", category: "success" }
         ];
 
-        // Check if terms were already accepted
-        if (!localStorage.getItem('termsAccepted')) {
-            setTimeout(() => {
-                termsModal.classList.add('active');
-            }, 1000);
+        // DOM Elements
+        const quoteText = document.getElementById('quoteText');
+        const quoteAuthor = document.getElementById('quoteAuthor');
+        const quoteCategory = document.getElementById('quoteCategory');
+        const newQuoteBtn = document.getElementById('newQuoteBtn');
+        const shareBtn = document.getElementById('shareBtn');
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        const privacyBanner = document.getElementById('privacyBanner');
+        const privacyAccept = document.getElementById('privacyAccept');
+        const privacySettings = document.getElementById('privacySettings');
+        const offlineNotification = document.getElementById('offlineNotification');
+
+        // Current category filter
+        let currentCategory = 'all';
+
+        // Display a random quote
+        function displayRandomQuote() {
+            let filteredQuotes = currentCategory === 'all' 
+                ? quotes 
+                : quotes.filter(quote => quote.category === currentCategory);
+            
+            if (filteredQuotes.length === 0) {
+                filteredQuotes = quotes;
+            }
+            
+            const randomIndex = Math.floor(Math.random() * filteredQuotes.length);
+            const quote = filteredQuotes[randomIndex];
+            
+            quoteText.textContent = quote.text;
+            quoteAuthor.textContent = quote.author;
+            quoteCategory.textContent = quote.category;
+            
+            // Change border color based on category
+            const quoteContainer = document.querySelector('.quote-container');
+            if (quote.category === 'wisdom') {
+                quoteContainer.style.borderLeftColor = '#1a56db';
+            } else if (quote.category === 'love') {
+                quoteContainer.style.borderLeftColor = '#ff7846';
+            } else if (quote.category === 'success') {
+                quoteContainer.style.borderLeftColor = '#22c55e';
+            } else {
+                quoteContainer.style.borderLeftColor = '#1a56db';
+            }
         }
 
-        // Terms Acceptance
-        acceptTerms.addEventListener('click', () => {
-            localStorage.setItem('termsAccepted', 'true');
-            termsModal.classList.remove('active');
-        });
-
-        declineTerms.addEventListener('click', () => {
-            alert('You must accept the terms to use Supreme Motive.');
-        });
-
-        // New Quote Functionality
-        function getRandomQuote() {
-            const randomIndex = Math.floor(Math.random() * quotes.length);
-            return quotes[randomIndex];
+        // Set category filter
+        function setCategory(category) {
+            currentCategory = category;
+            displayRandomQuote();
+            
+            // Update active button
+            categoryBtns.forEach(btn => {
+                if (btn.dataset.category === category) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
         }
 
-        function displayQuote() {
-            const quote = getRandomQuote();
-            quoteText.textContent = `"${quote.text}"`;
-            quoteAuthor.textContent = `- ${quote.author}`;
-        }
-
-        // Share Quote Functionality
+        // Share quote
         function shareQuote() {
             if (navigator.share) {
                 navigator.share({
                     title: 'Inspirational Quote',
-                    text: `${quoteText.textContent} ${quoteAuthor.textContent}`,
+                    text: `${quoteText.textContent} - ${quoteAuthor.textContent}`,
+                    url: window.location.href
                 })
-                .then(() => console.log('Successful share'))
+                .then(() => console.log('Shared successfully'))
                 .catch(error => console.log('Error sharing:', error));
             } else {
-                alert('Web Share API not supported in your browser. You can manually copy the quote.');
+                alert('Web Share API not supported in your browser. You can copy the quote manually.');
             }
         }
 
-        // Add to Favorites
-        function addToFavorites() {
-            const favorites = JSON.parse(localStorage.getItem('favoriteQuotes') || '[]');
-            const currentQuote = {
-                text: quoteText.textContent,
-                author: quoteAuthor.textContent,
-                timestamp: new Date().toISOString()
-            };
-            
-            favorites.push(currentQuote);
-            localStorage.setItem('favoriteQuotes', JSON.stringify(favorites));
-            
-            // Visual feedback
-            favoriteQuoteBtn.innerHTML = '<i class="fas fa-check"></i> Added!';
-            setTimeout(() => {
-                favoriteQuoteBtn.innerHTML = 'Add to Favorites';
-            }, 2000);
+        // Handle privacy banner
+        function acceptPrivacy() {
+            privacyBanner.style.display = 'none';
+            localStorage.setItem('privacyAccepted', 'true');
         }
 
-        // Copy Quote
-        function copyQuote() {
-            const quoteToCopy = `${quoteText.textContent} ${quoteAuthor.textContent}`;
-            
-            navigator.clipboard.writeText(quoteToCopy)
-                .then(() => {
-                    // Visual feedback
-                    copyQuoteBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
-                    setTimeout(() => {
-                        copyQuoteBtn.innerHTML = 'Copy Quote';
-                    }, 2000);
-                })
-                .catch(err => {
-                    console.error('Failed to copy: ', err);
-                    alert('Failed to copy quote to clipboard.');
-                });
+        function showPrivacySettings() {
+            alert('Privacy settings would be shown here. For this demo, we have simple acceptance.');
+        }
+
+        // Check if offline
+        function updateOnlineStatus() {
+            if (!navigator.onLine) {
+                offlineNotification.style.display = 'flex';
+            } else {
+                offlineNotification.style.display = 'none';
+            }
         }
 
         // Event Listeners
-        newQuoteBtn.addEventListener('click', displayQuote);
-        shareQuoteBtn.addEventListener('click', shareQuote);
-        favoriteQuoteBtn.addEventListener('click', addToFavorites);
-        copyQuoteBtn.addEventListener('click', copyQuote);
+        newQuoteBtn.addEventListener('click', displayRandomQuote);
+        shareBtn.addEventListener('click', shareQuote);
+        privacyAccept.addEventListener('click', acceptPrivacy);
+        privacySettings.addEventListener('click', showPrivacySettings);
 
-        // Initialize with a random quote
-        displayQuote();
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => setCategory(btn.dataset.category));
+        });
+
+        window.addEventListener('online', updateOnlineStatus);
+        window.addEventListener('offline', updateOnlineStatus);
+
+        // Initialize
+        displayRandomQuote();
+        updateOnlineStatus();
+
+        // Check if privacy was already accepted
+        if (localStorage.getItem('privacyAccepted') === 'true') {
+            privacyBanner.style.display = 'none';
+        }
     </script>
 </body>
 </html>
