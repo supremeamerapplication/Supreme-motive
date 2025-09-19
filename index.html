@@ -9,7 +9,7 @@
     
     <!-- PWA Manifest -->
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#4a154b">
+    <meta name="theme-color" content="#1a73e8">
     
     <!-- Apple Touch Icon -->
     <link rel="apple-touch-icon" href="img/icon-192.png">
@@ -23,12 +23,13 @@
         }
 
         :root {
-            --primary: #4a154b;
-            --secondary: #f86464;
-            --accent: #8a2be2;
-            --light: #f9f9f9;
-            --dark: #333;
-            --gray: #777;
+            --primary: #1a73e8; /* Blue */
+            --secondary: #ff9800; /* Orange */
+            --accent: #e91e63; /* Red */
+            --success: #4caf50; /* Green */
+            --light: #ffffff; /* White */
+            --dark: #333333;
+            --gray: #777777;
             --transition: all 0.3s ease;
         }
 
@@ -112,6 +113,22 @@
         .btn-outline:hover {
             background: var(--primary);
             color: white;
+        }
+        
+        .btn-success {
+            background: var(--success);
+        }
+        
+        .btn-success:hover {
+            background: #3d8b40;
+        }
+        
+        .btn-accent {
+            background: var(--accent);
+        }
+        
+        .btn-accent:hover {
+            background: #d01657;
         }
 
         .section-title {
@@ -296,7 +313,7 @@
         .hero {
             padding: 160px 0 100px;
             text-align: center;
-            background: linear-gradient(135deg, rgba(74, 21, 75, 0.9) 0%, rgba(138, 43, 226, 0.8) 100%);
+            background: linear-gradient(135deg, rgba(26, 115, 232, 0.9) 0%, rgba(233, 30, 99, 0.8) 100%);
             color: white;
             position: relative;
             overflow: hidden;
@@ -518,7 +535,7 @@
         .search-input:focus {
             border-color: var(--primary);
             outline: none;
-            box-shadow: 0 0 10px rgba(74, 21, 75, 0.2);
+            box-shadow: 0 0 10px rgba(26, 115, 232, 0.2);
         }
 
         .search-btn {
@@ -787,11 +804,11 @@
 
         .coffee-option.selected {
             border-color: var(--primary);
-            background: rgba(74, 21, 75, 0.1);
+            background: rgba(26, 115, 232, 0.1);
         }
 
         body.dark-mode .coffee-option.selected {
-            background: rgba(74, 21, 75, 0.3);
+            background: rgba(26, 115, 232, 0.3);
         }
 
         /* Install Button */
@@ -821,7 +838,7 @@
 
         /* Terms Modal */
         .terms-modal {
-            display: flex;
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
@@ -973,7 +990,7 @@
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
-            background: var(--secondary);
+            background: var(--accent);
             color: white;
             padding: 10px 20px;
             border-radius: 30px;
@@ -1009,7 +1026,7 @@
             
             <div class="terms-buttons">
                 <button class="btn btn-outline" id="declineTerms">Decline</button>
-                <button class="btn" id="acceptTerms">Accept</button>
+                <button class="btn btn-success" id="acceptTerms">Accept</button>
             </div>
         </div>
     </div>
@@ -1049,7 +1066,7 @@
                 </div>
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
-                    <li><a href#categories">Categories</a></li>
+                    <li><a href="#categories">Categories</a></li>
                     <li><a href="#quote">Daily Quote</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
@@ -1109,8 +1126,8 @@
                 <div class="quote-controls">
                     <button class="btn" id="newQuote">New Quote</button>
                     <button class="btn btn-outline" id="shareQuote">Share Quote</button>
-                    <button class="btn btn-outline" id="favoriteQuote">Add to Favorites</button>
-                    <button class="btn btn-outline" id="copyQuote">Copy Quote</button>
+                    <button class="btn btn-success" id="favoriteQuote">Add to Favorites</button>
+                    <button class="btn btn-accent" id="copyQuote">Copy Quote</button>
                 </div>
                 <div style="margin-top: 20px;">
                     <p>Quote <span id="quoteCounter">1</span> of <span id="totalQuotes">10000+</span></p>
@@ -1126,8 +1143,8 @@
                 <div class="quote-controls" style="background: white; padding: 20px;">
                     <button class="btn" id="newImageQuote">New Image Quote</button>
                     <button class="btn btn-outline" id="shareImageQuote">Share Quote</button>
-                    <button class="btn btn-outline" id="favoriteImageQuote">Add to Favorites</button>
-                    <button class="btn btn-outline" id="downloadImageQuote">Download Image</button>
+                    <button class="btn btn-success" id="favoriteImageQuote">Add to Favorites</button>
+                    <button class="btn btn-accent" id="downloadImageQuote">Download Image</button>
                 </div>
                 <div style="margin-top: 20px; padding: 10px; background: white;">
                     <p>Image Quote <span id="imageQuoteCounter">1</span> of <span id="totalImageQuotes">300+</span></p>
@@ -1428,150 +1445,46 @@
         // Expanded Quotes Array with 10,000+ quotes categorized
         const quotes = [
             // Motivation Quotes
-            { text: "The only way to do great work is to love what you do.", author: "Supreme-motive", category: "motivation" },
-            { text: "Believe you can and you're halfway there.", author: "Supreme-motive", category: "motivation" },
-            { text: "It does not matter how slowly you go as long as you do not stop.", author: "Supreme-motive", category: "motivation" },
-            { text: "Everything you've ever wanted is on the other side of fear.", author: "Supreme-motiver", category: "motivation" },
-            { text: "The only impossible journey is the one you never begin.", author: "Supreme-motive", category: "motivation" },
-            { text: "Your time is limited, so don't waste it living someone else's life.", author: "Supreme-motive", category: "motivation" },
-            { text: "I can't change the direction of the wind, but I can adjust my sails to always reach my destination.", author: "Supreme-motive", category: "motivation" },
-            { text: "The future belongs to those who believe in the beauty of their dreams.", author: "Supreme-motive", category: "motivation" },
+            { text: "The only way to do great work is to love what you do.", author: "Steve Jobs", category: "motivation" },
+            { text: "Believe you can and you're halfway there.", author: "Theodore Roosevelt", category: "motivation" },
+            { text: "It does not matter how slowly you go as long as you do not stop.", author: "Confucius", category: "motivation" },
+            { text: "Everything you've ever wanted is on the other side of fear.", author: "George Addair", category: "motivation" },
+            { text: "The only impossible journey is the one you never begin.", author: "Tony Robbins", category: "motivation" },
+            { text: "Your time is limited, so don't waste it living someone else's life.", author: "Steve Jobs", category: "motivation" },
+            { text: "I can't change the direction of the wind, but I can adjust my sails to always reach my destination.", author: "Jimmy Dean", category: "motivation" },
+            { text: "The future belongs to those who believe in the beauty of their dreams.", author: "Eleanor Roosevelt", category: "motivation" },
             
             // Success Quotes
-            { text: "Success is not final, failure is not fatal: it is the courage to continue that counts.", author: "Supreme-motive", category: "success" },
-            { text: "The way to get started is to quit talking and begin doing.", author: "Supreme-motive", category: "success" },
-            { text: "Don't be afraid to give up the good to go for the great.", author: "Supreme-motive", category: "success" },
-            { text: "I find that the harder I work, the more luck I seem to have.", author: "Supreme-motive", category: "success" },
-            { text: "Success is walking from failure to failure with no loss of enthusiasm.", author: "Supreme-motive", category: "success" },
-            { text: "Success usually comes to those who are too busy to be looking for it.", author: "Supreme-motive", category: "success" },
-            { text: "The secret of success is to do the common thing uncommonly well.", author: "Supreme-motive", category: "success" },
+            { text: "Success is not final, failure is not fatal: it is the courage to continue that counts.", author: "Winston Churchill", category: "success" },
+            { text: "The way to get started is to quit talking and begin doing.", author: "Walt Disney", category: "success" },
+            { text: "Don't be afraid to give up the good to go for the great.", author: "John D. Rockefeller", category: "success" },
+            { text: "I find that the harder I work, the more luck I seem to have.", author: "Thomas Jefferson", category: "success" },
+            { text: "Success is walking from failure to failure with no loss of enthusiasm.", author: "Winston Churchill", category: "success" },
+            { text: "Success usually comes to those who are too busy to be looking for it.", author: "Henry David Thoreau", category: "success" },
+            { text: "The secret of success is to do the common thing uncommonly well.", author: "John D. Rockefeller Jr.", category: "success" },
             
             // Life Quotes
-            { text: "Life is what happens when you're busy making other plans.", author: "Supreme-motive", category: "life" },
-            { text: "Get busy living or get busy dying.", author: " Supreme-motive", category: "life" },
-            { text: "You only live once, but if you do it right, once is enough.", author: " Supreme-motive", category: "life" },
-            { text: "Life is not a problem to be solved, but a reality to be experienced.", author: " Supreme-motive", category: "life" },
+            { text: "Life is what happens when you're busy making other plans.", author: "John Lennon", category: "life" },
+            { text: "Get busy living or get busy dying.", author: "Stephen King", category: "life" },
+            { text: "You only live once, but if you do it right, once is enough.", author: "Mae West", category: "life" },
+            { text: "Life is not a problem to be solved, but a reality to be experienced.", author: "Søren Kierkegaard", category: "life" },
             { text: "The purpose of our lives is to be happy.", author: "Dalai Lama", category: "life" },
-            { text: "Life is 10% what happens to you and 90% how you react to it.", author: " Supreme-motive ", category: "life" },
-            { text: "In the end, it's not the years in your life that count. It's the life in your years.", author: "Supreme-motive", category: "life" },
+            { text: "Life is 10% what happens to you and 90% how you react to it.", author: "Charles R. Swindoll", category: "life" },
+            { text: "In the end, it's not the years in your life that count. It's the life in your years.", author: "Abraham Lincoln", category: "life" },
             
             // Wisdom Quotes
             { text: "The only true wisdom is in knowing you know nothing.", author: "Socrates", category: "wisdom" },
-             { text: "Knowledge speaks, but wisdom listens.", author: "Supreme-motive", category: "wisdom" },
-            { text: "The quiter you become, the more you can hear.", author: "Supreme-motive", category: "wisdom" },
-            { text: "patience is the companion of wisdom.", author: "Supreme-motive", category: "wisdom" },
-            { text: "A wise man learns from others mistakes.", author: "Supreme-motive", category: "wisdom" },
-            { text: "The fools wonders, the wise man asks", author: "Supreme-motive", category: "wisdom" },
-            { text: "Silence is the source of great strength.", author: "Supreme-motive", category: "wisdom" },
-            { text: "Experience is the best teacher, but a fool learns no lesson.", author: "Supreme-motive", category: "wisdom" },
-            { text: "Don't speak unless you can improve the silence.", author: "Supreme-motive", category: "wisdom" },
-            { text: "A closed mouth gathers no foot.", author: "Supreme-motive", category: "wisdom" },
-            { text: "He who knows, doesn't speak. He who speaks, does not know.", author: "Supreme-motive", category: "wisdom" },
-            { text: "what you allow is what will continue.", author: "Supreme-motive", category: "wisdom" },
-            { text: "The wise adapt themselves to circumstances.", author: "Supreme-motive", category: "wisdom" },
-            { text: "Foolishness is doing the same thing and expecting  different result.", author: "Supreme-motive", category: "wisdom" },
-            { text: "Knowledge without charater is dangerous", author: "Supreme-motive", category: "wisdom" },
-            { text: "BE quick to listen , Slow to Speak, Slow to Anger.", author: "Supreme-motive", category: "wisdom" },
-            { text: "", author: "Supreme-motive", category: "wisdom" },
-            { text: "", author: "Supreme-motive", category: "wisdom" },
-            { text: "", author: "Supreme-motive", category: "wisdom" },
-        { text: "", author: "Supreme-motive", category: "wisdom" },
-
-
-Do not seek to follow in the footsteps of the wise. Seek what they sought., author: "Supreme-motive", category: "wisdom" },
-
-
- { text: "A mind is like a parachute — it only works when open.", author: "Supreme-motive", category: "wisdom" },
- { text: "Common sense is not so common.", author: "Supreme-motive", category: "wisdom" },
- { text: "To know others is intelligence; to know yourself is true wisdom.", author: "Supreme-motive", category: "wisdom" },
- { text: "One who is not courageous enough to take risks will accomplish nothing.", author: "Supreme-motive", category: "wisdom" },
- { text: "Knowledge is power, but wisdom is using it well.", author: "Supreme-motive", category: "wisdom" },
- { text: "Do not argue with a fool — onlookers may not be able to tell the difference.", author: "Supreme-motive", category: "wisdom" },
- { text: "Life is not about finding yourself; it’s about creating yourself.", author: "Supreme-motive", category: "wisdom" },
- { text: "Sometimes you win, sometimes you learn.", author: "Supreme-motive", category: "wisdom" },
- { text: "The wise don’t wait for opportunity — they create it.", author: "Supreme-motive", category: "wisdom" },
- { text: "Even a fool, when silent, is considered wise.", author: "Supreme-motive", category: "wisdom" },
- { text: "Learn as if you will live forever, live as if you will die tomorrow.", author: "Supreme-motive", category: "wisdom" },
- { text: "Don’t let your victories make you arrogant or your failures make you bitter.", author: "Supreme-motive", category: "wisdom" },
- { text: " He who conquers himself is the mightiest warrior.", author: "Supreme-motive", category: "wisdom" },
- { text: "A goal without a plan is just a wish.", author: "Supreme-motive", category: "wisdom" },
- { text: "The man who moves a mountain begins by carrying away small stones.", author: "Supreme-motive", category: "wisdom" },
- { text: "Better a diamond with a flaw than a pebble without.", author: "Supreme-motive", category: "wisdom" },
- { text: "Happiness depends on ourselves.", author: "Supreme-motive", category: "wisdom" },
- { text: "Do not be wise in words, be wise in deeds.", author: "Supreme-motive", category: "wisdom" },
- { text: "The art of being wise is knowing what to overlook.", author: "Supreme-motive", category: "wisdom" },
- { text: "To avoid criticism: say nothing, do nothing, be nothing.", author: "Supreme-motive", category: "wisdom" },
- { text: "Educating the mind without educating the heart is no education at all.", author: "Supreme-motive", category: "wisdom" },
- { text: "The fool talks, the wise man listens.", author: "Supreme-motive", category: "wisdom" },
- { text: "A man’s true wealth is the good he does in this world.", author: "Supreme-motive", category: "wisdom" },
- { text: "Beware of false knowledge; it is more dangerous than ignorance.", author: "Supreme-motive", category: "wisdom" },
- { text: "The measure of wisdom is how calm you stay in the storm.", author: "Supreme-motive", category: "wisdom" },
- { text: "What we achieve inwardly will change outer reality.", author: "Supreme-motive", category: "wisdom" },
- { text: "Don’t raise your voice, improve your argument.", author: "Supreme-motive", category: "wisdom" },
- { text: "Your future is created by what you do today, not tomorrow., author: "Supreme-motive", category: "wisdom" },
- { text: "Humility is the solid foundation of all virtues.", author: "Supreme-motive", category: "wisdom" },
- { text: "Wisdom is knowing the right path to take; integrity is taking it.", author: "Supreme-motive", category: "wisdom" },
- { text: "Worrying does not take away tomorrow’s troubles — it takes away today’s peace.", author: "Supreme-motive", category: "wisdom" },
- { text: "Great minds discuss ideas; average minds discuss events; small minds discuss people.", author: "Supreme-motive", category: "wisdom" },
- { text: "When you know better, you do better.", author: "Supreme-motive", category: "wisdom" },
- { text: "He who opens a school door closes a prison.", author: "Supreme-motive", category: "wisdom" },
- { text: "The fool speaks because he has to say something; the wise speaks because he has something to say.", author: "Supreme-motive", category: "wisdom" },
- { text: "Don’t ruin a good today by thinking about a bad yesterday.", author: "Supreme-motive", category: "wisdom" },
- { text: "A stumble may prevent a fall.", author: "Supreme-motive", category: "wisdom" },
- { text: "Not everything that is faced can be changed, but nothing can be changed until.", author: "Supreme-motive", category: "wisdom" },it is faced.
- { text: "An investment in knowledge pays the best interest.", author: "Supreme-motive", category: "wisdom" },
- { text: "Do not regret growing older; it is a privilege denied to many.", author: "Supreme-motive", category: "wisdom" },
- { text: "The wise make more opportunities than they find.", author: "Supreme-motive", category: "wisdom" },
- { text: "Life is really simple, but we insist on making it complicated.", author: "Supreme-motive", category: "wisdom" },
- { text: "A journey of a thousand miles begins with a single step.", author: "Supreme-motive", category: "wisdom" },
- { text: "The best time to plant a tree was 20 years ago. The second best time is now.", author: "Supreme-motive", category: "wisdom" },
- { text: "Don’t let schooling interfere with your education.", author: "Supreme-motive", category: "wisdom" },
- { text: "The past cannot be changed, but the future is in your power.", author: "Supreme-motive", category: "wisdom" },
- { text: "Better to light a candle than curse the darkness.", author: "Supreme-motive", category: "wisdom" },
- { text: "The only real failure is the failure to try.", author: "Supreme-motive", category: "wisdom" },
- { text: "Even the longest day has its end., author: "Supreme-motive", category: "wisdom" },
- { text: "The wise man knows he knows nothing.", author: "Supreme-motive", category: "wisdom" },
- { text: "Your attitude, not your aptitude, determines your altitude.", author: "Supreme-motive", category: "wisdom" },
- { text: "Do not let what you cannot do interfere with what you can do.", author: "Supreme-motive", category: "wisdom" },
- { text: "Fall seven times and stand up eight.", author: "Supreme-motive", category: "wisdom" },
- { text: "The one who asks a question is a fool for a minute; the one who does not ask is a fool for life.", author: "Supreme-motive", category: "wisdom" },
- { text: "He who fears he will suffer, already suffers what he fears.", author: "Supreme-motive", category: "wisdom" },
- { text: "Sometimes the wrong choices bring us to the right places.", author: "Supreme-motive", category: "wisdom" },
- { text: "The greatest wealth is to live content with little.", author: "Supreme-motive", category: "wisdom" },
- { text: "Every saint has a past, every sinner has a future.", author: "Supreme-motive", category: "wisdom" },
- { text: "Don’t gain the world and lose your soul.", author: "Supreme-motive", category: "wisdom" },
- { text: "Where there is no vision, the people perish.", author: "Supreme-motive", category: "wisdom" },
- { text: "Life is 10% what happens to you and 90% how you react to it.", author: "Supreme-motive", category: "wisdom" },
- { text: "What you seek is seeking you.", author: "Supreme-motive", category: "wisdom" },
- { text: "Respect yourself and others will respect you.", author: "Supreme-motive", category: "wisdom" },
- { text: "He who has a why can bear almost any how.", author: "Supreme-motive", category: "wisdom" },
- { text: "Change your thoughts and you change your world.", author: "Supreme-motive", category: "wisdom" },
- { text: "Mistakes are proof that you are trying.", author: "Supreme-motive", category: "wisdom" },
- { text: "The man who asks a question is a fool for a minute, the man who does not ask is a fool for life.", author: "Supreme-motive", category: "wisdom" },
- { text: "The best way to predict the future is to create it.", author: "Supreme-motive", category: "wisdom" },
- { text: "Life is not measured by the number of breaths we take, but by the moments that take our breath away.", author: "Supreme-motive", category: "wisdom" },
- { text: "Knowledge is learning something every day. Wisdom is letting go of something every day.", author: "Supreme-motive", category: "wisdom" },
- { text: "Anger is a wind that blows out the lamp of the mind.", author: "Supreme-motive", category: "wisdom" },
- { text: "Kindness is a language the deaf can hear and the blind can see.", author: "Supreme-motive", category: "wisdom" },
- { text: "He who cannot obey himself will be commanded.", author: "Supreme-motive", category: "wisdom" },
- { text: "Never let success get to your head and never let failure get to your heart.", author: "Supreme-motive", category: "wisdom" }
- { text: "Do not dwell in the past, do not dream of the future, concentrate the mind on the present moment.", author: "Supreme-motive", category: "wisdom" },
- { text: "If you chase two rabbits, you will catch neither.", author: "Supreme-motive", category: "wisdom" },
- { text: "Peace begins with a smile.", author: "Supreme-motive", category: "wisdom" },
- { text: "The weak can never forgive. Forgiveness is the attribute of the strong.", author: "Supreme-motive", category: "wisdom" },
- { text: "Do not waste your energy on revenge. The people who hurt you will face their own karma.", author: "Supreme-motive", category: "wisdom" },
- { text: "What you do today can improve all your tomorrows.", author: "Supreme-motive", category: "wisdom" },
- { text: "Life is really simple, but we insist on making it complicated.", author: "Supreme-motive", category: "wisdom" },
- { text: "Knowing others is intelligence; knowing yourself is true wisdom.", author: "Supreme-motive", category: "wisdom" },
- { text: "The wise man does not lay up his own treasures. The more he gives to others, the more he has for his own.", author: "Supreme-motive", category: "wisdom" },
- { text: "A wise man can learn more from a foolish question than a fool can learn from a wise answer.", author: "Supreme-motive", category: "wisdom" },
+            { text: "Knowing yourself is the beginning of all wisdom.", author: "Aristotle", category: "wisdom" },
+            { text: "Turn your wounds into wisdom.", author: "Oprah Winfrey", category: "wisdom" },
+            { text: "The fool doth think he is wise, but the wise man knows himself to be a fool.", author: "William Shakespeare", category: "wisdom" },
+            { text: "Do not go where the path may lead, go instead where there is no path and leave a trail.", author: "Ralph Waldo Emerson", category: "wisdom" },
             
-// Love Quotes
- { text: "The best thing to hold onto in life is each other.", author: "Supreme-motive", category: "love" },
- { text: "Love isn't something you find. Love is something that finds you.", author: "Supreme-motive", category: "love" },
- { text: "The greatest happiness of life is the conviction that we are loved; loved for ourselves, or rather, loved in spite of ourselves.", author: "Victor Hugo", category: "love" },
- { text: "We are most alive when we're in love.", author: "Supreme-motive", category: "love" },
- { text: "Love is composed of a single soul inhabiting two bodies.", author: "Supreme-motive", category: "love" },
+            // Love Quotes
+            { text: "The best thing to hold onto in life is each other.", author: "Audrey Hepburn", category: "love" },
+            { text: "Love isn't something you find. Love is something that finds you.", author: "Loretta Young", category: "love" },
+            { text: "The greatest happiness of life is the conviction that we are loved; loved for ourselves, or rather, loved in spite of ourselves.", author: "Victor Hugo", category: "love" },
+            { text: "We are most alive when we're in love.", author: "John Updike", category: "love" },
+            { text: "Love is composed of a single soul inhabiting two bodies.", author: "Aristotle", category: "love" },
             
             // Leadership Quotes
             { text: "The greatest leader is not necessarily the one who does the greatest things. He is the one that gets the people to do the greatest things.", author: "Ronald Reagan", category: "leadership" },
@@ -1667,7 +1580,7 @@ Do not seek to follow in the footsteps of the wise. Seek what they sought., auth
             termsModal.style.display = 'flex';
         }
 
-        // Terms Acceptance
+        // Terms Acceptance - Fixed to properly close the modal
         acceptTerms.addEventListener('click', () => {
             localStorage.setItem('termsAccepted', 'true');
             termsModal.style.display = 'none';
