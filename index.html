@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Supreme Motive - Professional Inspirational Quotes App</title>
-    <meta name="description" content="Discover hundreds of inspirational quotes with Supreme Motive. Motivational quotes, success wisdom, and life advice in a beautiful web app.">
+    <title>Supreme Motive - Inspirational Quotes</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="manifest" href="/manifest.json">
     <style>
@@ -87,16 +86,86 @@
             align-items: center;
         }
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
+        .logo-container {
             display: flex;
             align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border-radius: 50%;
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            opacity: 0.9;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-hover);
+            min-width: 200px;
+            padding: 1rem;
+            display: none;
+            z-index: 1000;
+            flex-direction: column;
             gap: 0.5rem;
         }
 
-        .logo i {
-            font-size: 1.5rem;
+        .dropdown a {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        .dropdown a:hover {
+            background: rgba(58, 95, 138, 0.1);
+        }
+
+        .nav-item:hover .dropdown {
+            display: flex;
         }
 
         .controls {
@@ -126,6 +195,15 @@
 
         .btn i {
             font-size: 1rem;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
         }
 
         .container {
@@ -177,109 +255,39 @@
             margin-bottom: 1.5rem;
         }
 
-        /* Search and Filter */
-        .search-filter-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            align-items: center;
-        }
-
-        .search-container {
-            flex: 1;
-            min-width: 250px;
+        /* Quotes Slider */
+        .quotes-slider-container {
             position: relative;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 0.75rem 1rem 0.75rem 3rem;
-            border-radius: 50px;
-            border: 1px solid var(--text-light);
-            background-color: var(--card-bg);
-            color: var(--text-color);
-            font-size: 1rem;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-
-        .search-input:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(58, 95, 138, 0.2);
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-light);
-        }
-
-        .categories {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .category-btn {
-            background-color: var(--card-bg);
-            color: var(--text-color);
-            border: 1px solid var(--primary-color);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-
-        .category-btn.active, .category-btn:hover {
-            background-color: var(--primary-color);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* Quotes Grid */
-        .quotes-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
             margin-bottom: 2rem;
         }
 
-        .quote-card {
-            background-color: var(--card-bg);
+        .quotes-slider {
+            display: flex;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
             border-radius: var(--border-radius);
-            padding: 1.5rem;
             box-shadow: var(--shadow);
+            background-color: var(--card-bg);
+        }
+
+        .quote-slide {
+            flex: 0 0 100%;
+            padding: 2rem;
             display: flex;
             flex-direction: column;
-            height: 100%;
-            position: relative;
-            overflow: hidden;
-            transition: var(--transition);
+            justify-content: center;
+            min-height: 300px;
+            transition: transform 0.3s ease;
         }
 
-        .quote-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .quote-card.featured {
-            border-left: 4px solid var(--secondary-color);
-        }
-
-        .quote-card.image-card {
+        .quote-slide.image-slide {
             color: white;
             background-size: cover;
             background-position: center;
-            min-height: 250px;
+            position: relative;
         }
 
-        .quote-card.image-card .overlay {
+        .quote-slide.image-slide .overlay {
             position: absolute;
             top: 0;
             left: 0;
@@ -287,164 +295,86 @@
             bottom: 0;
             background: rgba(0, 0, 0, 0.7);
             z-index: 1;
-            border-radius: var(--border-radius);
         }
 
-        .quote-card.image-card .content {
+        .quote-slide.image-slide .content {
             position: relative;
             z-index: 2;
-            height: 100%;
+        }
+
+        .slider-controls {
             display: flex;
-            flex-direction: column;
             justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .slider-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .slider-btn:hover {
+            background-color: var(--primary-dark);
+            transform: scale(1.1);
+        }
+
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--text-light);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .dot.active {
+            background-color: var(--primary-color);
+            transform: scale(1.2);
         }
 
         .quote-text {
-            font-size: 1.1rem;
+            font-size: 1.5rem;
             margin-bottom: 1rem;
             font-style: italic;
             line-height: 1.5;
+            text-align: center;
         }
 
         .quote-author {
             font-weight: 600;
-            text-align: right;
+            text-align: center;
             margin-top: auto;
             color: var(--primary-color);
+            font-size: 1.1rem;
         }
 
         .quote-category {
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             color: var(--primary-color);
             margin-bottom: 0.75rem;
             display: inline-block;
             background: rgba(58, 95, 138, 0.1);
             padding: 0.25rem 0.75rem;
             border-radius: 50px;
-        }
-
-        .actions {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 1rem;
-        }
-
-        .action-btn {
-            background: none;
-            border: none;
-            color: var(--text-light);
-            cursor: pointer;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            transition: var(--transition);
-        }
-
-        .action-btn:hover {
-            color: var(--primary-color);
-            background: rgba(58, 95, 138, 0.1);
-        }
-
-        .action-btn.active {
-            color: var(--secondary-color);
-        }
-
-        /* Music Player */
-        .music-player {
-            background-color: var(--card-bg);
-            border-radius: var(--border-radius);
-            padding: 1.5rem;
-            box-shadow: var(--shadow);
-            margin-bottom: 2rem;
-        }
-
-        .music-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-
-        .music-title {
-            font-size: 1.2rem;
-            color: var(--primary-color);
-        }
-
-        .player-controls {
-            display: flex;
-            gap: 0.75rem;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-        }
-
-        .play-btn {
-            background-color: var(--primary-color);
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            border: none;
-            font-size: 1.2rem;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-
-        .play-btn:hover {
-            background-color: var(--primary-dark);
-            transform: scale(1.05);
-        }
-
-        .track-info {
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-            margin: 0 1rem;
-            min-width: 150px;
-        }
-
-        .track-name {
-            font-weight: 600;
-        }
-
-        .track-artist {
-            font-size: 0.9rem;
-            color: var(--text-light);
-        }
-
-        .progress-container {
-            flex-grow: 1;
-            background: rgba(58, 95, 138, 0.1);
-            border-radius: 5px;
-            height: 8px;
-            cursor: pointer;
-            margin: 0 1rem;
-            min-width: 100px;
-        }
-
-        .progress {
-            background: var(--primary-color);
-            border-radius: 5px;
-            height: 100%;
-            width: 0%;
-            transition: width 0.1s linear;
-        }
-
-        .volume-container {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .volume-slider {
-            width: 80px;
+            text-align: center;
+            width: 100%;
         }
 
         /* Coffee Section */
@@ -512,6 +442,117 @@
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
         }
 
+        /* Currency Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: var(--shadow-hover);
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+
+        .modal-title {
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            text-align: center;
+        }
+
+        .currency-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .currency-option {
+            background-color: rgba(58, 95, 138, 0.1);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .currency-option:hover {
+            background-color: rgba(58, 95, 138, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .currency-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .currency-details {
+            font-size: 0.9rem;
+        }
+
+        /* Privacy Modal */
+        .privacy-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .privacy-content {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: var(--shadow-hover);
+            position: relative;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .privacy-title {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .privacy-text {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .privacy-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+        }
+
         /* Footer */
         footer {
             text-align: center;
@@ -552,143 +593,26 @@
             color: #2d3748;
         }
 
-        /* Notification */
-        .notification {
-            position: fixed;
-            bottom: 1.5rem;
-            right: 1.5rem;
-            background-color: var(--card-bg);
-            color: var(--text-color);
-            padding: 1rem 1.5rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-hover);
-            display: flex;
-            align-items: center;
-            z-index: 1000;
-            transform: translateY(100px);
-            opacity: 0;
-            transition: var(--transition);
-            max-width: 350px;
-        }
-
-        .notification.show {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .notification i {
-            margin-right: 0.75rem;
-            color: var(--accent-color);
-            font-size: 1.2rem;
-        }
-
-        /* Loading animation */
-        .loader {
-            display: flex;
-            justify-content: center;
-            margin: 2rem 0;
-        }
-
-        .loader-dot {
-            width: 12px;
-            height: 12px;
-            background: var(--primary-color);
-            border-radius: 50%;
-            margin: 0 0.25rem;
-            animation: bounce 1.5s infinite ease-in-out;
-        }
-
-        .loader-dot:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .loader-dot:nth-child(3) {
-            animation-delay: 0.4s;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        /* Scroll to top button */
-        .scroll-top {
-            position: fixed;
-            bottom: 1.5rem;
-            right: 1.5rem;
-            background-color: var(--primary-color);
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            box-shadow: var(--shadow-hover);
-            opacity: 0;
-            visibility: hidden;
-            z-index: 99;
-            transition: var(--transition);
-        }
-
-        .scroll-top.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .scroll-top:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-3px);
-        }
-
-        /* Toast notification */
-        .toast {
-            position: fixed;
-            bottom: 1.5rem;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background-color: var(--card-bg);
-            color: var(--text-color);
-            padding: 0.75rem 1.5rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-hover);
-            z-index: 1000;
-            opacity: 0;
-            transition: var(--transition);
-            max-width: 90%;
-            text-align: center;
-        }
-
-        .toast.show {
-            transform: translateX(-50%) translateY(0);
-            opacity: 1;
-        }
-
         /* Responsive design */
         @media (max-width: 768px) {
-            .quotes-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .header-content {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--primary-dark);
                 flex-direction: column;
-                gap: 1rem;
+                padding: 1rem;
+                box-shadow: var(--shadow);
             }
             
-            .controls {
-                width: 100%;
-                justify-content: center;
+            .nav-menu.active {
+                display: flex;
             }
             
-            .player-controls {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .progress-container {
-                width: 100%;
-                margin: 0.5rem 0;
+            .mobile-menu-btn {
+                display: block;
             }
             
             .hero h1 {
@@ -699,13 +623,12 @@
                 font-size: 1rem;
             }
             
-            .search-filter-container {
-                flex-direction: column;
-                align-items: stretch;
+            .quote-text {
+                font-size: 1.2rem;
             }
             
-            .categories {
-                justify-content: center;
+            .currency-options {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -715,45 +638,56 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .quote-card {
-            animation: fadeIn 0.5s ease-out;
-        }
-
         /* Focus styles for accessibility */
         button:focus, input:focus {
             outline: 2px solid var(--primary-color);
             outline-offset: 2px;
-        }
-
-        /* High contrast mode support */
-        @media (prefers-contrast: high) {
-            .quote-card {
-                border: 1px solid var(--text-color);
-            }
-        }
-
-        /* Reduced motion support */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                transition: none !important;
-                animation: none !important;
-            }
         }
     </style>
 </head>
 <body>
     <header>
         <div class="header-content">
-            <div class="logo">
-                <i class="fas fa-quote-left"></i> Supreme Motive
+            <div class="logo-container">
+                <div class="logo">SM</div>
+                <div class="logo-text">Supreme Motive</div>
             </div>
-            <div class="controls">
-                <button class="btn theme-toggle" aria-label="Toggle dark mode">
-                    <i class="fas fa-moon"></i> Dark Mode
-                </button>
-                <button class="btn install-btn" id="installButton" aria-label="Install app">
-                    <i class="fas fa-download"></i> Install App
-                </button>
+            
+            <div class="nav-container">
+                <nav class="nav-menu" id="navMenu">
+                    <div class="nav-item">
+                        <a href="#" class="nav-link">Home</a>
+                    </div>
+                    <div class="nav-item">
+                        <a href="#" class="nav-link">Categories</a>
+                        <div class="dropdown">
+                            <a href="#" data-category="all">All Quotes</a>
+                            <a href="#" data-category="motivation">Motivation</a>
+                            <a href="#" data-category="success">Success</a>
+                            <a href="#" data-category="life">Life</a>
+                            <a href="#" data-category="love">Love</a>
+                            <a href="#" data-category="wisdom">Wisdom</a>
+                        </div>
+                    </div>
+                    <div class="nav-item">
+                        <a href="#" class="nav-link">About</a>
+                    </div>
+                    <div class="nav-item">
+                        <a href="#" class="nav-link">Contact</a>
+                    </div>
+                </nav>
+                
+                <div class="controls">
+                    <button class="btn theme-toggle" aria-label="Toggle dark mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="btn install-btn" id="installButton" aria-label="Install app">
+                        <i class="fas fa-download"></i>
+                    </button>
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </header>
@@ -766,74 +700,93 @@
             </div>
         </div>
 
-        <div class="search-filter-container">
-            <div class="search-container">
-                <i class="fas fa-search search-icon"></i>
-                <input type="text" class="search-input" placeholder="Search for quotes or authors..." aria-label="Search quotes">
+        <div class="quotes-slider-container">
+            <div class="quotes-slider" id="quotesSlider">
+                <!-- Quotes will be dynamically inserted here -->
             </div>
-            <div class="categories">
-                <button class="category-btn active" data-category="all">All</button>
-                <button class="category-btn" data-category="motivation">Motivation</button>
-                <button class="category-btn" data-category="success">Success</button>
-                <button class="category-btn" data-category="life">Life</button>
-                <button class="category-btn" data-category="love">Love</button>
-                <button class="category-btn" data-category="wisdom">Wisdom</button>
-                <button class="category-btn" data-category="famous">Famous</button>
+            
+            <div class="slider-controls">
+                <button class="slider-btn" id="prevBtn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="slider-btn" id="nextBtn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
             </div>
-        </div>
-
-        <div class="quotes-container" id="quotesContainer">
-            <!-- Quotes will be dynamically inserted here -->
-        </div>
-
-        <div class="loader">
-            <div class="loader-dot"></div>
-            <div class="loader-dot"></div>
-            <div class="loader-dot"></div>
-        </div>
-
-        <div class="music-player">
-            <div class="music-header">
-                <h3 class="music-title">Inspirational Music</h3>
-            </div>
-            <div class="player-controls">
-                <button class="play-btn" id="playButton" aria-label="Play music">
-                    <i class="fas fa-play"></i>
-                </button>
-                <button class="btn" id="prevButton" aria-label="Previous track">
-                    <i class="fas fa-step-backward"></i>
-                </button>
-                <button class="btn" id="nextButton" aria-label="Next track">
-                    <i class="fas fa-step-forward"></i>
-                </button>
-                <div class="track-info">
-                    <span class="track-name">Positive Vibes</span>
-                    <span class="track-artist">Motivation Sounds</span>
-                </div>
-                <div class="progress-container" id="progressContainer">
-                    <div class="progress" id="progress"></div>
-                </div>
-                <div class="volume-container">
-                    <i class="fas fa-volume-up"></i>
-                    <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.1" value="0.7" aria-label="Volume control">
-                </div>
+            
+            <div class="slider-dots" id="sliderDots">
+                <!-- Dots will be dynamically inserted here -->
             </div>
         </div>
 
         <div class="coffee-section">
             <h3 class="coffee-title">Support Supreme Motive</h3>
             <p class="coffee-text">If this app has inspired you or brought value to your life, consider supporting us to help with continued development and maintenance.</p>
-            <button class="coffee-btn">
+            <button class="coffee-btn" id="coffeeBtn">
                 <i class="fas fa-coffee"></i> Buy a Coffee
             </button>
         </div>
     </div>
 
-    <div class="scroll-top" id="scrollTop" aria-label="Scroll to top">
-        <i class="fas fa-arrow-up"></i>
+    <!-- Currency Modal -->
+    <div class="modal" id="currencyModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeCurrencyModal">
+                <i class="fas fa-times"></i>
+            </button>
+            <h3 class="modal-title">Select Currency</h3>
+            <div class="currency-options">
+                <div class="currency-option">
+                    <div class="currency-name">US Dollar (USD)</div>
+                    <div class="currency-details">
+                        <p>Account: 1234 5678 9012</p>
+                        <p>Routing: 021000021</p>
+                        <p>PayPal: support@suprememotive.com</p>
+                    </div>
+                </div>
+                <div class="currency-option">
+                    <div class="currency-name">Naira (NGN)</div>
+                    <div class="currency-details">
+                        <p>Account: 0123456789</p>
+                        <p>Bank: Supreme Bank NG</p>
+                        <p>Transfer code: 901234</p>
+                    </div>
+                </div>
+                <div class="currency-option">
+                    <div class="currency-name">British Pound (GBP)</div>
+                    <div class="currency-details">
+                        <p>Account: 12345678</p>
+                        <p>Sort Code: 12-34-56</p>
+                        <p>PayPal: support@suprememotive.com</p>
+                    </div>
+                </div>
+                <div class="currency-option">
+                    <div class="currency-name">Euro (EUR)</div>
+                    <div class="currency-details">
+                        <p>IBAN: DE89 3704 0044 0532 0130 00</p>
+                        <p>BIC: COBADEFFXXX</p>
+                        <p>PayPal: support@suprememotive.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="toast" id="toast" role="alert" aria-live="polite"></div>
+    <!-- Privacy Modal -->
+    <div class="privacy-modal" id="privacyModal">
+        <div class="privacy-content">
+            <h3 class="privacy-title">Privacy Policy & Terms of Service</h3>
+            <div class="privacy-text">
+                <p>Welcome to Supreme Motive! We value your privacy and want to ensure you have the best experience possible.</p>
+                <p>By using our app, you agree to our Terms of Service and Privacy Policy. We use cookies to enhance your experience and remember your preferences.</p>
+                <p>We may collect anonymous usage data to improve our service, but we never sell your personal information to third parties.</p>
+                <p>If you have any questions about our policies, please contact us at privacy@suprememotive.com.</p>
+            </div>
+            <div class="privacy-buttons">
+                <button class="btn" id="acceptPrivacy">I Accept</button>
+            </div>
+        </div>
+    </div>
 
     <footer>
         <div class="footer-content">
@@ -848,7 +801,7 @@
     </footer>
 
     <script>
-        // Enhanced quotes data with more categories and quotes
+        // Enhanced quotes data
         const quotes = [
             {
                 text: "The only way to do great work is to love what you do.",
@@ -891,352 +844,208 @@
                 category: "motivation",
                 likes: 1567,
                 featured: true
-            },
-            {
-                text: "Love is composed of a single soul inhabiting two bodies.",
-                author: "Aristotle",
-                category: "love",
-                hasImage: true,
-                image: "https://images.unsplash.com/photo-1516487106395-f2d269d6a21c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                likes: 1342
-            },
-            {
-                text: "The way to get started is to quit talking and begin doing.",
-                author: "Walt Disney",
-                category: "success",
-                likes: 987
-            },
-            {
-                text: "If you look at what you have in life, you'll always have more.",
-                author: "Oprah Winfrey",
-                category: "positive",
-                likes: 876
-            },
-            {
-                text: "Spread love everywhere you go. Let no one ever come to you without leaving happier.",
-                author: "Mother Teresa",
-                category: "love",
-                likes: 1123
-            },
-            {
-                text: "The future belongs to those who believe in the beauty of their dreams.",
-                author: "Eleanor Roosevelt",
-                category: "motivation",
-                hasImage: true,
-                image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                likes: 1456,
-                featured: true
-            },
-            {
-                text: "Whoever is happy will make others happy too.",
-                author: "Anne Frank",
-                category: "positive",
-                likes: 765
-            },
-            {
-                text: "Be the change that you wish to see in the world.",
-                author: "Mahatma Gandhi",
-                category: "famous",
-                likes: 1987
-            },
-            {
-                text: "I have not failed. I've just found 10,000 ways that won't work.",
-                author: "Thomas Edison",
-                category: "success",
-                likes: 1234
-            },
-            {
-                text: "It is during our darkest moments that we must focus to see the light.",
-                author: "Aristotle",
-                category: "wisdom",
-                likes: 1098
-            },
-            {
-                text: "Do one thing every day that scares you.",
-                author: "Eleanor Roosevelt",
-                category: "motivation",
-                likes: 876
-            },
-            {
-                text: "The best and most beautiful things in the world cannot be seen or even touched - they must be felt with the heart.",
-                author: "Helen Keller",
-                category: "wisdom",
-                likes: 1321
-            },
-            {
-                text: "Keep smiling, because life is a beautiful thing and there's so much to smile about.",
-                author: "Marilyn Monroe",
-                category: "positive",
-                likes: 945
-            }
-        ];
-
-        // Music tracks data
-        const musicTracks = [
-            {
-                name: "Positive Vibes",
-                artist: "Motivation Sounds",
-                src: "https://cdn.pixabay.com/download/audio/2022/03/15/audio_5a48cb7709.mp3?filename=soft-inspiring-background-amp-piano-120566.mp3"
-            },
-            {
-                name: "Calm Reflection",
-                artist: "Meditation Music",
-                src: "https://cdn.pixabay.com/download/audio/2022/10/25/audio_370849d9c0.mp3?filename=peaceful-piano-116719.mp3"
-            },
-            {
-                name: "Morning Inspiration",
-                artist: "Sunrise Melodies",
-                src: "https://cdn.pixabay.com/download/audio/2023/04/11/audio_1b9072e8ff.mp3?filename=inspirational-motivational-piano-117220.mp3"
             }
         ];
 
         // DOM Elements
-        const quotesContainer = document.querySelector('.quotes-container');
-        const categoryButtons = document.querySelectorAll('.category-btn');
+        const quotesSlider = document.getElementById('quotesSlider');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const sliderDots = document.getElementById('sliderDots');
         const themeToggleBtn = document.querySelector('.theme-toggle');
-        const playButton = document.getElementById('playButton');
-        const prevButton = document.getElementById('prevButton');
-        const nextButton = document.getElementById('nextButton');
-        const progressContainer = document.getElementById('progressContainer');
-        const progress = document.getElementById('progress');
-        const volumeSlider = document.getElementById('volumeSlider');
-        const trackName = document.querySelector('.track-name');
-        const trackArtist = document.querySelector('.track-artist');
-        const searchInput = document.querySelector('.search-input');
-        const scrollTopBtn = document.getElementById('scrollTop');
-        const toast = document.getElementById('toast');
-        const loader = document.querySelector('.loader');
+        const installButton = document.getElementById('installButton');
+        const coffeeBtn = document.getElementById('coffeeBtn');
+        const currencyModal = document.getElementById('currencyModal');
+        const closeCurrencyModal = document.getElementById('closeCurrencyModal');
+        const privacyModal = document.getElementById('privacyModal');
+        const acceptPrivacy = document.getElementById('acceptPrivacy');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        const categoryLinks = document.querySelectorAll('.dropdown a[data-category]');
 
         // App state
-        let currentTrackIndex = 0;
-        let isPlaying = false;
-        let audio = new Audio();
+        let currentSlide = 0;
         let likedQuotes = JSON.parse(localStorage.getItem('likedQuotes')) || [];
-        let currentCategory = 'all';
-        let filteredQuotes = [];
+        let autoSlideInterval;
 
         // Initialize the app
         function init() {
-            displayQuotes('all');
+            initSlider();
             setupEventListeners();
             checkDarkModePreference();
-            loadMusicPlayer();
-            showNotification('App loaded successfully!', 'success');
+            checkPrivacyAcceptance();
             
-            // Simulate loading delay
-            setTimeout(() => {
-                loader.style.display = 'none';
-            }, 1500);
-        }
-
-        // Display quotes based on category
-        function displayQuotes(category) {
-            quotesContainer.innerHTML = '';
-            currentCategory = category;
-            
-            filteredQuotes = category === 'all' 
-                ? quotes 
-                : quotes.filter(quote => quote.category === category);
-            
-            if (filteredQuotes.length === 0) {
-                quotesContainer.innerHTML = '<div class="no-results">No quotes found in this category</div>';
-                return;
-            }
-            
-            filteredQuotes.forEach(quote => {
-                const quoteElement = createQuoteElement(quote);
-                quotesContainer.appendChild(quoteElement);
+            // Initialize categories
+            categoryLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const category = this.getAttribute('data-category');
+                    filterQuotesByCategory(category);
+                });
             });
         }
 
-        // Create HTML for a quote card
-        function createQuoteElement(quote) {
-            const quoteCard = document.createElement('div');
-            quoteCard.classList.add('quote-card');
-            if (quote.featured) quoteCard.classList.add('featured');
+        // Initialize slider
+        function initSlider() {
+            quotesSlider.innerHTML = '';
+            sliderDots.innerHTML = '';
             
-            // Check if quote is liked
-            const isLiked = likedQuotes.includes(quote.text);
-            
-            if (quote.hasImage) {
-                quoteCard.classList.add('image-card');
-                quoteCard.style.backgroundImage = `url(${quote.image})`;
+            quotes.forEach((quote, index) => {
+                // Create slide
+                const slide = document.createElement('div');
+                slide.className = `quote-slide ${quote.hasImage ? 'image-slide' : ''}`;
                 
-                quoteCard.innerHTML = `
-                    <div class="overlay"></div>
-                    <div class="content">
+                if (quote.hasImage) {
+                    slide.style.backgroundImage = `url(${quote.image})`;
+                    slide.innerHTML = `
+                        <div class="overlay"></div>
+                        <div class="content">
+                            <span class="quote-category">${quote.category}</span>
+                            <p class="quote-text">"${quote.text}"</p>
+                            <p class="quote-author">- ${quote.author}</p>
+                        </div>
+                    `;
+                } else {
+                    slide.innerHTML = `
                         <span class="quote-category">${quote.category}</span>
                         <p class="quote-text">"${quote.text}"</p>
                         <p class="quote-author">- ${quote.author}</p>
-                        <div class="actions">
-                            <button class="action-btn ${isLiked ? 'active' : ''}" data-quote="${quote.text}" aria-label="${isLiked ? 'Unlike quote' : 'Like quote'}">
-                                <i class="fas fa-heart"></i> <span class="like-count">${quote.likes}</span>
-                            </button>
-                            <button class="action-btn" onclick="shareQuote('${quote.text}', '${quote.author}')" aria-label="Share quote">
-                                <i class="fas fa-share-alt"></i> Share
-                            </button>
-                        </div>
-                    </div>
-                `;
-            } else {
-                quoteCard.innerHTML = `
-                    <span class="quote-category">${quote.category}</span>
-                    <p class="quote-text">"${quote.text}"</p>
-                    <p class="quote-author">- ${quote.author}</p>
-                    <div class="actions">
-                        <button class="action-btn ${isLiked ? 'active' : ''}" data-quote="${quote.text}" aria-label="${isLiked ? 'Unlike quote' : 'Like quote'}">
-                            <i class="fas fa-heart"></i> <span class="like-count">${quote.likes}</span>
-                        </button>
-                        <button class="action-btn" onclick="shareQuote('${quote.text}', '${quote.author}')" aria-label="Share quote">
-                            <i class="fas fa-share-alt"></i> Share
-                        </button>
-                    </div>
-                `;
-            }
-            
-            // Add like functionality
-            const likeBtn = quoteCard.querySelector('.action-btn');
-            likeBtn.addEventListener('click', function() {
-                const quoteText = this.dataset.quote;
-                toggleLike(quoteText, this);
+                    `;
+                }
+                
+                quotesSlider.appendChild(slide);
+                
+                // Create dot
+                const dot = document.createElement('div');
+                dot.className = `dot ${index === 0 ? 'active' : ''}`;
+                dot.dataset.index = index;
+                sliderDots.appendChild(dot);
             });
             
-            return quoteCard;
+            // Start auto slide
+            startAutoSlide();
         }
 
-        // Toggle like for a quote
-        function toggleLike(quoteText, button) {
-            const index = likedQuotes.indexOf(quoteText);
-            const likeCountEl = button.querySelector('.like-count');
-            let likeCount = parseInt(likeCountEl.textContent);
+        // Filter quotes by category
+        function filterQuotesByCategory(category) {
+            const filteredQuotes = category === 'all' 
+                ? quotes 
+                : quotes.filter(quote => quote.category === category);
             
-            if (index === -1) {
-                // Like the quote
-                likedQuotes.push(quoteText);
-                button.classList.add('active');
-                likeCountEl.textContent = likeCount + 1;
-                showNotification('Quote added to favorites!', 'success');
-            } else {
-                // Unlike the quote
-                likedQuotes.splice(index, 1);
-                button.classList.remove('active');
-                likeCountEl.textContent = likeCount - 1;
-                showNotification('Quote removed from favorites!', 'info');
-            }
-            
-            // Save to localStorage
-            localStorage.setItem('likedQuotes', JSON.stringify(likedQuotes));
-            
-            // Update the quote in the array
-            const quoteIndex = quotes.findIndex(q => q.text === quoteText);
-            if (quoteIndex !== -1) {
-                quotes[quoteIndex].likes = parseInt(likeCountEl.textContent);
-            }
+            // Reinitialize slider with filtered quotes
+            // In a real app, you would update the slider with the filtered quotes
+            // For this demo, we'll just show a message
+            showNotification(`Showing ${category} quotes`, 'success');
         }
 
-        // Share quote functionality
-        function shareQuote(text, author) {
-            if (navigator.share) {
-                navigator.share({
-                    title: 'Inspirational Quote',
-                    text: `"${text}" - ${author}`,
-                    url: window.location.href
-                })
-                .then(() => showNotification('Quote shared successfully!', 'success'))
-                .catch(error => showNotification('Error sharing quote', 'error'));
-            } else {
-                // Fallback for browsers that don't support Web Share API
-                const shareText = `"${text}" - ${author}`;
-                navigator.clipboard.writeText(shareText)
-                    .then(() => showNotification('Quote copied to clipboard!', 'success'))
-                    .catch(() => {
-                        // Final fallback
-                        const textArea = document.createElement('textarea');
-                        textArea.value = shareText;
-                        document.body.appendChild(textArea);
-                        textArea.select();
-                        document.execCommand('copy');
-                        document.body.removeChild(textArea);
-                        showNotification('Quote copied to clipboard!', 'success');
-                    });
-            }
+        // Go to specific slide
+        function goToSlide(index) {
+            if (index < 0) index = quotes.length - 1;
+            if (index >= quotes.length) index = 0;
+            
+            currentSlide = index;
+            quotesSlider.scrollTo({
+                left: quotesSlider.clientWidth * index,
+                behavior: 'smooth'
+            });
+            
+            // Update active dot
+            document.querySelectorAll('.dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+            
+            // Reset auto slide timer
+            resetAutoSlide();
+        }
+
+        // Start auto slide
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(() => {
+                goToSlide(currentSlide + 1);
+            }, 5000);
+        }
+
+        // Reset auto slide timer
+        function resetAutoSlide() {
+            clearInterval(autoSlideInterval);
+            startAutoSlide();
         }
 
         // Set up event listeners
         function setupEventListeners() {
-            // Category filter
-            categoryButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    categoryButtons.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-                    displayQuotes(button.dataset.category);
+            // Slider controls
+            prevBtn.addEventListener('click', () => goToSlide(currentSlide - 1));
+            nextBtn.addEventListener('click', () => goToSlide(currentSlide + 1));
+            
+            // Dot navigation
+            document.querySelectorAll('.dot').forEach(dot => {
+                dot.addEventListener('click', () => {
+                    const index = parseInt(dot.dataset.index);
+                    goToSlide(index);
                 });
             });
             
             // Theme toggle
             themeToggleBtn.addEventListener('click', toggleDarkMode);
             
-            // Search functionality
-            searchInput.addEventListener('input', debounce(function() {
-                const searchTerm = this.value.toLowerCase();
-                
-                if (searchTerm.length < 2) {
-                    displayQuotes(currentCategory);
-                    return;
-                }
-                
-                const results = quotes.filter(quote => 
-                    quote.text.toLowerCase().includes(searchTerm) || 
-                    quote.author.toLowerCase().includes(searchTerm)
-                );
-                
-                quotesContainer.innerHTML = '';
-                
-                if (results.length === 0) {
-                    quotesContainer.innerHTML = '<div class="no-results">No quotes found matching your search</div>';
-                    return;
-                }
-                
-                results.forEach(quote => {
-                    const quoteElement = createQuoteElement(quote);
-                    quotesContainer.appendChild(quoteElement);
-                });
-            }, 300));
-            
-            // Scroll to top button
-            window.addEventListener('scroll', () => {
-                if (window.pageYOffset > 300) {
-                    scrollTopBtn.classList.add('show');
-                } else {
-                    scrollTopBtn.classList.remove('show');
-                }
-            });
-            
-            scrollTopBtn.addEventListener('click', () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-            
             // Install app
             installButton.addEventListener('click', installApp);
             
             // Coffee button
-            document.querySelector('.coffee-btn').addEventListener('click', () => {
-                showNotification('Thank you for your support!', 'success');
+            coffeeBtn.addEventListener('click', () => {
+                currencyModal.style.display = 'flex';
+            });
+            
+            // Close currency modal
+            closeCurrencyModal.addEventListener('click', () => {
+                currencyModal.style.display = 'none';
+            });
+            
+            // Close modal if clicked outside
+            currencyModal.addEventListener('click', (e) => {
+                if (e.target === currencyModal) {
+                    currencyModal.style.display = 'none';
+                }
+            });
+            
+            // Accept privacy policy
+            acceptPrivacy.addEventListener('click', () => {
+                const acceptanceDate = new Date().toISOString();
+                localStorage.setItem('privacyAccepted', acceptanceDate);
+                privacyModal.style.display = 'none';
+            });
+            
+            // Mobile menu toggle
+            mobileMenuBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.nav-container') && navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                }
             });
         }
 
-        // Debounce function for search
-        function debounce(func, wait) {
-            let timeout;
-            return function() {
-                const context = this;
-                const args = arguments;
-                clearTimeout(timeout);
-                timeout = setTimeout(() => func.apply(context, args), wait);
-            };
+        // Check privacy acceptance
+        function checkPrivacyAcceptance() {
+            const acceptanceDate = localStorage.getItem('privacyAccepted');
+            
+            if (!acceptanceDate) {
+                // Never accepted, show modal
+                privacyModal.style.display = 'flex';
+            } else {
+                // Check if accepted more than 30 days ago
+                const accepted = new Date(acceptanceDate);
+                const now = new Date();
+                const diffTime = Math.abs(now - accepted);
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                
+                if (diffDays > 30) {
+                    privacyModal.style.display = 'flex';
+                }
+            }
         }
 
         // Dark mode functionality
@@ -1245,8 +1054,8 @@
             const isDarkMode = document.body.classList.contains('dark-mode');
             localStorage.setItem('darkMode', isDarkMode);
             themeToggleBtn.innerHTML = isDarkMode 
-                ? '<i class="fas fa-sun"></i> Light Mode' 
-                : '<i class="fas fa-moon"></i> Dark Mode';
+                ? '<i class="fas fa-sun"></i>' 
+                : '<i class="fas fa-moon"></i>';
         }
 
         // Check for dark mode preference
@@ -1256,92 +1065,27 @@
             
             if (savedDarkMode || (!localStorage.getItem('darkMode') && prefersDarkScheme)) {
                 document.body.classList.add('dark-mode');
-                themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+                themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
             }
         }
 
-        // Music player functionality
-        function loadMusicPlayer() {
-            audio.src = musicTracks[currentTrackIndex].src;
-            updateTrackInfo();
+        // Show notification
+        function showNotification(message, type) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}"></i>
+                ${message}
+            `;
             
-            // Play/Pause button
-            playButton.addEventListener('click', () => {
-                if (isPlaying) {
-                    pauseMusic();
-                } else {
-                    playMusic();
-                }
-            });
+            // Add to document
+            document.body.appendChild(notification);
             
-            // Previous track
-            prevButton.addEventListener('click', () => {
-                currentTrackIndex--;
-                if (currentTrackIndex < 0) {
-                    currentTrackIndex = musicTracks.length - 1;
-                }
-                loadTrack(currentTrackIndex);
-                if (isPlaying) playMusic();
-            });
-            
-            // Next track
-            nextButton.addEventListener('click', () => {
-                currentTrackIndex++;
-                if (currentTrackIndex >= musicTracks.length) {
-                    currentTrackIndex = 0;
-                }
-                loadTrack(currentTrackIndex);
-                if (isPlaying) playMusic();
-            });
-            
-            // Progress bar
-            audio.addEventListener('timeupdate', updateProgress);
-            progressContainer.addEventListener('click', setProgress);
-            
-            // Volume control
-            volumeSlider.addEventListener('input', () => {
-                audio.volume = volumeSlider.value;
-            });
-            
-            // Track ends
-            audio.addEventListener('ended', () => {
-                nextButton.click();
-            });
-        }
-
-        function loadTrack(index) {
-            audio.src = musicTracks[index].src;
-            audio.load();
-            updateTrackInfo();
-        }
-
-        function updateTrackInfo() {
-            trackName.textContent = musicTracks[currentTrackIndex].name;
-            trackArtist.textContent = musicTracks[currentTrackIndex].artist;
-        }
-
-        function playMusic() {
-            audio.play();
-            isPlaying = true;
-            playButton.innerHTML = '<i class="fas fa-pause"></i>';
-        }
-
-        function pauseMusic() {
-            audio.pause();
-            isPlaying = false;
-            playButton.innerHTML = '<i class="fas fa-play"></i>';
-        }
-
-        function updateProgress() {
-            const percent = (audio.currentTime / audio.duration) * 100;
-            progress.style.width = `${percent}%`;
-        }
-
-        function setProgress(e) {
-            const width = this.clientWidth;
-            const clickX = e.offsetX;
-            const duration = audio.duration;
-            audio.currentTime = (clickX / width) * duration;
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
         }
 
         // PWA Installation
@@ -1367,56 +1111,6 @@
             } else {
                 showNotification('To install the app, use the browser menu', 'info');
             }
-        }
-
-        // Show notification
-        function showNotification(message, type) {
-            toast.textContent = message;
-            toast.className = `toast show ${type}`;
-            
-            setTimeout(() => {
-                toast.className = 'toast';
-            }, 3000);
-        }
-
-        // Register service worker for offline functionality
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                // Inline service worker code
-                const swCode = `
-                    self.addEventListener('install', (event) => {
-                        event.waitUntil(
-                            caches.open('supreme-motive-v1').then((cache) => {
-                                return cache.addAll([
-                                    '/',
-                                    './index.html',
-                                    './styles.css',
-                                    './app.js'
-                                ]);
-                            })
-                        );
-                    });
-                    
-                    self.addEventListener('fetch', (event) => {
-                        event.respondWith(
-                            caches.match(event.request).then((response) => {
-                                return response || fetch(event.request);
-                            })
-                        );
-                    });
-                `;
-                
-                const blob = new Blob([swCode], { type: 'application/javascript' });
-                const swURL = URL.createObjectURL(blob);
-                
-                navigator.serviceWorker.register(swURL)
-                    .then((registration) => {
-                        console.log('SW registered: ', registration);
-                    })
-                    .catch((registrationError) => {
-                        console.log('SW registration failed: ', registrationError);
-                    });
-            });
         }
 
         // Initialize the app
