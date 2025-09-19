@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Supreme Motive - Daily Inspiration & Motivation</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #1a73e8;      /* Blue */
-            --secondary: #ff9800;    /* Orange */
-            --accent: #e91e63;       /* Red */
-            --success: #4caf50;      /* Green */
+            --primary: #2563eb;      /* Vibrant blue */
+            --secondary: #f97316;    /* Bright orange */
+            --accent: #e11d48;       /* Energetic red */
+            --success: #22c55e;      /* Fresh green */
             --light: #ffffff;        /* White */
-            --dark: #333333;
-            --gray: #777777;
+            --dark: #1f2937;         /* Dark gray */
+            --light-bg: #f9fafb;     /* Light background */
             --transition: all 0.3s ease;
         }
 
@@ -25,10 +25,10 @@
         }
 
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Poppins', sans-serif;
             line-height: 1.6;
             color: var(--dark);
-            background-color: var(--light);
+            background-color: var(--light-bg);
             overflow-x: hidden;
         }
 
@@ -39,6 +39,52 @@
             padding: 0 15px;
         }
 
+        section {
+            padding: 80px 0;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        h2:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--secondary);
+        }
+
         /* Header Styles */
         header {
             position: fixed;
@@ -47,7 +93,7 @@
             width: 100%;
             z-index: 1000;
             background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
             transition: var(--transition);
         }
 
@@ -67,17 +113,17 @@
         }
 
         .logo-img {
-            width: 40px;
-            height: 40px;
-            margin-right: 10px;
+            width: 45px;
+            height: 45px;
+            margin-right: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
             color: white;
             font-weight: bold;
-            font-size: 20px;
-            border-radius: 8px;
+            font-size: 22px;
+            border-radius: 10px;
         }
 
         .nav-links {
@@ -94,17 +140,30 @@
             font-weight: 600;
             font-size: 16px;
             transition: var(--transition);
+            position: relative;
         }
 
-        .nav-links a:hover {
-            color: var(--secondary);
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--secondary);
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
         }
 
         /* Hero Section */
         .hero {
-            padding: 160px 0 100px;
+            padding: 180px 0 100px;
             text-align: center;
-            background: linear-gradient(135deg, rgba(26, 115, 232, 0.9) 0%, rgba(233, 30, 99, 0.8) 100%);
+            background: linear-gradient(120deg, var(--primary) 0%, var(--accent) 100%);
             color: white;
             position: relative;
             overflow: hidden;
@@ -118,38 +177,69 @@
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 4rem;
             margin-bottom: 20px;
             animation: fadeInDown 1s ease;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
+            font-size: 1.3rem;
+            margin-bottom: 40px;
             animation: fadeInUp 1s ease;
+            opacity: 0.9;
         }
 
         /* Buttons */
         .btn {
             display: inline-block;
-            padding: 12px 30px;
+            padding: 14px 32px;
             background: var(--primary);
             color: white;
             border: none;
-            border-radius: 30px;
+            border-radius: 50px;
             cursor: pointer;
             font-weight: 600;
             transition: var(--transition);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 14px;
+            font-size: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .btn:hover {
-            background: var(--secondary);
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            color: white;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background: #ea580c;
+        }
+
+        .btn-success {
+            background: var(--success);
+        }
+
+        .btn-success:hover {
+            background: #16a34a;
+        }
+
+        .btn-accent {
+            background: var(--accent);
+        }
+
+        .btn-accent:hover {
+            background: #be123c;
         }
 
         .btn-outline {
@@ -163,102 +253,120 @@
             color: white;
         }
 
-        .btn-success {
-            background: var(--success);
-        }
-
-        .btn-success:hover {
-            background: #3d8b40;
-        }
-
-        .btn-accent {
-            background: var(--accent);
-        }
-
-        .btn-accent:hover {
-            background: #d01657;
-        }
-
         /* Quote Section */
         .quote-container {
             background: white;
-            border-radius: 10px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            padding: 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             text-align: center;
             margin: 0 auto;
             max-width: 800px;
             transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quote-container:before {
+            content: """;
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 150px;
+            color: var(--primary);
+            opacity: 0.1;
+            font-family: 'Playfair Display', serif;
         }
 
         .quote-text {
-            font-size: 24px;
+            font-size: 26px;
             font-style: italic;
-            margin-bottom: 20px;
-            color: var(--primary);
+            margin-bottom: 25px;
+            color: var(--dark);
             min-height: 120px;
             display: flex;
             align-items: center;
             justify-content: center;
+            line-height: 1.5;
+            position: relative;
+            z-index: 2;
         }
 
         .quote-author {
             font-weight: 600;
-            color: var(--gray);
-            margin-bottom: 30px;
+            color: var(--primary);
+            margin-bottom: 40px;
+            font-size: 18px;
         }
 
         .quote-controls {
             margin-top: 30px;
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 15px;
             justify-content: center;
         }
 
         /* Privacy Modal */
         .modal {
-            display: none;
+            display: flex;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.8);
             z-index: 3000;
             align-items: center;
             justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
         }
 
         .terms-content {
             background: white;
-            border-radius: 10px;
+            border-radius: 15px;
             padding: 40px;
             max-width: 600px;
             width: 90%;
             max-height: 80vh;
             overflow-y: auto;
             position: relative;
+            transform: translateY(50px);
+            transition: transform 0.4s ease;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal.active .terms-content {
+            transform: translateY(0);
         }
 
         .terms-content h2 {
-            margin-bottom: 20px;
             color: var(--primary);
+            margin-bottom: 25px;
         }
 
         .terms-content p {
             margin-bottom: 15px;
             line-height: 1.6;
+            color: var(--dark);
         }
 
         .terms-content h3 {
-            margin-top: 20px;
+            margin-top: 25px;
             color: var(--primary);
         }
 
         .terms-buttons {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end;
+            gap: 15px;
             margin-top: 30px;
         }
 
@@ -287,12 +395,20 @@
 
         /* Responsive */
         @media (max-width: 992px) {
+            h1 {
+                font-size: 3rem;
+            }
+            
+            h2 {
+                font-size: 2.2rem;
+            }
+            
             .nav-links {
                 display: none;
             }
-
+            
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 3rem;
             }
         }
 
@@ -300,11 +416,27 @@
             section {
                 padding: 60px 0;
             }
-
+            
             .hero {
-                padding: 140px 0 80px;
+                padding: 150px 0 80px;
             }
-
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .quote-container {
+                padding: 30px 20px;
+            }
+            
+            .quote-text {
+                font-size: 22px;
+            }
+            
             .quote-controls {
                 flex-direction: column;
                 align-items: center;
@@ -313,7 +445,14 @@
             .quote-controls .btn {
                 width: 100%;
                 max-width: 300px;
-                margin-bottom: 10px;
+            }
+            
+            .terms-buttons {
+                flex-direction: column;
+            }
+            
+            .terms-buttons button {
+                width: 100%;
             }
         }
     </style>
@@ -324,6 +463,7 @@
         <div class="terms-content">
             <h2>Terms of Service & Privacy Policy</h2>
             <p>By using Supreme Motive, you agree to our Terms of Service and Privacy Policy.</p>
+            
             <h3>Terms of Service</h3>
             <p>1. You must be at least 13 years old to use this app.</p>
             <p>2. The quotes provided are for inspirational purposes only.</p>
@@ -365,24 +505,21 @@
             <div class="hero-content">
                 <h1>Ignite Your Inner Drive</h1>
                 <p>Daily inspiration and motivation to help you achieve your goals and live your best life.</p>
-                <a href="#quote" class="btn">Get Inspired</a>
+                <a href="#quote" class="btn btn-secondary">Get Inspired</a>
             </div>
         </div>
     </section>
 
     <!-- Quote Section -->
-    <section id="quote" style="padding: 100px 0;">
+    <section id="quote">
         <div class="container">
-            <h2 style="text-align: center; margin-bottom: 60px; position: relative;">
-                Daily Inspiration
-                <span style="content: ''; display: block; width: 80px; height: 4px; background: var(--secondary); margin: 15px auto; border-radius: 2px;"></span>
-            </h2>
+            <h2>Daily Inspiration</h2>
             
             <div class="quote-container">
                 <p class="quote-text" id="quoteText">"The only way to do great work is to love what you do."</p>
                 <p class="quote-author" id="quoteAuthor">- Steve Jobs</p>
                 <div class="quote-controls">
-                    <button class="btn" id="newQuote">New Quote</button>
+                    <button class="btn btn-primary" id="newQuote">New Quote</button>
                     <button class="btn btn-outline" id="shareQuote">Share Quote</button>
                     <button class="btn btn-success" id="favoriteQuote">Add to Favorites</button>
                     <button class="btn btn-accent" id="copyQuote">Copy Quote</button>
@@ -397,6 +534,9 @@
         const acceptTerms = document.getElementById('acceptTerms');
         const declineTerms = document.getElementById('declineTerms');
         const newQuoteBtn = document.getElementById('newQuote');
+        const shareQuoteBtn = document.getElementById('shareQuote');
+        const favoriteQuoteBtn = document.getElementById('favoriteQuote');
+        const copyQuoteBtn = document.getElementById('copyQuote');
         const quoteText = document.getElementById('quoteText');
         const quoteAuthor = document.getElementById('quoteAuthor');
 
@@ -412,17 +552,24 @@
             { text: "Your time is limited, so don't waste it living someone else's life.", author: "Steve Jobs" },
             { text: "Life is what happens when you're busy making other plans.", author: "John Lennon" },
             { text: "Get busy living or get busy dying.", author: "Stephen King" },
+            { text: "The greatest glory in living lies not in never falling, but in rising every time we fall.", author: "Nelson Mandela" },
+            { text: "The way to get started is to quit talking and begin doing.", author: "Walt Disney" },
+            { text: "If life were predictable it would cease to be life, and be without flavor.", author: "Eleanor Roosevelt" },
+            { text: "If you look at what you have in life, you'll always have more.", author: "Oprah Winfrey" },
+            { text: "Life is a daring adventure or nothing at all.", author: "Helen Keller" },
         ];
 
         // Check if terms were already accepted
         if (!localStorage.getItem('termsAccepted')) {
-            termsModal.style.display = 'flex';
+            setTimeout(() => {
+                termsModal.classList.add('active');
+            }, 1000);
         }
 
         // Terms Acceptance
         acceptTerms.addEventListener('click', () => {
             localStorage.setItem('termsAccepted', 'true');
-            termsModal.style.display = 'none';
+            termsModal.classList.remove('active');
         });
 
         declineTerms.addEventListener('click', () => {
@@ -441,7 +588,62 @@
             quoteAuthor.textContent = `- ${quote.author}`;
         }
 
+        // Share Quote Functionality
+        function shareQuote() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Inspirational Quote',
+                    text: `${quoteText.textContent} ${quoteAuthor.textContent}`,
+                })
+                .then(() => console.log('Successful share'))
+                .catch(error => console.log('Error sharing:', error));
+            } else {
+                alert('Web Share API not supported in your browser. You can manually copy the quote.');
+            }
+        }
+
+        // Add to Favorites
+        function addToFavorites() {
+            const favorites = JSON.parse(localStorage.getItem('favoriteQuotes') || '[]');
+            const currentQuote = {
+                text: quoteText.textContent,
+                author: quoteAuthor.textContent,
+                timestamp: new Date().toISOString()
+            };
+            
+            favorites.push(currentQuote);
+            localStorage.setItem('favoriteQuotes', JSON.stringify(favorites));
+            
+            // Visual feedback
+            favoriteQuoteBtn.innerHTML = '<i class="fas fa-check"></i> Added!';
+            setTimeout(() => {
+                favoriteQuoteBtn.innerHTML = 'Add to Favorites';
+            }, 2000);
+        }
+
+        // Copy Quote
+        function copyQuote() {
+            const quoteToCopy = `${quoteText.textContent} ${quoteAuthor.textContent}`;
+            
+            navigator.clipboard.writeText(quoteToCopy)
+                .then(() => {
+                    // Visual feedback
+                    copyQuoteBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                    setTimeout(() => {
+                        copyQuoteBtn.innerHTML = 'Copy Quote';
+                    }, 2000);
+                })
+                .catch(err => {
+                    console.error('Failed to copy: ', err);
+                    alert('Failed to copy quote to clipboard.');
+                });
+        }
+
+        // Event Listeners
         newQuoteBtn.addEventListener('click', displayQuote);
+        shareQuoteBtn.addEventListener('click', shareQuote);
+        favoriteQuoteBtn.addEventListener('click', addToFavorites);
+        copyQuoteBtn.addEventListener('click', copyQuote);
 
         // Initialize with a random quote
         displayQuote();
