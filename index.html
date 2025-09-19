@@ -3,22 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Supreme Motive - Daily Inspiration & Motivation</title>
+    <title>Supreme Motive - Inspirational Quotes</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="manifest" href="/manifest.json">
     <style>
+        :root {
+            --primary-color: #4a6fa5;
+            --secondary-color: #6c9bcf;
+            --text-color: #333;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        .dark-mode {
+            --primary-color: #6c9bcf;
+            --secondary-color: #4a6fa5;
+            --text-color: #f0f0f0;
+            --bg-color: #1a1a2e;
+            --card-bg: #16213e;
+            --shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            transition: var(--transition);
         }
 
         body {
-            font-family: 'Montserrat', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
-            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             line-height: 1.6;
-            transition: all 0.3s ease;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .btn i {
+            margin-right: 5px;
         }
 
         .container {
@@ -27,440 +101,525 @@
             padding: 20px;
         }
 
-        header {
-            text-align: center;
-            padding: 30px 0;
-            background: linear-gradient(90deg, #1a56db 0%, #0a36a9 100%);
-            color: white;
-            border-radius: 12px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        header h1 {
-            font-size: 2.8rem;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        header p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto;
-            font-family: 'Merriweather', serif;
-        }
-
-        .quote-container {
-            background: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            margin-bottom: 30px;
-            text-align: center;
-            position: relative;
-            border-left: 5px solid #ff7846;
-        }
-
-        .quote-text {
-            font-size: 1.8rem;
-            font-family: 'Merriweather', serif;
-            margin-bottom: 20px;
-            color: #2d3748;
-            line-height: 1.8;
-        }
-
-        .quote-author {
-            font-size: 1.2rem;
-            color: #1a56db;
-            font-weight: 600;
-        }
-
-        .quote-category {
-            display: inline-block;
-            padding: 5px 15px;
-            background: #22c55e;
-            color: white;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            margin-top: 15px;
-        }
-
-        .buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 30px;
-        }
-
-        button {
-            padding: 14px 28px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .new-quote {
-            background: #1a56db;
-            color: white;
-        }
-
-        .new-quote:hover {
-            background: #0a36a9;
-            transform: translateY(-2px);
-        }
-
-        .share {
-            background: #ff7846;
-            color: white;
-        }
-
-        .share:hover {
-            background: #e65a2d;
-            transform: translateY(-2px);
-        }
-
         .categories {
             display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 30px 0;
             flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
         }
 
         .category-btn {
-            padding: 12px 25px;
-            background: #f1f5f9;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            border: 1px solid var(--primary-color);
+            padding: 8px 16px;
+            border-radius: 50px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            box-shadow: var(--shadow);
         }
 
         .category-btn.active, .category-btn:hover {
-            background: #1a56db;
+            background-color: var(--primary-color);
             color: white;
+        }
+
+        .quotes-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .quote-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .quote-card.image-card {
+            position: relative;
+            overflow: hidden;
+            color: white;
+            background-size: cover;
+            background-position: center;
+            min-height: 250px;
+        }
+
+        .quote-card.image-card .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+            border-radius: 10px;
+        }
+
+        .quote-card.image-card .content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .quote-text {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        .quote-author {
+            font-weight: 600;
+            text-align: right;
+            margin-top: auto;
+        }
+
+        .quote-category {
+            font-size: 0.8rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: inline-block;
+            background: rgba(74, 111, 165, 0.1);
+            padding: 4px 10px;
+            border-radius: 50px;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .action-btn {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .action-btn i {
+            margin-right: 5px;
+        }
+
+        .music-player {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .music-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .player-controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .play-btn {
+            background-color: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            border: none;
+            font-size: 1.2rem;
+        }
+
+        .coffee-section {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .coffee-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .coffee-text {
+            margin-bottom: 20px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .coffee-btn {
+            background-color: #ffdd00;
+            color: #333;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .coffee-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .coffee-btn i {
+            margin-right: 10px;
         }
 
         footer {
             text-align: center;
-            margin-top: 50px;
             padding: 20px;
-            color: #64748b;
-            font-size: 0.9rem;
-        }
-
-        /* Privacy Banner */
-        .privacy-banner {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            max-width: 900px;
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            border-top: 5px solid #22c55e;
-        }
-
-        .privacy-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .privacy-header i {
-            font-size: 1.8rem;
-            color: #1a56db;
-        }
-
-        .privacy-header h2 {
-            color: #1a56db;
-            font-size: 1.5rem;
-        }
-
-        .privacy-content p {
-            margin-bottom: 15px;
-            color: #4b5563;
-        }
-
-        .privacy-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: flex-end;
-        }
-
-        .privacy-btn {
-            padding: 12px 25px;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .accept-btn {
-            background: #22c55e;
+            background-color: var(--primary-color);
             color: white;
+            margin-top: 40px;
         }
 
-        .accept-btn:hover {
-            background: #16a34a;
+        .install-btn {
+            background-color: #f1c40f;
+            color: #2c3e50;
         }
 
-        .settings-btn {
-            background: #f1f5f9;
-            color: #4b5563;
-        }
-
-        .settings-btn:hover {
-            background: #e2e8f0;
-        }
-
-        /* Offline Notification */
-        .offline-notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #ff7846;
-            color: white;
-            padding: 15px 20px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            z-index: 1001;
-            display: none;
-        }
-
-        /* Responsive Design */
+        /* Responsive design */
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 2.2rem;
+            .quotes-container {
+                grid-template-columns: 1fr;
             }
             
-            .quote-text {
-                font-size: 1.5rem;
-            }
-            
-            .buttons {
+            .header-content {
                 flex-direction: column;
+                gap: 15px;
             }
             
-            .privacy-banner {
-                bottom: 10px;
-                width: 95%;
-                padding: 20px;
+            .controls {
+                width: 100%;
+                justify-content: center;
             }
-            
-            .privacy-buttons {
-                flex-direction: column;
-            }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .quote-card {
+            animation: fadeIn 0.5s ease-out;
         }
     </style>
 </head>
 <body>
-    <!-- Offline Notification -->
-    <div class="offline-notification" id="offlineNotification">
-        <i class="fas fa-wifi"></i>
-        <span>You are currently offline</span>
-    </div>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-quote-left"></i> Supreme Motive
+            </div>
+            <div class="controls">
+                <button class="btn theme-toggle">
+                    <i class="fas fa-moon"></i> Dark Mode
+                </button>
+                <button class="btn install-btn" id="installButton">
+                    <i class="fas fa-download"></i> Install App
+                </button>
+            </div>
+        </div>
+    </header>
 
     <div class="container">
-        <header>
-            <h1>Supreme Motive</h1>
-            <p>Daily inspiration and motivation to fuel your journey</p>
-        </header>
-
         <div class="categories">
-            <button class="category-btn active" data-category="all">All Quotes</button>
-            <button class="category-btn" data-category="wisdom">Wisdom</button>
-            <button class="category-btn" data-category="love">Love</button>
+            <button class="category-btn active" data-category="all">All</button>
+            <button class="category-btn" data-category="motivation">Motivation</button>
             <button class="category-btn" data-category="success">Success</button>
+            <button class="category-btn" data-category="life">Life</button>
+            <button class="category-btn" data-category="love">Love</button>
+            <button class="category-btn" data-category="wisdom">Wisdom</button>
         </div>
 
-        <div class="quote-container">
-            <p class="quote-text" id="quoteText">The best time to plant a tree was 20 years ago. The second best time is now.</p>
-            <p class="quote-author" id="quoteAuthor">Supreme-motive</p>
-            <span class="quote-category" id="quoteCategory">wisdom</span>
+        <div class="quotes-container">
+            <!-- Quotes will be dynamically inserted here -->
         </div>
 
-        <div class="buttons">
-            <button class="new-quote" id="newQuoteBtn">
-                <i class="fas fa-sync-alt"></i> New Quote
-            </button>
-            <button class="share" id="shareBtn">
-                <i class="fas fa-share-alt"></i> Share
-            </button>
+        <div class="music-player">
+            <h3 class="music-title">Inspirational Music</h3>
+            <div class="player-controls">
+                <button class="play-btn" id="playButton">
+                    <i class="fas fa-play"></i>
+                </button>
+                <span>Now Playing: "Positive Vibes"</span>
+            </div>
         </div>
-    </div>
 
-    <!-- Privacy Banner -->
-    <div class="privacy-banner" id="privacyBanner">
-        <div class="privacy-header">
-            <i class="fas fa-shield-alt"></i>
-            <h2>Privacy & Cookie Policy</h2>
-        </div>
-        <div class="privacy-content">
-            <p>We use cookies and similar technologies to help personalize content and improve your experience. By clicking accept, you agree to our use of cookies as described in our Cookie Policy.</p>
-        </div>
-        <div class="privacy-buttons">
-            <button class="privacy-btn settings-btn" id="privacySettings">
-                <i class="fas fa-cog"></i> Settings
-            </button>
-            <button class="privacy-btn accept-btn" id="privacyAccept">
-                <i class="fas fa-check"></i> Accept
+        <div class="coffee-section">
+            <h3 class="coffee-title">Support Supreme Motive</h3>
+            <p class="coffee-text">If this app has inspired you or brought value to your life, consider buying us a coffee to help support continued development and maintenance.</p>
+            <button class="coffee-btn">
+                <i class="fas fa-coffee"></i> Buy a Coffee
             </button>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2023 Supreme Motive. All rights reserved.</p>
+        <p>Supreme Motive &copy; 2023 | Find your daily inspiration</p>
     </footer>
 
     <script>
-        // Quote data
+        // Sample quotes data
         const quotes = [
-            { text: "Do not seek to follow in the footsteps of the wise. Seek what they sought.", author: "Supreme-motive", category: "wisdom" },
-            { text: "A mind is like a parachute — it only works when open.", author: "Supreme-motive", category: "wisdom" },
-            { text: "Common sense is not so common.", author: "Supreme-motive", category: "wisdom" },
-            { text: "To know others is intelligence; to know yourself is true wisdom.", author: "Supreme-motive", category: "wisdom" },
-            { text: "One who is not courageous enough to take risks will accomplish nothing.", author: "Supreme-motive", category: "wisdom" },
-            { text: "The best thing to hold onto in life is each other.", author: "Supreme-motive", category: "love" },
-            { text: "Love isn't something you find. Love is something that finds you.", author: "Supreme-motive", category: "love" },
-            { text: "Success is not final, failure is not fatal: it is the courage to continue that counts.", author: "Winston Churchill", category: "success" },
-            { text: "The way to get started is to quit talking and begin doing.", author: "Walt Disney", category: "success" },
-            { text: "Your time is limited, so don't waste it living someone else's life.", author: "Steve Jobs", category: "success" }
+            {
+                text: "The only way to do great work is to love what you do.",
+                author: "Steve Jobs",
+                category: "motivation",
+                hasImage: true,
+                image: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                text: "Success is not final, failure is not fatal: It is the courage to continue that counts.",
+                author: "Winston Churchill",
+                category: "success"
+            },
+            {
+                text: "In the middle of every difficulty lies opportunity.",
+                author: "Albert Einstein",
+                category: "wisdom"
+            },
+            {
+                text: "The purpose of our lives is to be happy.",
+                author: "Dalai Lama",
+                category: "life",
+                hasImage: true,
+                image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                text: "Life is what happens when you're busy making other plans.",
+                author: "John Lennon",
+                category: "life"
+            },
+            {
+                text: "The greatest glory in living lies not in never falling, but in rising every time we fall.",
+                author: "Nelson Mandela",
+                category: "motivation"
+            },
+            {
+                text: "Love is composed of a single soul inhabiting two bodies.",
+                author: "Aristotle",
+                category: "love",
+                hasImage: true,
+                image: "https://images.unsplash.com/photo-1516487106395-f2d269d6a21c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                text: "The way to get started is to quit talking and begin doing.",
+                author: "Walt Disney",
+                category: "success"
+            },
+            {
+                text: "If you look at what you have in life, you'll always have more.",
+                author: "Oprah Winfrey",
+                category: "wisdom"
+            },
+            {
+                text: "Spread love everywhere you go. Let no one ever come to you without leaving happier.",
+                author: "Mother Teresa",
+                category: "love"
+            },
+            {
+                text: "The future belongs to those who believe in the beauty of their dreams.",
+                author: "Eleanor Roosevelt",
+                category: "motivation",
+                hasImage: true,
+                image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                text: "Whoever is happy will make others happy too.",
+                author: "Anne Frank",
+                category: "life"
+            }
         ];
 
         // DOM Elements
-        const quoteText = document.getElementById('quoteText');
-        const quoteAuthor = document.getElementById('quoteAuthor');
-        const quoteCategory = document.getElementById('quoteCategory');
-        const newQuoteBtn = document.getElementById('newQuoteBtn');
-        const shareBtn = document.getElementById('shareBtn');
-        const categoryBtns = document.querySelectorAll('.category-btn');
-        const privacyBanner = document.getElementById('privacyBanner');
-        const privacyAccept = document.getElementById('privacyAccept');
-        const privacySettings = document.getElementById('privacySettings');
-        const offlineNotification = document.getElementById('offlineNotification');
+        const quotesContainer = document.querySelector('.quotes-container');
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const themeToggleBtn = document.querySelector('.theme-toggle');
+        const playButton = document.getElementById('playButton');
+        const installButton = document.getElementById('installButton');
 
-        // Current category filter
-        let currentCategory = 'all';
-
-        // Display a random quote
-        function displayRandomQuote() {
-            let filteredQuotes = currentCategory === 'all' 
-                ? quotes 
-                : quotes.filter(quote => quote.category === currentCategory);
-            
-            if (filteredQuotes.length === 0) {
-                filteredQuotes = quotes;
-            }
-            
-            const randomIndex = Math.floor(Math.random() * filteredQuotes.length);
-            const quote = filteredQuotes[randomIndex];
-            
-            quoteText.textContent = quote.text;
-            quoteAuthor.textContent = quote.author;
-            quoteCategory.textContent = quote.category;
-            
-            // Change border color based on category
-            const quoteContainer = document.querySelector('.quote-container');
-            if (quote.category === 'wisdom') {
-                quoteContainer.style.borderLeftColor = '#1a56db';
-            } else if (quote.category === 'love') {
-                quoteContainer.style.borderLeftColor = '#ff7846';
-            } else if (quote.category === 'success') {
-                quoteContainer.style.borderLeftColor = '#22c55e';
-            } else {
-                quoteContainer.style.borderLeftColor = '#1a56db';
-            }
+        // Initialize the app
+        function init() {
+            displayQuotes('all');
+            setupEventListeners();
+            checkDarkModePreference();
         }
 
-        // Set category filter
-        function setCategory(category) {
-            currentCategory = category;
-            displayRandomQuote();
+        // Display quotes based on category
+        function displayQuotes(category) {
+            quotesContainer.innerHTML = '';
             
-            // Update active button
-            categoryBtns.forEach(btn => {
-                if (btn.dataset.category === category) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
+            const filteredQuotes = category === 'all' 
+                ? quotes 
+                : quotes.filter(quote => quote.category === category);
+            
+            filteredQuotes.forEach(quote => {
+                const quoteElement = createQuoteElement(quote);
+                quotesContainer.appendChild(quoteElement);
             });
         }
 
-        // Share quote
-        function shareQuote() {
-            if (navigator.share) {
-                navigator.share({
-                    title: 'Inspirational Quote',
-                    text: `${quoteText.textContent} - ${quoteAuthor.textContent}`,
-                    url: window.location.href
-                })
-                .then(() => console.log('Shared successfully'))
-                .catch(error => console.log('Error sharing:', error));
+        // Create HTML for a quote card
+        function createQuoteElement(quote) {
+            const quoteCard = document.createElement('div');
+            quoteCard.classList.add('quote-card');
+            
+            if (quote.hasImage) {
+                quoteCard.classList.add('image-card');
+                quoteCard.style.backgroundImage = `url(${quote.image})`;
+                
+                quoteCard.innerHTML = `
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <span class="quote-category">${quote.category}</span>
+                        <p class="quote-text">"${quote.text}"</p>
+                        <p class="quote-author">- ${quote.author}</p>
+                        <div class="actions">
+                            <button class="action-btn"><i class="fas fa-heart"></i> Like</button>
+                            <button class="action-btn"><i class="fas fa-share-alt"></i> Share</button>
+                        </div>
+                    </div>
+                `;
             } else {
-                alert('Web Share API not supported in your browser. You can copy the quote manually.');
+                quoteCard.innerHTML = `
+                    <span class="quote-category">${quote.category}</span>
+                    <p class="quote-text">"${quote.text}"</p>
+                    <p class="quote-author">- ${quote.author}</p>
+                    <div class="actions">
+                        <button class="action-btn"><i class="fas fa-heart"></i> Like</button>
+                        <button class="action-btn"><i class="fas fa-share-alt"></i> Share</button>
+                    </div>
+                `;
+            }
+            
+            return quoteCard;
+        }
+
+        // Set up event listeners
+        function setupEventListeners() {
+            // Category filter
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    displayQuotes(button.dataset.category);
+                });
+            });
+            
+            // Theme toggle
+            themeToggleBtn.addEventListener('click', toggleDarkMode);
+            
+            // Music player
+            let isPlaying = false;
+            playButton.addEventListener('click', () => {
+                isPlaying = !isPlaying;
+                playButton.innerHTML = isPlaying 
+                    ? '<i class="fas fa-pause"></i>' 
+                    : '<i class="fas fa-play"></i>';
+                // In a real app, you would control audio here
+            });
+            
+            // Install app
+            installButton.addEventListener('click', installApp);
+            
+            // Coffee button
+            document.querySelector('.coffee-btn').addEventListener('click', () => {
+                alert('Thank you for your support! In a real app, this would open a payment gateway.');
+            });
+        }
+
+        // Dark mode functionality
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDarkMode);
+            themeToggleBtn.innerHTML = isDarkMode 
+                ? '<i class="fas fa-sun"></i> Light Mode' 
+                : '<i class="fas fa-moon"></i> Dark Mode';
+        }
+
+        // Check for dark mode preference
+        function checkDarkModePreference() {
+            const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+            
+            if (savedDarkMode || (!localStorage.getItem('darkMode') && prefersDarkScheme)) {
+                document.body.classList.add('dark-mode');
+                themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
             }
         }
 
-        // Handle privacy banner
-        function acceptPrivacy() {
-            privacyBanner.style.display = 'none';
-            localStorage.setItem('privacyAccepted', 'true');
-        }
-
-        function showPrivacySettings() {
-            alert('Privacy settings would be shown here. For this demo, we have simple acceptance.');
-        }
-
-        // Check if offline
-        function updateOnlineStatus() {
-            if (!navigator.onLine) {
-                offlineNotification.style.display = 'flex';
-            } else {
-                offlineNotification.style.display = 'none';
-            }
-        }
-
-        // Event Listeners
-        newQuoteBtn.addEventListener('click', displayRandomQuote);
-        shareBtn.addEventListener('click', shareQuote);
-        privacyAccept.addEventListener('click', acceptPrivacy);
-        privacySettings.addEventListener('click', showPrivacySettings);
-
-        categoryBtns.forEach(btn => {
-            btn.addEventListener('click', () => setCategory(btn.dataset.category));
+        // PWA Installation
+        let deferredPrompt;
+        
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installButton.style.display = 'block';
         });
 
-        window.addEventListener('online', updateOnlineStatus);
-        window.addEventListener('offline', updateOnlineStatus);
-
-        // Initialize
-        displayRandomQuote();
-        updateOnlineStatus();
-
-        // Check if privacy was already accepted
-        if (localStorage.getItem('privacyAccepted') === 'true') {
-            privacyBanner.style.display = 'none';
+        function installApp() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted the install prompt');
+                    } else {
+                        console.log('User dismissed the install prompt');
+                    }
+                    deferredPrompt = null;
+                });
+            }
         }
+
+        // Register service worker for offline functionality
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then((registration) => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch((registrationError) => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+
+        // Initialize the app
+        init();
     </script>
 </body>
 </html>
