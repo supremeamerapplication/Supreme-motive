@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Supreme Motive - Inspirational Quotes</title>
+    <meta name="description" content="Discover daily inspiration with motivational quotes to empower your day and transform your mindset">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -61,6 +62,24 @@
             overflow-x: hidden;
         }
 
+        /* Skip to main content for accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: var(--primary-color);
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            border-radius: 0 0 4px 4px;
+            z-index: 10000;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
         /* Improved Typography */
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Playfair Display', serif;
@@ -97,6 +116,8 @@
             display: flex;
             align-items: center;
             gap: 0.75rem;
+            text-decoration: none;
+            color: inherit;
         }
 
         .logo {
@@ -154,7 +175,8 @@
             transition: var(--transition);
         }
 
-        .nav-link:hover::after {
+        .nav-link:hover::after,
+        .nav-link:focus::after {
             width: 100%;
         }
 
@@ -192,12 +214,14 @@
             color: var(--primary-color);
         }
 
-        .dropdown a:hover {
+        .dropdown a:hover,
+        .dropdown a:focus {
             background: rgba(78, 107, 153, 0.1);
             transform: translateX(5px);
         }
 
-        .nav-item:hover .dropdown {
+        .nav-item:hover .dropdown,
+        .nav-item:focus-within .dropdown {
             display: flex;
             opacity: 1;
             transform: translateY(0);
@@ -224,7 +248,8 @@
             transition: var(--transition);
         }
 
-        .btn:hover {
+        .btn:hover,
+        .btn:focus {
             background-color: rgba(255, 255, 255, 0.3);
             transform: translateY(-2px);
         }
@@ -250,7 +275,8 @@
             transition: var(--transition);
         }
 
-        .theme-toggle:hover {
+        .theme-toggle:hover,
+        .theme-toggle:focus {
             transform: rotate(15deg);
         }
 
@@ -264,7 +290,8 @@
             transition: var(--transition);
         }
 
-        .mobile-menu-btn:hover {
+        .mobile-menu-btn:hover,
+        .mobile-menu-btn:focus {
             transform: scale(1.1);
         }
 
@@ -389,7 +416,8 @@
             box-shadow: var(--shadow);
         }
 
-        .slider-btn:hover {
+        .slider-btn:hover,
+        .slider-btn:focus {
             background-color: var(--primary-dark);
             transform: scale(1.1);
         }
@@ -491,7 +519,8 @@
             z-index: 2;
         }
 
-        .coffee-btn:hover {
+        .coffee-btn:hover,
+        .coffee-btn:focus {
             transform: translateY(-4px);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
         }
@@ -542,7 +571,8 @@
             transition: var(--transition);
         }
 
-        .modal-close:hover {
+        .modal-close:hover,
+        .modal-close:focus {
             color: var(--primary-color);
             transform: rotate(90deg);
         }
@@ -686,7 +716,8 @@
             font-weight: 500;
         }
 
-        .footer-nav a:hover {
+        .footer-nav a:hover,
+        .footer-nav a:focus {
             color: white;
             transform: translateY(-2px);
         }
@@ -725,6 +756,154 @@
             margin-right: 0.8rem;
             color: var(--accent-color);
             font-size: 1.3rem;
+        }
+
+        /* Quote Actions */
+        .quote-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .action-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 50px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            color: white;
+        }
+
+        .action-btn:hover,
+        .action-btn:focus {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .action-btn.liked {
+            color: #ff4757;
+        }
+
+        /* Progress Indicator */
+        .slider-progress {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .progress-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--text-light);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .progress-dot.active {
+            background-color: var(--primary-color);
+            transform: scale(1.2);
+        }
+
+        /* Search Bar */
+        .search-container {
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .search-bar {
+            display: flex;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--primary-light);
+            border-radius: 50px 0 0 50px;
+            background: var(--card-bg);
+            color: var(--text-color);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .search-btn {
+            padding: 0 1.5rem;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 0 50px 50px 0;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .search-btn:hover,
+        .search-btn:focus {
+            background: var(--primary-dark);
+        }
+
+        /* Categories Filter */
+        .categories-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .category-btn {
+            background: var(--card-bg);
+            border: 2px solid var(--primary-light);
+            color: var(--text-color);
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .category-btn:hover,
+        .category-btn:focus,
+        .category-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        /* Loading Spinner */
+        .loading-spinner {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(78, 107, 153, 0.2);
+            border-left: 4px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         /* Responsive design */
@@ -807,7 +986,7 @@
         }
 
         /* Focus styles for accessibility */
-        button:focus, input:focus {
+        button:focus, input:focus, a:focus {
             outline: 2px solid var(--primary-color);
             outline-offset: 2px;
         }
@@ -832,15 +1011,18 @@
     </style>
 </head>
 <body>
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <header>
         <div class="header-content">
-            <div class="logo-container">
+            <a href="#" class="logo-container" aria-label="Supreme Motive Home">
                 <div class="logo">SM</div>
                 <div class="logo-text">Supreme Motive</div>
-            </div>
+            </a>
             
             <div class="nav-container">
-                <nav class="nav-menu" id="navMenu">
+                <nav class="nav-menu" id="navMenu" aria-label="Main Navigation">
                     <div class="nav-item">
                         <a href="#" class="nav-link">Home</a>
                     </div>
@@ -879,7 +1061,7 @@
                     <button class="btn install-btn" id="installButton" aria-label="Install app">
                         <i class="fas fa-download"></i> Install App
                     </button>
-                    <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle mobile menu">
                         <i class="fas fa-bars"></i>
                     </button>
                 </div>
@@ -887,45 +1069,77 @@
         </div>
     </header>
 
-    <div class="container">
-        <div class="hero">
-            <div class="hero-content">
-                <h1>Find Your Daily Inspiration</h1>
-                <p>Discover hundreds of motivational quotes to empower your day and transform your mindset</p>
+    <main id="main-content">
+        <div class="container">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1>Find Your Daily Inspiration</h1>
+                    <p>Discover hundreds of motivational quotes to empower your day and transform your mindset</p>
+                </div>
             </div>
-        </div>
 
-        <div class="quotes-slider-container">
-            <div class="quotes-slider" id="quotesSlider">
-                <!-- Quotes will be dynamically inserted here -->
+            <!-- Search Bar -->
+            <div class="search-container">
+                <div class="search-bar">
+                    <input type="text" class="search-input" id="searchInput" placeholder="Search for quotes...">
+                    <button class="search-btn" id="searchBtn" aria-label="Search">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
             </div>
-            
-            <div class="slider-controls">
-                <button class="slider-btn" id="prevBtn">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="slider-btn" id="nextBtn">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
-        </div>
 
-        <div class="coffee-section">
-            <h3 class="coffee-title">Support Supreme Motive</h3>
-            <p class="coffee-text">If this app has inspired you or brought value to your life, consider supporting us to help with continued development and maintenance.</p>
-            <button class="coffee-btn" id="coffeeBtn">
-                <i class="fas fa-coffee"></i> Buy a Coffee
-            </button>
+            <!-- Categories Filter -->
+            <div class="categories-filter" id="categoriesFilter">
+                <button class="category-btn active" data-category="all">All</button>
+                <button class="category-btn" data-category="motivation">Motivation</button>
+                <button class="category-btn" data-category="success">Success</button>
+                <button class="category-btn" data-category="life">Life</button>
+                <button class="category-btn" data-category="love">Love</button>
+                <button class="category-btn" data-category="wisdom">Wisdom</button>
+            </div>
+
+            <!-- Loading Spinner -->
+            <div class="loading-spinner" id="loadingSpinner">
+                <div class="spinner"></div>
+            </div>
+
+            <div class="quotes-slider-container">
+                <div class="quotes-slider" id="quotesSlider">
+                    <!-- Quotes will be dynamically inserted here -->
+                </div>
+                
+                <!-- Progress Indicator -->
+                <div class="slider-progress" id="sliderProgress">
+                    <!-- Progress dots will be dynamically inserted here -->
+                </div>
+                
+                <div class="slider-controls">
+                    <button class="slider-btn" id="prevBtn" aria-label="Previous quote">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="slider-btn" id="nextBtn" aria-label="Next quote">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="coffee-section">
+                <h3 class="coffee-title">Support Supreme Motive</h3>
+                <p class="coffee-text">If this app has inspired you or brought value to your life, consider supporting us to help with continued development and maintenance.</p>
+                <button class="coffee-btn" id="coffeeBtn">
+                    <i class="fas fa-coffee"></i> Buy a Coffee
+                </button>
+            </div>
         </div>
-    </div>
+    </main>
 
     <!-- Currency Modal -->
-    <div class="modal" id="currencyModal">
+    <div class="modal" id="currencyModal" aria-hidden="true" role="dialog" aria-labelledby="currencyModalTitle">
         <div class="modal-content">
-            <button class="modal-close" id="closeCurrencyModal">
+            <button class="modal-close" id="closeCurrencyModal" aria-label="Close modal">
                 <i class="fas fa-times"></i>
             </button>
-            <h3 class="modal-title">Select Currency</h3>
+            <h3 class="modal-title" id="currencyModalTitle">Select Currency</h3>
             <div class="currency-options">
                 <div class="currency-option">
                     <div class="currency-name">
@@ -980,9 +1194,9 @@
     </div>
 
     <!-- Privacy Modal -->
-    <div class="privacy-modal" id="privacyModal">
+    <div class="privacy-modal" id="privacyModal" aria-hidden="true" role="dialog" aria-labelledby="privacyModalTitle">
         <div class="privacy-content">
-            <h3 class="privacy-title">Privacy Policy & Terms of Service</h3>
+            <h3 class="privacy-title" id="privacyModalTitle">Privacy Policy & Terms of Service</h3>
             <div class="privacy-text">
                 <p>Welcome to Supreme Motive! We value your privacy and want to ensure you have the best experience possible.</p>
                 <p>By using our app, you agree to our Terms of Service and Privacy Policy. We use cookies to enhance your experience and remember your preferences.</p>
@@ -1001,7 +1215,7 @@
         <div class="footer-content">
             <p>Supreme Motive &copy; 2023 | Find your daily inspiration</p>
             <div class="footer-nav">
-                <a href="#"><i class="fas fa-lock"></i> Privacy Policy</a>
+                <a href="#" id="privacyLink"><i class="fas fa-lock"></i> Privacy Policy</a>
                 <a href="#"><i class="fas fa-file-alt"></i> Terms of Service</a>
                 <a href="#"><i class="fas fa-envelope"></i> Contact Us</a>
                 <a href="#"><i class="fas fa-info-circle"></i> About</a>
@@ -1014,8 +1228,9 @@
         const quotes = [
             // Motivation Quotes (50)
             {
+                id: 1,
                 text: "The only way to do great work is to love what you do.",
-                author: "Supreme Motive",
+                author: "Steve Jobs",
                 category: "motivation",
                 hasImage: true,
                 image: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
@@ -1023,32 +1238,36 @@
                 featured: true
             },
             {
+                id: 2,
                 text: "Believe you can and you're halfway there.",
-                author: "Supreme Motive",
+                author: "Theodore Roosevelt",
                 category: "motivation",
                 hasImage: true,
                 image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
                 likes: 876
             },
             {
+                id: 3,
                 text: "Your time is limited, don't waste it living someone else's life.",
-                author: "Supreme Motive",
+                author: "Steve Jobs",
                 category: "motivation",
                 hasImage: true,
                 image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
                 likes: 932
             },
             {
+                id: 4,
                 text: "The future belongs to those who believe in the beauty of their dreams.",
-                author: "Supreme Motive",
+                author: "Eleanor Roosevelt",
                 category: "motivation",
                 hasImage: true,
                 image: "https://images.unsplash.com/photo-1516487106395-f2d269d6a21c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
                 likes: 1056
             },
             {
+                id: 5,
                 text: "It does not matter how slowly you go as long as you do not stop.",
-                author: "Supreme Motive",
+                author: "Confucius",
                 category: "motivation",
                 hasImage: true,
                 image: "https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
@@ -1058,8 +1277,9 @@
             
             // Success Quotes (50)
             {
+                id: 51,
                 text: "Success is not final, failure is not fatal: It is the courage to continue that counts.",
-                author: "Supreme Motive",
+                author: "Winston Churchill",
                 category: "success",
                 hasImage: true,
                 image: "https://images.unsplash.com/photo-1568992687947-868a62a9f521?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
@@ -1067,32 +1287,36 @@
                 featured: true
             },
             {
+                id: 52,
                 text: "The way to get started is to quit talking and begin doing.",
-                author: "Supreme Motive",
+                author: "Walt Disney",
                 category: "success",
                 hasImage: true,
                 image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
                 likes: 987
             },
             {
+                id: 53,
                 text: "Don't be afraid to give up the good to go for the great.",
-                author: "Supreme Motive",
+                author: "John D. Rockefeller",
                 category: "success",
                 hasImage: true,
                 image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
                 likes: 876
             },
             {
+                id: 54,
                 text: "Success usually comes to those who are too busy to be looking for it.",
-                author: "Supreme Motive",
+                author: "Henry David Thoreau",
                 category: "success",
                 hasImage: true,
                 image: "https://images.unsplash.com/photo-1432888622747-4eb9a8f5a07a?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
                 likes: 1123
             },
             {
+                id: 55,
                 text: "I find that the harder I work, the more luck I seem to have.",
-                author: "Supreme Motive",
+                author: "Thomas Jefferson",
                 category: "success",
                 hasImage: true,
                 image: "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
@@ -1102,40 +1326,45 @@
             
             // Life Quotes (50)
             {
+                id: 101,
                 text: "Life is what happens when you're busy making other plans.",
-                author: "Supreme Motive",
+                author: "John Lennon",
                 category: "life",
                 hasImage: true,
                 image: "https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
                 likes: 1987
             },
             {
+                id: 102,
                 text: "The purpose of our lives is to be happy.",
-                author: "Supreme Motive",
+                author: "Dalai Lama",
                 category: "life",
                 hasImage: true,
                 image: "https://images.unsplash.com/photo-1454923634634-bd1614719a7b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
                 likes: 1234
             },
             {
+                id: 103,
                 text: "You only live once, but if you do it right, once is enough.",
-                author: "Supreme Motive",
+                author: "Mae West",
                 category: "life",
                 hasImage: true,
                 image: "https://images.unsplash.com/photo-1500058670364-731c3f5e1e4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
                 likes: 1098
             },
             {
+                id: 104,
                 text: "Life is not a problem to be solved, but a reality to be experienced.",
-                author: "Supreme Motive",
+                author: "Soren Kierkegaard",
                 category: "life",
                 hasImage: true,
                 image: "https://images.unsplash.com/photo-1504198322253-cfa87a0ff25f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
                 likes: 1321
             },
             {
+                id: 105,
                 text: "The greatest glory in living lies not in never falling, but in rising every time we fall.",
-                author: "Supreme Motive",
+                author: "Nelson Mandela",
                 category: "life",
                 hasImage: true,
                 image: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
@@ -1145,40 +1374,45 @@
             
             // Love Quotes (50)
             {
+                id: 151,
                 text: "Love is composed of a single soul inhabiting two bodies.",
-                author: "Supreme Motive",
+                author: "Aristotle",
                 category: "love",
                 hasImage: true,
                 image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
                 likes: 1342
             },
             {
+                id: 152,
                 text: "The best thing to hold onto in life is each other.",
-                author: "Supreme Motive",
+                author: "Audrey Hepburn",
                 category: "love",
                 hasImage: true,
                 image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
                 likes: 1123
             },
             {
+                id: 153,
                 text: "Love isn't something you find. Love is something that finds you.",
-                author: "Supreme Motive",
+                author: "Loretta Young",
                 category: "love",
                 hasImage: true,
                 image: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
                 likes: 945
             },
             {
+                id: 154,
                 text: "The greatest happiness of life is the conviction that we are loved.",
-                author: "Supreme Motive",
+                author: "Victor Hugo",
                 category: "love",
                 hasImage: true,
                 image: "https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
                 likes: 765
             },
             {
+                id: 155,
                 text: "Love is when the other person's happiness is more important than your own.",
-                author: "Supreme Motive",
+                author: "H. Jackson Brown, Jr.",
                 category: "love",
                 hasImage: true,
                 image: "https://images.unsplash.com/photo-1560087637-bf797bc7796a?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
@@ -1188,40 +1422,45 @@
             
             // Wisdom Quotes (50)
             {
+                id: 201,
                 text: "In the middle of every difficulty lies opportunity.",
-                author: "Supreme Motive",
+                author: "Albert Einstein",
                 category: "wisdom",
                 hasImage: true,
                 image: "https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
                 likes: 932
             },
             {
+                id: 202,
                 text: "The only true wisdom is in knowing you know nothing.",
-                author: "Supreme Motive",
+                author: "Socrates",
                 category: "wisdom",
                 hasImage: true,
                 image: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
                 likes: 876
             },
             {
+                id: 203,
                 text: "Knowing yourself is the beginning of all wisdom.",
-                author: "Supreme Motive",
+                author: "Aristotle",
                 category: "wisdom",
                 hasImage: true,
                 image: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
                 likes: 1123
             },
             {
+                id: 204,
                 text: "The wise man doesn't give the right answers, he poses the right questions.",
-                author: "Supreme Motive",
+                author: "Claude Levi-Strauss",
                 category: "wisdom",
                 hasImage: true,
                 image: "https://images.unsplash.com/photo-1452570053594-1b985d6ea890?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
                 likes: 945
             },
             {
+                id: 205,
                 text: "Turn your wounds into wisdom.",
-                author: "Supreme Motive",
+                author: "Oprah Winfrey",
                 category: "wisdom",
                 hasImage: true,
                 image: "https://images.unsplash.com/photo-1476820865390-c52aeebb9891?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
@@ -1248,6 +1487,13 @@
         const categoryLinks = document.querySelectorAll('.dropdown a[data-category]');
         const dropdownDarkModeToggle = document.getElementById('dropdownDarkModeToggle');
         const dropdownInstallButton = document.getElementById('dropdownInstallButton');
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+        const categoriesFilter = document.getElementById('categoriesFilter');
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        const sliderProgress = document.getElementById('sliderProgress');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        const privacyLink = document.getElementById('privacyLink');
 
         // App state
         let currentSlide = 0;
@@ -1255,6 +1501,9 @@
         let autoSlideInterval;
         let startX = 0;
         let endX = 0;
+        let filteredQuotes = [...quotes];
+        let currentCategory = 'all';
+        let searchTerm = '';
 
         // Initialize the app
         function init() {
@@ -1277,58 +1526,171 @@
         // Initialize slider
         function initSlider() {
             quotesSlider.innerHTML = '';
+            sliderProgress.innerHTML = '';
             
-            quotes.forEach((quote, index) => {
-                // Create slide
-                const slide = document.createElement('div');
-                slide.className = `quote-slide ${quote.hasImage ? 'image-slide' : ''}`;
-                
-                if (quote.hasImage) {
-                    slide.style.backgroundImage = `url(${quote.image})`;
-                    slide.innerHTML = `
-                        <div class="overlay"></div>
-                        <div class="content">
+            // Show loading spinner
+            loadingSpinner.style.display = 'flex';
+            
+            // Simulate loading for better UX
+            setTimeout(() => {
+                filteredQuotes.forEach((quote, index) => {
+                    // Create slide
+                    const slide = document.createElement('div');
+                    slide.className = `quote-slide ${quote.hasImage ? 'image-slide' : ''}`;
+                    slide.setAttribute('data-quote-id', quote.id);
+                    
+                    if (quote.hasImage) {
+                        slide.style.backgroundImage = `url(${quote.image})`;
+                        slide.innerHTML = `
+                            <div class="overlay"></div>
+                            <div class="content">
+                                <span class="quote-category">${quote.category}</span>
+                                <p class="quote-text">"${quote.text}"</p>
+                                <p class="quote-author">- ${quote.author}</p>
+                                <div class="quote-actions">
+                                    <button class="action-btn like-btn ${likedQuotes.includes(quote.id) ? 'liked' : ''}" data-quote-id="${quote.id}" aria-label="${likedQuotes.includes(quote.id) ? 'Unlike' : 'Like'} this quote">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                    <button class="action-btn share-btn" data-quote-id="${quote.id}" aria-label="Share this quote">
+                                        <i class="fas fa-share-alt"></i>
+                                    </button>
+                                    <button class="action-btn copy-btn" data-quote-id="${quote.id}" aria-label="Copy this quote">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        `;
+                    } else {
+                        slide.innerHTML = `
                             <span class="quote-category">${quote.category}</span>
                             <p class="quote-text">"${quote.text}"</p>
                             <p class="quote-author">- ${quote.author}</p>
-                        </div>
-                    `;
-                } else {
-                    slide.innerHTML = `
-                        <span class="quote-category">${quote.category}</span>
-                        <p class="quote-text">"${quote.text}"</p>
-                        <p class="quote-author">- ${quote.author}</p>
-                    `;
-                }
+                            <div class="quote-actions">
+                                <button class="action-btn like-btn ${likedQuotes.includes(quote.id) ? 'liked' : ''}" data-quote-id="${quote.id}" aria-label="${likedQuotes.includes(quote.id) ? 'Unlike' : 'Like'} this quote">
+                                    <i class="fas fa-heart"></i>
+                                </button>
+                                <button class="action-btn share-btn" data-quote-id="${quote.id}" aria-label="Share this quote">
+                                    <i class="fas fa-share-alt"></i>
+                                </button>
+                                <button class="action-btn copy-btn" data-quote-id="${quote.id}" aria-label="Copy this quote">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                        `;
+                    }
+                    
+                    quotesSlider.appendChild(slide);
+                    
+                    // Create progress dot
+                    const dot = document.createElement('div');
+                    dot.className = `progress-dot ${index === 0 ? 'active' : ''}`;
+                    dot.setAttribute('data-slide-index', index);
+                    dot.addEventListener('click', () => goToSlide(index));
+                    sliderProgress.appendChild(dot);
+                });
                 
-                quotesSlider.appendChild(slide);
-            });
-            
-            // Start auto slide
-            startAutoSlide();
+                // Hide loading spinner
+                loadingSpinner.style.display = 'none';
+                
+                // Start auto slide
+                startAutoSlide();
+            }, 800);
         }
 
         // Filter quotes by category
         function filterQuotesByCategory(category) {
-            const filteredQuotes = category === 'all' 
-                ? quotes 
-                : quotes.filter(quote => quote.category === category);
+            currentCategory = category;
+            currentSlide = 0;
+            
+            // Update active category button
+            categoryBtns.forEach(btn => {
+                if (btn.getAttribute('data-category') === category) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            
+            if (category === 'all') {
+                filteredQuotes = [...quotes];
+            } else {
+                filteredQuotes = quotes.filter(quote => quote.category === category);
+            }
+            
+            // Apply search filter if there's a search term
+            if (searchTerm) {
+                filteredQuotes = filteredQuotes.filter(quote => 
+                    quote.text.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    quote.author.toLowerCase().includes(searchTerm.toLowerCase())
+                );
+            }
             
             // Reinitialize slider with filtered quotes
-            // In a real app, you would update the slider with the filtered quotes
-            // For this demo, we'll just show a message
-            showNotification(`Showing ${category} quotes`, 'success');
+            initSlider();
+            
+            // Show notification
+            if (filteredQuotes.length === 0) {
+                showNotification('No quotes found for this category', 'info');
+            } else {
+                showNotification(`Showing ${filteredQuotes.length} ${category} quotes`, 'success');
+            }
+        }
+
+        // Search quotes
+        function searchQuotes() {
+            searchTerm = searchInput.value.trim();
+            currentSlide = 0;
+            
+            if (searchTerm) {
+                filteredQuotes = quotes.filter(quote => 
+                    quote.text.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    quote.author.toLowerCase().includes(searchTerm.toLowerCase())
+                );
+                
+                // Apply category filter if not 'all'
+                if (currentCategory !== 'all') {
+                    filteredQuotes = filteredQuotes.filter(quote => quote.category === currentCategory);
+                }
+            } else {
+                // If search is empty, reset to current category
+                if (currentCategory === 'all') {
+                    filteredQuotes = [...quotes];
+                } else {
+                    filteredQuotes = quotes.filter(quote => quote.category === currentCategory);
+                }
+            }
+            
+            // Reinitialize slider with filtered quotes
+            initSlider();
+            
+            // Show notification
+            if (filteredQuotes.length === 0) {
+                showNotification('No quotes found for your search', 'info');
+            } else {
+                showNotification(`Found ${filteredQuotes.length} quotes`, 'success');
+            }
         }
 
         // Go to specific slide
         function goToSlide(index) {
-            if (index < 0) index = quotes.length - 1;
-            if (index >= quotes.length) index = 0;
+            if (filteredQuotes.length === 0) return;
+            
+            if (index < 0) index = filteredQuotes.length - 1;
+            if (index >= filteredQuotes.length) index = 0;
             
             currentSlide = index;
             quotesSlider.scrollTo({
                 left: quotesSlider.clientWidth * index,
                 behavior: 'smooth'
+            });
+            
+            // Update active progress dot
+            document.querySelectorAll('.progress-dot').forEach((dot, i) => {
+                if (i === index) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
             });
             
             // Reset auto slide timer
@@ -1337,6 +1699,8 @@
 
         // Start auto slide
         function startAutoSlide() {
+            if (filteredQuotes.length <= 1) return;
+            
             autoSlideInterval = setInterval(() => {
                 goToSlide(currentSlide + 1);
             }, 5000);
@@ -1493,6 +1857,124 @@ PayPal: support@suprememotive.com`;
                     navMenu.classList.remove('active');
                 }
             });
+            
+            // Search functionality
+            searchBtn.addEventListener('click', searchQuotes);
+            searchInput.addEventListener('keyup', (e) => {
+                if (e.key === 'Enter') {
+                    searchQuotes();
+                }
+            });
+            
+            // Category filter buttons
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const category = btn.getAttribute('data-category');
+                    filterQuotesByCategory(category);
+                });
+            });
+            
+            // Privacy link
+            privacyLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                privacyModal.style.display = 'flex';
+            });
+            
+            // Close privacy modal if clicked outside
+            privacyModal.addEventListener('click', (e) => {
+                if (e.target === privacyModal) {
+                    privacyModal.style.display = 'none';
+                }
+            });
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') {
+                    goToSlide(currentSlide - 1);
+                } else if (e.key === 'ArrowRight') {
+                    goToSlide(currentSlide + 1);
+                } else if (e.key === 'Escape') {
+                    // Close modals if open
+                    if (currencyModal.style.display === 'flex') {
+                        currencyModal.classList.remove('show');
+                        setTimeout(() => {
+                            currencyModal.style.display = 'none';
+                        }, 300);
+                    }
+                    if (privacyModal.style.display === 'flex') {
+                        privacyModal.style.display = 'none';
+                    }
+                }
+            });
+        }
+
+        // Handle quote actions (like, share, copy)
+        document.addEventListener('click', (e) => {
+            // Like button
+            if (e.target.closest('.like-btn')) {
+                const likeBtn = e.target.closest('.like-btn');
+                const quoteId = parseInt(likeBtn.getAttribute('data-quote-id'));
+                
+                if (likedQuotes.includes(quoteId)) {
+                    // Unlike
+                    likedQuotes = likedQuotes.filter(id => id !== quoteId);
+                    likeBtn.classList.remove('liked');
+                    likeBtn.setAttribute('aria-label', 'Like this quote');
+                    showNotification('Quote removed from favorites', 'info');
+                } else {
+                    // Like
+                    likedQuotes.push(quoteId);
+                    likeBtn.classList.add('liked');
+                    likeBtn.setAttribute('aria-label', 'Unlike this quote');
+                    showNotification('Quote added to favorites', 'success');
+                }
+                
+                // Save to localStorage
+                localStorage.setItem('likedQuotes', JSON.stringify(likedQuotes));
+            }
+            
+            // Share button
+            if (e.target.closest('.share-btn')) {
+                const shareBtn = e.target.closest('.share-btn');
+                const quoteId = parseInt(shareBtn.getAttribute('data-quote-id'));
+                const quote = quotes.find(q => q.id === quoteId);
+                
+                if (quote && navigator.share) {
+                    navigator.share({
+                        title: 'Inspirational Quote',
+                        text: `"${quote.text}" - ${quote.author}`,
+                        url: window.location.href,
+                    })
+                    .then(() => showNotification('Quote shared successfully', 'success'))
+                    .catch(() => copyQuoteToClipboard(quote));
+                } else {
+                    copyQuoteToClipboard(quote);
+                }
+            }
+            
+            // Copy button
+            if (e.target.closest('.copy-btn')) {
+                const copyBtn = e.target.closest('.copy-btn');
+                const quoteId = parseInt(copyBtn.getAttribute('data-quote-id'));
+                const quote = quotes.find(q => q.id === quoteId);
+                
+                copyQuoteToClipboard(quote);
+            }
+        });
+
+        // Copy quote to clipboard
+        function copyQuoteToClipboard(quote) {
+            if (!quote) return;
+            
+            const quoteText = `"${quote.text}" - ${quote.author}`;
+            
+            navigator.clipboard.writeText(quoteText)
+                .then(() => {
+                    showNotification('Quote copied to clipboard!', 'success');
+                })
+                .catch(err => {
+                    showNotification('Failed to copy quote', 'error');
+                });
         }
 
         // Check privacy acceptance
@@ -1550,7 +2032,7 @@ PayPal: support@suprememotive.com`;
             const notification = document.createElement('div');
             notification.className = `notification ${type}`;
             notification.innerHTML = `
-                <i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}"></i>
+                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
                 ${message}
             `;
             
@@ -1619,10 +2101,16 @@ PayPal: support@suprememotive.com`;
                 "display": "standalone",
                 "background_color": "#4e6b99",
                 "theme_color": "#4e6b99",
+                "description": "Discover daily inspiration with motivational quotes to empower your day and transform your mindset",
                 "icons": [
                     {
                         "src": "https://images.unsplash.com/photo-1579546929662-711aa81148cf?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80",
                         "sizes": "192x192",
+                        "type": "image/png"
+                    },
+                    {
+                        "src": "https://images.unsplash.com/photo-1579546929662-711aa81148cf?ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80",
+                        "sizes": "512x512",
                         "type": "image/png"
                     }
                 ]
