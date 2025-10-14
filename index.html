@@ -25,6 +25,8 @@
             --border-radius: 16px;
             --gradient: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
             --gradient-secondary: linear-gradient(135deg, var(--secondary-color) 0%, #ffa36c 100%);
+            --success-color: #10b981;
+            --error-color: #ef4444;
         }
 
         .dark-mode {
@@ -203,6 +205,39 @@
             font-size: 1.3rem;
             opacity: 0.9;
             margin-bottom: 2rem;
+        }
+
+        /* Search Bar */
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            border: 2px solid var(--primary-light);
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            font-size: 1rem;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .search-bar:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(78, 107, 153, 0.2);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
         }
 
         /* Quotes Slider */
@@ -614,6 +649,114 @@
             border-color: var(--primary-color);
         }
 
+        /* Notification Styles */
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background-color: var(--success-color);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-hover);
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transform: translateX(120%);
+            transition: transform 0.3s ease;
+            max-width: 350px;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.error {
+            background-color: var(--error-color);
+        }
+
+        .notification i {
+            font-size: 1.2rem;
+        }
+
+        /* Loading Spinner */
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-light);
+        }
+
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        /* Favorites Section */
+        .favorites-section {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .favorites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .favorite-card {
+            background-color: rgba(78, 107, 153, 0.1);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            transition: var(--transition);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .favorite-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .favorite-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .favorite-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.5rem;
+        }
+
         /* Responsive design */
         @media (max-width: 968px) {
             .hero h1 {
@@ -629,6 +772,10 @@
             }
             
             .currency-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .favorites-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -663,6 +810,12 @@
             
             .quote-text {
                 font-size: 1.5rem;
+            }
+            
+            .notification {
+                right: 10px;
+                left: 10px;
+                max-width: none;
             }
         }
 
@@ -725,6 +878,12 @@
                 </div>
             </div>
 
+            <!-- Search Bar -->
+            <div class="search-container">
+                <input type="text" class="search-bar" id="searchBar" placeholder="Search for quotes...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+
             <!-- Categories Filter -->
             <div class="categories-filter" id="categoriesFilter">
                 <button class="category-btn active" data-category="all">All</button>
@@ -733,6 +892,16 @@
                 <button class="category-btn" data-category="life">Life</button>
                 <button class="category-btn" data-category="love">Love</button>
                 <button class="category-btn" data-category="wisdom">Wisdom</button>
+            </div>
+
+            <!-- Favorites Section -->
+            <div class="favorites-section" id="favoritesSection" style="display: none;">
+                <h3 class="section-title">
+                    <i class="fas fa-heart"></i> Your Favorite Quotes
+                </h3>
+                <div class="favorites-grid" id="favoritesGrid">
+                    <!-- Favorites will be dynamically inserted here -->
+                </div>
             </div>
 
             <div class="quotes-slider-container">
@@ -1133,6 +1302,9 @@
         const categoriesFilter = document.getElementById('categoriesFilter');
         const categoryBtns = document.querySelectorAll('.category-btn');
         const sliderProgress = document.getElementById('sliderProgress');
+        const searchBar = document.getElementById('searchBar');
+        const favoritesSection = document.getElementById('favoritesSection');
+        const favoritesGrid = document.getElementById('favoritesGrid');
 
         // App state
         let currentSlide = 0;
@@ -1142,12 +1314,14 @@
         let endX = 0;
         let filteredQuotes = [...quotes];
         let currentCategory = 'all';
+        let searchTerm = '';
 
         // Initialize the app
         function init() {
             initSlider();
             setupEventListeners();
             checkDarkModePreference();
+            updateFavoritesSection();
             
             // Initialize categories
             categoryBtns.forEach(btn => {
@@ -1162,6 +1336,17 @@
         function initSlider() {
             quotesSlider.innerHTML = '';
             sliderProgress.innerHTML = '';
+            
+            if (filteredQuotes.length === 0) {
+                quotesSlider.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-search"></i>
+                        <h3>No quotes found</h3>
+                        <p>Try a different search term or category</p>
+                    </div>
+                `;
+                return;
+            }
             
             filteredQuotes.forEach((quote, index) => {
                 // Create slide
@@ -1178,13 +1363,13 @@
                             <p class="quote-text">"${quote.text}"</p>
                             <p class="quote-author">- ${quote.author}</p>
                             <div class="quote-actions">
-                                <button class="action-btn like-btn ${likedQuotes.includes(quote.id) ? 'liked' : ''}" data-quote-id="${quote.id}">
+                                <button class="action-btn like-btn ${likedQuotes.includes(quote.id) ? 'liked' : ''}" data-quote-id="${quote.id}" aria-label="${likedQuotes.includes(quote.id) ? 'Unlike quote' : 'Like quote'}">
                                     <i class="fas fa-heart"></i>
                                 </button>
-                                <button class="action-btn share-btn" data-quote-id="${quote.id}">
+                                <button class="action-btn share-btn" data-quote-id="${quote.id}" aria-label="Share quote">
                                     <i class="fas fa-share-alt"></i>
                                 </button>
-                                <button class="action-btn copy-btn" data-quote-id="${quote.id}">
+                                <button class="action-btn copy-btn" data-quote-id="${quote.id}" aria-label="Copy quote">
                                     <i class="fas fa-copy"></i>
                                 </button>
                             </div>
@@ -1196,13 +1381,13 @@
                         <p class="quote-text">"${quote.text}"</p>
                         <p class="quote-author">- ${quote.author}</p>
                         <div class="quote-actions">
-                            <button class="action-btn like-btn ${likedQuotes.includes(quote.id) ? 'liked' : ''}" data-quote-id="${quote.id}">
+                            <button class="action-btn like-btn ${likedQuotes.includes(quote.id) ? 'liked' : ''}" data-quote-id="${quote.id}" aria-label="${likedQuotes.includes(quote.id) ? 'Unlike quote' : 'Like quote'}">
                                 <i class="fas fa-heart"></i>
                             </button>
-                            <button class="action-btn share-btn" data-quote-id="${quote.id}">
+                            <button class="action-btn share-btn" data-quote-id="${quote.id}" aria-label="Share quote">
                                 <i class="fas fa-share-alt"></i>
                             </button>
-                            <button class="action-btn copy-btn" data-quote-id="${quote.id}">
+                            <button class="action-btn copy-btn" data-quote-id="${quote.id}" aria-label="Copy quote">
                                 <i class="fas fa-copy"></i>
                             </button>
                         </div>
@@ -1237,11 +1422,28 @@
                 }
             });
             
-            if (category === 'all') {
-                filteredQuotes = [...quotes];
-            } else {
-                filteredQuotes = quotes.filter(quote => quote.category === category);
+            applyFilters();
+        }
+
+        // Apply both category and search filters
+        function applyFilters() {
+            let filtered = [...quotes];
+            
+            // Apply category filter
+            if (currentCategory !== 'all') {
+                filtered = filtered.filter(quote => quote.category === currentCategory);
             }
+            
+            // Apply search filter
+            if (searchTerm) {
+                const term = searchTerm.toLowerCase();
+                filtered = filtered.filter(quote => 
+                    quote.text.toLowerCase().includes(term) || 
+                    quote.category.toLowerCase().includes(term)
+                );
+            }
+            
+            filteredQuotes = filtered;
             
             // Reinitialize slider with filtered quotes
             initSlider();
@@ -1393,7 +1595,7 @@ PayPal: support@suprememotive.com`;
                         showNotification('Account details copied to clipboard!');
                     })
                     .catch(err => {
-                        showNotification('Failed to copy details');
+                        showNotification('Failed to copy details', 'error');
                     });
             });
             
@@ -1406,6 +1608,55 @@ PayPal: support@suprememotive.com`;
                     }, 300);
                 }
             });
+            
+            // Search functionality
+            searchBar.addEventListener('input', (e) => {
+                searchTerm = e.target.value;
+                applyFilters();
+            });
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') {
+                    goToSlide(currentSlide - 1);
+                } else if (e.key === 'ArrowRight') {
+                    goToSlide(currentSlide + 1);
+                } else if (e.key === 'Escape') {
+                    // Close modal if open
+                    if (currencyModal.style.display === 'flex') {
+                        currencyModal.classList.remove('show');
+                        setTimeout(() => {
+                            currencyModal.style.display = 'none';
+                        }, 300);
+                    }
+                }
+            });
+        }
+
+        // Update favorites section
+        function updateFavoritesSection() {
+            const favoriteQuotes = quotes.filter(quote => likedQuotes.includes(quote.id));
+            
+            if (favoriteQuotes.length > 0) {
+                favoritesSection.style.display = 'block';
+                favoritesGrid.innerHTML = '';
+                
+                favoriteQuotes.forEach(quote => {
+                    const card = document.createElement('div');
+                    card.className = 'favorite-card';
+                    card.innerHTML = `
+                        <p class="favorite-text">"${quote.text}"</p>
+                        <div class="favorite-actions">
+                            <button class="action-btn remove-favorite-btn" data-quote-id="${quote.id}" aria-label="Remove from favorites">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    `;
+                    favoritesGrid.appendChild(card);
+                });
+            } else {
+                favoritesSection.style.display = 'none';
+            }
         }
 
         // Handle quote actions (like, share, copy)
@@ -1419,14 +1670,41 @@ PayPal: support@suprememotive.com`;
                     // Unlike
                     likedQuotes = likedQuotes.filter(id => id !== quoteId);
                     likeBtn.classList.remove('liked');
+                    likeBtn.setAttribute('aria-label', 'Like quote');
+                    showNotification('Quote removed from favorites');
                 } else {
                     // Like
                     likedQuotes.push(quoteId);
                     likeBtn.classList.add('liked');
+                    likeBtn.setAttribute('aria-label', 'Unlike quote');
+                    showNotification('Quote added to favorites');
                 }
                 
                 // Save to localStorage
                 localStorage.setItem('likedQuotes', JSON.stringify(likedQuotes));
+                
+                // Update favorites section
+                updateFavoritesSection();
+            }
+            
+            // Remove from favorites button
+            if (e.target.closest('.remove-favorite-btn')) {
+                const removeBtn = e.target.closest('.remove-favorite-btn');
+                const quoteId = parseInt(removeBtn.getAttribute('data-quote-id'));
+                
+                likedQuotes = likedQuotes.filter(id => id !== quoteId);
+                localStorage.setItem('likedQuotes', JSON.stringify(likedQuotes));
+                
+                // Update UI
+                updateFavoritesSection();
+                
+                // Also update like buttons in slider
+                document.querySelectorAll(`.like-btn[data-quote-id="${quoteId}"]`).forEach(btn => {
+                    btn.classList.remove('liked');
+                    btn.setAttribute('aria-label', 'Like quote');
+                });
+                
+                showNotification('Quote removed from favorites');
             }
             
             // Share button
@@ -1469,7 +1747,7 @@ PayPal: support@suprememotive.com`;
                     showNotification('Quote copied to clipboard!');
                 })
                 .catch(err => {
-                    showNotification('Failed to copy quote');
+                    showNotification('Failed to copy quote', 'error');
                 });
         }
 
@@ -1481,6 +1759,7 @@ PayPal: support@suprememotive.com`;
             themeToggleBtn.innerHTML = isDarkMode 
                 ? '<i class="fas fa-sun"></i>' 
                 : '<i class="fas fa-moon"></i>';
+            themeToggleBtn.setAttribute('aria-label', isDarkMode ? 'Switch to light mode' : 'Switch to dark mode');
         }
 
         // Check for dark mode preference
@@ -1491,16 +1770,22 @@ PayPal: support@suprememotive.com`;
             if (savedDarkMode || (!localStorage.getItem('darkMode') && prefersDarkScheme)) {
                 document.body.classList.add('dark-mode');
                 themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
+                themeToggleBtn.setAttribute('aria-label', 'Switch to light mode');
             }
         }
 
         // Show notification
-        function showNotification(message) {
+        function showNotification(message, type = 'success') {
+            // Remove existing notifications
+            document.querySelectorAll('.notification').forEach(notification => {
+                notification.remove();
+            });
+            
             // Create notification element
             const notification = document.createElement('div');
-            notification.className = 'notification';
+            notification.className = `notification ${type === 'error' ? 'error' : ''}`;
             notification.innerHTML = `
-                <i class="fas fa-check-circle"></i>
+                <i class="fas ${type === 'error' ? 'fa-exclamation-circle' : 'fa-check-circle'}"></i>
                 ${message}
             `;
             
@@ -1532,10 +1817,20 @@ PayPal: support@suprememotive.com`;
 
         function installApp() {
             if (deferredPrompt) {
+                // Show loading state
+                const originalText = installButton.innerHTML;
+                installButton.innerHTML = '<span class="loading-spinner"></span> Installing...';
+                installButton.disabled = true;
+                
                 deferredPrompt.prompt();
                 deferredPrompt.userChoice.then((choiceResult) => {
+                    // Reset button
+                    installButton.innerHTML = originalText;
+                    installButton.disabled = false;
+                    
                     if (choiceResult.outcome === 'accepted') {
                         showNotification('App installed successfully!');
+                        installButton.style.display = 'none';
                     } else {
                         showNotification('App installation cancelled');
                     }
