@@ -757,6 +757,70 @@
             gap: 0.5rem;
         }
 
+        /* Reward Section */
+        .reward-section {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .reward-stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .reward-stat {
+            flex: 1;
+            min-width: 150px;
+            padding: 1rem;
+            background: rgba(78, 107, 153, 0.1);
+            border-radius: var(--border-radius);
+        }
+
+        .reward-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .reward-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-top: 0.5rem;
+        }
+
+        .reward-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            transition: var(--transition);
+            margin: 0.5rem;
+        }
+
+        .reward-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        .reward-btn:disabled {
+            background: var(--text-light);
+            cursor: not-allowed;
+            transform: none;
+        }
+
         /* Responsive design */
         @media (max-width: 968px) {
             .hero h1 {
@@ -777,6 +841,10 @@
             
             .favorites-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .reward-stats {
+                flex-direction: column;
             }
         }
 
@@ -876,6 +944,33 @@
                     <h1>Find Your Daily Inspiration</h1>
                     <p>Discover hundreds of motivational quotes to empower your day and transform your mindset</p>
                 </div>
+            </div>
+
+            <!-- Reward Section -->
+            <div class="reward-section">
+                <h3 class="section-title">
+                    <i class="fas fa-gift"></i> Earn Rewards
+                </h3>
+                <div class="reward-stats">
+                    <div class="reward-stat">
+                        <div class="reward-value" id="totalRewards">0 SA</div>
+                        <div class="reward-label">Total Rewards</div>
+                    </div>
+                    <div class="reward-stat">
+                        <div class="reward-value" id="dailyRewards">0 SA</div>
+                        <div class="reward-label">Daily Rewards</div>
+                    </div>
+                    <div class="reward-stat">
+                        <div class="reward-value" id="shareRewards">0 SA</div>
+                        <div class="reward-label">Share Rewards</div>
+                    </div>
+                </div>
+                <button class="reward-btn" id="dailyRewardBtn">
+                    <i class="fas fa-calendar-day"></i> Claim Daily Reward
+                </button>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-light);">
+                    Claim 0.005 SA every 24 hours and earn 0.00002 SA for each quote you share!
+                </p>
             </div>
 
             <!-- Search Bar -->
@@ -1305,6 +1400,10 @@
         const searchBar = document.getElementById('searchBar');
         const favoritesSection = document.getElementById('favoritesSection');
         const favoritesGrid = document.getElementById('favoritesGrid');
+        const dailyRewardBtn = document.getElementById('dailyRewardBtn');
+        const totalRewardsEl = document.getElementById('totalRewards');
+        const dailyRewardsEl = document.getElementById('dailyRewards');
+        const shareRewardsEl = document.getElementById('shareRewards');
 
         // App state
         let currentSlide = 0;
@@ -1316,12 +1415,23 @@
         let currentCategory = 'all';
         let searchTerm = '';
 
+        // Reward system state
+        let rewardData = JSON.parse(localStorage.getItem('rewardData')) || {
+            totalRewards: 0,
+            dailyRewards: 0,
+            shareRewards: 0,
+            lastDailyClaim: null,
+            sharesToday: 0,
+            lastShareDate: null
+        };
+
         // Initialize the app
         function init() {
             initSlider();
             setupEventListeners();
             checkDarkModePreference();
             updateFavoritesSection();
+            updateRewardUI();
             
             // Initialize categories
             categoryBtns.forEach(btn => {
@@ -1615,6 +1725,9 @@ PayPal: support@suprememotive.com`;
                 applyFilters();
             });
             
+            // Daily reward button
+            dailyRewardBtn.addEventListener('click', claimDailyReward);
+            
             // Keyboard navigation
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'ArrowLeft') {
@@ -1719,7 +1832,10 @@ PayPal: support@suprememotive.com`;
                         text: `"${quote.text}" - ${quote.author}`,
                         url: window.location.href,
                     })
-                    .then(() => showNotification('Quote shared successfully'))
+                    .then(() => {
+                        showNotification('Quote shared successfully');
+                        awardShareReward();
+                    })
                     .catch(() => copyQuoteToClipboard(quote));
                 } else {
                     copyQuoteToClipboard(quote);
@@ -1745,6 +1861,7 @@ PayPal: support@suprememotive.com`;
             navigator.clipboard.writeText(quoteText)
                 .then(() => {
                     showNotification('Quote copied to clipboard!');
+                    awardShareReward();
                 })
                 .catch(err => {
                     showNotification('Failed to copy quote', 'error');
@@ -1797,7 +1914,7 @@ PayPal: support@suprememotive.com`;
                 notification.classList.add('show');
             }, 10);
             
-            // Remove after 3 seconds
+            // Hide after 3 seconds
             setTimeout(() => {
                 notification.classList.remove('show');
                 setTimeout(() => {
@@ -1839,6 +1956,83 @@ PayPal: support@suprememotive.com`;
             } else {
                 showNotification('To install the app, use the browser menu');
             }
+        }
+
+        // Reward System Functions
+        function updateRewardUI() {
+            totalRewardsEl.textContent = `${rewardData.totalRewards.toFixed(5)} SA`;
+            dailyRewardsEl.textContent = `${rewardData.dailyRewards.toFixed(5)} SA`;
+            shareRewardsEl.textContent = `${rewardData.shareRewards.toFixed(5)} SA`;
+            
+            // Update daily reward button state
+            const now = new Date();
+            const lastClaim = rewardData.lastDailyClaim ? new Date(rewardData.lastDailyClaim) : null;
+            
+            if (lastClaim && isSameDay(now, lastClaim)) {
+                dailyRewardBtn.disabled = true;
+                dailyRewardBtn.innerHTML = '<i class="fas fa-check"></i> Claimed Today';
+            } else {
+                dailyRewardBtn.disabled = false;
+                dailyRewardBtn.innerHTML = '<i class="fas fa-calendar-day"></i> Claim Daily Reward';
+            }
+        }
+
+        function isSameDay(date1, date2) {
+            return date1.getFullYear() === date2.getFullYear() &&
+                   date1.getMonth() === date2.getMonth() &&
+                   date1.getDate() === date2.getDate();
+        }
+
+        function claimDailyReward() {
+            const now = new Date();
+            const lastClaim = rewardData.lastDailyClaim ? new Date(rewardData.lastDailyClaim) : null;
+            
+            // Check if already claimed today
+            if (lastClaim && isSameDay(now, lastClaim)) {
+                showNotification('You have already claimed your daily reward today!', 'error');
+                return;
+            }
+            
+            // Award daily reward
+            const dailyReward = 0.005;
+            rewardData.totalRewards += dailyReward;
+            rewardData.dailyRewards += dailyReward;
+            rewardData.lastDailyClaim = now.toISOString();
+            
+            // Save to localStorage
+            localStorage.setItem('rewardData', JSON.stringify(rewardData));
+            
+            // Update UI
+            updateRewardUI();
+            
+            // Show notification
+            showNotification(`Daily reward claimed! +${dailyReward} SA`, 'success');
+        }
+
+        function awardShareReward() {
+            const now = new Date();
+            const lastShareDate = rewardData.lastShareDate ? new Date(rewardData.lastShareDate) : null;
+            
+            // Reset shares count if it's a new day
+            if (!lastShareDate || !isSameDay(now, lastShareDate)) {
+                rewardData.sharesToday = 0;
+            }
+            
+            // Award share reward
+            const shareReward = 0.00002;
+            rewardData.totalRewards += shareReward;
+            rewardData.shareRewards += shareReward;
+            rewardData.sharesToday += 1;
+            rewardData.lastShareDate = now.toISOString();
+            
+            // Save to localStorage
+            localStorage.setItem('rewardData', JSON.stringify(rewardData));
+            
+            // Update UI
+            updateRewardUI();
+            
+            // Show notification
+            showNotification(`Share reward! +${shareReward} SA`, 'success');
         }
 
         // Initialize the app
