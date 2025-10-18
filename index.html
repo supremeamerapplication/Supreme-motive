@@ -5,42 +5,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Supreme Motive - Fuel Your Mind. Fire Your Dreams.</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #ff6b35;
-            --secondary: #ff8e53;
-            --accent: #6a11cb;
-            --dark: #1a1a2e;
-            --light: #f8f9fa;
+            --primary: #FF6B35;
+            --secondary: #FF8E53;
+            --accent: #6A11CB;
+            --dark: #1A1A2E;
+            --light: #F8F9FA;
             --gradient: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
             --card-gradient: linear-gradient(135deg, rgba(255,107,53,0.1) 0%, rgba(106,17,203,0.1) 100%);
-            --shadow: 0 10px 30px rgba(0,0,0,0.1);
-            --transition: all 0.3s ease;
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --shadow-hover: 0 20px 40px rgba(0,0,0,0.15);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --border-radius: 16px;
         }
 
         .dark-mode {
-            --dark: #f8f9fa;
-            --light: #1a1a2e;
+            --dark: #F8F9FA;
+            --light: #1A1A2E;
             --shadow: 0 10px 30px rgba(0,0,0,0.3);
+            --shadow-hover: 0 20px 40px rgba(0,0,0,0.4);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        html {
-            scroll-behavior: smooth;
         }
 
         body {
+            font-family: 'Montserrat', sans-serif;
             background-color: var(--light);
             color: var(--dark);
-            line-height: 1.6;
+            line-height: 1.7;
             transition: var(--transition);
             overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-weight: 400;
         }
 
         .container {
@@ -51,40 +87,7 @@
         }
 
         section {
-            padding: 80px 0;
-        }
-
-        h1, h2, h3, h4 {
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 20px;
-        }
-
-        h1 {
-            font-size: 3.5rem;
-        }
-
-        h2 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 50px;
-            position: relative;
-        }
-
-        h2:after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--gradient);
-            border-radius: 2px;
-        }
-
-        p {
-            margin-bottom: 15px;
+            padding: 100px 0;
         }
 
         a {
@@ -93,11 +96,13 @@
         }
 
         .btn {
-            display: inline-block;
-            padding: 12px 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 36px;
             background: var(--gradient);
             color: white;
-            border-radius: 30px;
+            border-radius: 50px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -105,11 +110,28 @@
             border: none;
             cursor: pointer;
             box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
         }
 
         .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .btn:hover:before {
+            left: 100%;
         }
 
         .btn-outline {
@@ -131,7 +153,8 @@
             width: 100%;
             z-index: 1000;
             background: rgba(255,255,255,0.95);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
             transition: var(--transition);
         }
 
@@ -149,14 +172,20 @@
         .logo {
             display: flex;
             align-items: center;
-            font-weight: 700;
-            font-size: 1.5rem;
+            font-weight: 800;
+            font-size: 1.6rem;
+            font-family: 'Playfair Display', serif;
         }
 
         .logo i {
             color: var(--primary);
-            margin-right: 10px;
-            font-size: 1.8rem;
+            margin-right: 12px;
+            font-size: 2rem;
+            transition: var(--transition);
+        }
+
+        .logo:hover i {
+            transform: rotate(15deg) scale(1.1);
         }
 
         nav ul {
@@ -166,27 +195,29 @@
 
         nav ul li {
             margin-left: 30px;
+            position: relative;
         }
 
         nav ul li a {
             font-weight: 600;
             transition: var(--transition);
             position: relative;
-        }
-
-        nav ul li a:hover {
-            color: var(--primary);
+            padding: 8px 0;
         }
 
         nav ul li a:after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: 0;
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--primary);
+            background: var(--gradient);
             transition: var(--transition);
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
         }
 
         nav ul li a:hover:after {
@@ -200,6 +231,7 @@
             font-size: 1.5rem;
             cursor: pointer;
             color: var(--dark);
+            transition: var(--transition);
         }
 
         .dark-mode .nav-toggle {
@@ -209,14 +241,28 @@
         .theme-toggle {
             background: none;
             border: none;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             cursor: pointer;
             color: var(--dark);
             transition: var(--transition);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .dark-mode .theme-toggle {
             color: var(--light);
+        }
+
+        .theme-toggle:hover {
+            background: rgba(0,0,0,0.05);
+        }
+
+        .dark-mode .theme-toggle:hover {
+            background: rgba(255,255,255,0.05);
         }
 
         /* Hero Section */
@@ -226,40 +272,48 @@
             align-items: center;
             position: relative;
             overflow: hidden;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
             background-size: cover;
             background-position: center;
+            background-attachment: fixed;
             color: white;
             text-align: center;
         }
 
         .hero-content {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             position: relative;
             z-index: 2;
         }
 
         .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 20px;
+            font-size: 4.2rem;
+            margin-bottom: 25px;
             text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            animation: fadeInUp 1s ease-out;
         }
 
         .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            max-width: 600px;
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            max-width: 700px;
             margin-left: auto;
             margin-right: auto;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero .btn {
+            animation: fadeInUp 1s ease-out 0.4s both;
         }
 
         .quote-carousel {
-            margin-top: 50px;
+            margin-top: 60px;
             font-style: italic;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             position: relative;
-            height: 100px;
+            height: 120px;
+            font-family: 'Playfair Display', serif;
         }
 
         .quote {
@@ -268,186 +322,256 @@
             left: 0;
             width: 100%;
             opacity: 0;
-            transition: opacity 1s ease;
+            transform: translateY(20px);
+            transition: opacity 1s ease, transform 1s ease;
         }
 
         .quote.active {
             opacity: 1;
+            transform: translateY(0);
         }
 
         /* Motivation Hub */
+        .hub {
+            background: var(--light);
+        }
+
         .hub-filters {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 40px;
+            gap: 12px;
+            margin-bottom: 50px;
         }
 
         .filter-btn {
-            padding: 8px 20px;
+            padding: 10px 24px;
             background: var(--card-gradient);
             border: none;
-            border-radius: 30px;
+            border-radius: 50px;
             cursor: pointer;
             transition: var(--transition);
             font-weight: 600;
+            box-shadow: var(--shadow);
         }
 
         .filter-btn.active, .filter-btn:hover {
             background: var(--gradient);
             color: white;
+            transform: translateY(-3px);
         }
 
         .articles-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 40px;
         }
 
         .article-card {
             background: var(--light);
-            border-radius: 15px;
+            border-radius: var(--border-radius);
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: var(--transition);
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
 
         .article-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-15px);
+            box-shadow: var(--shadow-hover);
         }
 
         .article-img {
-            height: 200px;
+            height: 220px;
             background-size: cover;
             background-position: center;
+            transition: var(--transition);
+        }
+
+        .article-card:hover .article-img {
+            transform: scale(1.05);
         }
 
         .article-content {
-            padding: 20px;
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .article-category {
             display: inline-block;
-            padding: 5px 15px;
+            padding: 6px 18px;
             background: var(--gradient);
             color: white;
-            border-radius: 30px;
+            border-radius: 50px;
             font-size: 0.8rem;
             margin-bottom: 15px;
+            align-self: flex-start;
         }
 
         .article-content h3 {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        .article-content p {
+            flex-grow: 1;
+            margin-bottom: 20px;
         }
 
         /* Audio & Video Section */
+        .media {
+            background: var(--card-gradient);
+        }
+
         .media-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 40px;
         }
 
         .media-card {
             background: var(--light);
-            border-radius: 15px;
+            border-radius: var(--border-radius);
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: var(--transition);
         }
 
         .media-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
         }
 
         .media-thumbnail {
-            height: 200px;
+            height: 220px;
             background-size: cover;
             background-position: center;
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: var(--transition);
+        }
+
+        .media-card:hover .media-thumbnail {
+            transform: scale(1.05);
         }
 
         .play-btn {
-            width: 60px;
-            height: 60px;
-            background: rgba(255,255,255,0.8);
+            width: 70px;
+            height: 70px;
+            background: rgba(255,255,255,0.9);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: var(--primary);
             transition: var(--transition);
             cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .play-btn:hover {
             background: white;
             transform: scale(1.1);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
 
         .media-content {
-            padding: 20px;
+            padding: 25px;
         }
 
         .media-content h3 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
+            font-size: 1.3rem;
+            margin-bottom: 12px;
         }
 
         /* Quotes Section */
+        .quotes {
+            background: var(--light);
+        }
+
         .quotes-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
         }
 
         .quote-card {
             background: var(--card-gradient);
-            padding: 30px;
-            border-radius: 15px;
+            padding: 35px;
+            border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            min-height: 250px;
+            min-height: 280px;
             transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quote-card:before {
+            content: """;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 80px;
+            color: rgba(255,107,53,0.1);
+            font-family: Georgia, serif;
+            line-height: 1;
         }
 
         .quote-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
         }
 
         .quote-text {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-style: italic;
             margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+            position: relative;
+            z-index: 1;
         }
 
         .quote-author {
             font-weight: 600;
             text-align: right;
             color: var(--primary);
+            position: relative;
+            z-index: 1;
         }
 
         .quote-actions {
             display: flex;
             justify-content: space-between;
             margin-top: 20px;
+            position: relative;
+            z-index: 1;
         }
 
         .action-btn {
             background: none;
             border: none;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: var(--dark);
             cursor: pointer;
             transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .dark-mode .action-btn {
@@ -456,6 +580,7 @@
 
         .action-btn:hover {
             color: var(--primary);
+            background: rgba(255,107,53,0.1);
         }
 
         .generate-btn {
@@ -465,14 +590,40 @@
 
         /* Community Section */
         .community {
-            background: var(--card-gradient);
+            background: var(--gradient);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .community:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1551836026-d5c88ac5d691?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+        }
+
+        .community h2, .community h3 {
+            color: white;
+        }
+
+        .community h2:after {
+            background: white;
         }
 
         .community-content {
             display: flex;
             flex-wrap: wrap;
-            gap: 50px;
+            gap: 60px;
             align-items: center;
+            position: relative;
+            z-index: 1;
         }
 
         .community-text {
@@ -482,8 +633,8 @@
 
         .community-stats {
             display: flex;
-            gap: 30px;
-            margin-top: 30px;
+            gap: 40px;
+            margin-top: 40px;
         }
 
         .stat {
@@ -491,87 +642,86 @@
         }
 
         .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary);
+            font-size: 3rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 5px;
         }
 
         .community-form {
             flex: 1;
             min-width: 300px;
-            background: var(--light);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             font-weight: 600;
         }
 
         .form-control {
             width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background: var(--light);
-            color: var(--dark);
+            padding: 15px 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 10px;
+            background: rgba(255,255,255,0.1);
+            color: white;
             transition: var(--transition);
+            font-family: 'Montserrat', sans-serif;
         }
 
-        .dark-mode .form-control {
-            border-color: #444;
+        .form-control::placeholder {
+            color: rgba(255,255,255,0.7);
         }
 
         .form-control:focus {
             outline: none;
-            border-color: var(--primary);
+            border-color: white;
+            background: rgba(255,255,255,0.15);
         }
 
         .social-login {
             display: flex;
             gap: 15px;
-            margin-top: 20px;
+            margin-top: 25px;
         }
 
         .social-btn {
             flex: 1;
-            padding: 10px;
-            border-radius: 8px;
-            border: 1px solid #ddd;
-            background: white;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.1);
+            color: white;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
             cursor: pointer;
             transition: var(--transition);
+            font-weight: 600;
         }
 
         .social-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .google-btn {
-            color: #DB4437;
-        }
-
-        .telegram-btn {
-            color: #0088cc;
+            background: rgba(255,255,255,0.2);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         /* About Section */
         .about-content {
             display: flex;
             flex-wrap: wrap;
-            gap: 50px;
+            gap: 60px;
             align-items: center;
         }
 
@@ -582,32 +732,106 @@
 
         .founder-card {
             flex: 1;
-            min-width: 250px;
+            min-width: 280px;
             background: var(--light);
-            padding: 30px;
-            border-radius: 15px;
+            padding: 40px 30px;
+            border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             text-align: center;
+            transition: var(--transition);
+        }
+
+        .founder-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
         }
 
         .founder-img {
-            width: 150px;
-            height: 150px;
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
-            margin: 0 auto 20px;
+            margin: 0 auto 25px;
             background: var(--gradient);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
+            font-size: 3.5rem;
             color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .founder-card h3 {
+            margin-bottom: 5px;
+        }
+
+        .founder-card p {
+            margin-bottom: 20px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .founder-card .quote-text {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--dark);
+        }
+
+        .dark-mode .founder-card .quote-text {
+            color: var(--light);
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 60px;
+            align-items: flex-start;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .contact-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .contact-stat {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .contact-stat i {
+            font-size: 2.2rem;
+            color: var(--primary);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--card-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+            background: var(--light);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
         }
 
         /* Footer */
         footer {
             background: var(--dark);
             color: white;
-            padding: 60px 0 20px;
+            padding: 80px 0 30px;
         }
 
         .dark-mode footer {
@@ -618,7 +842,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 50px;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
 
         .footer-column {
@@ -627,10 +851,10 @@
         }
 
         .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
+            font-size: 1.4rem;
+            margin-bottom: 25px;
             position: relative;
-            padding-bottom: 10px;
+            padding-bottom: 15px;
         }
 
         .footer-column h3:after {
@@ -648,16 +872,17 @@
         }
 
         .footer-links li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .footer-links a {
             transition: var(--transition);
+            display: inline-block;
         }
 
         .footer-links a:hover {
             color: var(--primary);
-            padding-left: 5px;
+            transform: translateX(5px);
         }
 
         .newsletter-form {
@@ -667,11 +892,12 @@
 
         .newsletter-input {
             flex: 1;
-            padding: 12px 15px;
+            padding: 15px 20px;
             border: none;
-            border-radius: 30px 0 0 30px;
+            border-radius: 50px 0 0 50px;
             background: rgba(255,255,255,0.1);
             color: white;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .newsletter-input:focus {
@@ -679,10 +905,10 @@
         }
 
         .newsletter-btn {
-            padding: 0 20px;
+            padding: 0 25px;
             background: var(--primary);
             border: none;
-            border-radius: 0 30px 30px 0;
+            border-radius: 0 50px 50px 0;
             color: white;
             cursor: pointer;
             transition: var(--transition);
@@ -695,12 +921,12 @@
         .social-icons {
             display: flex;
             gap: 15px;
-            margin-top: 20px;
+            margin-top: 25px;
         }
 
         .social-icon {
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             background: rgba(255,255,255,0.1);
             display: flex;
@@ -711,28 +937,112 @@
 
         .social-icon:hover {
             background: var(--primary);
-            transform: translateY(-3px);
+            transform: translateY(-5px);
         }
 
         .copyright {
             text-align: center;
-            padding-top: 20px;
+            padding-top: 30px;
             border-top: 1px solid rgba(255,255,255,0.1);
             font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Progress Tracker */
+        .progress-tracker {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--light);
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow);
+            z-index: 100;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .dark-mode .progress-tracker {
+            background: var(--dark);
+        }
+
+        .progress-tracker:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .streak-count {
+            font-weight: 800;
+            font-size: 1.4rem;
+            color: var(--primary);
+        }
+
+        /* Background Music Toggle */
+        .music-toggle {
+            position: fixed;
+            bottom: 110px;
+            right: 30px;
+            background: var(--light);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow);
+            z-index: 100;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .dark-mode .music-toggle {
+            background: var(--dark);
+        }
+
+        .music-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .music-toggle.active {
+            color: var(--primary);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Responsive Design */
-        @media (max-width: 992px) {
+        @media (max-width: 1100px) {
             h1 {
                 font-size: 3rem;
             }
             
             h2 {
-                font-size: 2.2rem;
-            }
-            
-            .hero h1 {
-                font-size: 3rem;
+                font-size: 2.5rem;
             }
         }
 
@@ -743,14 +1053,16 @@
             
             nav {
                 position: fixed;
-                top: 70px;
+                top: 80px;
                 left: 0;
                 width: 100%;
                 background: var(--light);
-                box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
                 transform: translateY(-150%);
                 transition: var(--transition);
                 z-index: 999;
+                border-radius: 0 0 20px 20px;
+                overflow: hidden;
             }
             
             .dark-mode nav {
@@ -767,7 +1079,7 @@
             }
             
             nav ul li {
-                margin: 10px 0;
+                margin: 15px 0;
             }
             
             h1 {
@@ -775,21 +1087,35 @@
             }
             
             h2 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
             
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
             
             section {
-                padding: 60px 0;
+                padding: 80px 0;
+            }
+            
+            .community-stats, .contact-stats {
+                flex-direction: column;
+                gap: 25px;
+            }
+            
+            .progress-tracker, .music-toggle {
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .music-toggle {
+                bottom: 100px;
             }
         }
 
         @media (max-width: 576px) {
             .hero h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
             
             h1 {
@@ -801,82 +1127,16 @@
             }
             
             .btn {
-                padding: 10px 25px;
+                padding: 14px 30px;
             }
-        }
-
-        /* Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Progress Tracker */
-        .progress-tracker {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: var(--light);
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: var(--shadow);
-            z-index: 100;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .dark-mode .progress-tracker {
-            background: var(--dark);
-        }
-
-        .progress-tracker:hover {
-            transform: scale(1.1);
-        }
-
-        .streak-count {
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: var(--primary);
-        }
-
-        /* Background Music Toggle */
-        .music-toggle {
-            position: fixed;
-            bottom: 90px;
-            right: 20px;
-            background: var(--light);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: var(--shadow);
-            z-index: 100;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .dark-mode .music-toggle {
-            background: var(--dark);
-        }
-
-        .music-toggle:hover {
-            transform: scale(1.1);
-        }
-
-        .music-toggle.active {
-            color: var(--primary);
+            
+            .articles-grid, .media-grid, .quotes-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .community-form, .contact-form {
+                padding: 30px 25px;
+            }
         }
     </style>
 </head>
@@ -912,7 +1172,7 @@
     <section id="home" class="hero">
         <div class="container hero-content">
             <h1>Fuel Your Mind. Fire Your Dreams. Supreme Motive.</h1>
-            <p>Your daily dose of inspiration to unlock your potential and live a purpose-driven life.</p>
+            <p>Your daily dose of inspiration to unlock your potential and live a purpose-driven life. Join thousands who are transforming their lives through motivation and actionable strategies.</p>
             <a href="#community" class="btn">Join Our Tribe</a>
             
             <div class="quote-carousel">
@@ -949,7 +1209,7 @@
                     <div class="article-content">
                         <span class="article-category">Success</span>
                         <h3>5 Morning Habits of Highly Successful People</h3>
-                        <p>Discover the morning routines that set successful individuals up for productive days.</p>
+                        <p>Discover the morning routines that set successful individuals up for productive days and long-term achievement.</p>
                         <a href="#" class="btn btn-outline">Read More</a>
                     </div>
                 </div>
@@ -959,7 +1219,7 @@
                     <div class="article-content">
                         <span class="article-category">Mindset</span>
                         <h3>How to Develop a Growth Mindset</h3>
-                        <p>Learn the difference between fixed and growth mindsets and how to cultivate the latter.</p>
+                        <p>Learn the difference between fixed and growth mindsets and practical strategies to cultivate the latter for personal and professional growth.</p>
                         <a href="#" class="btn btn-outline">Read More</a>
                     </div>
                 </div>
@@ -969,7 +1229,7 @@
                     <div class="article-content">
                         <span class="article-category">Fitness</span>
                         <h3>The Mental Benefits of Regular Exercise</h3>
-                        <p>Explore how physical activity can boost your mental clarity, mood, and overall well-being.</p>
+                        <p>Explore how physical activity can boost your mental clarity, mood, and overall well-being beyond just physical health.</p>
                         <a href="#" class="btn btn-outline">Read More</a>
                     </div>
                 </div>
@@ -990,7 +1250,7 @@
                     </div>
                     <div class="media-content">
                         <h3>Overcoming Self-Doubt</h3>
-                        <p>10-minute guided meditation to build confidence and overcome limiting beliefs.</p>
+                        <p>10-minute guided meditation to build confidence and overcome limiting beliefs that hold you back from achieving your goals.</p>
                     </div>
                 </div>
                 
@@ -1002,7 +1262,7 @@
                     </div>
                     <div class="media-content">
                         <h3>Morning Motivation Boost</h3>
-                        <p>Start your day with powerful affirmations and energy-boosting thoughts.</p>
+                        <p>Start your day with powerful affirmations and energy-boosting thoughts to set a positive tone for the entire day.</p>
                     </div>
                 </div>
                 
@@ -1014,7 +1274,7 @@
                     </div>
                     <div class="media-content">
                         <h3>Building Resilience in Tough Times</h3>
-                        <p>Learn strategies to bounce back stronger from life's challenges.</p>
+                        <p>Learn practical strategies to bounce back stronger from life's challenges and develop mental toughness.</p>
                     </div>
                 </div>
             </div>
@@ -1070,20 +1330,20 @@
             <div class="community-content">
                 <div class="community-text">
                     <h3>Become Part of the Supreme Motive Tribe</h3>
-                    <p>Connect with like-minded individuals on their personal development journey. Share your stories, get inspired, and grow together.</p>
+                    <p>Connect with like-minded individuals on their personal development journey. Share your stories, get inspired, and grow together in our supportive community.</p>
                     
                     <div class="community-stats">
                         <div class="stat">
                             <div class="stat-number">10K+</div>
-                            <div class="stat-label">Members</div>
+                            <div class="stat-label">Active Members</div>
                         </div>
                         <div class="stat">
                             <div class="stat-number">500+</div>
-                            <div class="stat-label">Daily Posts</div>
+                            <div class="stat-label">Daily Inspirations</div>
                         </div>
                         <div class="stat">
                             <div class="stat-number">50+</div>
-                            <div class="stat-label">Countries</div>
+                            <div class="stat-label">Countries Worldwide</div>
                         </div>
                     </div>
                 </div>
@@ -1103,7 +1363,7 @@
                             <label for="password">Password</label>
                             <input type="password" id="password" class="form-control" placeholder="Create a password">
                         </div>
-                        <button type="submit" class="btn" style="width: 100%;">Sign Up</button>
+                        <button type="submit" class="btn" style="width: 100%; margin-top: 10px;">Sign Up</button>
                     </form>
                     
                     <div class="social-login">
@@ -1126,9 +1386,9 @@
             <div class="about-content">
                 <div class="about-text">
                     <h3>Our Mission</h3>
-                    <p>Supreme Motive was founded with a single purpose: to awaken purpose and drive in people across the world. We believe that everyone has untapped potential waiting to be unleashed.</p>
-                    <p>Through daily motivation, educational content, and a supportive community, we help individuals break through limitations and achieve their most ambitious goals.</p>
-                    <p>Our vision is a world where people live intentionally, pursue their passions fearlessly, and uplift others along their journey.</p>
+                    <p>Supreme Motive was founded with a single purpose: to awaken purpose and drive in people across the world. We believe that everyone has untapped potential waiting to be unleashed, regardless of their background or current circumstances.</p>
+                    <p>Through daily motivation, educational content, and a supportive community, we help individuals break through limitations and achieve their most ambitious goals. Our approach combines timeless wisdom with modern psychology and practical strategies.</p>
+                    <p>Our vision is a world where people live intentionally, pursue their passions fearlessly, and uplift others along their journey. We measure our success by the positive impact we create in people's lives.</p>
                 </div>
                 
                 <div class="founder-card">
@@ -1147,28 +1407,37 @@
     <section id="contact" class="contact">
         <div class="container">
             <h2>Contact Us</h2>
-            <div class="community-content">
-                <div class="community-text">
+            <div class="contact-content">
+                <div class="contact-info">
                     <h3>Get In Touch</h3>
-                    <p>Have questions, suggestions, or just want to share your success story? We'd love to hear from you!</p>
+                    <p>Have questions, suggestions, or just want to share your success story? We'd love to hear from you! Our team is dedicated to helping you on your journey.</p>
                     
-                    <div class="community-stats">
-                        <div class="stat">
-                            <i class="fas fa-envelope" style="font-size: 2rem; color: var(--primary); margin-bottom: 10px;"></i>
-                            <div class="stat-label">hello@suprememotive.com</div>
+                    <div class="contact-stats">
+                        <div class="contact-stat">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <div class="stat-label">Email</div>
+                                <div class="stat-number">hello@suprememotive.com</div>
+                            </div>
                         </div>
-                        <div class="stat">
-                            <i class="fas fa-phone" style="font-size: 2rem; color: var(--primary); margin-bottom: 10px;"></i>
-                            <div class="stat-label">+1 (555) 123-4567</div>
+                        <div class="contact-stat">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <div class="stat-label">Phone</div>
+                                <div class="stat-number">+1 (555) 123-4567</div>
+                            </div>
                         </div>
-                        <div class="stat">
-                            <i class="fas fa-map-marker-alt" style="font-size: 2rem; color: var(--primary); margin-bottom: 10px;"></i>
-                            <div class="stat-label">New York, NY</div>
+                        <div class="contact-stat">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <div class="stat-label">Office</div>
+                                <div class="stat-number">New York, NY</div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="community-form">
+                <div class="contact-form">
                     <h3>Send Us a Message</h3>
                     <form id="contact-form">
                         <div class="form-group">
@@ -1181,7 +1450,7 @@
                         </div>
                         <div class="form-group">
                             <label for="message">Message</label>
-                            <textarea id="message" class="form-control" rows="4" placeholder="Your message..."></textarea>
+                            <textarea id="message" class="form-control" rows="5" placeholder="Your message..."></textarea>
                         </div>
                         <button type="submit" class="btn" style="width: 100%;">Send Message</button>
                     </form>
@@ -1196,7 +1465,7 @@
             <div class="footer-content">
                 <div class="footer-column">
                     <h3>Supreme Motive</h3>
-                    <p>Fuel Your Mind. Fire Your Dreams. Join our community and unlock your potential today.</p>
+                    <p>Fuel Your Mind. Fire Your Dreams. Join our community and unlock your potential today. Transform your life through daily motivation and actionable strategies.</p>
                     <div class="social-icons">
                         <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
@@ -1229,7 +1498,7 @@
                 
                 <div class="footer-column">
                     <h3>Newsletter</h3>
-                    <p>Subscribe to receive daily motivation and updates.</p>
+                    <p>Subscribe to receive daily motivation and updates directly to your inbox.</p>
                     <form class="newsletter-form">
                         <input type="email" class="newsletter-input" placeholder="Your email address">
                         <button type="submit" class="newsletter-btn"><i class="fas fa-paper-plane"></i></button>
@@ -1238,7 +1507,7 @@
             </div>
             
             <div class="copyright">
-                <p>&copy; 2023 Supreme Motive. All rights reserved.</p>
+                <p>&copy; 2023 Supreme Motive. All rights reserved. | Designed with <i class="fas fa-heart" style="color: var(--primary);"></i> for your growth</p>
             </div>
         </div>
     </footer>
@@ -1260,11 +1529,29 @@
         
         navToggle.addEventListener('click', () => {
             nav.classList.toggle('active');
+            navToggle.innerHTML = nav.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                navToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            });
         });
 
         // Dark Mode Toggle
         const themeToggle = document.querySelector('.theme-toggle');
         const themeIcon = themeToggle.querySelector('i');
+        
+        // Check for saved theme preference or respect OS preference
+        if (localStorage.getItem('theme') === 'dark' || 
+            (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.body.classList.add('dark-mode');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
         
         themeToggle.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
@@ -1272,9 +1559,11 @@
             if (document.body.classList.contains('dark-mode')) {
                 themeIcon.classList.remove('fa-moon');
                 themeIcon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
             } else {
                 themeIcon.classList.remove('fa-sun');
                 themeIcon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
             }
         });
 
@@ -1305,9 +1594,17 @@
                 
                 articleCards.forEach(card => {
                     if (filter === 'all' || card.getAttribute('data-category') === filter) {
-                        card.style.display = 'block';
+                        card.style.display = 'flex';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 10);
                     } else {
-                        card.style.display = 'none';
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 400);
                     }
                 });
             });
@@ -1325,20 +1622,33 @@
             { text: "The mind is everything. What you think you become.", author: "- Buddha" },
             { text: "The best time to plant a tree was 20 years ago. The second best time is now.", author: "- Chinese Proverb" },
             { text: "An unexamined life is not worth living.", author: "- Socrates" },
-            { text: "Eighty percent of success is showing up.", author: "- Woody Allen" }
+            { text: "Eighty percent of success is showing up.", author: "- Woody Allen" },
+            { text: "Don't count the days, make the days count.", author: "- Muhammad Ali" },
+            { text: "The only impossible journey is the one you never begin.", author: "- Tony Robbins" }
         ];
 
         generateBtn.addEventListener('click', () => {
+            // Add animation to quote cards
+            quoteCards.forEach(card => {
+                card.style.transform = 'translateY(20px)';
+                card.style.opacity = '0';
+            });
+            
             // Shuffle the newQuotes array
             const shuffledQuotes = [...newQuotes].sort(() => 0.5 - Math.random());
             
-            // Update each quote card with a new quote
-            quoteCards.forEach((card, index) => {
-                if (index < shuffledQuotes.length) {
-                    quoteTexts[index].textContent = shuffledQuotes[index].text;
-                    quoteAuthors[index].textContent = shuffledQuotes[index].author;
-                }
-            });
+            // Update each quote card with a new quote after a delay
+            setTimeout(() => {
+                quoteCards.forEach((card, index) => {
+                    if (index < shuffledQuotes.length) {
+                        quoteTexts[index].textContent = shuffledQuotes[index].text;
+                        quoteAuthors[index].textContent = shuffledQuotes[index].author;
+                    }
+                    
+                    card.style.transform = 'translateY(0)';
+                    card.style.opacity = '1';
+                });
+            }, 300);
         });
 
         // Fade-in Animation on Scroll
@@ -1388,6 +1698,24 @@
         // Add fade-in class to sections for scroll animation
         document.querySelectorAll('section').forEach(section => {
             section.classList.add('fade-in');
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255,255,255,0.98)';
+                if (document.body.classList.contains('dark-mode')) {
+                    header.style.background = 'rgba(26,26,46,0.98)';
+                }
+                header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
+            } else {
+                header.style.background = 'rgba(255,255,255,0.95)';
+                if (document.body.classList.contains('dark-mode')) {
+                    header.style.background = 'rgba(26,26,46,0.95)';
+                }
+                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.05)';
+            }
         });
     </script>
 </body>
