@@ -3,189 +3,234 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Supreme Motive - Daily Inspiration</title>
+    <title>Supreme Motive - Fuel Your Mind. Fire Your Dreams.</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #4e6b99;
-            --primary-dark: #3a5080;
-            --primary-light: #6c87b3;
-            --secondary-color: #ff8a5c;
-            --accent-color: #5ed5e0;
-            --text-color: #2d3748;
-            --text-light: #718096;
-            --bg-color: #f9fafb;
-            --card-bg: #ffffff;
-            --shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-            --shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            --border-radius: 16px;
-            --gradient: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
-            --gradient-secondary: linear-gradient(135deg, var(--secondary-color) 0%, #ffa36c 100%);
-            --success-color: #10b981;
-            --error-color: #ef4444;
+            --primary: #ff6b35;
+            --secondary: #ff8e53;
+            --accent: #6a11cb;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --gradient: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+            --card-gradient: linear-gradient(135deg, rgba(255,107,53,0.1) 0%, rgba(106,17,203,0.1) 100%);
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
         }
 
         .dark-mode {
-            --primary-color: #6c87b3;
-            --primary-dark: #4e6b99;
-            --primary-light: #8aa3cc;
-            --secondary-color: #ff9d76;
-            --accent-color: #6ee5f0;
-            --text-color: #e2e8f0;
-            --text-light: #a0aec0;
-            --bg-color: #1a202c;
-            --card-bg: #2d3748;
-            --shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            --shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.3);
-            --gradient: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
+            --dark: #f8f9fa;
+            --light: #1a1a2e;
+            --shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background-color: var(--light);
+            color: var(--dark);
             line-height: 1.6;
-            transition: background-color 0.5s ease;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            transition: var(--transition);
             overflow-x: hidden;
         }
 
-        /* Header Styles */
-        header {
-            background: var(--gradient);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: var(--shadow);
-        }
-
-        .header-content {
+        .container {
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            padding: 0 20px;
         }
 
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
+        section {
+            padding: 80px 0;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        a {
             text-decoration: none;
             color: inherit;
         }
 
-        .logo {
-            width: 45px;
-            height: 45px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: white;
-            border-radius: 12px;
-            font-weight: bold;
-            color: var(--primary-color);
-            font-size: 1.4rem;
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--gradient);
+            color: white;
+            border-radius: 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
             box-shadow: var(--shadow);
         }
 
-        .logo-text {
-            font-size: 1.6rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
         }
 
-        .controls {
-            display: flex;
-            gap: 0.75rem;
-            align-items: center;
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
         }
 
-        .btn {
-            background-color: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
+        .btn-outline:hover {
+            background: var(--primary);
             color: white;
-            border: none;
-            padding: 0.6rem 1.2rem;
-            border-radius: 50px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            font-weight: 500;
-            gap: 0.5rem;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255,255,255,0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             transition: var(--transition);
         }
 
-        .btn:hover {
-            background-color: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
+        .dark-mode header {
+            background: rgba(26,26,46,0.95);
         }
 
-        .btn i {
-            font-size: 1rem;
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .logo i {
+            color: var(--primary);
+            margin-right: 10px;
+            font-size: 1.8rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        .dark-mode .nav-toggle {
+            color: var(--light);
         }
 
         .theme-toggle {
             background: none;
             border: none;
-            color: white;
+            font-size: 1.2rem;
             cursor: pointer;
-            font-size: 1.3rem;
+            color: var(--dark);
             transition: var(--transition);
         }
 
-        .theme-toggle:hover {
-            transform: rotate(15deg);
-        }
-
-        .install-btn {
-            background-color: #f1c40f;
-            color: #2d3748;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-            flex: 1;
-            width: 100%;
+        .dark-mode .theme-toggle {
+            color: var(--light);
         }
 
         /* Hero Section */
         .hero {
-            text-align: center;
-            padding: 3rem 0 4rem;
-            background: var(--gradient);
-            color: white;
-            border-radius: var(--border-radius);
-            margin-bottom: 3rem;
+            height: 100vh;
+            display: flex;
+            align-items: center;
             position: relative;
             overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
-            opacity: 0.5;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
         }
 
         .hero-content {
@@ -196,1847 +241,1154 @@
         }
 
         .hero h1 {
-            font-size: 3.2rem;
-            margin-bottom: 1.2rem;
-            letter-spacing: 0.5px;
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
         }
 
         .hero p {
-            font-size: 1.3rem;
-            opacity: 0.9;
-            margin-bottom: 2rem;
-        }
-
-        /* Search Bar */
-        .search-container {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
             max-width: 600px;
-            margin: 0 auto 2rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .quote-carousel {
+            margin-top: 50px;
+            font-style: italic;
+            font-size: 1.3rem;
             position: relative;
+            height: 100px;
         }
 
-        .search-bar {
-            width: 100%;
-            padding: 1rem 1.5rem;
-            border-radius: 50px;
-            border: 2px solid var(--primary-light);
-            background-color: var(--card-bg);
-            color: var(--text-color);
-            font-size: 1rem;
-            transition: var(--transition);
-            box-shadow: var(--shadow);
-        }
-
-        .search-bar:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(78, 107, 153, 0.2);
-        }
-
-        .search-icon {
-            position: absolute;
-            right: 1.5rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-light);
-        }
-
-        /* Quotes Slider */
-        .quotes-slider-container {
-            position: relative;
-            margin-bottom: 3rem;
-        }
-
-        .quotes-slider {
-            display: flex;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            background-color: var(--card-bg);
-            position: relative;
-            touch-action: pan-y;
-        }
-
-        .quote-slide {
-            flex: 0 0 100%;
-            padding: 3rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            min-height: 380px;
-            transition: transform 0.5s ease;
-        }
-
-        .quote-slide.image-slide {
-            color: white;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-
-        .quote-slide.image-slide .overlay {
+        .quote {
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5));
-            z-index: 1;
+            width: 100%;
+            opacity: 0;
+            transition: opacity 1s ease;
         }
 
-        .quote-slide.image-slide .content {
-            position: relative;
-            z-index: 2;
+        .quote.active {
+            opacity: 1;
         }
 
-        .slider-controls {
+        /* Motivation Hub */
+        .hub-filters {
             display: flex;
             justify-content: center;
-            gap: 1rem;
-            margin-top: 1.5rem;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 40px;
         }
 
-        .slider-btn {
-            background-color: var(--primary-color);
-            color: white;
+        .filter-btn {
+            padding: 8px 20px;
+            background: var(--card-gradient);
             border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            border-radius: 30px;
             cursor: pointer;
             transition: var(--transition);
-            box-shadow: var(--shadow);
+            font-weight: 600;
         }
 
-        .slider-btn:hover {
-            background-color: var(--primary-dark);
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--gradient);
+            color: white;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .article-card {
+            background: var(--light);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .article-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .article-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .article-content {
+            padding: 20px;
+        }
+
+        .article-category {
+            display: inline-block;
+            padding: 5px 15px;
+            background: var(--gradient);
+            color: white;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+        }
+
+        .article-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        /* Audio & Video Section */
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .media-card {
+            background: var(--light);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .media-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .media-thumbnail {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .play-btn {
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--primary);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .play-btn:hover {
+            background: white;
             transform: scale(1.1);
         }
 
+        .media-content {
+            padding: 20px;
+        }
+
+        .media-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        /* Quotes Section */
+        .quotes-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .quote-card {
+            background: var(--card-gradient);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 250px;
+            transition: var(--transition);
+        }
+
+        .quote-card:hover {
+            transform: translateY(-5px);
+        }
+
         .quote-text {
-            font-family: 'Anton', Impact, 'Arial Black', sans-serif;
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.3;
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
-            color: white;
-            -webkit-text-stroke: 1px black;
-            font-weight: 400;
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-bottom: 20px;
         }
 
         .quote-author {
             font-weight: 600;
-            text-align: center;
-            margin-top: auto;
-            color: var(--primary-color);
-            font-size: 1.2rem;
-            letter-spacing: 0.5px;
+            text-align: right;
+            color: var(--primary);
         }
 
-        .quote-category {
-            font-size: 0.9rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            display: inline-block;
-            background: rgba(78, 107, 153, 0.1);
-            padding: 0.4rem 1rem;
-            border-radius: 50px;
-            text-align: center;
-            width: auto;
-            margin: 0 auto 1.5rem;
+        .quote-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
         }
 
-        /* Coffee Section */
-        .coffee-section {
-            background-color: var(--card-bg);
-            border-radius: var(--border-radius);
-            padding: 3rem;
-            box-shadow: var(--shadow);
-            text-align: center;
-            margin-bottom: 3rem;
-            background-image: var(--gradient-secondary);
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .coffee-section::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 100%;
-            height: 200%;
-            background: rgba(255, 255, 255, 0.1);
-            transform: rotate(30deg);
-        }
-
-        .coffee-title {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .coffee-text {
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            opacity: 0.9;
-            position: relative;
-            z-index: 2;
-            font-size: 1.1rem;
-        }
-
-        .coffee-btn {
-            background-color: #ffdd00;
-            color: #2d3748;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            font-size: 1.1rem;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-            gap: 0.7rem;
-            transition: var(--transition);
-            position: relative;
-            z-index: 2;
-        }
-
-        .coffee-btn:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
-        }
-
-        /* Currency Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(5px);
-            transition: opacity 0.3s ease;
-        }
-
-        .modal-content {
-            background-color: var(--card-bg);
-            border-radius: var(--border-radius);
-            padding: 2.5rem;
-            max-width: 600px;
-            width: 90%;
-            box-shadow: var(--shadow-hover);
-            position: relative;
-            transform: scale(0.9);
-            opacity: 0;
-            transition: all 0.3s ease;
-        }
-
-        .modal.show .modal-content {
-            transform: scale(1);
-            opacity: 1;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 1.2rem;
-            right: 1.2rem;
+        .action-btn {
             background: none;
             border: none;
-            font-size: 1.7rem;
-            cursor: pointer;
-            color: var(--text-light);
-            transition: var(--transition);
-        }
-
-        .modal-close:hover {
-            color: var(--primary-color);
-            transform: rotate(90deg);
-        }
-
-        .modal-title {
-            margin-bottom: 1.8rem;
-            color: var(--primary-color);
-            text-align: center;
-            font-size: 1.8rem;
-        }
-
-        .currency-options {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1.2rem;
-            margin-bottom: 2rem;
-        }
-
-        .currency-option {
-            background-color: rgba(78, 107, 153, 0.1);
-            padding: 1.5rem;
-            border-radius: var(--border-radius);
-            transition: var(--transition);
-            border: 1px solid transparent;
-        }
-
-        .currency-option:hover {
-            background-color: rgba(78, 107, 153, 0.15);
-            transform: translateY(-5px);
-            border-color: var(--primary-color);
-        }
-
-        .currency-name {
-            font-weight: 600;
-            margin-bottom: 0.8rem;
-            color: var(--primary-color);
             font-size: 1.2rem;
+            color: var(--dark);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .dark-mode .action-btn {
+            color: var(--light);
+        }
+
+        .action-btn:hover {
+            color: var(--primary);
+        }
+
+        .generate-btn {
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* Community Section */
+        .community {
+            background: var(--card-gradient);
+        }
+
+        .community-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .community-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .community-stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .community-form {
+            flex: 1;
+            min-width: 300px;
+            background: var(--light);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: var(--light);
+            color: var(--dark);
+            transition: var(--transition);
+        }
+
+        .dark-mode .form-control {
+            border-color: #444;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .social-login {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-btn {
+            flex: 1;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            background: white;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: var(--transition);
         }
 
-        .currency-name i {
-            font-size: 1.1rem;
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        .currency-details {
-            font-size: 0.95rem;
+        .google-btn {
+            color: #DB4437;
         }
 
-        .currency-details p {
-            margin-bottom: 0.5rem;
+        .telegram-btn {
+            color: #0088cc;
+        }
+
+        /* About Section */
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text {
+            flex: 2;
+            min-width: 300px;
+        }
+
+        .founder-card {
+            flex: 1;
+            min-width: 250px;
+            background: var(--light);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .founder-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background: var(--gradient);
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-        }
-
-        .currency-details i {
-            color: var(--primary-color);
-            font-size: 0.9rem;
-        }
-
-        .modal-actions {
-            display: flex;
-            justify-content: flex-end;
-            gap: 1rem;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
         }
 
         /* Footer */
         footer {
-            text-align: center;
-            padding: 2.5rem 1.5rem;
-            background-color: var(--primary-dark);
+            background: var(--dark);
             color: white;
-            margin-top: auto;
+            padding: 60px 0 20px;
+        }
+
+        .dark-mode footer {
+            background: #0d0d1a;
         }
 
         .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
             display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .footer-nav {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
             flex-wrap: wrap;
+            gap: 50px;
+            margin-bottom: 40px;
         }
 
-        .footer-nav a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
             transition: var(--transition);
-            font-weight: 500;
         }
 
-        .footer-nav a:hover {
-            color: white;
-            transform: translateY(-2px);
+        .footer-links a:hover {
+            color: var(--primary);
+            padding-left: 5px;
         }
 
-        /* Quote Actions */
-        .quote-actions {
+        .newsletter-form {
             display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1.5rem;
+            margin-top: 20px;
         }
 
-        .action-btn {
-            background: rgba(255, 255, 255, 0.2);
+        .newsletter-input {
+            flex: 1;
+            padding: 12px 15px;
             border: none;
-            border-radius: 50px;
+            border-radius: 30px 0 0 30px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+        }
+
+        .newsletter-btn {
+            padding: 0 20px;
+            background: var(--primary);
+            border: none;
+            border-radius: 0 30px 30px 0;
+            color: white;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .newsletter-btn:hover {
+            background: var(--secondary);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
             width: 40px;
             height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: var(--transition);
-            color: white;
-        }
-
-        .action-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.1);
-        }
-
-        .action-btn.liked {
-            color: #ff4757;
-        }
-
-        /* Progress Indicator */
-        .slider-progress {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        .progress-dot {
-            width: 10px;
-            height: 10px;
             border-radius: 50%;
-            background-color: var(--text-light);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .progress-dot.active {
-            background-color: var(--primary-color);
-            transform: scale(1.2);
-        }
-
-        /* Categories Filter */
-        .categories-filter {
+            background: rgba(255,255,255,0.1);
             display: flex;
+            align-items: center;
             justify-content: center;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-bottom: 2rem;
-        }
-
-        .category-btn {
-            background: var(--card-bg);
-            border: 2px solid var(--primary-light);
-            color: var(--text-color);
-            padding: 0.5rem 1.25rem;
-            border-radius: 50px;
-            cursor: pointer;
             transition: var(--transition);
-            font-weight: 500;
         }
 
-        .category-btn:hover,
-        .category-btn.active {
-            background: var(--primary-color);
-            color: white;
-            border-color: var(--primary-color);
-        }
-
-        /* Notification Styles */
-        .notification {
-            position: fixed;
-            top: 100px;
-            right: 20px;
-            background-color: var(--success-color);
-            color: white;
-            padding: 1rem 1.5rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-hover);
-            z-index: 3000;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            transform: translateX(120%);
-            transition: transform 0.3s ease;
-            max-width: 350px;
-        }
-
-        .notification.show {
-            transform: translateX(0);
-        }
-
-        .notification.error {
-            background-color: var(--error-color);
-        }
-
-        .notification i {
-            font-size: 1.2rem;
-        }
-
-        /* Loading Spinner */
-        .loading-spinner {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top-color: white;
-            animation: spin 1s ease-in-out infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* Empty State */
-        .empty-state {
-            text-align: center;
-            padding: 3rem;
-            color: var(--text-light);
-        }
-
-        .empty-state i {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            opacity: 0.5;
-        }
-
-        /* Favorites Section */
-        .favorites-section {
-            background-color: var(--card-bg);
-            border-radius: var(--border-radius);
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: var(--shadow);
-        }
-
-        .section-title {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary-color);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .favorites-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .favorite-card {
-            background-color: rgba(78, 107, 153, 0.1);
-            border-radius: var(--border-radius);
-            padding: 1.5rem;
-            transition: var(--transition);
-            border-left: 4px solid var(--primary-color);
-        }
-
-        .favorite-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .favorite-text {
-            font-style: italic;
-            margin-bottom: 1rem;
-            line-height: 1.5;
-        }
-
-        .favorite-actions {
-            display: flex;
-            justify-content: flex-end;
-            gap: 0.5rem;
-        }
-
-        /* Reward Section */
-        .reward-section {
-            background-color: var(--card-bg);
-            border-radius: var(--border-radius);
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: var(--shadow);
-            text-align: center;
-        }
-
-        .reward-stats {
-            display: flex;
-            justify-content: space-around;
-            margin: 1.5rem 0;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .reward-stat {
-            flex: 1;
-            min-width: 150px;
-            padding: 1rem;
-            background: rgba(78, 107, 153, 0.1);
-            border-radius: var(--border-radius);
-        }
-
-        .reward-value {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-
-        .reward-label {
-            font-size: 0.9rem;
-            color: var(--text-light);
-            margin-top: 0.5rem;
-        }
-
-        .reward-btn {
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.7rem;
-            transition: var(--transition);
-            margin: 0.5rem;
-        }
-
-        .reward-btn:hover {
-            background: var(--primary-dark);
+        .social-icon:hover {
+            background: var(--primary);
             transform: translateY(-3px);
         }
 
-        .reward-btn:disabled {
-            background: var(--text-light);
-            cursor: not-allowed;
-            transform: none;
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
         }
 
-        /* Responsive design */
-        @media (max-width: 968px) {
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 3rem;
+            }
+            
+            h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--light);
+                box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+                transform: translateY(-150%);
+                transition: var(--transition);
+                z-index: 999;
+            }
+            
+            .dark-mode nav {
+                background: var(--dark);
+            }
+            
+            nav.active {
+                transform: translateY(0);
+            }
+            
+            nav ul {
+                flex-direction: column;
+                padding: 20px;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
             .hero h1 {
                 font-size: 2.5rem;
             }
             
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            .quote-text {
-                font-size: 1.7rem;
-            }
-            
-            .currency-options {
-                grid-template-columns: 1fr;
-            }
-            
-            .favorites-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .reward-stats {
-                flex-direction: column;
+            section {
+                padding: 60px 0;
             }
         }
 
-        @media (max-width: 640px) {
-            .header-content {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .controls {
-                width: 100%;
-                justify-content: center;
-            }
-            
+        @media (max-width: 576px) {
             .hero h1 {
                 font-size: 2rem;
             }
             
-            .container {
-                padding: 1.5rem;
+            h1 {
+                font-size: 2rem;
             }
             
-            .quote-slide {
-                padding: 2rem;
-                min-height: 320px;
+            h2 {
+                font-size: 1.8rem;
             }
             
-            .modal-actions {
-                flex-direction: column;
-            }
-            
-            .quote-text {
-                font-size: 1.5rem;
-            }
-            
-            .notification {
-                right: 10px;
-                left: 10px;
-                max-width: none;
+            .btn {
+                padding: 10px 25px;
             }
         }
 
-        /* Animation */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
         }
 
-        /* Focus styles for accessibility */
-        button:focus, input:focus {
-            outline: 2px solid var(--primary-color);
-            outline-offset: 2px;
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
+        /* Progress Tracker */
+        .progress-tracker {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--light);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow);
+            z-index: 100;
+            cursor: pointer;
+            transition: var(--transition);
         }
 
-        ::-webkit-scrollbar-track {
-            background: var(--bg-color);
+        .dark-mode .progress-tracker {
+            background: var(--dark);
         }
 
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary-light);
-            border-radius: 4px;
+        .progress-tracker:hover {
+            transform: scale(1.1);
         }
 
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--primary-color);
+        .streak-count {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        /* Background Music Toggle */
+        .music-toggle {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            background: var(--light);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow);
+            z-index: 100;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .dark-mode .music-toggle {
+            background: var(--dark);
+        }
+
+        .music-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .music-toggle.active {
+            color: var(--primary);
         }
     </style>
 </head>
 <body>
+    <!-- Header & Navigation -->
     <header>
-        <div class="header-content">
-            <a href="#" class="logo-container" aria-label="Supreme Motive Home">
-                <div class="logo">SM</div>
-                <div class="logo-text">Supreme Motive</div>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <i class="fas fa-fire"></i>
+                Supreme Motive
             </a>
-            
-            <div class="controls">
-                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button class="btn install-btn" id="installButton" aria-label="Install app">
-                    <i class="fas fa-download"></i> Install App
-                </button>
-            </div>
+            <button class="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#motivation-hub">Motivation Hub</a></li>
+                    <li><a href="#audio-video">Audio & Video</a></li>
+                    <li><a href="#quotes">Quotes</a></li>
+                    <li><a href="#community">Community</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="theme-toggle">
+                <i class="fas fa-moon"></i>
+            </button>
         </div>
     </header>
 
-    <main>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <h1>Fuel Your Mind. Fire Your Dreams. Supreme Motive.</h1>
+            <p>Your daily dose of inspiration to unlock your potential and live a purpose-driven life.</p>
+            <a href="#community" class="btn">Join Our Tribe</a>
+            
+            <div class="quote-carousel">
+                <div class="quote active">
+                    <p>"The only way to do great work is to love what you do." - Steve Jobs</p>
+                </div>
+                <div class="quote">
+                    <p>"Success is not final, failure is not fatal: it is the courage to continue that counts." - Winston Churchill</p>
+                </div>
+                <div class="quote">
+                    <p>"Your time is limited, don't waste it living someone else's life." - Steve Jobs</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Motivation Hub -->
+    <section id="motivation-hub" class="hub">
         <div class="container">
-            <div class="hero">
-                <div class="hero-content">
-                    <h1>Find Your Daily Inspiration</h1>
-                    <p>Discover hundreds of motivational quotes to empower your day and transform your mindset</p>
-                </div>
+            <h2>Motivation Hub</h2>
+            <div class="hub-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="success">Success</button>
+                <button class="filter-btn" data-filter="mindset">Mindset</button>
+                <button class="filter-btn" data-filter="money">Money</button>
+                <button class="filter-btn" data-filter="fitness">Fitness</button>
+                <button class="filter-btn" data-filter="purpose">Purpose</button>
+                <button class="filter-btn" data-filter="relationships">Relationships</button>
             </div>
-
-            <!-- Reward Section -->
-            <div class="reward-section">
-                <h3 class="section-title">
-                    <i class="fas fa-gift"></i> Earn Rewards
-                </h3>
-                <div class="reward-stats">
-                    <div class="reward-stat">
-                        <div class="reward-value" id="totalRewards">0 SA</div>
-                        <div class="reward-label">Total Rewards</div>
+            
+            <div class="articles-grid">
+                <div class="article-card" data-category="success">
+                    <div class="article-img" style="background-image: url('https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                    <div class="article-content">
+                        <span class="article-category">Success</span>
+                        <h3>5 Morning Habits of Highly Successful People</h3>
+                        <p>Discover the morning routines that set successful individuals up for productive days.</p>
+                        <a href="#" class="btn btn-outline">Read More</a>
                     </div>
-                    <div class="reward-stat">
-                        <div class="reward-value" id="dailyRewards">0 SA</div>
-                        <div class="reward-label">Daily Rewards</div>
-                    </div>
-                    <div class="reward-stat">
-                        <div class="reward-value" id="shareRewards">0 SA</div>
-                        <div class="reward-label">Share Rewards</div>
-                    </div>
-                </div>
-                <button class="reward-btn" id="dailyRewardBtn">
-                    <i class="fas fa-calendar-day"></i> Claim Daily Reward
-                </button>
-                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-light);">
-                    Claim 0.005 SA every 24 hours and earn 0.00002 SA for each quote you share!
-                </p>
-            </div>
-
-            <!-- Search Bar -->
-            <div class="search-container">
-                <input type="text" class="search-bar" id="searchBar" placeholder="Search for quotes...">
-                <i class="fas fa-search search-icon"></i>
-            </div>
-
-            <!-- Categories Filter -->
-            <div class="categories-filter" id="categoriesFilter">
-                <button class="category-btn active" data-category="all">All</button>
-                <button class="category-btn" data-category="motivation">Motivation</button>
-                <button class="category-btn" data-category="success">Success</button>
-                <button class="category-btn" data-category="life">Life</button>
-                <button class="category-btn" data-category="love">Love</button>
-                <button class="category-btn" data-category="wisdom">Wisdom</button>
-            </div>
-
-            <!-- Favorites Section -->
-            <div class="favorites-section" id="favoritesSection" style="display: none;">
-                <h3 class="section-title">
-                    <i class="fas fa-heart"></i> Your Favorite Quotes
-                </h3>
-                <div class="favorites-grid" id="favoritesGrid">
-                    <!-- Favorites will be dynamically inserted here -->
-                </div>
-            </div>
-
-            <div class="quotes-slider-container">
-                <div class="quotes-slider" id="quotesSlider">
-                    <!-- Quotes will be dynamically inserted here -->
                 </div>
                 
-                <!-- Progress Indicator -->
-                <div class="slider-progress" id="sliderProgress">
-                    <!-- Progress dots will be dynamically inserted here -->
+                <div class="article-card" data-category="mindset">
+                    <div class="article-img" style="background-image: url('https://images.unsplash.com/photo-1556155092-490a1ba16284?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                    <div class="article-content">
+                        <span class="article-category">Mindset</span>
+                        <h3>How to Develop a Growth Mindset</h3>
+                        <p>Learn the difference between fixed and growth mindsets and how to cultivate the latter.</p>
+                        <a href="#" class="btn btn-outline">Read More</a>
+                    </div>
                 </div>
                 
-                <div class="slider-controls">
-                    <button class="slider-btn" id="prevBtn" aria-label="Previous quote">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button class="slider-btn" id="nextBtn" aria-label="Next quote">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
+                <div class="article-card" data-category="fitness">
+                    <div class="article-img" style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                    <div class="article-content">
+                        <span class="article-category">Fitness</span>
+                        <h3>The Mental Benefits of Regular Exercise</h3>
+                        <p>Explore how physical activity can boost your mental clarity, mood, and overall well-being.</p>
+                        <a href="#" class="btn btn-outline">Read More</a>
+                    </div>
                 </div>
-            </div>
-
-            <div class="coffee-section">
-                <h3 class="coffee-title">Support Supreme Motive</h3>
-                <p class="coffee-text">If this app has inspired you or brought value to your life, consider supporting us to help with continued development and maintenance.</p>
-                <button class="coffee-btn" id="coffeeBtn">
-                    <i class="fas fa-coffee"></i> Buy a Coffee
-                </button>
             </div>
         </div>
-    </main>
+    </section>
 
-    <!-- Currency Modal -->
-    <div class="modal" id="currencyModal">
-        <div class="modal-content">
-            <button class="modal-close" id="closeCurrencyModal" aria-label="Close modal">
-                <i class="fas fa-times"></i>
-            </button>
-            <h3 class="modal-title">Select Currency</h3>
-            <div class="currency-options">
-                <div class="currency-option">
-                    <div class="currency-name">
-                        <i class="fas fa-dollar-sign"></i> US Dollar (USD)
+    <!-- Audio & Video Section -->
+    <section id="audio-video" class="media">
+        <div class="container">
+            <h2>Audio & Video Motivation</h2>
+            <div class="media-grid">
+                <div class="media-card">
+                    <div class="media-thumbnail" style="background-image: url('https://images.unsplash.com/photo-1478737270239-2f02b77fc618?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+                        <div class="play-btn">
+                            <i class="fas fa-play"></i>
+                        </div>
                     </div>
-                    <div class="currency-details">
-                        <p><i class="fas fa-wallet"></i> Account: 1234 5678 9012</p>
-                        <p><i class="fas fa-route"></i> Routing: 021000021</p>
-                        <p><i class="fab fa-paypal"></i> PayPal: support@suprememotive.com</p>
+                    <div class="media-content">
+                        <h3>Overcoming Self-Doubt</h3>
+                        <p>10-minute guided meditation to build confidence and overcome limiting beliefs.</p>
                     </div>
                 </div>
-                <div class="currency-option">
-                    <div class="currency-name">
-                        <i class="fas fa-naira-sign"></i> Naira (NGN)
+                
+                <div class="media-card">
+                    <div class="media-thumbnail" style="background-image: url('https://images.unsplash.com/photo-1494232410401-ad00d5433cfa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+                        <div class="play-btn">
+                            <i class="fas fa-play"></i>
+                        </div>
                     </div>
-                    <div class="currency-details">
-                        <p><i class="fas fa-wallet"></i> Account: 0123456789</p>
-                        <p><i class="fas fa-university"></i> Bank: Supreme Bank NG</p>
-                        <p><i class="fas fa-code"></i> Transfer code: 901234</p>
-                    </div>
-                </div>
-                <div class="currency-option">
-                    <div class="currency-name">
-                        <i class="fas fa-pound-sign"></i> British Pound (GBP)
-                    </div>
-                    <div class="currency-details">
-                        <p><i class="fas fa-wallet"></i> Account: 12345678</p>
-                        <p><i class="fas fa-sort"></i> Sort Code: 12-34-56</p>
-                        <p><i class="fab fa-paypal"></i> PayPal: support@suprememotive.com</p>
+                    <div class="media-content">
+                        <h3>Morning Motivation Boost</h3>
+                        <p>Start your day with powerful affirmations and energy-boosting thoughts.</p>
                     </div>
                 </div>
-                <div class="currency-option">
-                    <div class="currency-name">
-                        <i class="fas fa-euro-sign"></i> Euro (EUR)
+                
+                <div class="media-card">
+                    <div class="media-thumbnail" style="background-image: url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+                        <div class="play-btn">
+                            <i class="fas fa-play"></i>
+                        </div>
                     </div>
-                    <div class="currency-details">
-                        <p><i class="fas fa-wallet"></i> IBAN: DE89 3704 0044 0532 0130 00</p>
-                        <p><i class="fas fa-building"></i> BIC: COBADEFFXXX</p>
-                        <p><i class="fab fa-paypal"></i> PayPal: support@suprememotive.com</p>
+                    <div class="media-content">
+                        <h3>Building Resilience in Tough Times</h3>
+                        <p>Learn strategies to bounce back stronger from life's challenges.</p>
                     </div>
                 </div>
-            </div>
-            <div class="modal-actions">
-                <button class="btn" id="copyAccountBtn">
-                    <i class="fas fa-copy"></i> Copy Account Details
-                </button>
-                <button class="btn" id="closeModalBtn">
-                    <i class="fas fa-times"></i> Close
-                </button>
             </div>
         </div>
-    </div>
+    </section>
 
+    <!-- Quotes Section -->
+    <section id="quotes" class="quotes">
+        <div class="container">
+            <h2>Daily Quotes & Affirmations</h2>
+            <div class="quotes-container">
+                <div class="quote-card">
+                    <div class="quote-text">
+                        "The future belongs to those who believe in the beauty of their dreams."
+                    </div>
+                    <div class="quote-author">- Eleanor Roosevelt</div>
+                    <div class="quote-actions">
+                        <button class="action-btn"><i class="far fa-heart"></i></button>
+                        <button class="action-btn"><i class="fas fa-share-alt"></i></button>
+                    </div>
+                </div>
+                
+                <div class="quote-card">
+                    <div class="quote-text">
+                        "It does not matter how slowly you go as long as you do not stop."
+                    </div>
+                    <div class="quote-author">- Confucius</div>
+                    <div class="quote-actions">
+                        <button class="action-btn"><i class="far fa-heart"></i></button>
+                        <button class="action-btn"><i class="fas fa-share-alt"></i></button>
+                    </div>
+                </div>
+                
+                <div class="quote-card">
+                    <div class="quote-text">
+                        "The only limit to our realization of tomorrow will be our doubts of today."
+                    </div>
+                    <div class="quote-author">- Franklin D. Roosevelt</div>
+                    <div class="quote-actions">
+                        <button class="action-btn"><i class="far fa-heart"></i></button>
+                        <button class="action-btn"><i class="fas fa-share-alt"></i></button>
+                    </div>
+                </div>
+            </div>
+            <button class="btn generate-btn">Generate New Quote</button>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section id="community" class="community">
+        <div class="container">
+            <h2>Join Our Community</h2>
+            <div class="community-content">
+                <div class="community-text">
+                    <h3>Become Part of the Supreme Motive Tribe</h3>
+                    <p>Connect with like-minded individuals on their personal development journey. Share your stories, get inspired, and grow together.</p>
+                    
+                    <div class="community-stats">
+                        <div class="stat">
+                            <div class="stat-number">10K+</div>
+                            <div class="stat-label">Members</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">Daily Posts</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Countries</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="community-form">
+                    <h3>Create Your Account</h3>
+                    <form id="register-form">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" class="form-control" placeholder="Enter your name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" placeholder="Enter your email">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" class="form-control" placeholder="Create a password">
+                        </div>
+                        <button type="submit" class="btn" style="width: 100%;">Sign Up</button>
+                    </form>
+                    
+                    <div class="social-login">
+                        <button class="social-btn google-btn">
+                            <i class="fab fa-google"></i> Google
+                        </button>
+                        <button class="social-btn telegram-btn">
+                            <i class="fab fa-telegram"></i> Telegram
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>About Us</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Our Mission</h3>
+                    <p>Supreme Motive was founded with a single purpose: to awaken purpose and drive in people across the world. We believe that everyone has untapped potential waiting to be unleashed.</p>
+                    <p>Through daily motivation, educational content, and a supportive community, we help individuals break through limitations and achieve their most ambitious goals.</p>
+                    <p>Our vision is a world where people live intentionally, pursue their passions fearlessly, and uplift others along their journey.</p>
+                </div>
+                
+                <div class="founder-card">
+                    <div class="founder-img">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Alex Johnson</h3>
+                    <p>Founder & CEO</p>
+                    <p class="quote-text">"Your potential is endless. Your journey begins with a single step forward."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <div class="community-content">
+                <div class="community-text">
+                    <h3>Get In Touch</h3>
+                    <p>Have questions, suggestions, or just want to share your success story? We'd love to hear from you!</p>
+                    
+                    <div class="community-stats">
+                        <div class="stat">
+                            <i class="fas fa-envelope" style="font-size: 2rem; color: var(--primary); margin-bottom: 10px;"></i>
+                            <div class="stat-label">hello@suprememotive.com</div>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-phone" style="font-size: 2rem; color: var(--primary); margin-bottom: 10px;"></i>
+                            <div class="stat-label">+1 (555) 123-4567</div>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-map-marker-alt" style="font-size: 2rem; color: var(--primary); margin-bottom: 10px;"></i>
+                            <div class="stat-label">New York, NY</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="community-form">
+                    <h3>Send Us a Message</h3>
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label for="contact-name">Your Name</label>
+                            <input type="text" id="contact-name" class="form-control" placeholder="Enter your name">
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-email">Your Email</label>
+                            <input type="email" id="contact-email" class="form-control" placeholder="Enter your email">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" class="form-control" rows="4" placeholder="Your message..."></textarea>
+                        </div>
+                        <button type="submit" class="btn" style="width: 100%;">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
-        <div class="footer-content">
-            <p>Supreme Motive &copy; 2023 | Find your daily inspiration</p>
-            <div class="footer-nav">
-                <a href="#"><i class="fas fa-lock"></i> Privacy Policy</a>
-                <a href="#"><i class="fas fa-file-alt"></i> Terms of Service</a>
-                <a href="#"><i class="fas fa-envelope"></i> Contact Us</a>
-                <a href="#"><i class="fas fa-info-circle"></i> About</a>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Supreme Motive</h3>
+                    <p>Fuel Your Mind. Fire Your Dreams. Join our community and unlock your potential today.</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#motivation-hub">Motivation Hub</a></li>
+                        <li><a href="#audio-video">Audio & Video</a></li>
+                        <li><a href="#quotes">Quotes</a></li>
+                        <li><a href="#community">Community</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Podcasts</a></li>
+                        <li><a href="#">Daily Challenges</a></li>
+                        <li><a href="#">Success Stories</a></li>
+                        <li><a href="#">Affiliate Program</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to receive daily motivation and updates.</p>
+                    <form class="newsletter-form">
+                        <input type="email" class="newsletter-input" placeholder="Your email address">
+                        <button type="submit" class="newsletter-btn"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Supreme Motive. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
+    <!-- Progress Tracker -->
+    <div class="progress-tracker">
+        <div class="streak-count">7</div>
+    </div>
+
+    <!-- Background Music Toggle -->
+    <div class="music-toggle">
+        <i class="fas fa-music"></i>
+    </div>
+
     <script>
-        // Enhanced quotes data with Supreme Motive as author for all quotes
-        const quotes = [
-            // Motivation Quotes (10)
-            {
-                id: 1,
-                text: "The only way to do great work is to love what you do.",
-                author: "Supreme Motive",
-                category: "motivation",
-                hasImage: true,
-                image: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                likes: 1245,
-                featured: true
-            },
-            {
-                id: 2,
-                text: "Believe you can and you're halfway there.",
-                author: "Supreme Motive",
-                category: "motivation",
-                hasImage: true,
-                image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                likes: 876
-            },
-            {
-                id: 3,
-                text: "Your time is limited, don't waste it living someone else's life.",
-                author: "Supreme Motive",
-                category: "motivation",
-                hasImage: true,
-                image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                likes: 932
-            },
-            {
-                id: 4,
-                text: "The future belongs to those who believe in the beauty of their dreams.",
-                author: "Supreme Motive",
-                category: "motivation",
-                hasImage: true,
-                image: "https://images.unsplash.com/photo-1516487106395-f2d269d6a21c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                likes: 1056
-            },
-            {
-                id: 5,
-                text: "It does not matter how slowly you go as long as you do not stop.",
-                author: "Supreme Motive",
-                category: "motivation",
-                hasImage: true,
-                image: "https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                likes: 789
-            },
-            {
-                id: 6,
-                text: "Love is composed of a single soul inhabiting two bodies.",
-                author: "Supreme Motive",
-                category: "motivation",
-                hasImage: true,
-                image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                likes: 1342
-            },
-            {
-                id: 7,
-                text: "The best thing to hold onto in life is each other.",
-                author: "Supreme Motive",
-                category: "motivation",
-                hasImage: true,
-                image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                likes: 1123
-            },
-            {
-                id: 8,
-                text: "Success is not final, failure is not fatal: It is the courage to continue that counts.",
-                author: "Supreme Motive",
-                category: "motivation",
-                hasImage: true,
-                image: "https://images.unsplash.com/photo-1568992687947-868a62a9f521?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                likes: 1567,
-                featured: true
-            },
-            {
-                id: 9,
-                text: "The way to get started is to quit talking and begin doing.",
-                author: "Supreme Motive",
-                category: "motivation",
-                hasImage: true,
-                image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                likes: 987
-            },
-            {
-                id: 10,
-                text: "Don't be afraid to give up the good to go for the great.",
-                author: "Supreme Motive",
-                category: "motivation",
-                hasImage: true,
-                image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                likes: 876
-            },
+        // Mobile Navigation Toggle
+        const navToggle = document.querySelector('.nav-toggle');
+        const nav = document.querySelector('nav');
+        
+        navToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+
+        // Dark Mode Toggle
+        const themeToggle = document.querySelector('.theme-toggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
             
-            // Success Quotes (10)
-            {
-                id: 11,
-                text: "Success usually comes to those who are too busy to be looking for it.",
-                author: "Supreme Motive",
-                category: "success",
-                hasImage: true,
-                image: "https://images.unsplash.com/photo-1432888622747-4eb9a8f5a07a?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                likes: 1123
-            },
-            {
-                id: 12,
-                text: "I find that the harder I work, the more luck I seem to have.",
-                author: "Supreme Motive",
-                category: "success",
-                hasImage: true,
-                image: "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                likes: 945
-            },
-            {
-                id: 13,
-                text: "Life is what happens when you're busy making other plans.",
-                author: "Supreme Motive",
-                category: "success",
-                hasImage: true,
-                image: "https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                likes: 1987
-            },
-            {
-                id: 14,
-                text: "The purpose of our lives is to be happy.",
-                author: "Supreme Motive",
-                category: "success",
-                hasImage: true,
-                image: "https://images.unsplash.com/photo-1454923634634-bd1614719a7b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                likes: 1234
-            },
-            {
-                id: 15,
-                text: "You only live once, but if you do it right, once is enough.",
-                author: "Supreme Motive",
-                category: "success",
-                hasImage: true,
-                image: "https://images.unsplash.com/photo-1500058670364-731c3f5e1e4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                likes: 1098
-            },
-            {
-                id: 16,
-                text: "Life is not a problem to be solved, but a reality to be experienced.",
-                author: "Supreme Motive",
-                category: "success",
-                hasImage: true,
-                image: "https://images.unsplash.com/photo-1504198322253-cfa87a0ff25f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                likes: 1321
-            },
-            {
-                id: 17,
-                text: "The greatest glory in living lies not in never falling, but in rising every time we fall.",
-                author: "Supreme Motive",
-                category: "success",
-                hasImage: true,
-                image: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                likes: 876
-            },
-            {
-                id: 18,
-                text: "Love isn't something you find. Love is something that finds you.",
-                author: "Supreme Motive",
-                category: "success",
-                hasImage: true,
-                image: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                likes: 945
-            },
-            {
-                id: 19,
-                text: "The greatest happiness of life is the conviction that we are loved.",
-                author: "Supreme Motive",
-                category: "success",
-                hasImage: true,
-                image: "https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                likes: 765
-            },
-            {
-                id: 20,
-                text: "Love is when the other person's happiness is more important than your own.",
-                author: "Supreme Motive",
-                category: "success",
-                hasImage: true,
-                image: "https://images.unsplash.com/photo-1560087637-bf797bc7796a?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                likes: 876
-            },
-            
-            // Life Quotes (10)
-            {
-                id: 21,
-                text: "In the middle of every difficulty lies opportunity.",
-                author: "Supreme Motive",
-                category: "life",
-                hasImage: true,
-                image: "https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                likes: 932
-            },
-            {
-                id: 22,
-                text: "The only true wisdom is in knowing you know nothing.",
-                author: "Supreme Motive",
-                category: "life",
-                hasImage: true,
-                image: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                likes: 876
-            },
-            {
-                id: 23,
-                text: "Knowing yourself is the beginning of all wisdom.",
-                author: "Supreme Motive",
-                category: "life",
-                hasImage: true,
-                image: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                likes: 1123
-            },
-            {
-                id: 24,
-                text: "The wise man doesn't give the right answers, he poses the right questions.",
-                author: "Supreme Motive",
-                category: "life",
-                hasImage: true,
-                image: "https://images.unsplash.com/photo-1452570053594-1b985d6ea890?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                likes: 945
-            },
-            {
-                id: 25,
-                text: "Turn your wounds into wisdom.",
-                author: "Supreme Motive",
-                category: "life",
-                hasImage: true,
-                image: "https://images.unsplash.com/photo-1476820865390-c52aeebb9891?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                likes: 765
-            },
-            {
-                id: 26,
-                text: "The journey of a thousand miles begins with one step.",
-                author: "Supreme Motive",
-                category: "life",
-                hasImage: true,
-                image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                likes: 876
-            },
-            {
-                id: 27,
-                text: "Happiness is not something ready made. It comes from your own actions.",
-                author: "Supreme Motive",
-                category: "life",
-                hasImage: true,
-                image: "https://images.unsplash.com/photo-1516487106395-f2d269d6a21c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                likes: 1056
-            },
-            {
-                id: 28,
-                text: "The only impossible journey is the one you never begin.",
-                author: "Supreme Motive",
-                category: "life",
-                hasImage: true,
-                image: "https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                likes: 789
-            },
-            {
-                id: 29,
-                text: "Life is really simple, but we insist on making it complicated.",
-                author: "Supreme Motive",
-                category: "life",
-                hasImage: true,
-                image: "https://images.unsplash.com/photo-1568992687947-868a62a9f521?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                likes: 1567
-            },
-            {
-                id: 30,
-                text: "The purpose of life is not to be happy. It is to be useful, to be honorable, to be compassionate.",
-                author: "Supreme Motive",
-                category: "life",
-                hasImage: true,
-                image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                likes: 987
+            if (document.body.classList.contains('dark-mode')) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
             }
+        });
+
+        // Quote Carousel
+        const quotes = document.querySelectorAll('.quote');
+        let currentQuote = 0;
+
+        function showNextQuote() {
+            quotes[currentQuote].classList.remove('active');
+            currentQuote = (currentQuote + 1) % quotes.length;
+            quotes[currentQuote].classList.add('active');
+        }
+
+        setInterval(showNextQuote, 5000);
+
+        // Filter Articles
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const articleCards = document.querySelectorAll('.article-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                const filter = btn.getAttribute('data-filter');
+                
+                articleCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Generate New Quote
+        const generateBtn = document.querySelector('.generate-btn');
+        const quoteCards = document.querySelectorAll('.quote-card');
+        const quoteTexts = document.querySelectorAll('.quote-card .quote-text');
+        const quoteAuthors = document.querySelectorAll('.quote-card .quote-author');
+        
+        const newQuotes = [
+            { text: "The way to get started is to quit talking and begin doing.", author: "- Walt Disney" },
+            { text: "Life is what happens to you while you're busy making other plans.", author: "- John Lennon" },
+            { text: "The mind is everything. What you think you become.", author: "- Buddha" },
+            { text: "The best time to plant a tree was 20 years ago. The second best time is now.", author: "- Chinese Proverb" },
+            { text: "An unexamined life is not worth living.", author: "- Socrates" },
+            { text: "Eighty percent of success is showing up.", author: "- Woody Allen" }
         ];
 
-        // DOM Elements
-        const quotesSlider = document.getElementById('quotesSlider');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const themeToggleBtn = document.getElementById('themeToggle');
-        const installButton = document.getElementById('installButton');
-        const coffeeBtn = document.getElementById('coffeeBtn');
-        const currencyModal = document.getElementById('currencyModal');
-        const closeCurrencyModal = document.getElementById('closeCurrencyModal');
-        const closeModalBtn = document.getElementById('closeModalBtn');
-        const copyAccountBtn = document.getElementById('copyAccountBtn');
-        const categoriesFilter = document.getElementById('categoriesFilter');
-        const categoryBtns = document.querySelectorAll('.category-btn');
-        const sliderProgress = document.getElementById('sliderProgress');
-        const searchBar = document.getElementById('searchBar');
-        const favoritesSection = document.getElementById('favoritesSection');
-        const favoritesGrid = document.getElementById('favoritesGrid');
-        const dailyRewardBtn = document.getElementById('dailyRewardBtn');
-        const totalRewardsEl = document.getElementById('totalRewards');
-        const dailyRewardsEl = document.getElementById('dailyRewards');
-        const shareRewardsEl = document.getElementById('shareRewards');
-
-        // App state
-        let currentSlide = 0;
-        let likedQuotes = JSON.parse(localStorage.getItem('likedQuotes')) || [];
-        let autoSlideInterval;
-        let startX = 0;
-        let endX = 0;
-        let filteredQuotes = [...quotes];
-        let currentCategory = 'all';
-        let searchTerm = '';
-
-        // Reward system state
-        let rewardData = JSON.parse(localStorage.getItem('rewardData')) || {
-            totalRewards: 0,
-            dailyRewards: 0,
-            shareRewards: 0,
-            lastDailyClaim: null,
-            sharesToday: 0,
-            lastShareDate: null
-        };
-
-        // Initialize the app
-        function init() {
-            initSlider();
-            setupEventListeners();
-            checkDarkModePreference();
-            updateFavoritesSection();
-            updateRewardUI();
+        generateBtn.addEventListener('click', () => {
+            // Shuffle the newQuotes array
+            const shuffledQuotes = [...newQuotes].sort(() => 0.5 - Math.random());
             
-            // Initialize categories
-            categoryBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const category = btn.getAttribute('data-category');
-                    filterQuotesByCategory(category);
-                });
-            });
-        }
-
-        // Initialize slider
-        function initSlider() {
-            quotesSlider.innerHTML = '';
-            sliderProgress.innerHTML = '';
-            
-            if (filteredQuotes.length === 0) {
-                quotesSlider.innerHTML = `
-                    <div class="empty-state">
-                        <i class="fas fa-search"></i>
-                        <h3>No quotes found</h3>
-                        <p>Try a different search term or category</p>
-                    </div>
-                `;
-                return;
-            }
-            
-            filteredQuotes.forEach((quote, index) => {
-                // Create slide
-                const slide = document.createElement('div');
-                slide.className = `quote-slide ${quote.hasImage ? 'image-slide' : ''}`;
-                slide.setAttribute('data-quote-id', quote.id);
-                
-                if (quote.hasImage) {
-                    slide.style.backgroundImage = `url(${quote.image})`;
-                    slide.innerHTML = `
-                        <div class="overlay"></div>
-                        <div class="content">
-                            <span class="quote-category">${quote.category}</span>
-                            <p class="quote-text">"${quote.text}"</p>
-                            <p class="quote-author">- ${quote.author}</p>
-                            <div class="quote-actions">
-                                <button class="action-btn like-btn ${likedQuotes.includes(quote.id) ? 'liked' : ''}" data-quote-id="${quote.id}" aria-label="${likedQuotes.includes(quote.id) ? 'Unlike quote' : 'Like quote'}">
-                                    <i class="fas fa-heart"></i>
-                                </button>
-                                <button class="action-btn share-btn" data-quote-id="${quote.id}" aria-label="Share quote">
-                                    <i class="fas fa-share-alt"></i>
-                                </button>
-                                <button class="action-btn copy-btn" data-quote-id="${quote.id}" aria-label="Copy quote">
-                                    <i class="fas fa-copy"></i>
-                                </button>
-                            </div>
-                        </div>
-                    `;
-                } else {
-                    slide.innerHTML = `
-                        <span class="quote-category">${quote.category}</span>
-                        <p class="quote-text">"${quote.text}"</p>
-                        <p class="quote-author">- ${quote.author}</p>
-                        <div class="quote-actions">
-                            <button class="action-btn like-btn ${likedQuotes.includes(quote.id) ? 'liked' : ''}" data-quote-id="${quote.id}" aria-label="${likedQuotes.includes(quote.id) ? 'Unlike quote' : 'Like quote'}">
-                                <i class="fas fa-heart"></i>
-                            </button>
-                            <button class="action-btn share-btn" data-quote-id="${quote.id}" aria-label="Share quote">
-                                <i class="fas fa-share-alt"></i>
-                            </button>
-                            <button class="action-btn copy-btn" data-quote-id="${quote.id}" aria-label="Copy quote">
-                                <i class="fas fa-copy"></i>
-                            </button>
-                        </div>
-                    `;
-                }
-                
-                quotesSlider.appendChild(slide);
-                
-                // Create progress dot
-                const dot = document.createElement('div');
-                dot.className = `progress-dot ${index === 0 ? 'active' : ''}`;
-                dot.setAttribute('data-slide-index', index);
-                dot.addEventListener('click', () => goToSlide(index));
-                sliderProgress.appendChild(dot);
-            });
-            
-            // Start auto slide
-            startAutoSlide();
-        }
-
-        // Filter quotes by category
-        function filterQuotesByCategory(category) {
-            currentCategory = category;
-            currentSlide = 0;
-            
-            // Update active category button
-            categoryBtns.forEach(btn => {
-                if (btn.getAttribute('data-category') === category) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
+            // Update each quote card with a new quote
+            quoteCards.forEach((card, index) => {
+                if (index < shuffledQuotes.length) {
+                    quoteTexts[index].textContent = shuffledQuotes[index].text;
+                    quoteAuthors[index].textContent = shuffledQuotes[index].author;
                 }
             });
-            
-            applyFilters();
-        }
-
-        // Apply both category and search filters
-        function applyFilters() {
-            let filtered = [...quotes];
-            
-            // Apply category filter
-            if (currentCategory !== 'all') {
-                filtered = filtered.filter(quote => quote.category === currentCategory);
-            }
-            
-            // Apply search filter
-            if (searchTerm) {
-                const term = searchTerm.toLowerCase();
-                filtered = filtered.filter(quote => 
-                    quote.text.toLowerCase().includes(term) || 
-                    quote.category.toLowerCase().includes(term)
-                );
-            }
-            
-            filteredQuotes = filtered;
-            
-            // Reinitialize slider with filtered quotes
-            initSlider();
-        }
-
-        // Go to specific slide
-        function goToSlide(index) {
-            if (filteredQuotes.length === 0) return;
-            
-            if (index < 0) index = filteredQuotes.length - 1;
-            if (index >= filteredQuotes.length) index = 0;
-            
-            currentSlide = index;
-            quotesSlider.scrollTo({
-                left: quotesSlider.clientWidth * index,
-                behavior: 'smooth'
-            });
-            
-            // Update active progress dot
-            document.querySelectorAll('.progress-dot').forEach((dot, i) => {
-                if (i === index) {
-                    dot.classList.add('active');
-                } else {
-                    dot.classList.remove('active');
-                }
-            });
-            
-            // Reset auto slide timer
-            resetAutoSlide();
-        }
-
-        // Start auto slide
-        function startAutoSlide() {
-            if (filteredQuotes.length <= 1) return;
-            
-            autoSlideInterval = setInterval(() => {
-                goToSlide(currentSlide + 1);
-            }, 5000);
-        }
-
-        // Reset auto slide timer
-        function resetAutoSlide() {
-            clearInterval(autoSlideInterval);
-            startAutoSlide();
-        }
-
-        // Set up event listeners
-        function setupEventListeners() {
-            // Slider controls
-            prevBtn.addEventListener('click', () => goToSlide(currentSlide - 1));
-            nextBtn.addEventListener('click', () => goToSlide(currentSlide + 1));
-            
-            // Touch events for swipe
-            quotesSlider.addEventListener('touchstart', (e) => {
-                startX = e.touches[0].clientX;
-            }, { passive: true });
-            
-            quotesSlider.addEventListener('touchmove', (e) => {
-                endX = e.touches[0].clientX;
-            }, { passive: true });
-            
-            quotesSlider.addEventListener('touchend', () => {
-                if (startX - endX > 50) {
-                    // Swipe left - go to next slide
-                    goToSlide(currentSlide + 1);
-                } else if (endX - startX > 50) {
-                    // Swipe right - go to previous slide
-                    goToSlide(currentSlide - 1);
-                }
-            });
-            
-            // Mouse events for drag (optional)
-            let isMouseDown = false;
-            let startMouseX = 0;
-            let endMouseX = 0;
-            
-            quotesSlider.addEventListener('mousedown', (e) => {
-                isMouseDown = true;
-                startMouseX = e.clientX;
-            });
-            
-            quotesSlider.addEventListener('mousemove', (e) => {
-                if (!isMouseDown) return;
-                endMouseX = e.clientX;
-            });
-            
-            quotesSlider.addEventListener('mouseup', () => {
-                isMouseDown = false;
-                if (startMouseX - endMouseX > 50) {
-                    // Drag left - go to next slide
-                    goToSlide(currentSlide + 1);
-                } else if (endMouseX - startMouseX > 50) {
-                    // Drag right - go to previous slide
-                    goToSlide(currentSlide - 1);
-                }
-            });
-            
-            // Theme toggle
-            themeToggleBtn.addEventListener('click', toggleDarkMode);
-            
-            // Install app
-            installButton.addEventListener('click', installApp);
-            
-            // Coffee button
-            coffeeBtn.addEventListener('click', () => {
-                currencyModal.style.display = 'flex';
-                setTimeout(() => {
-                    currencyModal.classList.add('show');
-                }, 10);
-            });
-            
-            // Close currency modal
-            closeCurrencyModal.addEventListener('click', () => {
-                currencyModal.classList.remove('show');
-                setTimeout(() => {
-                    currencyModal.style.display = 'none';
-                }, 300);
-            });
-            
-            closeModalBtn.addEventListener('click', () => {
-                currencyModal.classList.remove('show');
-                setTimeout(() => {
-                    currencyModal.style.display = 'none';
-                }, 300);
-            });
-            
-            // Copy account details
-            copyAccountBtn.addEventListener('click', () => {
-                const accountDetails = `Supreme Motive Support Accounts:
-                
-USD Account: 1234 5678 9012
-Routing: 021000021
-PayPal: support@suprememotive.com
-
-NGN Account: 0123456789
-Bank: Supreme Bank NG
-Transfer code: 901234
-
-GBP Account: 12345678
-Sort Code: 12-34-56
-PayPal: support@suprememotive.com
-
-EUR Account: IBAN DE89 3704 0044 0532 0130 00
-BIC: COBADEFFXXX
-PayPal: support@suprememotive.com`;
-
-                navigator.clipboard.writeText(accountDetails)
-                    .then(() => {
-                        showNotification('Account details copied to clipboard!');
-                    })
-                    .catch(err => {
-                        showNotification('Failed to copy details', 'error');
-                    });
-            });
-            
-            // Close modal if clicked outside
-            currencyModal.addEventListener('click', (e) => {
-                if (e.target === currencyModal) {
-                    currencyModal.classList.remove('show');
-                    setTimeout(() => {
-                        currencyModal.style.display = 'none';
-                    }, 300);
-                }
-            });
-            
-            // Search functionality
-            searchBar.addEventListener('input', (e) => {
-                searchTerm = e.target.value;
-                applyFilters();
-            });
-            
-            // Daily reward button
-            dailyRewardBtn.addEventListener('click', claimDailyReward);
-            
-            // Keyboard navigation
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowLeft') {
-                    goToSlide(currentSlide - 1);
-                } else if (e.key === 'ArrowRight') {
-                    goToSlide(currentSlide + 1);
-                } else if (e.key === 'Escape') {
-                    // Close modal if open
-                    if (currencyModal.style.display === 'flex') {
-                        currencyModal.classList.remove('show');
-                        setTimeout(() => {
-                            currencyModal.style.display = 'none';
-                        }, 300);
-                    }
-                }
-            });
-        }
-
-        // Update favorites section
-        function updateFavoritesSection() {
-            const favoriteQuotes = quotes.filter(quote => likedQuotes.includes(quote.id));
-            
-            if (favoriteQuotes.length > 0) {
-                favoritesSection.style.display = 'block';
-                favoritesGrid.innerHTML = '';
-                
-                favoriteQuotes.forEach(quote => {
-                    const card = document.createElement('div');
-                    card.className = 'favorite-card';
-                    card.innerHTML = `
-                        <p class="favorite-text">"${quote.text}"</p>
-                        <div class="favorite-actions">
-                            <button class="action-btn remove-favorite-btn" data-quote-id="${quote.id}" aria-label="Remove from favorites">
-                                <i class="fas fa-times"></i>
-                            </button>
-                        </div>
-                    `;
-                    favoritesGrid.appendChild(card);
-                });
-            } else {
-                favoritesSection.style.display = 'none';
-            }
-        }
-
-        // Handle quote actions (like, share, copy)
-        document.addEventListener('click', (e) => {
-            // Like button
-            if (e.target.closest('.like-btn')) {
-                const likeBtn = e.target.closest('.like-btn');
-                const quoteId = parseInt(likeBtn.getAttribute('data-quote-id'));
-                
-                if (likedQuotes.includes(quoteId)) {
-                    // Unlike
-                    likedQuotes = likedQuotes.filter(id => id !== quoteId);
-                    likeBtn.classList.remove('liked');
-                    likeBtn.setAttribute('aria-label', 'Like quote');
-                    showNotification('Quote removed from favorites');
-                } else {
-                    // Like
-                    likedQuotes.push(quoteId);
-                    likeBtn.classList.add('liked');
-                    likeBtn.setAttribute('aria-label', 'Unlike quote');
-                    showNotification('Quote added to favorites');
-                }
-                
-                // Save to localStorage
-                localStorage.setItem('likedQuotes', JSON.stringify(likedQuotes));
-                
-                // Update favorites section
-                updateFavoritesSection();
-            }
-            
-            // Remove from favorites button
-            if (e.target.closest('.remove-favorite-btn')) {
-                const removeBtn = e.target.closest('.remove-favorite-btn');
-                const quoteId = parseInt(removeBtn.getAttribute('data-quote-id'));
-                
-                likedQuotes = likedQuotes.filter(id => id !== quoteId);
-                localStorage.setItem('likedQuotes', JSON.stringify(likedQuotes));
-                
-                // Update UI
-                updateFavoritesSection();
-                
-                // Also update like buttons in slider
-                document.querySelectorAll(`.like-btn[data-quote-id="${quoteId}"]`).forEach(btn => {
-                    btn.classList.remove('liked');
-                    btn.setAttribute('aria-label', 'Like quote');
-                });
-                
-                showNotification('Quote removed from favorites');
-            }
-            
-            // Share button
-            if (e.target.closest('.share-btn')) {
-                const shareBtn = e.target.closest('.share-btn');
-                const quoteId = parseInt(shareBtn.getAttribute('data-quote-id'));
-                const quote = quotes.find(q => q.id === quoteId);
-                
-                if (quote && navigator.share) {
-                    navigator.share({
-                        title: 'Inspirational Quote',
-                        text: `"${quote.text}" - ${quote.author}`,
-                        url: window.location.href,
-                    })
-                    .then(() => {
-                        showNotification('Quote shared successfully');
-                        awardShareReward();
-                    })
-                    .catch(() => copyQuoteToClipboard(quote));
-                } else {
-                    copyQuoteToClipboard(quote);
-                }
-            }
-            
-            // Copy button
-            if (e.target.closest('.copy-btn')) {
-                const copyBtn = e.target.closest('.copy-btn');
-                const quoteId = parseInt(copyBtn.getAttribute('data-quote-id'));
-                const quote = quotes.find(q => q.id === quoteId);
-                
-                copyQuoteToClipboard(quote);
-            }
         });
 
-        // Copy quote to clipboard
-        function copyQuoteToClipboard(quote) {
-            if (!quote) return;
-            
-            const quoteText = `"${quote.text}" - ${quote.author}`;
-            
-            navigator.clipboard.writeText(quoteText)
-                .then(() => {
-                    showNotification('Quote copied to clipboard!');
-                    awardShareReward();
-                })
-                .catch(err => {
-                    showNotification('Failed to copy quote', 'error');
-                });
-        }
-
-        // Dark mode functionality
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
-            const isDarkMode = document.body.classList.contains('dark-mode');
-            localStorage.setItem('darkMode', isDarkMode);
-            themeToggleBtn.innerHTML = isDarkMode 
-                ? '<i class="fas fa-sun"></i>' 
-                : '<i class="fas fa-moon"></i>';
-            themeToggleBtn.setAttribute('aria-label', isDarkMode ? 'Switch to light mode' : 'Switch to dark mode');
-        }
-
-        // Check for dark mode preference
-        function checkDarkModePreference() {
-            const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            const savedDarkMode = localStorage.getItem('darkMode') === 'true';
-            
-            if (savedDarkMode || (!localStorage.getItem('darkMode') && prefersDarkScheme)) {
-                document.body.classList.add('dark-mode');
-                themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
-                themeToggleBtn.setAttribute('aria-label', 'Switch to light mode');
-            }
-        }
-
-        // Show notification
-        function showNotification(message, type = 'success') {
-            // Remove existing notifications
-            document.querySelectorAll('.notification').forEach(notification => {
-                notification.remove();
-            });
-            
-            // Create notification element
-            const notification = document.createElement('div');
-            notification.className = `notification ${type === 'error' ? 'error' : ''}`;
-            notification.innerHTML = `
-                <i class="fas ${type === 'error' ? 'fa-exclamation-circle' : 'fa-check-circle'}"></i>
-                ${message}
-            `;
-            
-            // Add to document
-            document.body.appendChild(notification);
-            
-            // Show notification
-            setTimeout(() => {
-                notification.classList.add('show');
-            }, 10);
-            
-            // Hide after 3 seconds
-            setTimeout(() => {
-                notification.classList.remove('show');
-                setTimeout(() => {
-                    notification.remove();
-                }, 300);
-            }, 3000);
-        }
-
-        // PWA Installation
-        let deferredPrompt;
+        // Fade-in Animation on Scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
         
-        window.addEventListener('beforeinstallprompt', (e) => {
+        const fadeInOnScroll = () => {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        };
+        
+        // Initially check for elements in view
+        fadeInOnScroll();
+        
+        // Check on scroll
+        window.addEventListener('scroll', fadeInOnScroll);
+
+        // Form Submissions
+        const registerForm = document.getElementById('register-form');
+        const contactForm = document.getElementById('contact-form');
+        
+        registerForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            deferredPrompt = e;
-            installButton.style.display = 'block';
+            alert('Thank you for joining the Supreme Motive community! Check your email to verify your account.');
+            registerForm.reset();
+        });
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you within 24 hours.');
+            contactForm.reset();
         });
 
-        function installApp() {
-            if (deferredPrompt) {
-                // Show loading state
-                const originalText = installButton.innerHTML;
-                installButton.innerHTML = '<span class="loading-spinner"></span> Installing...';
-                installButton.disabled = true;
-                
-                deferredPrompt.prompt();
-                deferredPrompt.userChoice.then((choiceResult) => {
-                    // Reset button
-                    installButton.innerHTML = originalText;
-                    installButton.disabled = false;
-                    
-                    if (choiceResult.outcome === 'accepted') {
-                        showNotification('App installed successfully!');
-                        installButton.style.display = 'none';
-                    } else {
-                        showNotification('App installation cancelled');
-                    }
-                    deferredPrompt = null;
-                });
-            } else {
-                showNotification('To install the app, use the browser menu');
-            }
-        }
+        // Music Toggle
+        const musicToggle = document.querySelector('.music-toggle');
+        musicToggle.addEventListener('click', () => {
+            musicToggle.classList.toggle('active');
+            // In a real implementation, this would toggle background music
+            alert('Background music toggled ' + (musicToggle.classList.contains('active') ? 'on' : 'off'));
+        });
 
-        // Reward System Functions
-        function updateRewardUI() {
-            totalRewardsEl.textContent = `${rewardData.totalRewards.toFixed(5)} SA`;
-            dailyRewardsEl.textContent = `${rewardData.dailyRewards.toFixed(5)} SA`;
-            shareRewardsEl.textContent = `${rewardData.shareRewards.toFixed(5)} SA`;
-            
-            // Update daily reward button state
-            const now = new Date();
-            const lastClaim = rewardData.lastDailyClaim ? new Date(rewardData.lastDailyClaim) : null;
-            
-            if (lastClaim && isSameDay(now, lastClaim)) {
-                dailyRewardBtn.disabled = true;
-                dailyRewardBtn.innerHTML = '<i class="fas fa-check"></i> Claimed Today';
-            } else {
-                dailyRewardBtn.disabled = false;
-                dailyRewardBtn.innerHTML = '<i class="fas fa-calendar-day"></i> Claim Daily Reward';
-            }
-        }
-
-        function isSameDay(date1, date2) {
-            return date1.getFullYear() === date2.getFullYear() &&
-                   date1.getMonth() === date2.getMonth() &&
-                   date1.getDate() === date2.getDate();
-        }
-
-        function claimDailyReward() {
-            const now = new Date();
-            const lastClaim = rewardData.lastDailyClaim ? new Date(rewardData.lastDailyClaim) : null;
-            
-            // Check if already claimed today
-            if (lastClaim && isSameDay(now, lastClaim)) {
-                showNotification('You have already claimed your daily reward today!', 'error');
-                return;
-            }
-            
-            // Award daily reward
-            const dailyReward = 0.005;
-            rewardData.totalRewards += dailyReward;
-            rewardData.dailyRewards += dailyReward;
-            rewardData.lastDailyClaim = now.toISOString();
-            
-            // Save to localStorage
-            localStorage.setItem('rewardData', JSON.stringify(rewardData));
-            
-            // Update UI
-            updateRewardUI();
-            
-            // Show notification
-            showNotification(`Daily reward claimed! +${dailyReward} SA`, 'success');
-        }
-
-        function awardShareReward() {
-            const now = new Date();
-            const lastShareDate = rewardData.lastShareDate ? new Date(rewardData.lastShareDate) : null;
-            
-            // Reset shares count if it's a new day
-            if (!lastShareDate || !isSameDay(now, lastShareDate)) {
-                rewardData.sharesToday = 0;
-            }
-            
-            // Award share reward
-            const shareReward = 0.00002;
-            rewardData.totalRewards += shareReward;
-            rewardData.shareRewards += shareReward;
-            rewardData.sharesToday += 1;
-            rewardData.lastShareDate = now.toISOString();
-            
-            // Save to localStorage
-            localStorage.setItem('rewardData', JSON.stringify(rewardData));
-            
-            // Update UI
-            updateRewardUI();
-            
-            // Show notification
-            showNotification(`Share reward! +${shareReward} SA`, 'success');
-        }
-
-        // Initialize the app
-        init();
+        // Add fade-in class to sections for scroll animation
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.add('fade-in');
+        });
     </script>
 </body>
 </html>
