@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supreme Motive Support & Help Center</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --gold: #FFD700;
+            --navy-blue: #0a2540;
+            --light-blue: #1a365d;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --medium-gray: #e9ecef;
+        }
+        
+        body {
+            background-color: var(--light-gray);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--navy-blue), var(--light-blue));
+            color: var(--white);
+            padding: 30px 20px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gold);
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .logo span {
+            color: var(--gold);
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        /* Introduction Section */
+        .intro {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+            text-align: center;
+            font-size: 1.1rem;
+            border-left: 4px solid var(--gold);
+        }
+        
+        /* Section Headers */
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--medium-gray);
+        }
+        
+        .section-header i {
+            background: var(--navy-blue);
+            color: var(--gold);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .section-header h2 {
+            font-size: 1.8rem;
+            color: var(--navy-blue);
+        }
+        
+        /* Contact Cards */
+        .contact-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .contact-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid var(--gold);
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+        
+        .contact-icon {
+            font-size: 2rem;
+            color: var(--navy-blue);
+            margin-bottom: 15px;
+        }
+        
+        .contact-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--navy-blue);
+        }
+        
+        .contact-description {
+            margin-bottom: 15px;
+            color: #555;
+        }
+        
+        .contact-email {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            color: var(--light-blue);
+        }
+        
+        /* Info Note */
+        .info-note {
+            background-color: #fff9e6;
+            border-left: 4px solid var(--gold);
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+        
+        /* Payment Section */
+        .payment-section {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+        }
+        
+        .payment-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .payment-option {
+            margin-bottom: 20px;
+        }
+        
+        .payment-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            color: var(--navy-blue);
+        }
+        
+        .wallet-address {
+            display: flex;
+            align-items: center;
+            background: var(--light-gray);
+            padding: 12px 15px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            justify-content: space-between;
+        }
+        
+        .copy-btn {
+            background: var(--navy-blue);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: background 0.3s;
+        }
+        
+        .copy-btn:hover {
+            background: var(--light-blue);
+        }
+        
+        /* Gift Card Section */
+        .gift-card-section {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+            border-top: 4px solid var(--gold);
+        }
+        
+        .gift-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .gift-card-item {
+            background: var(--light-gray);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .gift-card-item:hover {
+            background: var(--medium-gray);
+            transform: translateY(-3px);
+        }
+        
+        .send-btn {
+            display: inline-block;
+            background: var(--navy-blue);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: all 0.3s;
+        }
+        
+        .send-btn:hover {
+            background: var(--light-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Form Section */
+        .form-section {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--navy-blue);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--medium-gray);
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: var(--navy-blue);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(10, 37, 64, 0.2);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background: var(--navy-blue);
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .submit-btn:hover {
+            background: var(--light-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Security Notice */
+        .security-notice {
+            background-color: #ffe6e6;
+            border-left: 4px solid #ff4d4d;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--navy-blue);
+            color: var(--white);
+            padding: 40px 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .social-icons a {
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            color: var(--gold);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-header h2 {
+                font-size: 1.5rem;
+            }
+            
+            .contact-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .payment-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .gift-card-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-crown"></i>
+                Supreme <span>Motive</span>
+            </div>
+            <h1>Support & Help Center</h1>
+            <p class="subtitle">Your success is our priority. Get the assistance you need to continue your journey of growth and empowerment.</p>
+        </header>
+        
+        <section class="intro">
+            <p>Welcome to the Supreme Motive Support Center. Whether you have questions, partnership requests, payment concerns, or wish to contribute via gift cards or crypto, our team is ready to help. We respond to all messages within 24–48 hours.</p>
+        </section>
+        
+        <div class="section-header">
+            <i class="fas fa-headset"></i>
+            <h2>Contact & Support</h2>
+        </div>
+        
+        <div class="contact-cards">
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-question-circle"></i>
+                </div>
+                <h3 class="contact-title">General Support</h3>
+                <p class="contact-description">For account issues or general inquiries.</p>
+                <div class="contact-email">
+                    <i class="fas fa-envelope"></i>
+                    <span>support@suprememotive.com</span>
+                </div>
+            </div>
+            
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <h3 class="contact-title">Partnerships & Affiliates</h3>
+                <p class="contact-description">For business collaborations, sponsorships, or affiliate opportunities.</p>
+                <div class="contact-email">
+                    <i class="fas fa-envelope"></i>
+                    <span>partners@suprememotive.com</span>
+                </div>
+            </div>
+            
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-credit-card"></i>
+                </div>
+                <h3 class="contact-title">Payments & Withdrawals</h3>
+                <p class="contact-description">For financial-related assistance or payment confirmation.</p>
+                <div class="contact-email">
+                    <i class="fas fa-envelope"></i>
+                    <span>billing@suprememotive.com</span>
+                </div>
+            </div>
+            
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-gift"></i>
+                </div>
+                <h3 class="contact-title">Gift Card Submissions</h3>
+                <p class="contact-description">For users sending support or payments through gift cards.</p>
+                <div class="contact-email">
+                    <i class="fas fa-envelope"></i>
+                    <span>giftcards@suprememotive.com</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="info-note">
+            <p><strong>Note:</strong> Please ensure gift cards are clear, readable, and unused. Include your full name, card type, and denomination when sending.</p>
+        </div>
+        
+        <div class="section-header">
+            <i class="fas fa-wallet"></i>
+            <h2>Payment & Wallet Details</h2>
+        </div>
+        
+        <section class="payment-section">
+            <div class="payment-options">
+                <div class="bank-accounts">
+                    <h3 class="payment-title">
+                        <i class="fas fa-globe-americas"></i>
+                        Bank Accounts
+                    </h3>
+                    
+                    <div class="payment-option">
+                        <h4>🇳🇬 Nigeria Account (NGN)</h4>
+                        <div class="wallet-address">
+                            <span>0123456789 • Supreme Motive Ltd</span>
+                            <button class="copy-btn">Copy</button>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-option">
+                        <h4>🇺🇸 USA Account (USD)</h4>
+                        <div class="wallet-address">
+                            <span>9876543210 • Supreme Motive Inc</span>
+                            <button class="copy-btn">Copy</button>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-option">
+                        <h4>🇬🇧 UK Account (GBP)</h4>
+                        <div class="wallet-address">
+                            <span>12345678901 • Supreme Motive UK</span>
+                            <button class="copy-btn">Copy</button>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-option">
+                        <h4>🇪🇺 Euro Account (EUR)</h4>
+                        <div class="wallet-address">
+                            <span>DE89 3704 0044 0532 0130 00</span>
+                            <button class="copy-btn">Copy</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="crypto-wallets">
+                    <h3 class="payment-title">
+                        <i class="fas fa-coins"></i>
+                        Crypto Wallets
+                    </h3>
+                    
+                    <div class="payment-option">
+                        <h4>BNB (BEP20)</h4>
+                        <div class="wallet-address">
+                            <span>0xbaf120fF881eFE99008413696f41204F8c8FD889</span>
+                            <button class="copy-btn">Copy</button>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-option">
+                        <h4>ETH (ERC20)</h4>
+                        <div class="wallet-address">
+                            <span>0xbaf120fF881eFE99008413696f41204F8c8FD889</span>
+                            <button class="copy-btn">Copy</button>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-option">
+                        <h4>TON</h4>
+                        <div class="wallet-address">
+                            <span>UQCbMdF0QIoNHI9Ag6mh35IZBmetVvfYDoIzoXKL95JTLlIJ</span>
+                            <button class="copy-btn">Copy</button>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-option">
+                        <h4>BTC</h4>
+                        <div class="wallet-address">
+                            <span>bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh</span>
+                            <button class="copy-btn">Copy</button>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-option">
+                        <h4>USDT (Multiple Networks)</h4>
+                        <div class="wallet-address">
+                            <span>0xbaf120fF881eFE99008413696f41204F8c8FD889</span>
+                            <button class="copy-btn">Copy</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <div class="section-header">
+            <i class="fas fa-gifts"></i>
+            <h2>Gift Cards & Support Contributions</h2>
+        </div>
+        
+        <section class="gift-card-section">
+            <p>We also accept gift cards as a convenient way to support or fund your Supreme Motive account. Accepted gift cards include:</p>
+            
+            <div class="gift-card-grid">
+                <div class="gift-card-item">Amazon</div>
+                <div class="gift-card-item">Apple</div>
+                <div class="gift-card-item">Google Play</div>
+                <div class="gift-card-item">Steam</div>
+                <div class="gift-card-item">Walmart</div>
+                <div class="gift-card-item">Sephora</div>
+                <div class="gift-card-item">Visa</div>
+                <div class="gift-card-item">Mastercard</div>
+            </div>
+            
+            <p>Send your gift card code and details to: <strong>giftcards@suprememotive.com</strong></p>
+            
+            <p>Include:</p>
+            <ul style="margin: 15px 0 15px 20px;">
+                <li>Your full name</li>
+                <li>Gift card type</li>
+                <li>Card value</li>
+                <li>Screenshot or photo of the card</li>
+            </ul>
+            
+            <p>Once received and verified, our team will confirm via email or Telegram within 24 hours.</p>
+            
+            <a href="mailto:giftcards@suprememotive.com?subject=Gift Card Submission" class="send-btn">
+                <i class="fas fa-paper-plane"></i> Send Gift Card
+            </a>
+        </section>
+        
+        <div class="section-header">
+            <i class="fas fa-comment-dots"></i>
+            <h2>Support Request Form</h2>
+        </div>
+        
+        <section class="form-section">
+            <form id="support-form">
+                <div class="form-group">
+                    <label class="form-label" for="name">Full Name</label>
+                    <input type="text" id="name" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="email">Email Address</label>
+                    <input type="email" id="email" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="category">Category</label>
+                    <select id="category" class="form-control" required>
+                        <option value="">Select a category</option>
+                        <option value="general">General Support</option>
+                        <option value="payment">Payment & Billing</option>
+                        <option value="giftcard">Gift Card</option>
+                        <option value="technical">Technical Issue</option>
+                        <option value="partnership">Partnership</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="message">Message</label>
+                    <textarea id="message" class="form-control" required></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">
+                    <span>Submit Request</span>
+                    <div class="spinner"></div>
+                </button>
+            </form>
+        </section>
+        
+        <div class="security-notice">
+            <p><strong>⚠️ Important:</strong> Supreme Motive never requests your passwords, private keys, or sensitive financial information. Always verify wallet addresses and emails before making any transaction or sending gift cards.</p>
+        </div>
+        
+        <footer>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-telegram"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Affiliate Program</a>
+                <a href="#">Blog</a>
+                <a href="#">About Us</a>
+            </div>
+            
+            <div class="copyright">
+                © 2025 Supreme Motive. All Rights Reserved.
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Copy button functionality
+        document.querySelectorAll('.copy-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const address = this.parentElement.querySelector('span').textContent;
+                navigator.clipboard.writeText(address).then(() => {
+                    const originalText = this.textContent;
+                    this.textContent = 'Copied!';
+                    setTimeout(() => {
+                        this.textContent = originalText;
+                    }, 2000);
+                });
+            });
+        });
+        
+        // Form submission handling
+        document.getElementById('support-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('.submit-btn');
+            const spinner = this.querySelector('.spinner');
+            const btnText = submitBtn.querySelector('span');
+            
+            // Show loading state
+            btnText.textContent = 'Sending...';
+            spinner.style.display = 'block';
+            submitBtn.disabled = true;
+            
+            // Simulate form submission (replace with actual API call)
+            setTimeout(() => {
+                // Reset form
+                this.reset();
+                
+                // Show success state
+                btnText.textContent = 'Message Sent!';
+                spinner.style.display = 'none';
+                
+                setTimeout(() => {
+                    btnText.textContent = 'Submit Request';
+                    submitBtn.disabled = false;
+                }, 3000);
+            }, 2000);
+        });
+        
+        // Initialize EmailJS (you would replace with your actual EmailJS public key)
+        // emailjs.init("YOUR_PUBLIC_KEY");
+    </script>
+</body>
+</html>
