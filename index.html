@@ -6,6 +6,7 @@
     <title>Supreme Motive - Fuel Your Mind. Fire Your Dreams.</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/appwrite@10.0.0"></script>
     <style>
         /* Reset and Base Styles */
         * {
@@ -87,6 +88,17 @@
         .btn:hover {
             transform: translateY(-3px);
             box-shadow: var(--shadow);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
         }
 
         /* Header */
@@ -587,6 +599,31 @@
             box-shadow: var(--shadow);
         }
 
+        /* Social Media Links */
+        .social-media-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-media-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .social-media-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
         /* Footer */
         footer {
             background: var(--dark);
@@ -714,6 +751,132 @@
             cursor: pointer;
         }
 
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--light);
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: var(--shadow);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        .dark-mode .close-modal {
+            color: var(--light);
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        /* User Profile */
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-left: 20px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .user-name {
+            font-weight: 600;
+        }
+
+        /* Notification Toggle */
+        .notification-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .toggle-slider {
+            background-color: var(--primary);
+        }
+
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .nav-toggle {
@@ -777,7 +940,12 @@
                     <li><a href="#community">Community</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
+                    <li><a href="#" id="support-link">Support</a></li>
                 </ul>
+                <div class="user-profile" id="user-profile" style="display: none;">
+                    <div class="user-avatar" id="user-avatar">U</div>
+                    <span class="user-name" id="user-name">User</span>
+                </div>
                 <button class="theme-toggle">
                     <i class="fas fa-moon"></i>
                 </button>
@@ -956,27 +1124,30 @@
                     </div>
                 </div>
                 <div class="community-form">
-                    <h3>Create Your Account</h3>
-                    <form>
+                    <h3 id="auth-form-title">Create Your Account</h3>
+                    <form id="auth-form">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Full Name">
+                            <input type="text" class="form-control" id="full-name" placeholder="Full Name">
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Email">
+                            <input type="email" class="form-control" id="email" placeholder="Email">
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Password">
+                            <input type="password" class="form-control" id="password" placeholder="Password">
                         </div>
-                        <button type="submit" class="btn" style="width: 100%;">Sign Up</button>
+                        <button type="submit" class="btn" style="width: 100%;" id="auth-submit-btn">Sign Up</button>
                     </form>
                     <div class="social-login">
-                        <button class="social-btn">
+                        <button class="social-btn" id="google-login">
                             <i class="fab fa-google"></i> Google
                         </button>
-                        <button class="social-btn">
+                        <button class="social-btn" id="telegram-login">
                             <i class="fab fa-telegram"></i> Telegram
                         </button>
                     </div>
+                    <p style="margin-top: 15px; text-align: center;">
+                        <a href="#" id="toggle-auth" style="color: white; text-decoration: underline;">Already have an account? Sign In</a>
+                    </p>
                 </div>
             </div>
         </div>
@@ -1035,6 +1206,13 @@
                             </div>
                         </div>
                     </div>
+                    <div class="social-media-links">
+                        <a href="#" class="social-media-btn"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-media-btn"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-media-btn"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-media-btn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-media-btn"><i class="fab fa-youtube"></i></a>
+                    </div>
                 </div>
                 <div class="contact-form">
                     <h3>Send Us a Message</h3>
@@ -1077,14 +1255,14 @@
                         <li><a href="#audio-video">Audio & Video</a></li>
                         <li><a href="#quotes">Quotes</a></li>
                         <li><a href="#community">Community</a></li>
+                        <li><a href="#" id="support-footer-link">Support</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
-                    <h3>Contact</h3>
+                    <h3>Legal</h3>
                     <ul class="footer-links">
-                        <li>Email: hello@suprememotive.com</li>
-                        <li>Phone: +1 (555) 123-4567</li>
-                        <li>Address: New York, NY</li>
+                        <li><a href="#" id="privacy-link">Privacy Policy</a></li>
+                        <li><a href="#" id="terms-link">Terms & Conditions</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -1112,130 +1290,443 @@
         <i class="fas fa-music"></i>
     </div>
 
+    <!-- User Profile Modal -->
+    <div class="modal" id="profile-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>User Profile</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" class="form-control" id="profile-name" placeholder="Full Name">
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" class="form-control" id="profile-email" placeholder="Email" readonly>
+            </div>
+            <div class="notification-toggle">
+                <label>Daily Quote Notifications</label>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="notification-toggle">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" id="save-profile">Save Changes</button>
+                <button class="btn btn-secondary" id="logout-btn">Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Support Modal -->
+    <div class="modal" id="support-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Support</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <p>If you need assistance with Supreme Motive, please contact our support team:</p>
+            <div class="contact-stats">
+                <div class="contact-stat">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <div>Email</div>
+                        <div>support@suprememotive.com</div>
+                    </div>
+                </div>
+                <div class="contact-stat">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <div>Phone</div>
+                        <div>+1 (555) 123-4567</div>
+                    </div>
+                </div>
+            </div>
+            <p>Our support team is available Monday to Friday, 9 AM to 6 PM EST.</p>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Modal -->
+    <div class="modal" id="privacy-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Privacy Policy</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <p>Last updated: October 2023</p>
+            <p>Supreme Motive is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you use our website and services.</p>
+            <h4>Information We Collect</h4>
+            <p>We collect personal information that you voluntarily provide to us when registering for an account, such as your name and email address.</p>
+            <h4>How We Use Your Information</h4>
+            <p>We use your information to provide and improve our services, communicate with you, and send you motivational content if you opt-in.</p>
+            <h4>Data Security</h4>
+            <p>We implement appropriate security measures to protect your personal information from unauthorized access.</p>
+            <p>For the full privacy policy, please contact us at privacy@suprememotive.com.</p>
+        </div>
+    </div>
+
+    <!-- Terms & Conditions Modal -->
+    <div class="modal" id="terms-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Terms & Conditions</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <p>Last updated: October 2023</p>
+            <p>By accessing and using Supreme Motive, you accept and agree to be bound by these Terms and Conditions.</p>
+            <h4>Use of Service</h4>
+            <p>You agree to use Supreme Motive only for lawful purposes and in a way that does not infringe the rights of others.</p>
+            <h4>Intellectual Property</h4>
+            <p>All content on Supreme Motive, including text, graphics, logos, and images, is the property of Supreme Motive and is protected by copyright laws.</p>
+            <h4>Account Responsibility</h4>
+            <p>You are responsible for maintaining the confidentiality of your account and password and for restricting access to your device.</p>
+            <p>For the full terms and conditions, please contact us at legal@suprememotive.com.</p>
+        </div>
+    </div>
+
     <script>
-        // Mobile Navigation Toggle
+        // Appwrite Configuration
+        const appwrite = new Appwrite();
+        appwrite
+            .setEndpoint('https://cloud.appwrite.io/v1') // Replace with your Appwrite endpoint
+            .setProject('supreme-motive'); // Replace with your Appwrite project ID
+
+        // DOM Elements
         const navToggle = document.querySelector('.nav-toggle');
         const nav = document.querySelector('nav ul');
-        
-        navToggle.addEventListener('click', () => {
-            nav.classList.toggle('active');
-        });
-
-        // Theme Toggle
         const themeToggle = document.querySelector('.theme-toggle');
         const themeIcon = themeToggle.querySelector('i');
-        
-        themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-            
-            if (document.body.classList.contains('dark-mode')) {
-                themeIcon.classList.remove('fa-moon');
-                themeIcon.classList.add('fa-sun');
-            } else {
-                themeIcon.classList.remove('fa-sun');
-                themeIcon.classList.add('fa-moon');
-            }
-        });
-
-        // Quote Carousel
         const quotes = document.querySelectorAll('.quote');
-        let currentQuote = 0;
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const articleCards = document.querySelectorAll('.article-card');
+        const generateBtn = document.querySelector('.generate-btn');
+        const quoteCards = document.querySelectorAll('.quote-card');
+        const quoteTexts = document.querySelectorAll('.quote-card .quote-text');
+        const quoteAuthors = document.querySelectorAll('.quote-card .quote-author');
+        const authForm = document.getElementById('auth-form');
+        const authFormTitle = document.getElementById('auth-form-title');
+        const authSubmitBtn = document.getElementById('auth-submit-btn');
+        const toggleAuth = document.getElementById('toggle-auth');
+        const fullNameInput = document.getElementById('full-name');
+        const userProfile = document.getElementById('user-profile');
+        const userAvatar = document.getElementById('user-avatar');
+        const userName = document.getElementById('user-name');
+        const profileModal = document.getElementById('profile-modal');
+        const closeModalBtns = document.querySelectorAll('.close-modal');
+        const saveProfileBtn = document.getElementById('save-profile');
+        const logoutBtn = document.getElementById('logout-btn');
+        const profileName = document.getElementById('profile-name');
+        const profileEmail = document.getElementById('profile-email');
+        const notificationToggle = document.getElementById('notification-toggle');
+        const supportLink = document.getElementById('support-link');
+        const supportFooterLink = document.getElementById('support-footer-link');
+        const supportModal = document.getElementById('support-modal');
+        const privacyLink = document.getElementById('privacy-link');
+        const privacyModal = document.getElementById('privacy-modal');
+        const termsLink = document.getElementById('terms-link');
+        const termsModal = document.getElementById('terms-modal');
+        const modals = document.querySelectorAll('.modal');
 
+        // State Variables
+        let currentQuote = 0;
+        let isSignUp = true;
+        let currentUser = null;
+
+        // Initialize App
+        function init() {
+            checkAuthStatus();
+            setupEventListeners();
+        }
+
+        // Check if user is already logged in
+        async function checkAuthStatus() {
+            try {
+                const user = await appwrite.account.get();
+                currentUser = user;
+                showUserProfile(user);
+            } catch (error) {
+                // User is not logged in
+                console.log('User not logged in');
+            }
+        }
+
+        // Setup Event Listeners
+        function setupEventListeners() {
+            // Mobile Navigation Toggle
+            navToggle.addEventListener('click', () => {
+                nav.classList.toggle('active');
+            });
+
+            // Theme Toggle
+            themeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                
+                if (document.body.classList.contains('dark-mode')) {
+                    themeIcon.classList.remove('fa-moon');
+                    themeIcon.classList.add('fa-sun');
+                } else {
+                    themeIcon.classList.remove('fa-sun');
+                    themeIcon.classList.add('fa-moon');
+                }
+            });
+
+            // Quote Carousel
+            setInterval(showNextQuote, 5000);
+
+            // Filter Articles
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    // Add active class to clicked button
+                    btn.classList.add('active');
+                    
+                    const filter = btn.getAttribute('data-filter');
+                    
+                    articleCards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // Generate New Quote
+            generateBtn.addEventListener('click', () => {
+                // Shuffle the newQuotes array
+                const newQuotes = [
+                    { text: "The way to get started is to quit talking and begin doing.", author: "- Walt Disney" },
+                    { text: "Life is what happens to you while you're busy making other plans.", author: "- John Lennon" },
+                    { text: "The mind is everything. What you think you become.", author: "- Buddha" }
+                ];
+                
+                const shuffledQuotes = [...newQuotes].sort(() => 0.5 - Math.random());
+                
+                // Update each quote card with a new quote
+                quoteCards.forEach((card, index) => {
+                    if (index < shuffledQuotes.length) {
+                        quoteTexts[index].textContent = shuffledQuotes[index].text;
+                        quoteAuthors[index].textContent = shuffledQuotes[index].author;
+                    }
+                });
+            });
+
+            // Smooth Scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Play Button Functionality
+            document.querySelectorAll('.play-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    alert('Playing motivational content!');
+                });
+            });
+
+            // Music Toggle
+            const musicToggle = document.querySelector('.music-toggle');
+            musicToggle.addEventListener('click', () => {
+                musicToggle.classList.toggle('active');
+                alert('Background music toggled ' + (musicToggle.classList.contains('active') ? 'on' : 'off'));
+            });
+
+            // Header Scroll Effect
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                if (window.scrollY > 100) {
+                    header.style.background = 'rgba(255,255,255,0.98)';
+                    if (document.body.classList.contains('dark-mode')) {
+                        header.style.background = 'rgba(26,26,46,0.98)';
+                    }
+                } else {
+                    header.style.background = 'rgba(255,255,255,0.95)';
+                    if (document.body.classList.contains('dark-mode')) {
+                        header.style.background = 'rgba(26,26,46,0.95)';
+                    }
+                }
+            });
+
+            // Auth Form Toggle
+            toggleAuth.addEventListener('click', (e) => {
+                e.preventDefault();
+                isSignUp = !isSignUp;
+                updateAuthForm();
+            });
+
+            // Auth Form Submission
+            authForm.addEventListener('submit', handleAuth);
+
+            // User Profile Click
+            userProfile.addEventListener('click', showProfileModal);
+
+            // Close Modal Buttons
+            closeModalBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    modals.forEach(modal => modal.style.display = 'none');
+                });
+            });
+
+            // Save Profile
+            saveProfileBtn.addEventListener('click', saveProfile);
+
+            // Logout
+            logoutBtn.addEventListener('click', logout);
+
+            // Support Link
+            supportLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                supportModal.style.display = 'flex';
+            });
+
+            supportFooterLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                supportModal.style.display = 'flex';
+            });
+
+            // Privacy Policy Link
+            privacyLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                privacyModal.style.display = 'flex';
+            });
+
+            // Terms & Conditions Link
+            termsLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                termsModal.style.display = 'flex';
+            });
+
+            // Close modal when clicking outside
+            modals.forEach(modal => {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.style.display = 'none';
+                    }
+                });
+            });
+        }
+
+        // Quote Carousel Function
         function showNextQuote() {
             quotes[currentQuote].classList.remove('active');
             currentQuote = (currentQuote + 1) % quotes.length;
             quotes[currentQuote].classList.add('active');
         }
 
-        setInterval(showNextQuote, 5000);
-
-        // Filter Articles
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const articleCards = document.querySelectorAll('.article-card');
-
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Remove active class from all buttons
-                filterBtns.forEach(b => b.classList.remove('active'));
-                // Add active class to clicked button
-                btn.classList.add('active');
-                
-                const filter = btn.getAttribute('data-filter');
-                
-                articleCards.forEach(card => {
-                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-            });
-        });
-
-        // Generate New Quote
-        const generateBtn = document.querySelector('.generate-btn');
-        const quoteCards = document.querySelectorAll('.quote-card');
-        const quoteTexts = document.querySelectorAll('.quote-card .quote-text');
-        const quoteAuthors = document.querySelectorAll('.quote-card .quote-author');
-        
-        const newQuotes = [
-            { text: "The way to get started is to quit talking and begin doing.", author: "- Walt Disney" },
-            { text: "Life is what happens to you while you're busy making other plans.", author: "- John Lennon" },
-            { text: "The mind is everything. What you think you become.", author: "- Buddha" }
-        ];
-
-        generateBtn.addEventListener('click', () => {
-            // Shuffle the newQuotes array
-            const shuffledQuotes = [...newQuotes].sort(() => 0.5 - Math.random());
-            
-            // Update each quote card with a new quote
-            quoteCards.forEach((card, index) => {
-                if (index < shuffledQuotes.length) {
-                    quoteTexts[index].textContent = shuffledQuotes[index].text;
-                    quoteAuthors[index].textContent = shuffledQuotes[index].author;
-                }
-            });
-        });
-
-        // Smooth Scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Play Button Functionality
-        document.querySelectorAll('.play-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                alert('Playing motivational content!');
-            });
-        });
-
-        // Music Toggle
-        const musicToggle = document.querySelector('.music-toggle');
-        musicToggle.addEventListener('click', () => {
-            musicToggle.classList.toggle('active');
-            alert('Background music toggled ' + (musicToggle.classList.contains('active') ? 'on' : 'off'));
-        });
-
-        // Header Scroll Effect
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(255,255,255,0.98)';
-                if (document.body.classList.contains('dark-mode')) {
-                    header.style.background = 'rgba(26,26,46,0.98)';
-                }
+        // Update Auth Form
+        function updateAuthForm() {
+            if (isSignUp) {
+                authFormTitle.textContent = 'Create Your Account';
+                authSubmitBtn.textContent = 'Sign Up';
+                toggleAuth.textContent = 'Already have an account? Sign In';
+                fullNameInput.style.display = 'block';
             } else {
-                header.style.background = 'rgba(255,255,255,0.95)';
-                if (document.body.classList.contains('dark-mode')) {
-                    header.style.background = 'rgba(26,26,46,0.95)';
-                }
+                authFormTitle.textContent = 'Sign In to Your Account';
+                authSubmitBtn.textContent = 'Sign In';
+                toggleAuth.textContent = "Don't have an account? Sign Up";
+                fullNameInput.style.display = 'none';
             }
-        });
+        }
+
+        // Handle Authentication
+        async function handleAuth(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const name = document.getElementById('full-name').value;
+            
+            try {
+                if (isSignUp) {
+                    // Sign Up
+                    const user = await appwrite.account.create(
+                        'unique()', // User ID (auto-generated)
+                        email,
+                        password,
+                        name
+                    );
+                    
+                    // Log the user in after sign up
+                    await appwrite.account.createEmailSession(email, password);
+                    currentUser = user;
+                    showUserProfile(user);
+                    alert('Account created successfully!');
+                } else {
+                    // Sign In
+                    const session = await appwrite.account.createEmailSession(email, password);
+                    const user = await appwrite.account.get();
+                    currentUser = user;
+                    showUserProfile(user);
+                    alert('Signed in successfully!');
+                }
+                
+                // Reset form
+                authForm.reset();
+            } catch (error) {
+                console.error('Authentication error:', error);
+                alert('Authentication failed. Please try again.');
+            }
+        }
+
+        // Show User Profile
+        function showUserProfile(user) {
+            userProfile.style.display = 'flex';
+            userAvatar.textContent = user.name ? user.name.charAt(0).toUpperCase() : 'U';
+            userName.textContent = user.name || 'User';
+        }
+
+        // Show Profile Modal
+        function showProfileModal() {
+            if (currentUser) {
+                profileName.value = currentUser.name || '';
+                profileEmail.value = currentUser.email || '';
+                profileModal.style.display = 'flex';
+                
+                // Check if user has notification preference saved
+                const notificationPref = localStorage.getItem('dailyNotifications');
+                notificationToggle.checked = notificationPref === 'true';
+            }
+        }
+
+        // Save Profile
+        function saveProfile() {
+            if (currentUser) {
+                // In a real app, you would update the user profile in Appwrite
+                // For this demo, we'll just update the display
+                currentUser.name = profileName.value;
+                userAvatar.textContent = currentUser.name ? currentUser.name.charAt(0).toUpperCase() : 'U';
+                userName.textContent = currentUser.name || 'User';
+                
+                // Save notification preference
+                localStorage.setItem('dailyNotifications', notificationToggle.checked);
+                
+                profileModal.style.display = 'none';
+                alert('Profile updated successfully!');
+            }
+        }
+
+        // Logout
+        async function logout() {
+            try {
+                await appwrite.account.deleteSession('current');
+                currentUser = null;
+                userProfile.style.display = 'none';
+                profileModal.style.display = 'none';
+                alert('Logged out successfully!');
+            } catch (error) {
+                console.error('Logout error:', error);
+            }
+        }
+
+        // Initialize the app
+        init();
     </script>
 </body>
 </html>
