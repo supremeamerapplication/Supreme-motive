@@ -6,78 +6,1290 @@
     <title>Supreme Motive - Fuel Your Mind. Fire Your Dreams.</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Your existing CSS remains the same, just adding a few fixes */
-        
-        /* Add focus styles for accessibility */
-        button:focus, 
-        a:focus, 
-        input:focus, 
-        textarea:focus {
-            outline: 2px solid var(--primary);
-            outline-offset: 2px;
+        :root {
+            --primary: #ff6b35;
+            --secondary: #ff8e53;
+            --accent: #6a11cb;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --gradient: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+            --card-gradient: linear-gradient(135deg, rgba(255,107,53,0.1) 0%, rgba(106,17,203,0.1) 100%);
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
         }
-        
-        /* Improve mobile nav active state */
-        nav.active {
+
+        /* FIXED: Proper dark mode selector */
+        body.dark-mode {
+            --dark: #f8f9fa;
+            --light: #1a1a2e;
+            --shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            transition: var(--transition);
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--gradient);
+            color: white;
+            border-radius: 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255,255,255,0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: var(--transition);
+        }
+
+        body.dark-mode header {
+            background: rgba(26,26,46,0.95);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .logo i {
+            color: var(--primary);
+            margin-right: 10px;
+            font-size: 1.8rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        body.dark-mode .nav-toggle {
+            color: var(--light);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--dark);
+            transition: var(--transition);
+        }
+
+        body.dark-mode .theme-toggle {
+            color: var(--light);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .quote-carousel {
+            margin-top: 50px;
+            font-style: italic;
+            font-size: 1.3rem;
+            position: relative;
+            height: 100px;
+        }
+
+        .quote {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .quote.active {
+            opacity: 1;
+        }
+
+        /* Motivation Hub */
+        .hub-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+
+        .filter-btn {
+            padding: 8px 20px;
+            background: var(--card-gradient);
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--gradient);
+            color: white;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .article-card {
+            background: var(--light);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .article-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .article-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .article-content {
+            padding: 20px;
+        }
+
+        .article-category {
+            display: inline-block;
+            padding: 5px 15px;
+            background: var(--gradient);
+            color: white;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+        }
+
+        .article-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        /* Audio & Video Section */
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .media-card {
+            background: var(--light);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .media-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .media-thumbnail {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .play-btn {
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--primary);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .play-btn:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+
+        .media-content {
+            padding: 20px;
+        }
+
+        .media-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        /* Quotes Section */
+        .quotes-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .quote-card {
+            background: var(--card-gradient);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 250px;
+            transition: var(--transition);
+        }
+
+        .quote-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .quote-text {
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .quote-author {
+            font-weight: 600;
+            text-align: right;
+            color: var(--primary);
+        }
+
+        .quote-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .action-btn {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: var(--dark);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        body.dark-mode .action-btn {
+            color: var(--light);
+        }
+
+        .action-btn:hover {
+            color: var(--primary);
+        }
+
+        .generate-btn {
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* Community Section */
+        .community {
+            background: var(--card-gradient);
+        }
+
+        .community-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .community-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .community-stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .community-form {
+            flex: 1;
+            min-width: 300px;
+            background: var(--light);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: var(--light);
+            color: var(--dark);
+            transition: var(--transition);
+        }
+
+        body.dark-mode .form-control {
+            border-color: #444;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .social-login {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-btn {
+            flex: 1;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .google-btn {
+            color: #DB4437;
+        }
+
+        .telegram-btn {
+            color: #0088cc;
+        }
+
+        /* About Section */
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text {
+            flex: 2;
+            min-width: 300px;
+        }
+
+        .founder-card {
+            flex: 1;
+            min-width: 250px;
+            background: var(--light);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .founder-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        body.dark-mode footer {
+            background: #0d0d1a;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 30px 0 0 30px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+        }
+
+        .newsletter-btn {
+            padding: 0 20px;
+            background: var(--primary);
+            border: none;
+            border-radius: 0 30px 30px 0;
+            color: white;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .newsletter-btn:hover {
+            background: var(--secondary);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 3rem;
+            }
+            
+            h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--light);
+                box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+                transform: translateY(-150%);
+                transition: var(--transition);
+                z-index: 999;
+            }
+            
+            body.dark-mode nav {
+                background: var(--dark);
+            }
+            
+            nav.active {
+                transform: translateY(0);
+            }
+            
+            nav ul {
+                flex-direction: column;
+                padding: 20px;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .btn {
+                padding: 10px 25px;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
             transform: translateY(0);
         }
-        
-        /* Ensure proper contrast in dark mode */
-        .dark-mode .form-control {
+
+        /* Progress Tracker */
+        .progress-tracker {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--light);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow);
+            z-index: 100;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        body.dark-mode .progress-tracker {
             background: var(--dark);
-            color: var(--light);
+        }
+
+        .progress-tracker:hover {
+            transform: scale(1.1);
+        }
+
+        .streak-count {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        /* Background Music Toggle */
+        .music-toggle {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            background: var(--light);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow);
+            z-index: 100;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        body.dark-mode .music-toggle {
+            background: var(--dark);
+        }
+
+        .music-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .music-toggle.active {
+            color: var(--primary);
         }
     </style>
 </head>
 <body>
-    <!-- Your existing HTML remains the same -->
-    
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <i class="fas fa-fire"></i>
+                Supreme Motive
+            </a>
+            <button class="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#motivation-hub">Motivation Hub</a></li>
+                    <li><a href="#audio-video">Audio & Video</a></li>
+                    <li><a href="#quotes">Quotes</a></li>
+                    <li><a href="#community">Community</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="theme-toggle">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <h1>Fuel Your Mind. Fire Your Dreams. Supreme Motive.</h1>
+            <p>Your daily dose of inspiration to unlock your potential and live a purpose-driven life.</p>
+            <a href="#community" class="btn">Join Our Tribe</a>
+            
+            <div class="quote-carousel">
+                <div class="quote active">
+                    <p>"The only way to do great work is to love what you do." - Steve Jobs</p>
+                </div>
+                <div class="quote">
+                    <p>"Success is not final, failure is not fatal: it is the courage to continue that counts." - Winston Churchill</p>
+                </div>
+                <div class="quote">
+                    <p>"Your time is limited, don't waste it living someone else's life." - Steve Jobs</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Motivation Hub -->
+    <section id="motivation-hub" class="hub">
+        <div class="container">
+            <h2>Motivation Hub</h2>
+            <div class="hub-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="success">Success</button>
+                <button class="filter-btn" data-filter="mindset">Mindset</button>
+                <button class="filter-btn" data-filter="money">Money</button>
+                <button class="filter-btn" data-filter="fitness">Fitness</button>
+                <button class="filter-btn" data-filter="purpose">Purpose</button>
+                <button class="filter-btn" data-filter="relationships">Relationships</button>
+            </div>
+            
+            <div class="articles-grid">
+                <div class="article-card" data-category="success">
+                    <div class="article-img" style="background-image: url('https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                    <div class="article-content">
+                        <span class="article-category">Success</span>
+                        <h3>5 Morning Habits of Highly Successful People</h3>
+                        <p>Discover the morning routines that set successful individuals up for productive days.</p>
+                        <a href="#" class="btn btn-outline">Read More</a>
+                    </div>
+                </div>
+                
+                <div class="article-card" data-category="mindset">
+                    <div class="article-img" style="background-image: url('https://images.unsplash.com/photo-1556155092-490a1ba16284?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                    <div class="article-content">
+                        <span class="article-category">Mindset</span>
+                        <h3>How to Develop a Growth Mindset</h3>
+                        <p>Learn the difference between fixed and growth mindsets and how to cultivate the latter.</p>
+                        <a href="#" class="btn btn-outline">Read More</a>
+                    </div>
+                </div>
+                
+                <div class="article-card" data-category="fitness">
+                    <div class="article-img" style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                    <div class="article-content">
+                        <span class="article-category">Fitness</span>
+                        <h3>The Mental Benefits of Regular Exercise</h3>
+                        <p>Explore how physical activity can boost your mental clarity, mood, and overall well-being.</p>
+                        <a href="#" class="btn btn-outline">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Audio & Video Section -->
+    <section id="audio-video" class="media">
+        <div class="container">
+            <h2>Audio & Video Motivation</h2>
+            <div class="media-grid">
+                <div class="media-card">
+                    <div class="media-thumbnail" style="background-image: url('https://images.unsplash.com/photo-1478737270239-2f02b77fc618?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+                        <div class="play-btn">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="media-content">
+                        <h3>Overcoming Self-Doubt</h3>
+                        <p>10-minute guided meditation to build confidence and overcome limiting beliefs.</p>
+                    </div>
+                </div>
+                
+                <div class="media-card">
+                    <div class="media-thumbnail" style="background-image: url('https://images.unsplash.com/photo-1494232410401-ad00d5433cfa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+                        <div class="play-btn">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="media-content">
+                        <h3>Morning Motivation Boost</h3>
+                        <p>Start your day with powerful affirmations and energy-boosting thoughts.</p>
+                    </div>
+                </div>
+                
+                <div class="media-card">
+                    <div class="media-thumbnail" style="background-image: url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+                        <div class="play-btn">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="media-content">
+                        <h3>Building Resilience in Tough Times</h3>
+                        <p>Learn strategies to bounce back stronger from life's challenges.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quotes Section -->
+    <section id="quotes" class="quotes">
+        <div class="container">
+            <h2>Daily Quotes & Affirmations</h2>
+            <div class="quotes-container">
+                <div class="quote-card">
+                    <div class="quote-text">
+                        "The future belongs to those who believe in the beauty of their dreams."
+                    </div>
+                    <div class="quote-author">- Eleanor Roosevelt</div>
+                    <div class="quote-actions">
+                        <button class="action-btn"><i class="far fa-heart"></i></button>
+                        <button class="action-btn"><i class="fas fa-share-alt"></i></button>
+                    </div>
+                </div>
+                
+                <div class="quote-card">
+                    <div class="quote-text">
+                        "It does not matter how slowly you go as long as you do not stop."
+                    </div>
+                    <div class="quote-author">- Confucius</div>
+                    <div class="quote-actions">
+                        <button class="action-btn"><i class="far fa-heart"></i></button>
+                        <button class="action-btn"><i class="fas fa-share-alt"></i></button>
+                    </div>
+                </div>
+                
+                <div class="quote-card">
+                    <div class="quote-text">
+                        "The only limit to our realization of tomorrow will be our doubts of today."
+                    </div>
+                    <div class="quote-author">- Franklin D. Roosevelt</div>
+                    <div class="quote-actions">
+                        <button class="action-btn"><i class="far fa-heart"></i></button>
+                        <button class="action-btn"><i class="fas fa-share-alt"></i></button>
+                    </div>
+                </div>
+            </div>
+            <button class="btn generate-btn">Generate New Quote</button>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section id="community" class="community">
+        <div class="container">
+            <h2>Join Our Community</h2>
+            <div class="community-content">
+                <div class="community-text">
+                    <h3>Become Part of the Supreme Motive Tribe</h3>
+                    <p>Connect with like-minded individuals on their personal development journey. Share your stories, get inspired, and grow together.</p>
+                    
+                    <div class="community-stats">
+                        <div class="stat">
+                            <div class="stat-number">10K+</div>
+                            <div class="stat-label">Members</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">Daily Posts</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Countries</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="community-form">
+                    <h3>Create Your Account</h3>
+                    <form id="register-form">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" class="form-control" placeholder="Enter your name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" placeholder="Enter your email">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" class="form-control" placeholder="Create a password">
+                        </div>
+                        <button type="submit" class="btn" style="width: 100%;">Sign Up</button>
+                    </form>
+                    
+                    <div class="social-login">
+                        <button class="social-btn google-btn">
+                            <i class="fab fa-google"></i> Google
+                        </button>
+                        <button class="social-btn telegram-btn">
+                            <i class="fab fa-telegram"></i> Telegram
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>About Us</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Our Mission</h3>
+                    <p>Supreme Motive was founded with a single purpose: to awaken purpose and drive in people across the world. We believe that everyone has untapped potential waiting to be unleashed.</p>
+                    <p>Through daily motivation, educational content, and a supportive community, we help individuals break through limitations and achieve their most ambitious goals.</p>
+                    <p>Our vision is a world where people live intentionally, pursue their passions fearlessly, and uplift others along their journey.</p>
+                </div>
+                
+                <div class="founder-card">
+                    <div class="founder-img">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Alex Johnson</h3>
+                    <p>Founder & CEO</p>
+                    <p class="quote-text">"Your potential is endless. Your journey begins with a single step forward."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <div class="community-content">
+                <div class="community-text">
+                    <h3>Get In Touch</h3>
+                    <p>Have questions, suggestions, or just want to share your success story? We'd love to hear from you!</p>
+                    
+                    <div class="community-stats">
+                        <div class="stat">
+                            <i class="fas fa-envelope" style="font-size: 2rem; color: var(--primary); margin-bottom: 10px;"></i>
+                            <div class="stat-label">hello@suprememotive.com</div>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-phone" style="font-size: 2rem; color: var(--primary); margin-bottom: 10px;"></i>
+                            <div class="stat-label">+1 (555) 123-4567</div>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-map-marker-alt" style="font-size: 2rem; color: var(--primary); margin-bottom: 10px;"></i>
+                            <div class="stat-label">New York, NY</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="community-form">
+                    <h3>Send Us a Message</h3>
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label for="contact-name">Your Name</label>
+                            <input type="text" id="contact-name" class="form-control" placeholder="Enter your name">
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-email">Your Email</label>
+                            <input type="email" id="contact-email" class="form-control" placeholder="Enter your email">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" class="form-control" rows="4" placeholder="Your message..."></textarea>
+                        </div>
+                        <button type="submit" class="btn" style="width: 100%;">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Supreme Motive</h3>
+                    <p>Fuel Your Mind. Fire Your Dreams. Join our community and unlock your potential today.</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#motivation-hub">Motivation Hub</a></li>
+                        <li><a href="#audio-video">Audio & Video</a></li>
+                        <li><a href="#quotes">Quotes</a></li>
+                        <li><a href="#community">Community</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Podcasts</a></li>
+                        <li><a href="#">Daily Challenges</a></li>
+                        <li><a href="#">Success Stories</a></li>
+                        <li><a href="#">Affiliate Program</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to receive daily motivation and updates.</p>
+                    <form class="newsletter-form">
+                        <input type="email" class="newsletter-input" placeholder="Your email address">
+                        <button type="submit" class="newsletter-btn"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Supreme Motive. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Progress Tracker -->
+    <div class="progress-tracker">
+        <div class="streak-count">7</div>
+    </div>
+
+    <!-- Background Music Toggle -->
+    <div class="music-toggle">
+        <i class="fas fa-music"></i>
+    </div>
+
     <script>
-        // Mobile Navigation Toggle - FIXED
+        // Mobile Navigation Toggle
         const navToggle = document.querySelector('.nav-toggle');
         const nav = document.querySelector('nav');
         const navLinks = document.querySelectorAll('nav a');
         
-        navToggle.addEventListener('click', () => {
-            nav.classList.toggle('active');
-        });
+        if (navToggle && nav) {
+            navToggle.addEventListener('click', () => {
+                nav.classList.toggle('active');
+            });
+        }
 
         // Close mobile nav when clicking links
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
-                nav.classList.remove('active');
-            });
-        });
-
-        // Smooth scrolling for anchor links - ADDED
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+                if (nav) nav.classList.remove('active');
             });
         });
 
         // Dark Mode Toggle
         const themeToggle = document.querySelector('.theme-toggle');
-        const themeIcon = themeToggle.querySelector('i');
-        
-        themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
+        if (themeToggle) {
+            const themeIcon = themeToggle.querySelector('i');
             
-            if (document.body.classList.contains('dark-mode')) {
-                themeIcon.classList.remove('fa-moon');
-                themeIcon.classList.add('fa-sun');
-            } else {
-                themeIcon.classList.remove('fa-sun');
-                themeIcon.classList.add('fa-moon');
-            }
-        });
+            themeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                
+                if (document.body.classList.contains('dark-mode')) {
+                    themeIcon.classList.remove('fa-moon');
+                    themeIcon.classList.add('fa-sun');
+                } else {
+                    themeIcon.classList.remove('fa-sun');
+                    themeIcon.classList.add('fa-moon');
+                }
+            });
+        }
 
         // Quote Carousel
         const quotes = document.querySelectorAll('.quote');
@@ -89,20 +1301,17 @@
             quotes[currentQuote].classList.add('active');
         }
 
-        // Only start carousel if quotes exist
         if (quotes.length > 0) {
             setInterval(showNextQuote, 5000);
         }
 
-        // Filter Articles - FIXED
+        // Filter Articles
         const filterBtns = document.querySelectorAll('.filter-btn');
         const articleCards = document.querySelectorAll('.article-card');
 
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                // Remove active class from all buttons
                 filterBtns.forEach(b => b.classList.remove('active'));
-                // Add active class to clicked button
                 btn.classList.add('active');
                 
                 const filter = btn.getAttribute('data-filter');
@@ -117,9 +1326,8 @@
             });
         });
 
-        // Generate New Quote - IMPROVED
+        // Generate New Quote
         const generateBtn = document.querySelector('.generate-btn');
-        
         if (generateBtn) {
             const quoteCards = document.querySelectorAll('.quote-card');
             const quoteTexts = document.querySelectorAll('.quote-card .quote-text');
@@ -135,50 +1343,18 @@
             ];
 
             generateBtn.addEventListener('click', () => {
-                // Shuffle the newQuotes array
                 const shuffledQuotes = [...newQuotes].sort(() => 0.5 - Math.random());
                 
-                // Update each quote card with a new quote
                 quoteCards.forEach((card, index) => {
                     if (index < shuffledQuotes.length) {
                         quoteTexts[index].textContent = shuffledQuotes[index].text;
                         quoteAuthors[index].textContent = shuffledQuotes[index].author;
-                        
-                        // Add animation effect
-                        card.style.transform = 'scale(0.95)';
-                        setTimeout(() => {
-                            card.style.transform = 'scale(1)';
-                        }, 150);
                     }
                 });
             });
         }
 
-        // Fade-in Animation on Scroll - FIXED
-        // Add fade-in class to sections first
-        document.querySelectorAll('section').forEach(section => {
-            section.classList.add('fade-in');
-        });
-
-        // Then set up the scroll observer
-        const fadeElements = document.querySelectorAll('.fade-in');
-        
-        const fadeInOnScroll = () => {
-            fadeElements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
-                
-                if (elementTop < window.innerHeight - elementVisible) {
-                    element.classList.add('visible');
-                }
-            });
-        };
-        
-        // Check on load and scroll
-        window.addEventListener('load', fadeInOnScroll);
-        window.addEventListener('scroll', fadeInOnScroll);
-
-        // Form Submissions - IMPROVED
+        // Form Submissions
         const registerForm = document.getElementById('register-form');
         const contactForm = document.getElementById('contact-form');
         
@@ -203,18 +1379,30 @@
         if (musicToggle) {
             musicToggle.addEventListener('click', () => {
                 musicToggle.classList.toggle('active');
-                // In a real implementation, this would toggle background music
-                alert('Background music toggled ' + (musicToggle.classList.contains('active') ? 'on' : 'off'));
             });
         }
 
-        // Like button functionality - ADDED
+        // Like button functionality
         const likeButtons = document.querySelectorAll('.action-btn .fa-heart');
         likeButtons.forEach(button => {
             button.addEventListener('click', function() {
                 this.classList.toggle('far');
                 this.classList.toggle('fas');
                 this.style.color = this.classList.contains('fas') ? 'var(--primary)' : '';
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
         });
     </script>
