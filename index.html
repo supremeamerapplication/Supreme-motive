@@ -257,6 +257,7 @@
             font-size: 1.3rem;
             position: relative;
             height: 100px;
+            overflow: hidden;
         }
 
         .quote {
@@ -265,11 +266,13 @@
             left: 0;
             width: 100%;
             opacity: 0;
-            transition: opacity 1s ease;
+            transition: opacity 1s ease-in-out;
+            transform: translateY(20px);
         }
 
         .quote.active {
             opacity: 1;
+            transform: translateY(0);
         }
 
         /* Motivation Hub */
@@ -806,6 +809,7 @@
             align-items: center;
             gap: 10px;
             margin-left: 20px;
+            cursor: pointer;
         }
 
         .user-avatar {
@@ -1437,6 +1441,7 @@
         function init() {
             checkAuthStatus();
             setupEventListeners();
+            startQuoteCarousel();
         }
 
         // Check if user is already logged in
@@ -1470,9 +1475,6 @@
                     themeIcon.classList.add('fa-moon');
                 }
             });
-
-            // Quote Carousel
-            setInterval(showNextQuote, 5000);
 
             // Filter Articles
             filterBtns.forEach(btn => {
@@ -1614,9 +1616,18 @@
         }
 
         // Quote Carousel Function
+        function startQuoteCarousel() {
+            setInterval(showNextQuote, 5000);
+        }
+
         function showNextQuote() {
+            // Remove active class from current quote
             quotes[currentQuote].classList.remove('active');
+            
+            // Move to next quote
             currentQuote = (currentQuote + 1) % quotes.length;
+            
+            // Add active class to next quote
             quotes[currentQuote].classList.add('active');
         }
 
