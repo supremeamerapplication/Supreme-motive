@@ -849,6 +849,7 @@
             gap: 10px;
             margin-left: 20px;
             cursor: pointer;
+            position: relative;
         }
 
         .user-avatar {
@@ -861,10 +862,50 @@
             justify-content: center;
             color: white;
             font-weight: bold;
+            transition: var(--transition);
+        }
+
+        .user-profile:hover .user-avatar {
+            transform: scale(1.1);
         }
 
         .user-name {
             font-weight: 600;
+        }
+
+        .user-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--light);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            padding: 10px 0;
+            min-width: 200px;
+            display: none;
+            z-index: 1000;
+        }
+
+        .user-profile:hover .user-dropdown {
+            display: block;
+        }
+
+        .user-dropdown-item {
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .user-dropdown-item:hover {
+            background: rgba(0,0,0,0.05);
+        }
+
+        .user-dropdown-item i {
+            width: 20px;
+            text-align: center;
         }
 
         /* Notification Toggle */
@@ -1335,6 +1376,142 @@
             100% { transform: scale(1); }
         }
 
+        /* User Goals Section */
+        .user-goals {
+            background: var(--light);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: var(--shadow);
+        }
+
+        .goal-form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .goal-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+
+        .goal-list {
+            list-style: none;
+        }
+
+        .goal-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .goal-item:last-child {
+            border-bottom: none;
+        }
+
+        .goal-checkbox {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .goal-checkbox.checked {
+            background: var(--primary);
+            color: white;
+        }
+
+        .goal-text {
+            flex: 1;
+        }
+
+        .goal-text.completed {
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+
+        /* User Preferences */
+        .preferences-section {
+            background: var(--light);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: var(--shadow);
+        }
+
+        .preference-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .preference-item:last-child {
+            border-bottom: none;
+        }
+
+        .preference-info h4 {
+            margin-bottom: 5px;
+        }
+
+        .preference-info p {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-bottom: 0;
+        }
+
+        /* User Activity Feed */
+        .activity-feed {
+            background: var(--light);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: var(--shadow);
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .activity-content {
+            flex: 1;
+        }
+
+        .activity-time {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .nav-toggle {
@@ -1403,6 +1580,10 @@
             .timeline-item:nth-child(even)::after {
                 left: 21px;
             }
+            
+            .user-dropdown {
+                right: -50px;
+            }
         }
     </style>
 </head>
@@ -1426,11 +1607,29 @@
                     <li><a href="#community">Community</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
-                    <li><a href="support.html" id="support-link">Support</a></li>
+                    <li><a href="#" id="support-link">Support</a></li>
                 </ul>
                 <div class="user-profile" id="user-profile" style="display: none;">
                     <div class="user-avatar" id="user-avatar">U</div>
                     <span class="user-name" id="user-name">User</span>
+                    <div class="user-dropdown">
+                        <div class="user-dropdown-item" id="profile-link">
+                            <i class="fas fa-user"></i>
+                            <span>My Profile</span>
+                        </div>
+                        <div class="user-dropdown-item" id="dashboard-link">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </div>
+                        <div class="user-dropdown-item" id="settings-link">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </div>
+                        <div class="user-dropdown-item" id="logout-link">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Logout</span>
+                        </div>
+                    </div>
                 </div>
                 <button class="theme-toggle">
                     <i class="fas fa-moon"></i>
@@ -1492,6 +1691,18 @@
                         <div class="xp-progress" id="xp-bar-progress" style="width: 65%;"></div>
                     </div>
                 </div>
+            </div>
+            
+            <!-- User Goals Section -->
+            <div class="user-goals" id="user-goals" style="display: none;">
+                <h3>My Personal Goals</h3>
+                <div class="goal-form">
+                    <input type="text" class="goal-input" id="goal-input" placeholder="Add a new goal...">
+                    <button class="btn" id="add-goal-btn">Add Goal</button>
+                </div>
+                <ul class="goal-list" id="goal-list">
+                    <!-- Goals will be added here dynamically -->
+                </ul>
             </div>
             
             <!-- Daily Challenge -->
@@ -1778,6 +1989,96 @@
                         <h3>Today</h3>
                         <p>Keep going! You're doing great.</p>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- User Preferences Section -->
+    <section class="preferences-section" id="user-preferences" style="display: none;">
+        <div class="container">
+            <h2>Your Preferences</h2>
+            <div class="preference-item">
+                <div class="preference-info">
+                    <h4>Daily Motivation Notifications</h4>
+                    <p>Receive daily motivational quotes and reminders</p>
+                </div>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="daily-notifications">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <div class="preference-item">
+                <div class="preference-info">
+                    <h4>Weekly Progress Reports</h4>
+                    <p>Get a summary of your weekly progress every Monday</p>
+                </div>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="weekly-reports">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <div class="preference-item">
+                <div class="preference-info">
+                    <h4>Community Updates</h4>
+                    <p>Receive notifications about community activities</p>
+                </div>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="community-updates">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <div class="preference-item">
+                <div class="preference-info">
+                    <h4>Personalized Content</h4>
+                    <p>Get content recommendations based on your interests</p>
+                </div>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="personalized-content" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+        </div>
+    </section>
+
+    <!-- User Activity Feed -->
+    <section class="activity-feed" id="user-activity" style="display: none;">
+        <div class="container">
+            <h2>Your Recent Activity</h2>
+            <div class="activity-item">
+                <div class="activity-icon">
+                    <i class="fas fa-fire"></i>
+                </div>
+                <div class="activity-content">
+                    <p>You completed today's challenge</p>
+                    <div class="activity-time">2 hours ago</div>
+                </div>
+            </div>
+            <div class="activity-item">
+                <div class="activity-icon">
+                    <i class="fas fa-book"></i>
+                </div>
+                <div class="activity-content">
+                    <p>You read "5 Morning Habits of Successful People"</p>
+                    <div class="activity-time">1 day ago</div>
+                </div>
+            </div>
+            <div class="activity-item">
+                <div class="activity-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <div class="activity-content">
+                    <p>You liked a motivational quote</p>
+                    <div class="activity-time">2 days ago</div>
+                </div>
+            </div>
+            <div class="activity-item">
+                <div class="activity-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <div class="activity-content">
+                    <p>You reached a 7-day streak milestone</p>
+                    <div class="activity-time">3 days ago</div>
                 </div>
             </div>
         </div>
@@ -2103,6 +2404,16 @@
         const coachMessage = document.getElementById('coach-message');
         const coachInput = document.getElementById('coach-input');
         const coachSend = document.getElementById('coach-send');
+        const userGoals = document.getElementById('user-goals');
+        const goalInput = document.getElementById('goal-input');
+        const addGoalBtn = document.getElementById('add-goal-btn');
+        const goalList = document.getElementById('goal-list');
+        const userPreferences = document.getElementById('user-preferences');
+        const userActivity = document.getElementById('user-activity');
+        const profileLink = document.getElementById('profile-link');
+        const dashboardLink = document.getElementById('dashboard-link');
+        const settingsLink = document.getElementById('settings-link');
+        const logoutLink = document.getElementById('logout-link');
 
         // State Variables
         let currentQuote = 0;
@@ -2116,6 +2427,7 @@
         let totalCompletedChallenges = 12;
         let userXP = 65;
         let userCurrentLevel = 3;
+        let userGoalsList = [];
 
         // Initialize App
         function init() {
@@ -2126,6 +2438,7 @@
             updateDailyChallenge();
             createProgressChart();
             setupAIcoach();
+            loadUserGoals();
         }
 
         // Check if user is already logged in (simulated)
@@ -2136,6 +2449,9 @@
                 currentUser = JSON.parse(userData);
                 showUserProfile(currentUser);
                 personalDashboard.style.display = 'block';
+                userGoals.style.display = 'block';
+                userPreferences.style.display = 'block';
+                userActivity.style.display = 'block';
             }
         }
 
@@ -2336,6 +2652,7 @@
 
             // Logout
             logoutBtn.addEventListener('click', logout);
+            logoutLink.addEventListener('click', logout);
 
             // Support Link
             supportLink.addEventListener('click', (e) => {
@@ -2457,6 +2774,23 @@
                     selectMood(mood, this);
                 });
             });
+
+            // Add Goal
+            addGoalBtn.addEventListener('click', addGoal);
+            goalInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    addGoal();
+                }
+            });
+
+            // User dropdown navigation
+            profileLink.addEventListener('click', showProfileModal);
+            dashboardLink.addEventListener('click', () => {
+                document.getElementById('personal-dashboard').scrollIntoView({ behavior: 'smooth' });
+            });
+            settingsLink.addEventListener('click', () => {
+                document.getElementById('user-preferences').scrollIntoView({ behavior: 'smooth' });
+            });
         }
 
         // Quote Carousel Function
@@ -2529,8 +2863,11 @@
                     showUserProfile(currentUser);
                     showToast(isSignUp ? 'Account created successfully!' : 'Signed in successfully!', 'success');
                     
-                    // Show personal dashboard
+                    // Show personal dashboard and user sections
                     personalDashboard.style.display = 'block';
+                    userGoals.style.display = 'block';
+                    userPreferences.style.display = 'block';
+                    userActivity.style.display = 'block';
                     
                     // Reset form
                     authForm.reset();
@@ -2595,6 +2932,9 @@
             userProfile.style.display = 'none';
             profileModal.style.display = 'none';
             personalDashboard.style.display = 'none';
+            userGoals.style.display = 'none';
+            userPreferences.style.display = 'none';
+            userActivity.style.display = 'none';
             showToast('Logged out successfully!', 'info');
         }
 
@@ -2862,6 +3202,93 @@
             
             // Return a random response for demo purposes
             return responses[Math.floor(Math.random() * responses.length)];
+        }
+
+        // Load User Goals
+        function loadUserGoals() {
+            const savedGoals = localStorage.getItem('userGoals');
+            if (savedGoals) {
+                userGoalsList = JSON.parse(savedGoals);
+                renderGoals();
+            }
+        }
+
+        // Add Goal
+        function addGoal() {
+            const goalText = goalInput.value.trim();
+            if (!goalText) return;
+            
+            const newGoal = {
+                id: Date.now(),
+                text: goalText,
+                completed: false
+            };
+            
+            userGoalsList.push(newGoal);
+            saveGoals();
+            renderGoals();
+            
+            goalInput.value = '';
+            showToast('Goal added successfully!', 'success');
+        }
+
+        // Toggle Goal Completion
+        function toggleGoal(id) {
+            userGoalsList = userGoalsList.map(goal => {
+                if (goal.id === id) {
+                    return { ...goal, completed: !goal.completed };
+                }
+                return goal;
+            });
+            
+            saveGoals();
+            renderGoals();
+            
+            const goal = userGoalsList.find(g => g.id === id);
+            showToast(`Goal ${goal.completed ? 'completed' : 'marked as incomplete'}!`, 'success');
+        }
+
+        // Delete Goal
+        function deleteGoal(id) {
+            userGoalsList = userGoalsList.filter(goal => goal.id !== id);
+            saveGoals();
+            renderGoals();
+            showToast('Goal deleted!', 'info');
+        }
+
+        // Save Goals
+        function saveGoals() {
+            localStorage.setItem('userGoals', JSON.stringify(userGoalsList));
+        }
+
+        // Render Goals
+        function renderGoals() {
+            goalList.innerHTML = '';
+            
+            userGoalsList.forEach(goal => {
+                const goalItem = document.createElement('li');
+                goalItem.className = 'goal-item';
+                
+                const checkbox = document.createElement('div');
+                checkbox.className = `goal-checkbox ${goal.completed ? 'checked' : ''}`;
+                checkbox.innerHTML = goal.completed ? '<i class="fas fa-check"></i>' : '';
+                checkbox.addEventListener('click', () => toggleGoal(goal.id));
+                
+                const text = document.createElement('div');
+                text.className = `goal-text ${goal.completed ? 'completed' : ''}`;
+                text.textContent = goal.text;
+                
+                const deleteBtn = document.createElement('button');
+                deleteBtn.className = 'action-btn';
+                deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
+                deleteBtn.addEventListener('click', () => deleteGoal(goal.id));
+                
+                goalItem.appendChild(checkbox);
+                goalItem.appendChild(text);
+                goalItem.appendChild(deleteBtn);
+                
+                goalList.appendChild(goalItem);
+            });
         }
 
         // Initialize the app
