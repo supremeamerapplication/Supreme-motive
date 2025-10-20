@@ -6,8 +6,8 @@
     <title>Supreme Motive - Fuel Your Mind. Fire Your Dreams.</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/appwrite@10.0.0"></script>
     <style>
+        /* All the CSS styles from the previous code remain the same */
         /* Reset and Base Styles */
         * {
             margin: 0;
@@ -1390,12 +1390,6 @@
     </div>
 
     <script>
-        // Appwrite Configuration
-        const appwrite = new Appwrite();
-        appwrite
-            .setEndpoint('https://cloud.appwrite.io/v1') // Replace with your Appwrite endpoint
-            .setProject('supreme-motive'); // Replace with your Appwrite project ID
-
         // DOM Elements
         const navToggle = document.querySelector('.nav-toggle');
         const nav = document.querySelector('nav ul');
@@ -1444,15 +1438,13 @@
             startQuoteCarousel();
         }
 
-        // Check if user is already logged in
-        async function checkAuthStatus() {
-            try {
-                const user = await appwrite.account.get();
-                currentUser = user;
-                showUserProfile(user);
-            } catch (error) {
-                // User is not logged in
-                console.log('User not logged in');
+        // Check if user is already logged in (simulated)
+        function checkAuthStatus() {
+            // For demo purposes, check if user data exists in localStorage
+            const userData = localStorage.getItem('supremeMotiveUser');
+            if (userData) {
+                currentUser = JSON.parse(userData);
+                showUserProfile(currentUser);
             }
         }
 
@@ -1646,37 +1638,38 @@
             }
         }
 
-        // Handle Authentication
-        async function handleAuth(e) {
+        // Handle Authentication (simulated)
+        function handleAuth(e) {
             e.preventDefault();
             
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             const name = document.getElementById('full-name').value;
             
+            // Simple validation
+            if (!email || !password) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            if (isSignUp && !name) {
+                alert('Please enter your full name');
+                return;
+            }
+            
             try {
-                if (isSignUp) {
-                    // Sign Up
-                    const user = await appwrite.account.create(
-                        'unique()', // User ID (auto-generated)
-                        email,
-                        password,
-                        name
-                    );
-                    
-                    // Log the user in after sign up
-                    await appwrite.account.createEmailSession(email, password);
-                    currentUser = user;
-                    showUserProfile(user);
-                    alert('Account created successfully!');
-                } else {
-                    // Sign In
-                    const session = await appwrite.account.createEmailSession(email, password);
-                    const user = await appwrite.account.get();
-                    currentUser = user;
-                    showUserProfile(user);
-                    alert('Signed in successfully!');
-                }
+                // For demo purposes, simulate user creation/login
+                currentUser = {
+                    id: 'user_' + Date.now(),
+                    name: isSignUp ? name : 'User',
+                    email: email
+                };
+                
+                // Save to localStorage
+                localStorage.setItem('supremeMotiveUser', JSON.stringify(currentUser));
+                
+                showUserProfile(currentUser);
+                alert(isSignUp ? 'Account created successfully!' : 'Signed in successfully!');
                 
                 // Reset form
                 authForm.reset();
@@ -1709,11 +1702,13 @@
         // Save Profile
         function saveProfile() {
             if (currentUser) {
-                // In a real app, you would update the user profile in Appwrite
-                // For this demo, we'll just update the display
+                // Update user data
                 currentUser.name = profileName.value;
                 userAvatar.textContent = currentUser.name ? currentUser.name.charAt(0).toUpperCase() : 'U';
                 userName.textContent = currentUser.name || 'User';
+                
+                // Save to localStorage
+                localStorage.setItem('supremeMotiveUser', JSON.stringify(currentUser));
                 
                 // Save notification preference
                 localStorage.setItem('dailyNotifications', notificationToggle.checked);
@@ -1724,16 +1719,12 @@
         }
 
         // Logout
-        async function logout() {
-            try {
-                await appwrite.account.deleteSession('current');
-                currentUser = null;
-                userProfile.style.display = 'none';
-                profileModal.style.display = 'none';
-                alert('Logged out successfully!');
-            } catch (error) {
-                console.error('Logout error:', error);
-            }
+        function logout() {
+            currentUser = null;
+            localStorage.removeItem('supremeMotiveUser');
+            userProfile.style.display = 'none';
+            profileModal.style.display = 'none';
+            alert('Logged out successfully!');
         }
 
         // Initialize the app
