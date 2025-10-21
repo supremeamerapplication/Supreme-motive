@@ -1512,6 +1512,351 @@
             opacity: 0.7;
         }
 
+        /* Enhanced User Profile */
+        .user-profile-card {
+            background: var(--light);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .profile-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .profile-edit {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            background: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .profile-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .profile-stat {
+            text-align: center;
+            padding: 15px;
+            background: rgba(0,0,0,0.05);
+            border-radius: 10px;
+        }
+
+        .profile-stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .profile-stat-label {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Enhanced Personalization */
+        .personalization-section {
+            background: var(--light);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: var(--shadow);
+        }
+
+        .theme-options {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .theme-option {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .theme-option:hover {
+            transform: scale(1.1);
+        }
+
+        .theme-option.selected {
+            border-color: var(--primary);
+        }
+
+        .theme-1 {
+            background: linear-gradient(135deg, #6A11CB 0%, #FF6B35 100%);
+        }
+
+        .theme-2 {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        }
+
+        .theme-3 {
+            background: linear-gradient(135deg, #fc466b 0%, #3f5efb 100%);
+        }
+
+        .theme-4 {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        /* Enhanced Community Features */
+        .community-feed {
+            background: var(--light);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: var(--shadow);
+        }
+
+        .feed-item {
+            display: flex;
+            gap: 15px;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .feed-item:last-child {
+            border-bottom: none;
+        }
+
+        .feed-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .feed-content {
+            flex: 1;
+        }
+
+        .feed-user {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .feed-text {
+            margin-bottom: 10px;
+        }
+
+        .feed-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .feed-action {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .feed-action:hover {
+            color: var(--primary);
+        }
+
+        /* Enhanced Progress Tracking */
+        .enhanced-progress {
+            background: var(--light);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: var(--shadow);
+        }
+
+        .progress-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .progress-metric {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0,0,0,0.05);
+            border-radius: 10px;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Enhanced Motivation Tools */
+        .motivation-tools {
+            background: var(--light);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: var(--shadow);
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .tool-card {
+            background: rgba(0,0,0,0.05);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            background: var(--gradient);
+            color: white;
+        }
+
+        .tool-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .tool-card:hover .tool-icon {
+            color: white;
+        }
+
+        /* Enhanced AI Coach */
+        .enhanced-ai-coach {
+            background: var(--light);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: var(--shadow);
+        }
+
+        .coach-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .coach-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .coach-conversation {
+            background: rgba(0,0,0,0.05);
+            border-radius: 10px;
+            padding: 20px;
+            height: 300px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            display: flex;
+        }
+
+        .message.user {
+            justify-content: flex-end;
+        }
+
+        .message.coach {
+            justify-content: flex-start;
+        }
+
+        .message-bubble {
+            max-width: 70%;
+            padding: 10px 15px;
+            border-radius: 15px;
+        }
+
+        .message.user .message-bubble {
+            background: var(--primary);
+            color: white;
+            border-bottom-right-radius: 5px;
+        }
+
+        .message.coach .message-bubble {
+            background: rgba(0,0,0,0.1);
+            border-bottom-left-radius: 5px;
+        }
+
+        .coach-suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .suggestion {
+            background: rgba(0,0,0,0.05);
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .suggestion:hover {
+            background: var(--primary);
+            color: white;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .nav-toggle {
@@ -1583,6 +1928,14 @@
             
             .user-dropdown {
                 right: -50px;
+            }
+            
+            .profile-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .progress-metrics {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -1693,6 +2046,35 @@
                 </div>
             </div>
             
+            <!-- Enhanced User Profile -->
+            <div class="user-profile-card" id="user-profile-card" style="display: none;">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <span id="profile-avatar-text">U</span>
+                        <div class="profile-edit">
+                            <i class="fas fa-pencil-alt"></i>
+                        </div>
+                    </div>
+                    <h3 id="profile-display-name">User Name</h3>
+                    <p id="profile-bio">Motivation enthusiast on a journey to self-improvement</p>
+                </div>
+                <div class="profile-stats">
+                    <div class="profile-stat">
+                        <div class="profile-stat-value" id="profile-streak">7</div>
+                        <div class="profile-stat-label">Day Streak</div>
+                    </div>
+                    <div class="profile-stat">
+                        <div class="profile-stat-value" id="profile-goals">5</div>
+                        <div class="profile-stat-label">Active Goals</div>
+                    </div>
+                    <div class="profile-stat">
+                        <div class="profile-stat-value" id="profile-badges">3</div>
+                        <div class="profile-stat-label">Badges</div>
+                    </div>
+                </div>
+                <button class="btn" id="edit-profile-btn">Edit Profile</button>
+            </div>
+            
             <!-- User Goals Section -->
             <div class="user-goals" id="user-goals" style="display: none;">
                 <h3>My Personal Goals</h3>
@@ -1793,110 +2175,102 @@
         </div>
     </section>
 
-    <!-- Audio & Video Section -->
-    <section id="audio-video" class="media">
+    <!-- Enhanced Progress Tracking -->
+    <section class="enhanced-progress">
         <div class="container">
-            <h2>Audio & Video Motivation</h2>
-            <div class="media-grid">
-                <div class="media-card">
-                    <div class="media-thumbnail" style="background-image: url('https://images.unsplash.com/photo-1478737270239-2f02b77fc618?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')">
-                        <div class="play-btn">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                    <div class="media-content">
-                        <h3>Overcoming Self-Doubt</h3>
-                        <p>10-minute guided meditation to build confidence and overcome limiting beliefs.</p>
-                        <div class="media-actions">
-                            <button class="action-btn save-media" data-id="1"><i class="far fa-bookmark"></i></button>
-                        </div>
-                    </div>
+            <h2>Your Progress Journey</h2>
+            <div class="progress-metrics">
+                <div class="progress-metric">
+                    <div class="metric-value" id="progress-streak">7</div>
+                    <div class="metric-label">Current Streak</div>
                 </div>
-                <div class="media-card">
-                    <div class="media-thumbnail" style="background-image: url('https://images.unsplash.com/photo-1494232410401-ad00d5433cfa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')">
-                        <div class="play-btn">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                    <div class="media-content">
-                        <h3>Morning Motivation Boost</h3>
-                        <p>Start your day with powerful affirmations and energy-boosting thoughts.</p>
-                        <div class="media-actions">
-                            <button class="action-btn save-media" data-id="2"><i class="far fa-bookmark"></i></button>
-                        </div>
-                    </div>
+                <div class="progress-metric">
+                    <div class="metric-value" id="progress-level">3</div>
+                    <div class="metric-label">Motivation Level</div>
                 </div>
-                <div class="media-card">
-                    <div class="media-thumbnail" style="background-image: url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')">
-                        <div class="play-btn">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                    <div class="media-content">
-                        <h3>Building Resilience</h3>
-                        <p>Learn strategies to bounce back stronger from life's challenges.</p>
-                        <div class="media-actions">
-                            <button class="action-btn save-media" data-id="3"><i class="far fa-bookmark"></i></button>
-                        </div>
-                    </div>
+                <div class="progress-metric">
+                    <div class="metric-value" id="progress-consistency">85%</div>
+                    <div class="metric-label">Weekly Consistency</div>
                 </div>
+                <div class="progress-metric">
+                    <div class="metric-value" id="progress-growth">+12%</div>
+                    <div class="metric-label">Growth This Month</div>
+                </div>
+            </div>
+            
+            <div class="chart-container" id="progress-chart">
+                <!-- Chart bars will be generated by JavaScript -->
             </div>
         </div>
     </section>
 
-    <!-- Quotes Section -->
-    <section id="quotes" class="quotes">
+    <!-- Enhanced AI Coach -->
+    <section class="enhanced-ai-coach">
         <div class="container">
-            <h2>Daily Quotes & Affirmations</h2>
-            
-            <!-- AI Coach -->
-            <div class="ai-coach">
-                <h3>Motivation Coach</h3>
-                <div class="coach-message" id="coach-message">
-                    Hi there! I'm your motivation coach. How can I help you stay motivated today?
+            <h2>Your Personal Motivation Coach</h2>
+            <div class="coach-header">
+                <div class="coach-avatar">
+                    <i class="fas fa-robot"></i>
                 </div>
-                <div class="coach-input">
-                    <input type="text" id="coach-input" placeholder="Ask me for advice or motivation...">
-                    <button class="btn" id="coach-send">Send</button>
+                <div>
+                    <h3>MotivAI</h3>
+                    <p>Your AI-powered motivation assistant</p>
                 </div>
             </div>
-            
-            <div class="quotes-container">
-                <div class="quote-card interactive-quote">
-                    <div class="quote-text">
-                        "The future belongs to those who believe in the beauty of their dreams."
-                    </div>
-                    <div class="quote-author">- Eleanor Roosevelt</div>
-                    <div class="quote-actions">
-                        <button class="action-btn like-quote"><i class="far fa-heart"></i></button>
-                        <button class="action-btn share-quote"><i class="fas fa-share-alt"></i></button>
-                        <button class="action-btn copy-quote"><i class="far fa-copy"></i></button>
-                    </div>
-                </div>
-                <div class="quote-card interactive-quote">
-                    <div class="quote-text">
-                        "It does not matter how slowly you go as long as you do not stop."
-                    </div>
-                    <div class="quote-author">- Confucius</div>
-                    <div class="quote-actions">
-                        <button class="action-btn like-quote"><i class="far fa-heart"></i></button>
-                        <button class="action-btn share-quote"><i class="fas fa-share-alt"></i></button>
-                        <button class="action-btn copy-quote"><i class="far fa-copy"></i></button>
-                    </div>
-                </div>
-                <div class="quote-card interactive-quote">
-                    <div class="quote-text">
-                        "The only limit to our realization of tomorrow will be our doubts of today."
-                    </div>
-                    <div class="quote-author">- Franklin D. Roosevelt</div>
-                    <div class="quote-actions">
-                        <button class="action-btn like-quote"><i class="far fa-heart"></i></button>
-                        <button class="action-btn share-quote"><i class="fas fa-share-alt"></i></button>
-                        <button class="action-btn copy-quote"><i class="far fa-copy"></i></button>
+            <div class="coach-conversation" id="coach-conversation">
+                <div class="message coach">
+                    <div class="message-bubble">
+                        Hi there! I'm MotivAI, your personal motivation coach. How can I help you stay motivated today?
                     </div>
                 </div>
             </div>
-            <button class="btn generate-btn">Generate New Quote</button>
+            <div class="coach-suggestions">
+                <div class="suggestion" data-suggestion="I need motivation to work out">I need motivation to work out</div>
+                <div class="suggestion" data-suggestion="I'm feeling demotivated">I'm feeling demotivated</div>
+                <div class="suggestion" data-suggestion="Help me set goals">Help me set goals</div>
+                <div class="suggestion" data-suggestion="Give me a daily challenge">Give me a daily challenge</div>
+            </div>
+            <div class="coach-input">
+                <input type="text" id="coach-input" placeholder="Ask your coach anything...">
+                <button class="btn" id="coach-send">Send</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Motivation Tools -->
+    <section class="motivation-tools">
+        <div class="container">
+            <h2>Motivation Tools</h2>
+            <div class="tools-grid">
+                <div class="tool-card" id="vision-board-tool">
+                    <div class="tool-icon">
+                        <i class="fas fa-images"></i>
+                    </div>
+                    <h3>Vision Board</h3>
+                    <p>Create your digital vision board with goals and aspirations</p>
+                </div>
+                <div class="tool-card" id="habit-tracker-tool">
+                    <div class="tool-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3>Habit Tracker</h3>
+                    <p>Track your daily habits and build consistency</p>
+                </div>
+                <div class="tool-card" id="gratitude-journal-tool">
+                    <div class="tool-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3>Gratitude Journal</h3>
+                    <p>Practice daily gratitude for improved mindset</p>
+                </div>
+                <div class="tool-card" id="meditation-timer-tool">
+                    <div class="tool-icon">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                    <h3>Meditation Timer</h3>
+                    <p>Guided meditation sessions for mental clarity</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1956,55 +2330,96 @@
         </div>
     </section>
 
-    <!-- Progress Visualization -->
-    <section class="progress-chart">
+    <!-- Enhanced Community Feed -->
+    <section class="community-feed">
         <div class="container">
-            <h2>Your Progress Journey</h2>
-            <div class="chart-container" id="progress-chart">
-                <!-- Chart bars will be generated by JavaScript -->
+            <h2>Community Inspiration</h2>
+            <div class="feed-item">
+                <div class="feed-avatar">JD</div>
+                <div class="feed-content">
+                    <div class="feed-user">John Doe</div>
+                    <div class="feed-text">Just completed my 30-day meditation challenge! Feeling more focused and centered than ever before. Consistency really does pay off! 🧘‍♂️</div>
+                    <div class="feed-actions">
+                        <div class="feed-action">
+                            <i class="far fa-heart"></i>
+                            <span>24</span>
+                        </div>
+                        <div class="feed-action">
+                            <i class="far fa-comment"></i>
+                            <span>8</span>
+                        </div>
+                        <div class="feed-action">
+                            <i class="fas fa-share"></i>
+                        </div>
+                    </div>
+                </div>
             </div>
-            
-            <!-- Interactive Timeline -->
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Day 1</h3>
-                        <p>Started your motivation journey</p>
+            <div class="feed-item">
+                <div class="feed-avatar">AS</div>
+                <div class="feed-content">
+                    <div class="feed-user">Alex Smith</div>
+                    <div class="feed-text">Started implementing the 5 AM club routine from the article I read here. The first week was tough, but now I'm getting more done before 8 AM than I used to all day! ⏰</div>
+                    <div class="feed-actions">
+                        <div class="feed-action">
+                            <i class="far fa-heart"></i>
+                            <span>42</span>
+                        </div>
+                        <div class="feed-action">
+                            <i class="far fa-comment"></i>
+                            <span>15</span>
+                        </div>
+                        <div class="feed-action">
+                            <i class="fas fa-share"></i>
+                        </div>
                     </div>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Day 3</h3>
-                        <p>Completed first challenge</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Day 7</h3>
-                        <p>Reached 7-day streak milestone</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Today</h3>
-                        <p>Keep going! You're doing great.</p>
+            </div>
+            <div class="feed-item">
+                <div class="feed-avatar">MJ</div>
+                <div class="feed-content">
+                    <div class="feed-user">Maria Johnson</div>
+                    <div class="feed-text">Just hit my 100-day streak on Supreme Motive! This community has been instrumental in keeping me accountable and motivated. Thank you all! 🔥</div>
+                    <div class="feed-actions">
+                        <div class="feed-action">
+                            <i class="far fa-heart"></i>
+                            <span>67</span>
+                        </div>
+                        <div class="feed-action">
+                            <i class="far fa-comment"></i>
+                            <span>22</span>
+                        </div>
+                        <div class="feed-action">
+                            <i class="fas fa-share"></i>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- User Preferences Section -->
-    <section class="preferences-section" id="user-preferences" style="display: none;">
+    <!-- Personalization Section -->
+    <section class="personalization-section">
         <div class="container">
-            <h2>Your Preferences</h2>
+            <h2>Personalize Your Experience</h2>
+            <div class="preference-item">
+                <div class="preference-info">
+                    <h4>Theme Customization</h4>
+                    <p>Choose a color theme that inspires you</p>
+                </div>
+                <div class="theme-options">
+                    <div class="theme-option theme-1 selected"></div>
+                    <div class="theme-option theme-2"></div>
+                    <div class="theme-option theme-3"></div>
+                    <div class="theme-option theme-4"></div>
+                </div>
+            </div>
             <div class="preference-item">
                 <div class="preference-info">
                     <h4>Daily Motivation Notifications</h4>
                     <p>Receive daily motivational quotes and reminders</p>
                 </div>
                 <label class="toggle-switch">
-                    <input type="checkbox" id="daily-notifications">
+                    <input type="checkbox" id="daily-notifications" checked>
                     <span class="toggle-slider"></span>
                 </label>
             </div>
@@ -2014,7 +2429,7 @@
                     <p>Get a summary of your weekly progress every Monday</p>
                 </div>
                 <label class="toggle-switch">
-                    <input type="checkbox" id="weekly-reports">
+                    <input type="checkbox" id="weekly-reports" checked>
                     <span class="toggle-slider"></span>
                 </label>
             </div>
@@ -2257,6 +2672,10 @@
                 <label>Email</label>
                 <input type="email" class="form-control" id="profile-email" placeholder="Email" readonly>
             </div>
+            <div class="form-group">
+                <label>Bio</label>
+                <textarea class="form-control" id="profile-bio-input" placeholder="Tell us about yourself..." rows="3"></textarea>
+            </div>
             <div class="notification-toggle">
                 <label>Daily Quote Notifications</label>
                 <label class="toggle-switch">
@@ -2337,6 +2756,25 @@
         </div>
     </div>
 
+    <!-- Vision Board Modal -->
+    <div class="modal" id="vision-board-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>My Vision Board</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div id="vision-board-content">
+                <p>Create your digital vision board by adding images and goals that inspire you.</p>
+                <div class="vision-board-grid" id="vision-board-grid">
+                    <!-- Vision board items will be added here -->
+                </div>
+                <div class="vision-board-actions">
+                    <button class="btn" id="add-vision-item">Add Vision Item</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // DOM Elements
         const navToggle = document.querySelector('.nav-toggle');
@@ -2414,6 +2852,26 @@
         const dashboardLink = document.getElementById('dashboard-link');
         const settingsLink = document.getElementById('settings-link');
         const logoutLink = document.getElementById('logout-link');
+        const userProfileCard = document.getElementById('user-profile-card');
+        const profileAvatarText = document.getElementById('profile-avatar-text');
+        const profileDisplayName = document.getElementById('profile-display-name');
+        const profileBio = document.getElementById('profile-bio');
+        const profileStreak = document.getElementById('profile-streak');
+        const profileGoals = document.getElementById('profile-goals');
+        const profileBadges = document.getElementById('profile-badges');
+        const editProfileBtn = document.getElementById('edit-profile-btn');
+        const profileBioInput = document.getElementById('profile-bio-input');
+        const themeOptions = document.querySelectorAll('.theme-option');
+        const progressStreak = document.getElementById('progress-streak');
+        const progressLevel = document.getElementById('progress-level');
+        const progressConsistency = document.getElementById('progress-consistency');
+        const progressGrowth = document.getElementById('progress-growth');
+        const coachConversation = document.getElementById('coach-conversation');
+        const suggestions = document.querySelectorAll('.suggestion');
+        const toolCards = document.querySelectorAll('.tool-card');
+        const visionBoardModal = document.getElementById('vision-board-modal');
+        const addVisionItemBtn = document.getElementById('add-vision-item');
+        const visionBoardGrid = document.getElementById('vision-board-grid');
 
         // State Variables
         let currentQuote = 0;
@@ -2428,6 +2886,7 @@
         let userXP = 65;
         let userCurrentLevel = 3;
         let userGoalsList = [];
+        let currentTheme = 'theme-1';
 
         // Initialize App
         function init() {
@@ -2452,6 +2911,7 @@
                 userGoals.style.display = 'block';
                 userPreferences.style.display = 'block';
                 userActivity.style.display = 'block';
+                userProfileCard.style.display = 'block';
             }
         }
 
@@ -2499,6 +2959,8 @@
                 streakCount.textContent = streak;
                 goalDays.textContent = `${streak} day streak`;
                 currentStreak.textContent = streak;
+                profileStreak.textContent = streak;
+                progressStreak.textContent = streak;
             }
             
             // Load user mood
@@ -2506,6 +2968,13 @@
             if (savedMood) {
                 userMood = savedMood;
                 updateMoodUI();
+            }
+            
+            // Load theme
+            const savedTheme = localStorage.getItem('currentTheme');
+            if (savedTheme) {
+                currentTheme = savedTheme;
+                updateThemeUI();
             }
             
             // Update dashboard
@@ -2791,6 +3260,37 @@
             settingsLink.addEventListener('click', () => {
                 document.getElementById('user-preferences').scrollIntoView({ behavior: 'smooth' });
             });
+
+            // Edit Profile
+            editProfileBtn.addEventListener('click', showProfileModal);
+
+            // Theme Selection
+            themeOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const theme = this.classList[1];
+                    selectTheme(theme, this);
+                });
+            });
+
+            // AI Coach Suggestions
+            suggestions.forEach(suggestion => {
+                suggestion.addEventListener('click', function() {
+                    const text = this.getAttribute('data-suggestion');
+                    coachInput.value = text;
+                    sendMessageToCoach();
+                });
+            });
+
+            // Tool Cards
+            toolCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const toolId = this.id;
+                    openTool(toolId);
+                });
+            });
+
+            // Add Vision Item
+            addVisionItemBtn.addEventListener('click', addVisionItem);
         }
 
         // Quote Carousel Function
@@ -2854,7 +3354,8 @@
                     currentUser = {
                         id: 'user_' + Date.now(),
                         name: isSignUp ? name : 'User',
-                        email: email
+                        email: email,
+                        bio: 'Motivation enthusiast on a journey to self-improvement'
                     };
                     
                     // Save to localStorage
@@ -2868,6 +3369,10 @@
                     userGoals.style.display = 'block';
                     userPreferences.style.display = 'block';
                     userActivity.style.display = 'block';
+                    userProfileCard.style.display = 'block';
+                    
+                    // Update profile display
+                    updateProfileDisplay();
                     
                     // Reset form
                     authForm.reset();
@@ -2893,11 +3398,24 @@
             userName.textContent = user.name || 'User';
         }
 
+        // Update Profile Display
+        function updateProfileDisplay() {
+            if (currentUser) {
+                profileAvatarText.textContent = currentUser.name ? currentUser.name.charAt(0).toUpperCase() : 'U';
+                profileDisplayName.textContent = currentUser.name || 'User';
+                profileBio.textContent = currentUser.bio || 'Motivation enthusiast on a journey to self-improvement';
+                profileStreak.textContent = streak;
+                profileGoals.textContent = userGoalsList.filter(goal => !goal.completed).length;
+                profileBadges.textContent = 3; // Hardcoded for demo
+            }
+        }
+
         // Show Profile Modal
         function showProfileModal() {
             if (currentUser) {
                 profileName.value = currentUser.name || '';
                 profileEmail.value = currentUser.email || '';
+                profileBioInput.value = currentUser.bio || '';
                 profileModal.style.display = 'flex';
                 
                 // Check if user has notification preference saved
@@ -2911,6 +3429,7 @@
             if (currentUser) {
                 // Update user data
                 currentUser.name = profileName.value;
+                currentUser.bio = profileBioInput.value;
                 userAvatar.textContent = currentUser.name ? currentUser.name.charAt(0).toUpperCase() : 'U';
                 userName.textContent = currentUser.name || 'User';
                 
@@ -2919,6 +3438,9 @@
                 
                 // Save notification preference
                 localStorage.setItem('dailyNotifications', notificationToggle.checked);
+                
+                // Update profile display
+                updateProfileDisplay();
                 
                 profileModal.style.display = 'none';
                 showToast('Profile updated successfully!', 'success');
@@ -2935,6 +3457,7 @@
             userGoals.style.display = 'none';
             userPreferences.style.display = 'none';
             userActivity.style.display = 'none';
+            userProfileCard.style.display = 'none';
             showToast('Logged out successfully!', 'info');
         }
 
@@ -2997,6 +3520,8 @@
                     streakCount.textContent = streak;
                     goalDays.textContent = `${streak} day streak`;
                     currentStreak.textContent = streak;
+                    profileStreak.textContent = streak;
+                    progressStreak.textContent = streak;
                     localStorage.setItem('lastChallengeCompletion', today);
                     showToast(`Challenge completed! ${streak} day streak!`, 'success');
                     
@@ -3108,6 +3633,66 @@
             });
         }
 
+        // Select Theme
+        function selectTheme(theme, element) {
+            currentTheme = theme;
+            
+            // Remove selected class from all options
+            themeOptions.forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked option
+            element.classList.add('selected');
+            
+            // Save to localStorage
+            localStorage.setItem('currentTheme', theme);
+            
+            // Update CSS variables based on theme
+            updateThemeVariables(theme);
+            
+            showToast(`Theme updated to ${theme}`, 'success');
+        }
+
+        // Update Theme Variables
+        function updateThemeVariables(theme) {
+            const root = document.documentElement;
+            
+            switch(theme) {
+                case 'theme-1':
+                    root.style.setProperty('--primary', '#FF6B35');
+                    root.style.setProperty('--secondary', '#FF8E53');
+                    root.style.setProperty('--accent', '#6A11CB');
+                    break;
+                case 'theme-2':
+                    root.style.setProperty('--primary', '#11998e');
+                    root.style.setProperty('--secondary', '#38ef7d');
+                    root.style.setProperty('--accent', '#11998e');
+                    break;
+                case 'theme-3':
+                    root.style.setProperty('--primary', '#fc466b');
+                    root.style.setProperty('--secondary', '#3f5efb');
+                    root.style.setProperty('--accent', '#fc466b');
+                    break;
+                case 'theme-4':
+                    root.style.setProperty('--primary', '#4facfe');
+                    root.style.setProperty('--secondary', '#00f2fe');
+                    root.style.setProperty('--accent', '#4facfe');
+                    break;
+            }
+        }
+
+        // Update Theme UI
+        function updateThemeUI() {
+            themeOptions.forEach(option => {
+                if (option.classList.contains(currentTheme)) {
+                    option.classList.add('selected');
+                }
+            });
+            
+            updateThemeVariables(currentTheme);
+        }
+
         // Update Dashboard
         function updateDashboard() {
             totalChallenges.textContent = totalCompletedChallenges;
@@ -3115,6 +3700,10 @@
             levelNumber.textContent = userCurrentLevel;
             xpProgress.textContent = `${userXP}%`;
             xpBarProgress.style.width = `${userXP}%`;
+            progressLevel.textContent = userCurrentLevel;
+            progressConsistency.textContent = '85%';
+            progressGrowth.textContent = '+12%';
+            profileGoals.textContent = userGoalsList.filter(goal => !goal.completed).length;
         }
 
         // Create Progress Chart
@@ -3169,22 +3758,15 @@
         // Add message to coach chat
         function addMessageToCoach(message, sender) {
             const messageElement = document.createElement('div');
-            messageElement.textContent = message;
-            messageElement.style.marginBottom = '10px';
-            messageElement.style.padding = '10px';
-            messageElement.style.borderRadius = '10px';
+            messageElement.className = `message ${sender}`;
             
-            if (sender === 'user') {
-                messageElement.style.background = 'var(--primary)';
-                messageElement.style.color = 'white';
-                messageElement.style.marginLeft = '20%';
-            } else {
-                messageElement.style.background = 'rgba(0,0,0,0.05)';
-                messageElement.style.marginRight = '20%';
-            }
+            const bubble = document.createElement('div');
+            bubble.className = 'message-bubble';
+            bubble.textContent = message;
             
-            coachMessage.appendChild(messageElement);
-            coachMessage.scrollTop = coachMessage.scrollHeight;
+            messageElement.appendChild(bubble);
+            coachConversation.appendChild(messageElement);
+            coachConversation.scrollTop = coachConversation.scrollHeight;
         }
 
         // Generate AI Coach Response
@@ -3230,6 +3812,9 @@
             
             goalInput.value = '';
             showToast('Goal added successfully!', 'success');
+            
+            // Update profile stats
+            profileGoals.textContent = userGoalsList.filter(goal => !goal.completed).length;
         }
 
         // Toggle Goal Completion
@@ -3246,6 +3831,9 @@
             
             const goal = userGoalsList.find(g => g.id === id);
             showToast(`Goal ${goal.completed ? 'completed' : 'marked as incomplete'}!`, 'success');
+            
+            // Update profile stats
+            profileGoals.textContent = userGoalsList.filter(goal => !goal.completed).length;
         }
 
         // Delete Goal
@@ -3254,6 +3842,9 @@
             saveGoals();
             renderGoals();
             showToast('Goal deleted!', 'info');
+            
+            // Update profile stats
+            profileGoals.textContent = userGoalsList.filter(goal => !goal.completed).length;
         }
 
         // Save Goals
@@ -3289,6 +3880,39 @@
                 
                 goalList.appendChild(goalItem);
             });
+        }
+
+        // Open Tool
+        function openTool(toolId) {
+            switch(toolId) {
+                case 'vision-board-tool':
+                    visionBoardModal.style.display = 'flex';
+                    break;
+                case 'habit-tracker-tool':
+                    showToast('Habit tracker opened!', 'info');
+                    break;
+                case 'gratitude-journal-tool':
+                    showToast('Gratitude journal opened!', 'info');
+                    break;
+                case 'meditation-timer-tool':
+                    showToast('Meditation timer opened!', 'info');
+                    break;
+            }
+        }
+
+        // Add Vision Item
+        function addVisionItem() {
+            const visionItem = document.createElement('div');
+            visionItem.className = 'vision-item';
+            visionItem.innerHTML = `
+                <div class="vision-item-content">
+                    <h4>New Vision Item</h4>
+                    <p>Describe your vision or goal here</p>
+                </div>
+            `;
+            
+            visionBoardGrid.appendChild(visionItem);
+            showToast('Vision item added!', 'success');
         }
 
         // Initialize the app
