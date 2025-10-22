@@ -1997,7 +1997,7 @@
         <div class="container hero-content">
             <h1>Fuel Your Mind. Fire Your Dreams.</h1>
             <p>Your daily dose of inspiration to unlock your potential and live a purpose-driven life.</p>
-            <a href="#community" class="btn">Join Our Tribe</a>
+            <a href="community.html" class="btn">Join Our Tribe</a>
             
             <div class="quote-carousel">
                 <div class="quote active">
@@ -2026,19 +2026,7 @@
                         <div class="stat-value" id="current-streak">7</div>
                         <div class="stat-label">Day Streak</div>
                     </div>
-                    <div class="dashboard-stat">
-                        <div class="stat-value" id="total-challenges">12</div>
-                        <div class="stat-label">Challenges Completed</div>
-                    </div>
-                    <div class="dashboard-stat">
-                        <div class="stat-value" id="user-level">3</div>
-                        <div class="stat-label">Current Level</div>
-                    </div>
-                    <div class="dashboard-stat">
-                        <div class="stat-value" id="xp-progress">65%</div>
-                        <div class="stat-label">To Next Level</div>
-                    </div>
-                </div>
+                   
                 <div class="level-indicator">
                     <span class="level">Level <span id="level-number">3</span></span>
                     <div class="xp-bar">
@@ -2047,7 +2035,7 @@
                 </div>
             </div>
             
-            <!-- Enhanced User Profile -->
+            <!--User Profile -->
             <div class="user-profile-card" id="user-profile-card" style="display: none;">
                 <div class="profile-header">
                     <div class="profile-avatar">
@@ -2093,51 +2081,13 @@
                 <h3 class="challenge-title">Today's Challenge</h3>
                 <p id="challenge-text">Spend 10 minutes in meditation or quiet reflection</p>
                 <div class="challenge-progress">
-                    <span>Mark as completed:</span>
-                    <div class="challenge-checkbox" id="challenge-checkbox">
+                   <button><a href= "challenge.html">lets go</a></button>
                         <i class="fas fa-check"></i>
                     </div>
                 </div>
             </div>
             
-            <!-- Mood Tracker -->
-            <div class="mood-tracker">
-                <h3>How are you feeling today?</h3>
-                <div class="mood-options">
-                    <div class="mood-option" data-mood="sad">😔</div>
-                    <div class="mood-option" data-mood="neutral">😐</div>
-                    <div class="mood-option" data-mood="happy">😊</div>
-                    <div class="mood-option" data-mood="excited">🤩</div>
-                    <div class="mood-option" data-mood="motivated">💪</div>
-                </div>
-            </div>
-            
-            <!-- Achievement Badges -->
-            <div class="badges-container">
-                <div class="badge unlocked">
-                    <i class="fas fa-fire"></i>
-                    <div class="badge-tooltip">7-Day Streak</div>
-                </div>
-                <div class="badge unlocked">
-                    <i class="fas fa-book"></i>
-                    <div class="badge-tooltip">Reader</div>
-                </div>
-                <div class="badge unlocked">
-                    <i class="fas fa-medal"></i>
-                    <div class="badge-tooltip">Challenge Master</div>
-                </div>
-                <div class="badge locked">
-                    <i class="fas fa-trophy"></i>
-                    <div class="badge-tooltip">30-Day Streak</div>
-                </div>
-                <div class="badge locked">
-                    <i class="fas fa-star"></i>
-                    <div class="badge-tooltip">Community Leader</div>
-                </div>
-            </div>
-            
-            <div class="hub-filters">
-                <button class="filter-btn active" data-filter="all">All</button>
+         <div class="hub-filters">
                 <button class="filter-btn" data-filter="success">Success</button>
                 <button class="filter-btn" data-filter="mindset">Mindset</button>
                 <button class="filter-btn" data-filter="money">Money</button>
@@ -2151,7 +2101,7 @@
                         <span class="article-category">Success</span>
                         <h3>5 Morning Habits of Successful People</h3>
                         <p>Discover the morning routines that set successful individuals up for productive days.</p>
-                        <a href="#" class="btn">Read More</a>
+                        <a href="5success.html" class="btn">Read More</a>
                     </div>
                 </div>
                 <div class="article-card" data-category="mindset">
@@ -2160,7 +2110,7 @@
                         <span class="article-category">Mindset</span>
                         <h3>How to Develop a Growth Mindset</h3>
                         <p>Learn the difference between fixed and growth mindsets and how to cultivate the latter.</p>
-                        <a href="#" class="btn">Read More</a>
+                        <a href="4.html" class="btn">Read More</a>
                     </div>
                 </div>
                 <div class="article-card" data-category="fitness">
@@ -2169,43 +2119,16 @@
                         <span class="article-category">Fitness</span>
                         <h3>The Mental Benefits of Exercise</h3>
                         <p>Explore how physical activity can boost your mental clarity and overall well-being.</p>
-                        <a href="#" class="btn">Read More</a>
+                        <a href="3.html" class="btn">Read More</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Enhanced Progress Tracking -->
-    <section class="enhanced-progress">
-        <div class="container">
-            <h2>Your Progress Journey</h2>
-            <div class="progress-metrics">
-                <div class="progress-metric">
-                    <div class="metric-value" id="progress-streak">7</div>
-                    <div class="metric-label">Current Streak</div>
-                </div>
-                <div class="progress-metric">
-                    <div class="metric-value" id="progress-level">3</div>
-                    <div class="metric-label">Motivation Level</div>
-                </div>
-                <div class="progress-metric">
-                    <div class="metric-value" id="progress-consistency">85%</div>
-                    <div class="metric-label">Weekly Consistency</div>
-                </div>
-                <div class="progress-metric">
-                    <div class="metric-value" id="progress-growth">+12%</div>
-                    <div class="metric-label">Growth This Month</div>
-                </div>
-            </div>
-            
-            <div class="chart-container" id="progress-chart">
-                <!-- Chart bars will be generated by JavaScript -->
-            </div>
-        </div>
-    </section>
+    
 
-    <!-- Enhanced AI Coach -->
+    <!-- AI Coach -->
     <section class="enhanced-ai-coach">
         <div class="container">
             <h2>Your Personal Motivation Coach</h2>
@@ -2221,7 +2144,7 @@
             <div class="coach-conversation" id="coach-conversation">
                 <div class="message coach">
                     <div class="message-bubble">
-                        Hi there! I'm MotivAI, your personal motivation coach. How can I help you stay motivated today?
+                        Hi there! I'm MotivAI, your personal supreme motivecoach. How can I help you stay motivated today?
                     </div>
                 </div>
             </div>
@@ -2247,30 +2170,12 @@
                     <div class="tool-icon">
                         <i class="fas fa-images"></i>
                     </div>
-                    <h3>Vision Board</h3>
-                    <p>Create your digital vision board with goals and aspirations</p>
+                    <h3>join the movement of motivations and inspire ur Days</h3>
+                    <p>Find the tools, inspirations, and community that push you closer closer to your
+                        dreams every single day.<button><a href="motivetools.html">Ambitious  into success</a></button>
+                    </p>
                 </div>
-                <div class="tool-card" id="habit-tracker-tool">
-                    <div class="tool-icon">
-                        <i class="fas fa-tasks"></i>
-                    </div>
-                    <h3>Habit Tracker</h3>
-                    <p>Track your daily habits and build consistency</p>
-                </div>
-                <div class="tool-card" id="gratitude-journal-tool">
-                    <div class="tool-icon">
-                        <i class="fas fa-book-open"></i>
-                    </div>
-                    <h3>Gratitude Journal</h3>
-                    <p>Practice daily gratitude for improved mindset</p>
-                </div>
-                <div class="tool-card" id="meditation-timer-tool">
-                    <div class="tool-icon">
-                        <i class="fas fa-spa"></i>
-                    </div>
-                    <h3>Meditation Timer</h3>
-                    <p>Guided meditation sessions for mental clarity</p>
-                </div>
+                
             </div>
         </div>
     </section>
@@ -2283,222 +2188,20 @@
                 <div class="community-text">
                     <h3>Become Part of the Supreme Motive Tribe</h3>
                     <p>Connect with like-minded individuals on their personal development journey.</p>
-                    <div class="community-stats">
-                        <div class="stat">
-                            <div class="stat-number">10K+</div>
-                            <div class="stat-label">Members</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-number">500+</div>
-                            <div class="stat-label">Daily Posts</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-number">50+</div>
-                            <div class="stat-label">Countries</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="community-form">
-                    <h3 id="auth-form-title">Create Your Account</h3>
-                    <form id="auth-form">
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="full-name" placeholder="Full Name">
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control" id="email" placeholder="Email">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" id="password" placeholder="Password">
-                        </div>
-                        <button type="submit" class="btn" style="width: 100%;" id="auth-submit-btn">
-                            <span id="auth-btn-text">Sign Up</span>
-                            <span id="auth-btn-loading" class="loading-spinner" style="display: none;"></span>
-                        </button>
-                    </form>
-                    <div class="social-login">
-                        <button class="social-btn" id="google-login">
-                            <i class="fab fa-google"></i> Google
-                        </button>
-                        <button class="social-btn" id="telegram-login">
-                            <i class="fab fa-telegram"></i> Telegram
-                        </button>
-                    </div>
-                    <p style="margin-top: 15px; text-align: center;">
-                        <a href="#" id="toggle-auth" style="color: white; text-decoration: underline;">Already have an account? Sign In</a>
-                    </p>
                 </div>
             </div>
         </div>
+         <div class="social-media-links">
+                        <a href="#" class="social-media-btn"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-media-btn"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-media-btn"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-media-btn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-media-btn"><i class="fab fa-youtube"></i></a>
+                    </div>
     </section>
+                
+                  
 
-    <!-- Enhanced Community Feed -->
-    <section class="community-feed">
-        <div class="container">
-            <h2>Community Inspiration</h2>
-            <div class="feed-item">
-                <div class="feed-avatar">JD</div>
-                <div class="feed-content">
-                    <div class="feed-user">John Doe</div>
-                    <div class="feed-text">Just completed my 30-day meditation challenge! Feeling more focused and centered than ever before. Consistency really does pay off! 🧘‍♂️</div>
-                    <div class="feed-actions">
-                        <div class="feed-action">
-                            <i class="far fa-heart"></i>
-                            <span>24</span>
-                        </div>
-                        <div class="feed-action">
-                            <i class="far fa-comment"></i>
-                            <span>8</span>
-                        </div>
-                        <div class="feed-action">
-                            <i class="fas fa-share"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="feed-item">
-                <div class="feed-avatar">AS</div>
-                <div class="feed-content">
-                    <div class="feed-user">Alex Smith</div>
-                    <div class="feed-text">Started implementing the 5 AM club routine from the article I read here. The first week was tough, but now I'm getting more done before 8 AM than I used to all day! ⏰</div>
-                    <div class="feed-actions">
-                        <div class="feed-action">
-                            <i class="far fa-heart"></i>
-                            <span>42</span>
-                        </div>
-                        <div class="feed-action">
-                            <i class="far fa-comment"></i>
-                            <span>15</span>
-                        </div>
-                        <div class="feed-action">
-                            <i class="fas fa-share"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="feed-item">
-                <div class="feed-avatar">MJ</div>
-                <div class="feed-content">
-                    <div class="feed-user">Maria Johnson</div>
-                    <div class="feed-text">Just hit my 100-day streak on Supreme Motive! This community has been instrumental in keeping me accountable and motivated. Thank you all! 🔥</div>
-                    <div class="feed-actions">
-                        <div class="feed-action">
-                            <i class="far fa-heart"></i>
-                            <span>67</span>
-                        </div>
-                        <div class="feed-action">
-                            <i class="far fa-comment"></i>
-                            <span>22</span>
-                        </div>
-                        <div class="feed-action">
-                            <i class="fas fa-share"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Personalization Section -->
-    <section class="personalization-section">
-        <div class="container">
-            <h2>Personalize Your Experience</h2>
-            <div class="preference-item">
-                <div class="preference-info">
-                    <h4>Theme Customization</h4>
-                    <p>Choose a color theme that inspires you</p>
-                </div>
-                <div class="theme-options">
-                    <div class="theme-option theme-1 selected"></div>
-                    <div class="theme-option theme-2"></div>
-                    <div class="theme-option theme-3"></div>
-                    <div class="theme-option theme-4"></div>
-                </div>
-            </div>
-            <div class="preference-item">
-                <div class="preference-info">
-                    <h4>Daily Motivation Notifications</h4>
-                    <p>Receive daily motivational quotes and reminders</p>
-                </div>
-                <label class="toggle-switch">
-                    <input type="checkbox" id="daily-notifications" checked>
-                    <span class="toggle-slider"></span>
-                </label>
-            </div>
-            <div class="preference-item">
-                <div class="preference-info">
-                    <h4>Weekly Progress Reports</h4>
-                    <p>Get a summary of your weekly progress every Monday</p>
-                </div>
-                <label class="toggle-switch">
-                    <input type="checkbox" id="weekly-reports" checked>
-                    <span class="toggle-slider"></span>
-                </label>
-            </div>
-            <div class="preference-item">
-                <div class="preference-info">
-                    <h4>Community Updates</h4>
-                    <p>Receive notifications about community activities</p>
-                </div>
-                <label class="toggle-switch">
-                    <input type="checkbox" id="community-updates">
-                    <span class="toggle-slider"></span>
-                </label>
-            </div>
-            <div class="preference-item">
-                <div class="preference-info">
-                    <h4>Personalized Content</h4>
-                    <p>Get content recommendations based on your interests</p>
-                </div>
-                <label class="toggle-switch">
-                    <input type="checkbox" id="personalized-content" checked>
-                    <span class="toggle-slider"></span>
-                </label>
-            </div>
-        </div>
-    </section>
-
-    <!-- User Activity Feed -->
-    <section class="activity-feed" id="user-activity" style="display: none;">
-        <div class="container">
-            <h2>Your Recent Activity</h2>
-            <div class="activity-item">
-                <div class="activity-icon">
-                    <i class="fas fa-fire"></i>
-                </div>
-                <div class="activity-content">
-                    <p>You completed today's challenge</p>
-                    <div class="activity-time">2 hours ago</div>
-                </div>
-            </div>
-            <div class="activity-item">
-                <div class="activity-icon">
-                    <i class="fas fa-book"></i>
-                </div>
-                <div class="activity-content">
-                    <p>You read "5 Morning Habits of Successful People"</p>
-                    <div class="activity-time">1 day ago</div>
-                </div>
-            </div>
-            <div class="activity-item">
-                <div class="activity-icon">
-                    <i class="fas fa-heart"></i>
-                </div>
-                <div class="activity-content">
-                    <p>You liked a motivational quote</p>
-                    <div class="activity-time">2 days ago</div>
-                </div>
-            </div>
-            <div class="activity-item">
-                <div class="activity-icon">
-                    <i class="fas fa-trophy"></i>
-                </div>
-                <div class="activity-content">
-                    <p>You reached a 7-day streak milestone</p>
-                    <div class="activity-time">3 days ago</div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- About Section -->
     <section id="about" class="about">
@@ -2511,11 +2214,19 @@
                     <p>Through daily motivation, educational content, and a supportive community, we help individuals break through limitations and achieve their most ambitious goals.</p>
                 </div>
                 <div class="founder-card">
-                    <div class="founder-img">
+                    <div class="founder.png">
                         <i class="fas fa-user"></i>
                     </div>
-                    <h3>Alex Johnson</h3>
+                    <h3>Emmanuel Okafor Ejike</h3>
                     <p>Founder & CEO</p>
+                    <p>"Your potential is endless. Your journey begins with a single step forward."</p>
+                </div>
+                <div class="founder-card">
+                    <div class="founder.png">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Chimdindu </h3>
+                    <p>Deputy CEO</p>
                     <p>"Your potential is endless. Your journey begins with a single step forward."</p>
                 </div>
             </div>
@@ -2602,14 +2313,14 @@
                         <li><a href="#audio-video">Audio & Video</a></li>
                         <li><a href="#quotes">Quotes</a></li>
                         <li><a href="#community">Community</a></li>
-                        <li><a href="#" id="support-footer-link">Support</a></li>
+                        <li><a href="support.html" id="support-footer-link">Support</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h3>Legal</h3>
                     <ul class="footer-links">
-                        <li><a href="#" id="privacy-link">Privacy Policy</a></li>
-                        <li><a href="#" id="terms-link">Terms & Conditions</a></li>
+                        <li><a href="privacy.html" id="privacy-link">Privacy Policy</a></li>
+                        <li><a href="terms.html" id="terms-link">Terms & Conditions</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -2622,7 +2333,7 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 Supreme Motive. All rights reserved.</p>
+                <p>&copy; 2025 Supreme Motive. All rights reserved.</p>
             </div>
         </div>
     </footer>
