@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StepTracker Pro | Activity Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4CAF50;
+            --primary-light: #E8F5E9;
+            --primary-dark: #388E3C;
+            --secondary: #2196F3;
+            --secondary-light: #E3F2FD;
+            --accent: #FF9800;
+            --dark: #333;
+            --light: #f9f9f9;
+            --gray: #e0e0e0;
+            --gray-dark: #9e9e9e;
+            --text: #424242;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+            --radius: 12px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .logo i {
+            font-size: 28px;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .user-details {
+            text-align: right;
+        }
+        
+        .user-name {
+            font-weight: 600;
+        }
+        
+        .user-streak {
+            font-size: 14px;
+            color: var(--gray-dark);
+        }
+        
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 20px;
+            box-shadow: var(--shadow);
+        }
+        
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        @media (max-width: 968px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 25px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .card-title {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card-title i {
+            color: var(--primary);
+        }
+        
+        .step-progress {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+        }
+        
+        .progress-container {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            margin: 20px 0;
+        }
+        
+        .progress-bg {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: var(--gray);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: conic-gradient(var(--primary) 0%, transparent 0%);
+            transition: background 1s ease;
+        }
+        
+        .progress-inner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: white;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .progress-value {
+            font-size: 42px;
+            font-weight: bold;
+            color: var(--primary);
+            line-height: 1;
+        }
+        
+        .progress-label {
+            font-size: 16px;
+            color: var(--gray-dark);
+            margin-top: 5px;
+        }
+        
+        .progress-text {
+            text-align: center;
+            margin-top: 15px;
+        }
+        
+        .step-goal {
+            font-size: 16px;
+            color: var(--text);
+            margin-bottom: 5px;
+        }
+        
+        .motivational-message {
+            font-size: 14px;
+            color: var(--primary);
+            font-style: italic;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 20px 15px;
+            border-radius: 10px;
+            background-color: var(--primary-light);
+            transition: transform 0.2s ease;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-3px);
+        }
+        
+        .stat-icon {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary);
+            line-height: 1;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            margin-top: 8px;
+        }
+        
+        .history-chart {
+            height: 220px;
+            margin-top: 20px;
+            position: relative;
+        }
+        
+        .chart-container {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            height: 160px;
+            padding: 0 15px;
+            border-bottom: 1px solid var(--gray);
+        }
+        
+        .chart-bar-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+        }
+        
+        .chart-bar {
+            width: 35px;
+            background: linear-gradient(to top, var(--primary), var(--primary-dark));
+            border-radius: 4px 4px 0 0;
+            transition: height 0.5s ease;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .chart-bar:hover::after {
+            content: attr(data-steps);
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--dark);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+        
+        .chart-label {
+            margin-top: 8px;
+            font-size: 13px;
+            color: var(--text);
+        }
+        
+        .chart-title {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 14px;
+            color: var(--gray-dark);
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .btn {
+            flex: 1;
+            padding: 12px 20px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #1976D2;
+        }
+        
+        .goal-setting {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid var(--gray);
+        }
+        
+        .goal-input-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .step-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid var(--gray);
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .step-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+        }
+        
+        .achievements {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .achievement {
+            background: var(--primary-light);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            transition: transform 0.2s ease;
+        }
+        
+        .achievement:hover {
+            transform: scale(1.05);
+        }
+        
+        .achievement-icon {
+            font-size: 30px;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .achievement-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .achievement-desc {
+            font-size: 12px;
+            color: var(--gray-dark);
+        }
+        
+        .achievement.locked {
+            opacity: 0.5;
+            background: var(--gray);
+        }
+        
+        .achievement.locked .achievement-icon {
+            color: var(--gray-dark);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--gray);
+            color: var(--text);
+            font-size: 14px;
+        }
+        
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-lg);
+            transform: translateX(150%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-walking"></i>
+                <span>StepTracker Pro</span>
+            </div>
+            <div class="user-info">
+                <div class="user-details">
+                    <div class="user-name">Hello, Alex!</div>
+                    <div class="user-streak">7-day streak 🔥</div>
+                </div>
+                <div class="avatar">A</div>
+            </div>
+        </header>
+        
+        <div class="dashboard">
+            <div class="card">
+                <h2 class="card-title">
+                    <i class="fas fa-tachometer-alt"></i>
+                    Today's Progress
+                </h2>
+                <div class="step-progress">
+                    <div class="progress-container">
+                        <div class="progress-bg"></div>
+                        <div class="progress-fill" id="progressFill"></div>
+                        <div class="progress-inner">
+                            <div class="progress-value" id="stepCount">0</div>
+                            <div class="progress-label">STEPS</div>
+                        </div>
+                    </div>
+                    <div class="progress-text">
+                        <div class="step-goal">Daily Goal: <span id="stepGoal">10,000</span> steps</div>
+                        <div class="motivational-message" id="motivationalMessage">Keep going! You're doing great!</div>
+                    </div>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <div class="stat-value" id="caloriesBurned">0</div>
+                        <div class="stat-label">Calories Burned</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-route"></i>
+                        </div>
+                        <div class="stat-value" id="distanceWalked">0.0</div>
+                        <div class="stat-label">Distance (km)</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-value" id="activeMinutes">0</div>
+                        <div class="stat-label">Active Minutes</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2 class="card-title">
+                    <i class="fas fa-chart-line"></i>
+                    Weekly Activity
+                </h2>
+                <div class="history-chart">
+                    <div class="chart-container" id="chartBars">
+                        <!-- Chart bars will be generated by JavaScript -->
+                    </div>
+                    <div class="chart-title">Last 7 Days</div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn" id="addStepsBtn">
+                        <i class="fas fa-plus-circle"></i>
+                        Add Steps
+                    </button>
+                    <button class="btn btn-secondary" id="syncDeviceBtn">
+                        <i class="fas fa-sync-alt"></i>
+                        Sync Device
+                    </button>
+                </div>
+                
+                <div class="goal-setting">
+                    <h3 class="card-title">
+                        <i class="fas fa-bullseye"></i>
+                        Set Daily Goal
+                    </h3>
+                    <div class="goal-input-container">
+                        <input type="number" class="step-input" id="goalInput" placeholder="New step goal">
+                        <button class="btn" id="setGoalBtn">Update Goal</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2 class="card-title">
+                    <i class="fas fa-trophy"></i>
+                    Achievements
+                </h2>
+                <div class="achievements">
+                    <div class="achievement">
+                        <div class="achievement-icon">
+                            <i class="fas fa-walking"></i>
+                        </div>
+                        <div class="achievement-title">First Steps</div>
+                        <div class="achievement-desc">Reach 5,000 steps</div>
+                    </div>
+                    <div class="achievement">
+                        <div class="achievement-icon">
+                            <i class="fas fa-mountain"></i>
+                        </div>
+                        <div class="achievement-title">Mountain Climber</div>
+                        <div class="achievement-desc">Reach 10,000 steps</div>
+                    </div>
+                    <div class="achievement locked">
+                        <div class="achievement-icon">
+                            <i class="fas fa-running"></i>
+                        </div>
+                        <div class="achievement-title">Marathoner</div>
+                        <div class="achievement-desc">Reach 15,000 steps</div>
+                    </div>
+                    <div class="achievement locked">
+                        <div class="achievement-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <div class="achievement-title">Fire Walker</div>
+                        <div class="achievement-desc">7-day streak</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2 class="card-title">
+                    <i class="fas fa-shoe-prints"></i>
+                    Recent Activity
+                </h2>
+                <div class="activity-list" id="activityList">
+                    <!-- Activity items will be generated by JavaScript -->
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>StepTracker Pro &copy; 2023 | Track your steps, improve your health, achieve your goals</p>
+        </footer>
+    </div>
+
+    <div class="notification" id="notification">
+        Steps updated successfully!
+    </div>
+
+    <script>
+        // Initial data
+        let stepData = {
+            currentSteps: 5420,
+            dailyGoal: 10000,
+            weekSteps: [4500, 6200, 7800, 8900, 5400, 10200, 6800],
+            weekDays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            caloriesPerStep: 0.04,
+            distancePerStep: 0.000762,
+            activeMinutesPerStep: 0.0005,
+            activities: [
+                { time: "09:15 AM", steps: 1200, type: "Morning Walk" },
+                { time: "12:30 PM", steps: 800, type: "Lunch Break" },
+                { time: "03:45 PM", steps: 2100, type: "Afternoon Walk" },
+                { time: "06:20 PM", steps: 1320, type: "Evening Stroll" }
+            ]
+        };
+
+        // DOM elements
+        const stepCountEl = document.getElementById('stepCount');
+        const stepGoalEl = document.getElementById('stepGoal');
+        const progressFillEl = document.getElementById('progressFill');
+        const caloriesBurnedEl = document.getElementById('caloriesBurned');
+        const distanceWalkedEl = document.getElementById('distanceWalked');
+        const activeMinutesEl = document.getElementById('activeMinutes');
+        const chartBarsEl = document.getElementById('chartBars');
+        const motivationalMessageEl = document.getElementById('motivationalMessage');
+        const activityListEl = document.getElementById('activityList');
+        const addStepsBtn = document.getElementById('addStepsBtn');
+        const syncDeviceBtn = document.getElementById('syncDeviceBtn');
+        const goalInputEl = document.getElementById('goalInput');
+        const setGoalBtn = document.getElementById('setGoalBtn');
+        const notificationEl = document.getElementById('notification');
+
+        // Initialize the dashboard
+        function initDashboard() {
+            updateStepCount();
+            updateStats();
+            renderChart();
+            renderActivities();
+            updateMotivationalMessage();
+        }
+
+        // Update step count and progress circle
+        function updateStepCount() {
+            stepCountEl.textContent = stepData.currentSteps.toLocaleString();
+            stepGoalEl.textContent = stepData.dailyGoal.toLocaleString();
+            
+            const progressPercentage = Math.min((stepData.currentSteps / stepData.dailyGoal) * 100, 100);
+            progressFillEl.style.background = `conic-gradient(var(--primary) ${progressPercentage}%, transparent 0%)`;
+            
+            // Update achievements based on progress
+            updateAchievements();
+        }
+
+        // Update stats based on steps
+        function updateStats() {
+            const calories = Math.round(stepData.currentSteps * stepData.caloriesPerStep);
+            const distance = (stepData.currentSteps * stepData.distancePerStep).toFixed(2);
+            const activeMinutes = Math.round(stepData.currentSteps * stepData.activeMinutesPerStep);
+            
+            caloriesBurnedEl.textContent = calories;
+            distanceWalkedEl.textContent = distance;
+            activeMinutesEl.textContent = activeMinutes;
+        }
+
+        // Render the weekly chart
+        function renderChart() {
+            chartBarsEl.innerHTML = '';
+            
+            const maxSteps = Math.max(...stepData.weekSteps);
+            
+            stepData.weekSteps.forEach((steps, index) => {
+                const barContainer = document.createElement('div');
+                barContainer.className = 'chart-bar-container';
+                
+                const bar = document.createElement('div');
+                bar.className = 'chart-bar';
+                bar.style.height = `${(steps / maxSteps) * 100}%`;
+                bar.setAttribute('data-steps', steps.toLocaleString());
+                
+                const label = document.createElement('div');
+                label.className = 'chart-label';
+                label.textContent = stepData.weekDays[index];
+                
+                barContainer.appendChild(bar);
+                barContainer.appendChild(label);
+                chartBarsEl.appendChild(barContainer);
+            });
+        }
+
+        // Render recent activities
+        function renderActivities() {
+            activityListEl.innerHTML = '';
+            
+            stepData.activities.forEach(activity => {
+                const activityEl = document.createElement('div');
+                activityEl.className = 'activity-item';
+                activityEl.style.cssText = `
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 12px 0;
+                    border-bottom: 1px solid var(--gray);
+                `;
+                
+                activityEl.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--primary);"></div>
+                        <div>
+                            <div style="font-weight: 600;">${activity.type}</div>
+                            <div style="font-size: 14px; color: var(--gray-dark);">${activity.time}</div>
+                        </div>
+                    </div>
+                    <div style="font-weight: 600; color: var(--primary);">+${activity.steps} steps</div>
+                `;
+                
+                activityListEl.appendChild(activityEl);
+            });
+        }
+
+        // Update motivational message based on progress
+        function updateMotivationalMessage() {
+            const progress = stepData.currentSteps / stepData.dailyGoal;
+            let message = "";
+            
+            if (progress < 0.25) {
+                message = "Let's get moving! Every step counts!";
+            } else if (progress < 0.5) {
+                message = "You're making progress! Keep it up!";
+            } else if (progress < 0.75) {
+                message = "You're halfway there! You can do it!";
+            } else if (progress < 1) {
+                message = "Almost there! Just a few more steps!";
+            } else {
+                message = "Amazing! You've reached your goal! 🎉";
+            }
+            
+            motivationalMessageEl.textContent = message;
+        }
+
+        // Update achievements based on progress
+        function updateAchievements() {
+            // In a real app, this would update the achievement UI based on user progress
+            // For this demo, we'll just log to console
+            if (stepData.currentSteps >= 5000) {
+                console.log("First Steps achievement unlocked!");
+            }
+            if (stepData.currentSteps >= 10000) {
+                console.log("Mountain Climber achievement unlocked!");
+            }
+        }
+
+        // Show notification
+        function showNotification(message) {
+            notificationEl.textContent = message;
+            notificationEl.classList.add('show');
+            
+            setTimeout(() => {
+                notificationEl.classList.remove('show');
+            }, 3000);
+        }
+
+        // Add steps manually
+        function addSteps() {
+            const stepsToAdd = Math.floor(Math.random() * 1000) + 500; // Random steps between 500-1500
+            stepData.currentSteps += stepsToAdd;
+            
+            // Add to activities
+            const now = new Date();
+            const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            stepData.activities.unshift({
+                time: timeString,
+                steps: stepsToAdd,
+                type: "Manual Entry"
+            });
+            
+            updateStepCount();
+            updateStats();
+            renderActivities();
+            updateMotivationalMessage();
+            showNotification(`Added ${stepsToAdd} steps!`);
+        }
+
+        // Sync with device
+        function syncDevice() {
+            syncDeviceBtn.innerHTML = '<div class="loading"></div> Syncing...';
+            syncDeviceBtn.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                const newSteps = Math.floor(Math.random() * 2000) + 1000;
+                stepData.currentSteps += newSteps;
+                
+                // Add to activities
+                const now = new Date();
+                const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                stepData.activities.unshift({
+                    time: timeString,
+                    steps: newSteps,
+                    type: "Device Sync"
+                });
+                
+                updateStepCount();
+                updateStats();
+                renderActivities();
+                updateMotivationalMessage();
+                
+                syncDeviceBtn.innerHTML = '<i class="fas fa-sync-alt"></i> Sync Device';
+                syncDeviceBtn.disabled = false;
+                
+                showNotification(`Synced! Added ${newSteps} steps from your device.`);
+            }, 2000);
+        }
+
+        // Set new daily goal
+        function setGoal() {
+            const newGoal = parseInt(goalInputEl.value);
+            if (!isNaN(newGoal) && newGoal > 0) {
+                stepData.dailyGoal = newGoal;
+                updateStepCount();
+                updateMotivationalMessage();
+                goalInputEl.value = '';
+                showNotification(`Daily goal updated to ${newGoal.toLocaleString()} steps!`);
+            } else {
+                showNotification("Please enter a valid step goal.");
+            }
+        }
+
+        // Event listeners
+        addStepsBtn.addEventListener('click', addSteps);
+        syncDeviceBtn.addEventListener('click', syncDevice);
+        setGoalBtn.addEventListener('click', setGoal);
+
+        // Simulate adding steps throughout the day
+        function simulateStepIncrease() {
+            // Randomly add between 50-200 steps every 5-15 seconds
+            const randomSteps = Math.floor(Math.random() * 151) + 50;
+            const randomTime = Math.floor(Math.random() * 10000) + 5000;
+            
+            setTimeout(() => {
+                stepData.currentSteps += randomSteps;
+                updateStepCount();
+                updateStats();
+                updateMotivationalMessage();
+                simulateStepIncrease();
+            }, randomTime);
+        }
+
+        // Initialize the dashboard
+        initDashboard();
+        
+        // Start step simulation
+        simulateStepIncrease();
+    </script>
+</body>
+</html>
