@@ -1,10 +1,13 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Motivation Hub - Your Daily Inspiration</title>
+    <title>Supreme Motive - Your Daily Inspiration</title>
+    <meta name="description" content="Get daily motivation, set goals, track progress, and unlock your potential with Supreme Motive">
+    <meta name="theme-color" content="#4361ee">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Global Styles */
         * {
@@ -21,12 +24,26 @@
             --light: #f8f9fa;
             --dark: #212529;
             --success: #4cc9f0;
+            --bg-color: #f5f7ff;
+            --text-color: #212529;
+            --card-bg: white;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --card-bg: #1e1e1e;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            --light: #2d2d2d;
+            --dark: #f8f9fa;
         }
         
         body {
-            background-color: #f5f7ff;
-            color: var(--dark);
+            background-color: var(--bg-color);
+            color: var(--text-color);
             line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
         }
         
         .container {
@@ -86,6 +103,20 @@
         
         .nav-links a:hover, .nav-links a.active {
             background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
         }
         
         .hamburger {
@@ -170,10 +201,10 @@
         }
         
         .feature-card {
-            background: white;
+            background: var(--card-bg);
             padding: 2rem;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: var(--shadow);
             text-align: center;
             transition: transform 0.3s ease;
         }
@@ -195,10 +226,10 @@
         
         /* Daily Motivation Page */
         .quote-container {
-            background: white;
+            background: var(--card-bg);
             padding: 3rem;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: var(--shadow);
             text-align: center;
             margin-bottom: 2rem;
             position: relative;
@@ -222,7 +253,48 @@
             justify-content: center;
             gap: 1rem;
             margin-top: 2rem;
+            flex-wrap: wrap;
         }
+        
+        .share-options {
+            display: none;
+            position: absolute;
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--card-bg);
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            z-index: 10;
+        }
+        
+        .share-options.active {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .share-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .share-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .share-facebook { background: #3b5998; }
+        .share-twitter { background: #1da1f2; }
+        .share-whatsapp { background: #25d366; }
+        .share-linkedin { background: #0077b5; }
         
         /* Video Section */
         .videos-header {
@@ -230,6 +302,8 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
         
         .video-categories {
@@ -241,11 +315,12 @@
         
         .category-btn {
             padding: 0.5rem 1.5rem;
-            background: white;
+            background: var(--card-bg);
             border: 1px solid #ddd;
             border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s ease;
+            color: var(--text-color);
         }
         
         .category-btn.active, .category-btn:hover {
@@ -261,10 +336,10 @@
         }
         
         .video-card {
-            background: white;
+            background: var(--card-bg);
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: var(--shadow);
             transition: transform 0.3s ease;
         }
         
@@ -329,6 +404,12 @@
             margin-top: 1rem;
         }
         
+        .video-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+        }
+        
         .video-modal {
             display: none;
             position: fixed;
@@ -349,7 +430,7 @@
         .modal-content {
             width: 90%;
             max-width: 800px;
-            background: white;
+            background: var(--card-bg);
             border-radius: 10px;
             overflow: hidden;
             position: relative;
@@ -383,10 +464,10 @@
         
         /* Goals Page */
         .goal-form {
-            background: white;
+            background: var(--card-bg);
             padding: 2rem;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: var(--shadow);
             margin-bottom: 2rem;
         }
         
@@ -407,13 +488,15 @@
             border: 1px solid #ddd;
             border-radius: 5px;
             font-size: 1rem;
+            background: var(--card-bg);
+            color: var(--text-color);
         }
         
         .goals-list {
-            background: white;
+            background: var(--card-bg);
             padding: 2rem;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: var(--shadow);
         }
         
         .goal-item {
@@ -438,6 +521,7 @@
             cursor: pointer;
             font-size: 1.2rem;
             margin-left: 0.5rem;
+            color: var(--text-color);
         }
         
         .completed {
@@ -454,10 +538,10 @@
         }
         
         .stat-card {
-            background: white;
+            background: var(--card-bg);
             padding: 1.5rem;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: var(--shadow);
             text-align: center;
         }
         
@@ -473,10 +557,10 @@
         }
         
         .progress-chart {
-            background: white;
+            background: var(--card-bg);
             padding: 2rem;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: var(--shadow);
             margin-bottom: 2rem;
         }
         
@@ -493,10 +577,10 @@
         }
         
         .resource-card {
-            background: white;
+            background: var(--card-bg);
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: var(--shadow);
             transition: transform 0.3s ease;
         }
         
@@ -523,6 +607,70 @@
             color: var(--secondary);
         }
         
+        /* About, Privacy, Terms Pages */
+        .content-page {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+        
+        .content-page h1 {
+            margin-bottom: 1.5rem;
+            color: var(--secondary);
+        }
+        
+        .content-page h2 {
+            margin: 1.5rem 0 1rem;
+            color: var(--primary);
+        }
+        
+        .content-page p {
+            margin-bottom: 1rem;
+        }
+        
+        .content-page ul {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Terms Acceptance Modal */
+        .terms-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .terms-modal.active {
+            display: flex;
+        }
+        
+        .terms-content {
+            width: 90%;
+            max-width: 700px;
+            max-height: 80vh;
+            overflow-y: auto;
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .terms-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
         /* Footer */
         footer {
             background: var(--dark);
@@ -536,6 +684,23 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
         }
         
         .social-links {
@@ -602,17 +767,52 @@
             .video-player {
                 height: 250px;
             }
+            
+            .quote-btns {
+                flex-direction: column;
+                align-items: center;
+            }
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- Terms Acceptance Modal -->
+    <div class="terms-modal active" id="terms-modal">
+        <div class="terms-content">
+            <h1>Welcome to Supreme Motive</h1>
+            <p>Before you continue, please read and accept our Terms of Service and Privacy Policy.</p>
+            
+            <h2>Terms of Service</h2>
+            <p>By using Supreme Motive, you agree to these terms:</p>
+            <ul>
+                <li>You will use this platform for personal motivation and growth</li>
+                <li>You are responsible for maintaining the confidentiality of your data</li>
+                <li>We may update these terms periodically</li>
+                <li>You can delete your data at any time</li>
+            </ul>
+            
+            <h2>Privacy Policy</h2>
+            <p>We value your privacy:</p>
+            <ul>
+                <li>Your data is stored locally on your device</li>
+                <li>We don't collect personal information without your consent</li>
+                <li>You have full control over your motivational content</li>
+                <li>We use cookies to enhance your experience</li>
+            </ul>
+            
+            <div class="terms-actions">
+                <button class="btn btn-outline" id="decline-terms">Decline</button>
+                <button class="btn" id="accept-terms">Accept & Continue</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Navigation -->
     <nav>
         <div class="container nav-container">
-            <a href="logo.png" class="logo" data-page="home">
+            <a href="#" class="logo" data-page="home">
                 <i class="fas fa-fire"></i>
-                Supreme motive
+                Supreme Motive
             </a>
             <ul class="nav-links">
                 <li><a href="#" class="active" data-page="home">Home</a></li>
@@ -621,20 +821,26 @@
                 <li><a href="#" data-page="goals">My Goals</a></li>
                 <li><a href="#" data-page="progress">Progress</a></li>
                 <li><a href="#" data-page="resources">Resources</a></li>
+                <li><a href="#" data-page="about">About</a></li>
             </ul>
-            <div class="hamburger">
-                <i class="fas fa-bars"></i>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
             </div>
         </div>
     </nav>
 
     <!-- Home Page -->
-    <section id="home" class="page active">
+    <section id="home" class="page">
         <div class="container">
             <div class="hero">
                 <h1>Unlock Your Potential</h1>
                 <p>Your journey to a more motivated and productive life starts here. Get daily inspiration, set goals, track progress, and access resources to keep you moving forward.</p>
-                <a href="#motivation" class="btn" data-page="motivation">Get Motivated Now</a>
+                <a href="#" class="btn" data-page="motivation">Get Motivated Now</a>
             </div>
             
             <div class="features">
@@ -679,6 +885,24 @@
                     <button class="btn" id="save-quote">
                         <i class="far fa-bookmark"></i> Save Quote
                     </button>
+                    <button class="btn" id="share-quote">
+                        <i class="fas fa-share-alt"></i> Share Quote
+                    </button>
+                </div>
+                
+                <div class="share-options" id="quote-share-options">
+                    <div class="share-btn share-facebook" data-type="facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </div>
+                    <div class="share-btn share-twitter" data-type="twitter">
+                        <i class="fab fa-twitter"></i>
+                    </div>
+                    <div class="share-btn share-whatsapp" data-type="whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="share-btn share-linkedin" data-type="linkedin">
+                        <i class="fab fa-linkedin-in"></i>
+                    </div>
                 </div>
             </div>
             
@@ -730,6 +954,11 @@
                 <div class="video-meta">
                     <span id="modal-video-duration">10:25</span>
                     <span id="modal-video-category">Motivational Speeches</span>
+                </div>
+                <div class="video-actions">
+                    <button class="btn" id="share-video">
+                        <i class="fas fa-share-alt"></i> Share Video
+                    </button>
                 </div>
             </div>
         </div>
@@ -799,6 +1028,11 @@
                 <div class="chart-container">
                     <canvas id="progressChart"></canvas>
                 </div>
+                <div class="progress-actions" style="margin-top: 1rem; text-align: center;">
+                    <button class="btn" id="share-progress">
+                        <i class="fas fa-share-alt"></i> Share Progress
+                    </button>
+                </div>
             </div>
         </div>
     </section>
@@ -818,6 +1052,9 @@
                         <h3>Recommended Books</h3>
                         <p>Discover books that can transform your mindset and boost your motivation.</p>
                         <a href="#" class="btn">Explore</a>
+                        <button class="btn btn-outline" style="margin-left: 0.5rem;">
+                            <i class="fas fa-share-alt"></i> Share
+                        </button>
                     </div>
                 </div>
                 
@@ -829,6 +1066,9 @@
                         <h3>Inspirational Podcasts</h3>
                         <p>Listen to motivational podcasts during your commute or workout.</p>
                         <a href="#" class="btn">Explore</a>
+                        <button class="btn btn-outline" style="margin-left: 0.5rem;">
+                            <i class="fas fa-share-alt"></i> Share
+                        </button>
                     </div>
                 </div>
                 
@@ -840,8 +1080,37 @@
                         <h3>Motivational Videos</h3>
                         <p>Watch inspiring talks and videos from successful people.</p>
                         <a href="#" class="btn" data-page="videos">Watch Now</a>
+                        <button class="btn btn-outline" style="margin-left: 0.5rem;">
+                            <i class="fas fa-share-alt"></i> Share
+                        </button>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Page -->
+    <section id="about" class="page">
+        <div class="container">
+            <div class="content-page">
+                <h1>About Supreme Motive</h1>
+                <p>Supreme Motive is a comprehensive motivation platform designed to help you unlock your potential and achieve your goals. Our mission is to provide daily inspiration, practical tools, and valuable resources to keep you motivated on your personal growth journey.</p>
+                
+                <h2>Our Vision</h2>
+                <p>We believe that everyone has untapped potential waiting to be unleashed. Through consistent motivation, goal setting, and progress tracking, we aim to empower individuals to become the best versions of themselves.</p>
+                
+                <h2>Features</h2>
+                <ul>
+                    <li><strong>Daily Motivation:</strong> Get inspired with curated quotes from successful people</li>
+                    <li><strong>Goal Tracking:</strong> Set and monitor your personal and professional goals</li>
+                    <li><strong>Progress Analytics:</strong> Visualize your growth and celebrate achievements</li>
+                    <li><strong>Video Library:</strong> Access a collection of motivational speeches and success stories</li>
+                    <li><strong>Resource Hub:</strong> Discover books, podcasts, and tools for continuous improvement</li>
+                </ul>
+                
+                <h2>Contact Us</h2>
+                <p>Have questions or suggestions? We'd love to hear from you!</p>
+                <p>Email: contact@suprememotive.com</p>
             </div>
         </div>
     </section>
@@ -851,6 +1120,12 @@
         <div class="container">
             <div class="footer-content">
                 <p>&copy; 2025 Supreme Motive. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#" data-page="about">About</a>
+                    <a href="#" data-page="privacy">Privacy Policy</a>
+                    <a href="#" data-page="terms">Terms of Service</a>
+                    <a href="#">Contact</a>
+                </div>
                 <div class="social-links">
                     <a href="#"><i class="fab fa-facebook"></i></a>
                     <a href="#"><i class="fab fa-twitter"></i></a>
@@ -863,10 +1138,151 @@
     </footer>
 
     <script>
-        // Navigation functionality
+        // Service Worker Registration for PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(function(registration) {
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    })
+                    .catch(function(error) {
+                        console.log('ServiceWorker registration failed: ', error);
+                    });
+            });
+        }
+
+        // Terms Acceptance
         document.addEventListener('DOMContentLoaded', function() {
-            // Page navigation
-            const navLinks = document.querySelectorAll('.nav-links a, .logo');
+            const termsModal = document.getElementById('terms-modal');
+            const acceptTerms = document.getElementById('accept-terms');
+            const declineTerms = document.getElementById('decline-terms');
+            
+            // Check if user has already accepted terms
+            const termsAccepted = localStorage.getItem('termsAccepted');
+            if (termsAccepted) {
+                termsModal.classList.remove('active');
+                document.getElementById('home').classList.add('active');
+            } else {
+                termsModal.classList.add('active');
+            }
+            
+            // Accept terms
+            acceptTerms.addEventListener('click', function() {
+                localStorage.setItem('termsAccepted', 'true');
+                termsModal.classList.remove('active');
+                document.getElementById('home').classList.add('active');
+            });
+            
+            // Decline terms
+            declineTerms.addEventListener('click', function() {
+                alert('You must accept the terms to use Supreme Motive.');
+            });
+            
+            // Theme Toggle
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIcon = themeToggle.querySelector('i');
+            
+            // Check for saved theme or prefer color scheme
+            const savedTheme = localStorage.getItem('theme') || 
+                              (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+            
+            themeToggle.addEventListener('click', function() {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                updateThemeIcon(newTheme);
+            });
+            
+            function updateThemeIcon(theme) {
+                themeIcon.className = theme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+            }
+            
+            // Share functionality
+            const shareQuoteBtn = document.getElementById('share-quote');
+            const quoteShareOptions = document.getElementById('quote-share-options');
+            const shareVideoBtn = document.getElementById('share-video');
+            const shareProgressBtn = document.getElementById('share-progress');
+            
+            shareQuoteBtn.addEventListener('click', function() {
+                quoteShareOptions.classList.toggle('active');
+            });
+            
+            // Share quote on social media
+            document.querySelectorAll('.share-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const platform = this.dataset.type;
+                    const quote = document.getElementById('quote-text').textContent;
+                    const author = document.getElementById('quote-author').textContent;
+                    const text = `${quote} ${author}`;
+                    const url = window.location.href;
+                    
+                    shareContent(platform, text, url);
+                    quoteShareOptions.classList.remove('active');
+                });
+            });
+            
+            // Share video
+            shareVideoBtn.addEventListener('click', function() {
+                const title = document.getElementById('modal-video-title').textContent;
+                const text = `Check out this motivational video: ${title}`;
+                const url = window.location.href;
+                
+                // For demo, we'll use Twitter
+                shareContent('twitter', text, url);
+            });
+            
+            // Share progress
+            shareProgressBtn.addEventListener('click', function() {
+                const completedGoals = document.getElementById('completed-goals').textContent;
+                const streak = document.getElementById('current-streak').textContent;
+                const text = `I've completed ${completedGoals} goals and maintained a ${streak} streak on Supreme Motive!`;
+                const url = window.location.href;
+                
+                shareContent('twitter', text, url);
+            });
+            
+            // Generic share function
+            function shareContent(platform, text, url) {
+                const encodedText = encodeURIComponent(text);
+                const encodedUrl = encodeURIComponent(url);
+                
+                let shareUrl;
+                
+                switch(platform) {
+                    case 'facebook':
+                        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}&quote=${encodedText}`;
+                        break;
+                    case 'twitter':
+                        shareUrl = `https://twitter.com/intent/tweet?text=${encodedText}&url=${encodedUrl}`;
+                        break;
+                    case 'whatsapp':
+                        shareUrl = `https://api.whatsapp.com/send?text=${encodedText} ${encodedUrl}`;
+                        break;
+                    case 'linkedin':
+                        shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
+                        break;
+                    default:
+                        return;
+                }
+                
+                window.open(shareUrl, '_blank', 'width=600,height=400');
+            }
+            
+            // Close share options when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('#share-quote') && !e.target.closest('.share-options')) {
+                    quoteShareOptions.classList.remove('active');
+                }
+            });
+            
+            // Rest of your existing JavaScript code for navigation, quotes, videos, goals, etc.
+            // (Include all the JavaScript from your previous implementation here)
+            // Navigation functionality
+            const navLinks = document.querySelectorAll('.nav-links a, .logo, .footer-links a');
             const pages = document.querySelectorAll('.page');
             const hamburger = document.querySelector('.hamburger');
             const navMenu = document.querySelector('.nav-links');
@@ -882,7 +1298,7 @@
                     e.preventDefault();
                     
                     // Update active nav link
-                    document.querySelector('.nav-links a.active').classList.remove('active');
+                    document.querySelector('.nav-links a.active')?.classList.remove('active');
                     if (this.dataset.page) {
                         this.classList.add('active');
                     }
@@ -1131,6 +1547,11 @@
                                 <span>${video.duration}</span>
                                 <span>${video.category}</span>
                             </div>
+                            <div class="video-actions">
+                                <button class="btn btn-outline share-video-btn" data-id="${video.id}">
+                                    <i class="fas fa-share-alt"></i> Share
+                                </button>
+                            </div>
                         </div>
                     `;
                     videosContainer.appendChild(videoCard);
@@ -1141,6 +1562,19 @@
                     button.addEventListener('click', function() {
                         const videoId = parseInt(this.dataset.id);
                         playVideo(videoId);
+                    });
+                });
+                
+                // Add event listeners to share buttons
+                document.querySelectorAll('.share-video-btn').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const videoId = parseInt(this.dataset.id);
+                        const video = videos.find(v => v.id === videoId);
+                        if (video) {
+                            const text = `Check out this motivational video: ${video.title}`;
+                            const url = window.location.href;
+                            shareContent('twitter', text, url);
+                        }
                     });
                 });
                 
@@ -1277,6 +1711,9 @@
                             <button class="delete-goal" data-id="${goal.id}">
                                 <i class="fas fa-trash"></i>
                             </button>
+                            <button class="share-goal" data-id="${goal.id}">
+                                <i class="fas fa-share-alt"></i>
+                            </button>
                         </div>
                     `;
                     goalsContainer.appendChild(goalElement);
@@ -1294,6 +1731,18 @@
                     button.addEventListener('click', function() {
                         const id = parseInt(this.dataset.id);
                         deleteGoal(id);
+                    });
+                });
+                
+                document.querySelectorAll('.share-goal').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const id = parseInt(this.dataset.id);
+                        const goal = goals.find(g => g.id === id);
+                        if (goal) {
+                            const text = `I'm working on this goal: ${goal.title}. Join me on Supreme Motive!`;
+                            const url = window.location.href;
+                            shareContent('twitter', text, url);
+                        }
                     });
                 });
                 
