@@ -3,1828 +3,600 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Supreme Motive - Your Daily Inspiration</title>
-    <meta name="description" content="Get daily motivation, set goals, track progress, and unlock your potential with Supreme Motive">
-    <meta name="theme-color" content="#4361ee">
-    <link rel="manifest" href="manifest.json">
+    <title>Inspirational Quotes</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Global Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
-        :root {
-            --primary: #4361ee;
-            --secondary: #3a0ca3;
-            --accent: #f72585;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --success: #4cc9f0;
-            --bg-color: #f5f7ff;
-            --text-color: #212529;
-            --card-bg: white;
-            --shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        
-        [data-theme="dark"] {
-            --bg-color: #121212;
-            --text-color: #e0e0e0;
-            --card-bg: #1e1e1e;
-            --shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            --light: #2d2d2d;
-            --dark: #f8f9fa;
-        }
-        
+
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            transition: background-color 0.3s, color 0.3s;
-        }
-        
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-        
-        /* Navigation */
-        nav {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            color: white;
-            font-size: 1.8rem;
-            font-weight: 700;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo i {
-            margin-right: 10px;
-            font-size: 2rem;
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 1.5rem;
-        }
-        
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 0.8rem;
-            border-radius: 4px;
-        }
-        
-        .nav-links a:hover, .nav-links a.active {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-        
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        
-        .theme-toggle {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.2rem;
-            cursor: pointer;
-        }
-        
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            color: white;
-            font-size: 1.5rem;
-        }
-        
-        /* Pages */
-        .page {
-            display: none;
-            padding: 3rem 0;
-            min-height: calc(100vh - 200px);
-        }
-        
-        .page.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        /* Home Page */
-        .hero {
-            text-align: center;
-            padding: 4rem 0;
-            background: linear-gradient(135deg, #4361ee, #3a0ca3);
-            color: white;
-            border-radius: 10px;
-            margin-bottom: 3rem;
-        }
-        
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 2rem;
-        }
-        
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-        }
-        
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--accent);
-            color: var(--accent);
-        }
-        
-        .btn-outline:hover {
-            background-color: var(--accent);
-            color: white;
-        }
-        
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .feature-card {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .feature-card i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-        
-        .feature-card h3 {
-            margin-bottom: 1rem;
-            color: var(--secondary);
-        }
-        
-        /* Daily Motivation Page */
-        .quote-container {
-            background: var(--card-bg);
-            padding: 3rem;
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-            text-align: center;
-            margin-bottom: 2rem;
-            position: relative;
-        }
-        
-        .quote {
-            font-size: 1.8rem;
-            font-style: italic;
-            margin-bottom: 1.5rem;
-            color: var(--secondary);
-        }
-        
-        .author {
-            font-size: 1.2rem;
-            color: var(--primary);
-            font-weight: 600;
-        }
-        
-        .quote-btns {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-        }
-        
-        .share-options {
-            display: none;
-            position: absolute;
-            bottom: -60px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--card-bg);
-            padding: 1rem;
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-            z-index: 10;
-        }
-        
-        .share-options.active {
-            display: flex;
-            gap: 0.5rem;
-        }
-        
-        .share-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-        
-        .share-btn:hover {
-            transform: scale(1.1);
-        }
-        
-        .share-facebook { background: #3b5998; }
-        .share-twitter { background: #1da1f2; }
-        .share-whatsapp { background: #25d366; }
-        .share-linkedin { background: #0077b5; }
-        
-        /* Video Section */
-        .videos-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-        
-        .video-categories {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-        
-        .category-btn {
-            padding: 0.5rem 1.5rem;
-            background: var(--card-bg);
-            border: 1px solid #ddd;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            color: var(--text-color);
-        }
-        
-        .category-btn.active, .category-btn:hover {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-        
-        .videos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 2rem;
-        }
-        
-        .video-card {
-            background: var(--card-bg);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s ease;
-        }
-        
-        .video-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .video-thumbnail {
-            position: relative;
-            height: 180px;
-            background-color: #333;
-            overflow: hidden;
-        }
-        
-        .video-thumbnail img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .play-btn {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(255, 255, 255, 0.8);
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .play-btn:hover {
-            background: white;
-            transform: translate(-50%, -50%) scale(1.1);
-        }
-        
-        .play-btn i {
-            color: var(--primary);
-            font-size: 1.5rem;
-            margin-left: 3px;
-        }
-        
-        .video-content {
-            padding: 1.5rem;
-        }
-        
-        .video-content h3 {
-            margin-bottom: 0.5rem;
-            color: var(--secondary);
-        }
-        
-        .video-meta {
-            display: flex;
-            justify-content: space-between;
-            color: #666;
-            font-size: 0.9rem;
-            margin-top: 1rem;
-        }
-        
-        .video-actions {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 1rem;
-        }
-        
-        .video-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .video-modal.active {
-            display: flex;
-        }
-        
-        .modal-content {
-            width: 90%;
-            max-width: 800px;
-            background: var(--card-bg);
-            border-radius: 10px;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(0, 0, 0, 0.5);
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 10;
-        }
-        
-        .video-player {
-            width: 100%;
-            height: 450px;
-            background: #000;
-        }
-        
-        .video-info {
-            padding: 1.5rem;
-        }
-        
-        /* Goals Page */
-        .goal-form {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-            margin-bottom: 2rem;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: var(--secondary);
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-            background: var(--card-bg);
-            color: var(--text-color);
-        }
-        
-        .goals-list {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-        }
-        
-        .goal-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .goal-item:last-child {
-            border-bottom: none;
-        }
-        
-        .goal-info h3 {
-            margin-bottom: 0.5rem;
-        }
-        
-        .goal-actions button {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1.2rem;
-            margin-left: 0.5rem;
-            color: var(--text-color);
-        }
-        
-        .completed {
-            text-decoration: line-through;
-            opacity: 0.7;
-        }
-        
-        /* Progress Page */
-        .progress-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        
-        .stat-card {
-            background: var(--card-bg);
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-            text-align: center;
-        }
-        
-        .stat-card h3 {
-            color: var(--secondary);
-            margin-bottom: 0.5rem;
-        }
-        
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-        
-        .progress-chart {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-            margin-bottom: 2rem;
-        }
-        
-        .chart-container {
-            height: 300px;
-            margin-top: 1rem;
-        }
-        
-        /* Resources Page */
-        .resources-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .resource-card {
-            background: var(--card-bg);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s ease;
-        }
-        
-        .resource-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .resource-img {
-            height: 180px;
-            background-color: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3rem;
-        }
-        
-        .resource-content {
-            padding: 1.5rem;
-        }
-        
-        .resource-content h3 {
-            margin-bottom: 0.5rem;
-            color: var(--secondary);
-        }
-        
-        /* About, Privacy, Terms Pages */
-        .content-page {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-            margin-bottom: 2rem;
-        }
-        
-        .content-page h1 {
-            margin-bottom: 1.5rem;
-            color: var(--secondary);
-        }
-        
-        .content-page h2 {
-            margin: 1.5rem 0 1rem;
-            color: var(--primary);
-        }
-        
-        .content-page p {
-            margin-bottom: 1rem;
-        }
-        
-        .content-page ul {
-            margin-left: 2rem;
-            margin-bottom: 1rem;
-        }
-        
-        /* Terms Acceptance Modal */
-        .terms-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .terms-modal.active {
-            display: flex;
-        }
-        
-        .terms-content {
-            width: 90%;
-            max-width: 700px;
-            max-height: 80vh;
-            overflow-y: auto;
-            background: var(--card-bg);
-            border-radius: 10px;
-            padding: 2rem;
-            position: relative;
-        }
-        
-        .terms-actions {
-            display: flex;
-            justify-content: flex-end;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-        
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 2rem 0;
-            text-align: center;
-            margin-top: 3rem;
-        }
-        
-        .footer-content {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #333;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
+            padding: 40px 20px;
         }
-        
-        .footer-links {
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .controls {
             display: flex;
-            gap: 2rem;
-            margin: 1rem 0;
-            flex-wrap: wrap;
             justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
         }
-        
-        .footer-links a {
+
+        .category-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
             color: white;
-            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        
-        .footer-links a:hover {
-            text-decoration: underline;
+
+        .category-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
         }
-        
-        .social-links {
+
+        .category-btn.active {
+            background: white;
+            color: #2575fc;
+            font-weight: 600;
+        }
+
+        .quote-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .quote-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .quote-text {
+            font-size: 1.8rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #333;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .quote-text::before {
+            content: """;
+            font-size: 5rem;
+            position: absolute;
+            left: -15px;
+            top: -20px;
+            color: #6a11cb;
+            opacity: 0.3;
+            font-family: Georgia, serif;
+        }
+
+        .quote-author {
+            font-size: 1.2rem;
+            text-align: right;
+            color: #6a11cb;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .quote-category {
+            display: inline-block;
+            background: #f0f4ff;
+            color: #2575fc;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .actions {
             display: flex;
-            gap: 1rem;
-            margin: 1rem 0;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
         }
-        
-        .social-links a {
+
+        .btn {
+            background: #6a11cb;
             color: white;
-            font-size: 1.5rem;
-            transition: color 0.3s ease;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-        
-        .social-links a:hover {
-            color: var(--accent);
+
+        .btn:hover {
+            background: #2575fc;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
-        
-        /* Responsive Design */
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #6a11cb;
+            color: #6a11cb;
+        }
+
+        .btn-outline:hover {
+            background: #6a11cb;
+            color: white;
+        }
+
+        .quotes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .quote-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quote-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .quote-card::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #6a11cb, #2575fc);
+        }
+
+        .quote-card .quote-text {
+            font-size: 1.2rem;
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .quote-card .quote-text::before {
+            font-size: 3rem;
+            left: -10px;
+            top: -15px;
+        }
+
+        .quote-card .quote-author {
+            font-size: 1rem;
+        }
+
+        .quote-card .quote-category {
+            font-size: 0.8rem;
+        }
+
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: white;
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        .view-toggle {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            padding: 5px;
+            width: fit-content;
+            margin: 0 auto 30px;
+        }
+
+        .toggle-btn {
+            background: transparent;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-btn.active {
+            background: white;
+            color: #2575fc;
+        }
+
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background: var(--secondary);
-                padding: 1rem 0;
-            }
-            
-            .nav-links.active {
-                display: flex;
-            }
-            
-            .nav-links li {
-                margin: 0;
-                text-align: center;
-            }
-            
-            .nav-links a {
-                display: block;
-                padding: 1rem;
-            }
-            
-            .hamburger {
-                display: block;
-            }
-            
-            .hero h1 {
+            h1 {
                 font-size: 2.2rem;
             }
             
-            .quote {
-                font-size: 1.5rem;
+            .quotes-grid {
+                grid-template-columns: 1fr;
             }
             
-            .videos-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
+            .quote-text {
+                font-size: 1.4rem;
             }
             
-            .video-player {
-                height: 250px;
+            .controls {
+                gap: 10px;
             }
             
-            .quote-btns {
-                flex-direction: column;
-                align-items: center;
+            .category-btn {
+                padding: 10px 18px;
+                font-size: 0.9rem;
             }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
-    <!-- Terms Acceptance Modal -->
-    <div class="terms-modal active" id="terms-modal">
-        <div class="terms-content">
-            <h1>Welcome to Supreme Motive</h1>
-            <p>Before you continue, please read and accept our Terms of Service and Privacy Policy.</p>
-            
-            <h2>Terms of Service</h2>
-            <p>By using Supreme Motive, you agree to these terms:</p>
-            <ul>
-                <li>You will use this platform for personal motivation and growth</li>
-                <li>You are responsible for maintaining the confidentiality of your data</li>
-                <li>We may update these terms periodically</li>
-                <li>You can delete your data at any time</li>
-            </ul>
-            
-            <h2>Privacy Policy</h2>
-            <p>We value your privacy:</p>
-            <ul>
-                <li>Your data is stored locally on your device</li>
-                <li>We don't collect personal information without your consent</li>
-                <li>You have full control over your motivational content</li>
-                <li>We use cookies to enhance your experience</li>
-            </ul>
-            
-            <div class="terms-actions">
-                <button class="btn btn-outline" id="decline-terms">Decline</button>
-                <button class="btn" id="accept-terms">Accept & Continue</button>
-            </div>
-        </div>
-    </div>
+    <div class="container">
+        <header>
+            <h1>Inspirational Quotes</h1>
+            <p class="subtitle">Discover wisdom and motivation from great minds throughout history</p>
+        </header>
 
-    <!-- Navigation -->
-    <nav>
-        <div class="container nav-container">
-            <a href="#" class="logo" data-page="home">
-                <i class="fas fa-fire"></i>
-                Supreme Motive
-            </a>
-            <ul class="nav-links">
-                <li><a href="#" class="active" data-page="home">Home</a></li>
-                <li><a href="#" data-page="motivation">Daily Motivation</a></li>
-                <li><a href="#" data-page="videos">Videos</a></li>
-                <li><a href="#" data-page="goals">My Goals</a></li>
-                <li><a href="#" data-page="progress">Progress</a></li>
-                <li><a href="#" data-page="resources">Resources</a></li>
-                <li><a href="#" data-page="about">About</a></li>
-            </ul>
-            <div class="nav-actions">
-                <button class="theme-toggle" id="theme-toggle">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <div class="hamburger">
-                    <i class="fas fa-bars"></i>
-                </div>
-            </div>
+        <div class="view-toggle">
+            <button class="toggle-btn active" id="singleViewBtn"><i class="fas fa-quote-left"></i> Single View</button>
+            <button class="toggle-btn" id="gridViewBtn"><i class="fas fa-th"></i> Grid View</button>
         </div>
-    </nav>
 
-    <!-- Home Page -->
-    <section id="home" class="page">
-        <div class="container">
-            <div class="hero">
-                <h1>Unlock Your Potential</h1>
-                <p>Your journey to a more motivated and productive life starts here. Get daily inspiration, set goals, track progress, and access resources to keep you moving forward.</p>
-                <a href="#" class="btn" data-page="motivation">Get Motivated Now</a>
-            </div>
-            
-            <div class="features">
-                <div class="feature-card">
-                    <i class="fas fa-quote-left"></i>
-                    <h3>Daily Motivation</h3>
-                    <p>Start each day with inspiring quotes and thoughts from successful people to set a positive tone.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-video"></i>
-                    <h3>Inspirational Videos</h3>
-                    <p>Watch motivational speeches and success stories to fuel your drive and ambition.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-bullseye"></i>
-                    <h3>Goal Setting</h3>
-                    <p>Define and track your personal and professional goals with our easy-to-use system.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-chart-line"></i>
-                    <h3>Progress Tracking</h3>
-                    <p>Monitor your achievements and see how far you've come on your motivation journey.</p>
-                </div>
-            </div>
+        <div class="controls">
+            <button class="category-btn active" data-category="all">All Quotes</button>
+            <button class="category-btn" data-category="motivation">Motivation</button>
+            <button class="category-btn" data-category="life">Life</button>
+            <button class="category-btn" data-category="success">Success</button>
+            <button class="category-btn" data-category="wisdom">Wisdom</button>
+            <button class="category-btn" data-category="love">Love</button>
         </div>
-    </section>
 
-    <!-- Daily Motivation Page -->
-    <section id="motivation" class="page">
-        <div class="container">
-            <h2>Your Daily Dose of Motivation</h2>
-            <p class="subtitle">Refresh this page for new inspiration throughout the day</p>
-            
-            <div class="quote-container">
-                <p class="quote" id="quote-text">"The only way to do great work is to love what you do."</p>
-                <p class="author" id="quote-author">- Steve Jobs</p>
-                
-                <div class="quote-btns">
-                    <button class="btn" id="new-quote">
+        <div id="singleView">
+            <div class="quote-container fade-in">
+                <span class="quote-category">Motivation</span>
+                <p class="quote-text" id="quote">The only way to do great work is to love what you do.</p>
+                <p class="quote-author" id="author">- Steve Jobs</p>
+                <div class="actions">
+                    <button class="btn" id="newQuote">
                         <i class="fas fa-sync-alt"></i> New Quote
                     </button>
-                    <button class="btn" id="save-quote">
-                        <i class="far fa-bookmark"></i> Save Quote
+                    <button class="btn btn-outline" id="shareQuote">
+                        <i class="fas fa-share-alt"></i> Share
                     </button>
-                    <button class="btn" id="share-quote">
-                        <i class="fas fa-share-alt"></i> Share Quote
-                    </button>
-                </div>
-                
-                <div class="share-options" id="quote-share-options">
-                    <div class="share-btn share-facebook" data-type="facebook">
-                        <i class="fab fa-facebook-f"></i>
-                    </div>
-                    <div class="share-btn share-twitter" data-type="twitter">
-                        <i class="fab fa-twitter"></i>
-                    </div>
-                    <div class="share-btn share-whatsapp" data-type="whatsapp">
-                        <i class="fab fa-whatsapp"></i>
-                    </div>
-                    <div class="share-btn share-linkedin" data-type="linkedin">
-                        <i class="fab fa-linkedin-in"></i>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="saved-quotes">
-                <h3>Your Saved Quotes</h3>
-                <div id="saved-quotes-list">
-                    <!-- Saved quotes will appear here -->
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Videos Page -->
-    <section id="videos" class="page">
-        <div class="container">
-            <div class="videos-header">
-                <h2>Inspirational Videos</h2>
-                <div class="search-box">
-                    <input type="text" id="video-search" class="form-control" placeholder="Search videos...">
-                </div>
-            </div>
-            
-            <div class="video-categories">
-                <button class="category-btn active" data-category="all">All Videos</button>
-                <button class="category-btn" data-category="speeches">Motivational Speeches</button>
-                <button class="category-btn" data-category="success">Success Stories</button>
-                <button class="category-btn" data-category="mindset">Mindset</button>
-                <button class="category-btn" data-category="productivity">Productivity</button>
-            </div>
-            
-            <div class="videos-grid" id="videos-container">
-                <!-- Video cards will be added here dynamically -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Video Modal -->
-    <div class="video-modal" id="video-modal">
-        <div class="modal-content">
-            <div class="close-modal" id="close-modal">
-                <i class="fas fa-times"></i>
-            </div>
-            <div class="video-player" id="video-player">
-                <!-- Video will be embedded here -->
-            </div>
-            <div class="video-info">
-                <h3 id="modal-video-title">Video Title</h3>
-                <p id="modal-video-description">Video description will appear here.</p>
-                <div class="video-meta">
-                    <span id="modal-video-duration">10:25</span>
-                    <span id="modal-video-category">Motivational Speeches</span>
-                </div>
-                <div class="video-actions">
-                    <button class="btn" id="share-video">
-                        <i class="fas fa-share-alt"></i> Share Video
-                    </button>
-                </div>
+        <div id="gridView" style="display: none;">
+            <div class="quotes-grid" id="quotesGrid">
+                <!-- Quotes will be populated by JavaScript -->
             </div>
         </div>
     </div>
 
-    <!-- Goals Page -->
-    <section id="goals" class="page">
-        <div class="container">
-            <h2>Set and Track Your Goals</h2>
-            <p>Define what you want to achieve and track your progress</p>
-            
-            <div class="goal-form">
-                <h3>Add New Goal</h3>
-                <form id="goal-form">
-                    <div class="form-group">
-                        <label for="goal-title">Goal Title</label>
-                        <input type="text" id="goal-title" class="form-control" placeholder="E.g., Exercise 3 times a week" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="goal-description">Description</label>
-                        <textarea id="goal-description" class="form-control" rows="3" placeholder="Describe your goal in detail"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="goal-deadline">Target Date</label>
-                        <input type="date" id="goal-deadline" class="form-control">
-                    </div>
-                    <button type="submit" class="btn">Add Goal</button>
-                </form>
-            </div>
-            
-            <div class="goals-list">
-                <h3>Your Goals</h3>
-                <div id="goals-container">
-                    <!-- Goals will be added here dynamically -->
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Progress Page -->
-    <section id="progress" class="page">
-        <div class="container">
-            <h2>Your Progress Dashboard</h2>
-            <p>Track your motivation journey and celebrate your achievements</p>
-            
-            <div class="progress-stats">
-                <div class="stat-card">
-                    <h3>Goals Completed</h3>
-                    <div class="stat-number" id="completed-goals">0</div>
-                </div>
-                <div class="stat-card">
-                    <h3>Current Streak</h3>
-                    <div class="stat-number" id="current-streak">0 days</div>
-                </div>
-                <div class="stat-card">
-                    <h3>Quotes Saved</h3>
-                    <div class="stat-number" id="saved-quotes">0</div>
-                </div>
-                <div class="stat-card">
-                    <h3>Videos Watched</h3>
-                    <div class="stat-number" id="videos-watched">0</div>
-                </div>
-            </div>
-            
-            <div class="progress-chart">
-                <h3>Weekly Motivation Activity</h3>
-                <div class="chart-container">
-                    <canvas id="progressChart"></canvas>
-                </div>
-                <div class="progress-actions" style="margin-top: 1rem; text-align: center;">
-                    <button class="btn" id="share-progress">
-                        <i class="fas fa-share-alt"></i> Share Progress
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Resources Page -->
-    <section id="resources" class="page">
-        <div class="container">
-            <h2>Motivation Resources</h2>
-            <p>Explore these resources to keep your motivation levels high</p>
-            
-            <div class="resources-grid">
-                <div class="resource-card">
-                    <div class="resource-img">
-                        <i class="fas fa-book"></i>
-                    </div>
-                    <div class="resource-content">
-                        <h3>Recommended Books</h3>
-                        <p>Discover books that can transform your mindset and boost your motivation.</p>
-                        <a href="#" class="btn">Explore</a>
-                        <button class="btn btn-outline" style="margin-left: 0.5rem;">
-                            <i class="fas fa-share-alt"></i> Share
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="resource-card">
-                    <div class="resource-img">
-                        <i class="fas fa-podcast"></i>
-                    </div>
-                    <div class="resource-content">
-                        <h3>Inspirational Podcasts</h3>
-                        <p>Listen to motivational podcasts during your commute or workout.</p>
-                        <a href="#" class="btn">Explore</a>
-                        <button class="btn btn-outline" style="margin-left: 0.5rem;">
-                            <i class="fas fa-share-alt"></i> Share
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="resource-card">
-                    <div class="resource-img">
-                        <i class="fas fa-video"></i>
-                    </div>
-                    <div class="resource-content">
-                        <h3>Motivational Videos</h3>
-                        <p>Watch inspiring talks and videos from successful people.</p>
-                        <a href="#" class="btn" data-page="videos">Watch Now</a>
-                        <button class="btn btn-outline" style="margin-left: 0.5rem;">
-                            <i class="fas fa-share-alt"></i> Share
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Page -->
-    <section id="about" class="page">
-        <div class="container">
-            <div class="content-page">
-                <h1>About Supreme Motive</h1>
-                <p>Supreme Motive is a comprehensive motivation platform designed to help you unlock your potential and achieve your goals. Our mission is to provide daily inspiration, practical tools, and valuable resources to keep you motivated on your personal growth journey.</p>
-                
-                <h2>Our Vision</h2>
-                <p>We believe that everyone has untapped potential waiting to be unleashed. Through consistent motivation, goal setting, and progress tracking, we aim to empower individuals to become the best versions of themselves.</p>
-                
-                <h2>Features</h2>
-                <ul>
-                    <li><strong>Daily Motivation:</strong> Get inspired with curated quotes from successful people</li>
-                    <li><strong>Goal Tracking:</strong> Set and monitor your personal and professional goals</li>
-                    <li><strong>Progress Analytics:</strong> Visualize your growth and celebrate achievements</li>
-                    <li><strong>Video Library:</strong> Access a collection of motivational speeches and success stories</li>
-                    <li><strong>Resource Hub:</strong> Discover books, podcasts, and tools for continuous improvement</li>
-                </ul>
-                
-                <h2>Contact Us</h2>
-                <p>Have questions or suggestions? We'd love to hear from you!</p>
-                <p>Email: contact@suprememotive.com</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer>
-        <div class="container">
-            <div class="footer-content">
-                <p>&copy; 2025 Supreme Motive. All rights reserved.</p>
-                <div class="footer-links">
-                    <a href="#" data-page="about">About</a>
-                    <a href="#" data-page="privacy">Privacy Policy</a>
-                    <a href="#" data-page="terms">Terms of Service</a>
-                    <a href="#">Contact</a>
-                </div>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                </div>
-                <p>Designed with <i class="fas fa-heart" style="color: var(--accent);"></i> to motivate you</p>
-            </div>
-        </div>
+        <p>Made with <i class="fas fa-heart" style="color: #ff4d8d;"></i> | Inspirational Quotes Collection</p>
     </footer>
 
     <script>
-        // Service Worker Registration for PWA
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(function(registration) {
-                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                    })
-                    .catch(function(error) {
-                        console.log('ServiceWorker registration failed: ', error);
-                    });
+        // Extensive quotes database
+        const quotes = [
+            {
+                text: "The only way to do great work is to love what you do.",
+                author: "Steve Jobs",
+                category: "motivation"
+            },
+            {
+                text: "Life is what happens to you while you're busy making other plans.",
+                author: "John Lennon",
+                category: "life"
+            },
+            {
+                text: "The future belongs to those who believe in the beauty of their dreams.",
+                author: "Eleanor Roosevelt",
+                category: "success"
+            },
+            {
+                text: "In the middle of difficulty lies opportunity.",
+                author: "Albert Einstein",
+                category: "wisdom"
+            },
+            {
+                text: "The only thing we have to fear is fear itself.",
+                author: "Franklin D. Roosevelt",
+                category: "wisdom"
+            },
+            {
+                text: "It is during our darkest moments that we must focus to see the light.",
+                author: "Aristotle",
+                category: "motivation"
+            },
+            {
+                text: "Do not go where the path may lead, go instead where there is no path and leave a trail.",
+                author: "Ralph Waldo Emerson",
+                category: "success"
+            },
+            {
+                text: "Be yourself; everyone else is already taken.",
+                author: "Oscar Wilde",
+                category: "life"
+            },
+            {
+                text: "You miss 100% of the shots you don't take.",
+                author: "Wayne Gretzky",
+                category: "motivation"
+            },
+            {
+                text: "The greatest glory in living lies not in never falling, but in rising every time we fall.",
+                author: "Nelson Mandela",
+                category: "success"
+            },
+            {
+                text: "The way to get started is to quit talking and begin doing.",
+                author: "Walt Disney",
+                category: "success"
+            },
+            {
+                text: "Your time is limited, so don't waste it living someone else's life.",
+                author: "Steve Jobs",
+                category: "life"
+            },
+            {
+                text: "If life were predictable it would cease to be life, and be without flavor.",
+                author: "Eleanor Roosevelt",
+                category: "life"
+            },
+            {
+                text: "If you look at what you have in life, you'll always have more.",
+                author: "Oprah Winfrey",
+                category: "wisdom"
+            },
+            {
+                text: "Life is a succession of lessons which must be lived to be understood.",
+                author: "Ralph Waldo Emerson",
+                category: "wisdom"
+            },
+            {
+                text: "You will face many defeats in life, but never let yourself be defeated.",
+                author: "Maya Angelou",
+                category: "motivation"
+            },
+            {
+                text: "The only impossible journey is the one you never begin.",
+                author: "Tony Robbins",
+                category: "motivation"
+            },
+            {
+                text: "In this life we cannot do great things. We can only do small things with great love.",
+                author: "Mother Teresa",
+                category: "love"
+            },
+            {
+                text: "Only a life lived for others is a life worthwhile.",
+                author: "Albert Einstein",
+                category: "life"
+            },
+            {
+                text: "The purpose of our lives is to be happy.",
+                author: "Dalai Lama",
+                category: "life"
+            },
+            {
+                text: "Love is composed of a single soul inhabiting two bodies.",
+                author: "Aristotle",
+                category: "love"
+            },
+            {
+                text: "Being deeply loved by someone gives you strength, while loving someone deeply gives you courage.",
+                author: "Lao Tzu",
+                category: "love"
+            },
+            {
+                text: "Success is not final, failure is not fatal: it is the courage to continue that counts.",
+                author: "Winston Churchill",
+                category: "success"
+            },
+            {
+                text: "The road to success and the road to failure are almost exactly the same.",
+                author: "Colin R. Davis",
+                category: "success"
+            },
+            {
+                text: "Success usually comes to those who are too busy to be looking for it.",
+                author: "Henry David Thoreau",
+                category: "success"
+            }
+        ];
+
+        // DOM Elements
+        const quoteElement = document.getElementById('quote');
+        const authorElement = document.getElementById('author');
+        const newQuoteBtn = document.getElementById('newQuote');
+        const shareQuoteBtn = document.getElementById('shareQuote');
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const singleViewBtn = document.getElementById('singleViewBtn');
+        const gridViewBtn = document.getElementById('gridViewBtn');
+        const singleView = document.getElementById('singleView');
+        const gridView = document.getElementById('gridView');
+        const quotesGrid = document.getElementById('quotesGrid');
+
+        let currentCategory = 'all';
+        let currentQuoteIndex = 0;
+
+        // Initialize the app
+        function init() {
+            displayRandomQuote();
+            populateGrid();
+            
+            // Event listeners
+            newQuoteBtn.addEventListener('click', displayRandomQuote);
+            shareQuoteBtn.addEventListener('click', shareQuote);
+            
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Update active category button
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    currentCategory = this.getAttribute('data-category');
+                    
+                    // Update views based on current view mode
+                    if (singleView.style.display !== 'none') {
+                        displayRandomQuote();
+                    } else {
+                        populateGrid();
+                    }
+                });
+            });
+            
+            // View toggle event listeners
+            singleViewBtn.addEventListener('click', function() {
+                singleViewBtn.classList.add('active');
+                gridViewBtn.classList.remove('active');
+                singleView.style.display = 'block';
+                gridView.style.display = 'none';
+            });
+            
+            gridViewBtn.addEventListener('click', function() {
+                gridViewBtn.classList.add('active');
+                singleViewBtn.classList.remove('active');
+                gridView.style.display = 'block';
+                singleView.style.display = 'none';
+                populateGrid();
             });
         }
 
-        // Terms Acceptance
-        document.addEventListener('DOMContentLoaded', function() {
-            const termsModal = document.getElementById('terms-modal');
-            const acceptTerms = document.getElementById('accept-terms');
-            const declineTerms = document.getElementById('decline-terms');
+        // Display a random quote
+        function displayRandomQuote() {
+            let filteredQuotes = currentCategory === 'all' 
+                ? quotes 
+                : quotes.filter(quote => quote.category === currentCategory);
             
-            // Check if user has already accepted terms
-            const termsAccepted = localStorage.getItem('termsAccepted');
-            if (termsAccepted) {
-                termsModal.classList.remove('active');
-                document.getElementById('home').classList.add('active');
-            } else {
-                termsModal.classList.add('active');
-            }
+            if (filteredQuotes.length === 0) return;
             
-            // Accept terms
-            acceptTerms.addEventListener('click', function() {
-                localStorage.setItem('termsAccepted', 'true');
-                termsModal.classList.remove('active');
-                document.getElementById('home').classList.add('active');
-            });
+            // Ensure we don't show the same quote twice in a row
+            let newIndex;
+            do {
+                newIndex = Math.floor(Math.random() * filteredQuotes.length);
+            } while (filteredQuotes.length > 1 && newIndex === currentQuoteIndex);
             
-            // Decline terms
-            declineTerms.addEventListener('click', function() {
-                alert('You must accept the terms to use Supreme Motive.');
-            });
+            currentQuoteIndex = newIndex;
+            const quote = filteredQuotes[currentQuoteIndex];
             
-            // Theme Toggle
-            const themeToggle = document.getElementById('theme-toggle');
-            const themeIcon = themeToggle.querySelector('i');
+            // Add fade animation
+            const container = document.querySelector('.quote-container');
+            container.classList.remove('fade-in');
+            void container.offsetWidth; // Trigger reflow
+            container.classList.add('fade-in');
             
-            // Check for saved theme or prefer color scheme
-            const savedTheme = localStorage.getItem('theme') || 
-                              (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-            document.documentElement.setAttribute('data-theme', savedTheme);
-            updateThemeIcon(savedTheme);
+            quoteElement.textContent = quote.text;
+            authorElement.textContent = `- ${quote.author}`;
+            document.querySelector('.quote-category').textContent = quote.category.charAt(0).toUpperCase() + quote.category.slice(1);
+        }
+
+        // Populate the grid view with quotes
+        function populateGrid() {
+            quotesGrid.innerHTML = '';
             
-            themeToggle.addEventListener('click', function() {
-                const currentTheme = document.documentElement.getAttribute('data-theme');
-                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-                
-                document.documentElement.setAttribute('data-theme', newTheme);
-                localStorage.setItem('theme', newTheme);
-                updateThemeIcon(newTheme);
-            });
+            let filteredQuotes = currentCategory === 'all' 
+                ? quotes 
+                : quotes.filter(quote => quote.category === currentCategory);
             
-            function updateThemeIcon(theme) {
-                themeIcon.className = theme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
-            }
-            
-            // Share functionality
-            const shareQuoteBtn = document.getElementById('share-quote');
-            const quoteShareOptions = document.getElementById('quote-share-options');
-            const shareVideoBtn = document.getElementById('share-video');
-            const shareProgressBtn = document.getElementById('share-progress');
-            
-            shareQuoteBtn.addEventListener('click', function() {
-                quoteShareOptions.classList.toggle('active');
-            });
-            
-            // Share quote on social media
-            document.querySelectorAll('.share-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const platform = this.dataset.type;
-                    const quote = document.getElementById('quote-text').textContent;
-                    const author = document.getElementById('quote-author').textContent;
-                    const text = `${quote} ${author}`;
-                    const url = window.location.href;
-                    
-                    shareContent(platform, text, url);
-                    quoteShareOptions.classList.remove('active');
-                });
-            });
-            
-            // Share video
-            shareVideoBtn.addEventListener('click', function() {
-                const title = document.getElementById('modal-video-title').textContent;
-                const text = `Check out this motivational video: ${title}`;
-                const url = window.location.href;
-                
-                // For demo, we'll use Twitter
-                shareContent('twitter', text, url);
-            });
-            
-            // Share progress
-            shareProgressBtn.addEventListener('click', function() {
-                const completedGoals = document.getElementById('completed-goals').textContent;
-                const streak = document.getElementById('current-streak').textContent;
-                const text = `I've completed ${completedGoals} goals and maintained a ${streak} streak on Supreme Motive!`;
-                const url = window.location.href;
-                
-                shareContent('twitter', text, url);
-            });
-            
-            // Generic share function
-            function shareContent(platform, text, url) {
-                const encodedText = encodeURIComponent(text);
-                const encodedUrl = encodeURIComponent(url);
-                
-                let shareUrl;
-                
-                switch(platform) {
-                    case 'facebook':
-                        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}&quote=${encodedText}`;
-                        break;
-                    case 'twitter':
-                        shareUrl = `https://twitter.com/intent/tweet?text=${encodedText}&url=${encodedUrl}`;
-                        break;
-                    case 'whatsapp':
-                        shareUrl = `https://api.whatsapp.com/send?text=${encodedText} ${encodedUrl}`;
-                        break;
-                    case 'linkedin':
-                        shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
-                        break;
-                    default:
-                        return;
-                }
-                
-                window.open(shareUrl, '_blank', 'width=600,height=400');
-            }
-            
-            // Close share options when clicking outside
-            document.addEventListener('click', function(e) {
-                if (!e.target.closest('#share-quote') && !e.target.closest('.share-options')) {
-                    quoteShareOptions.classList.remove('active');
-                }
-            });
-            
-            // Rest of your existing JavaScript code for navigation, quotes, videos, goals, etc.
-            // (Include all the JavaScript from your previous implementation here)
-            // Navigation functionality
-            const navLinks = document.querySelectorAll('.nav-links a, .logo, .footer-links a');
-            const pages = document.querySelectorAll('.page');
-            const hamburger = document.querySelector('.hamburger');
-            const navMenu = document.querySelector('.nav-links');
-            
-            // Toggle mobile menu
-            hamburger.addEventListener('click', function() {
-                navMenu.classList.toggle('active');
-            });
-            
-            // Switch pages
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    // Update active nav link
-                    document.querySelector('.nav-links a.active')?.classList.remove('active');
-                    if (this.dataset.page) {
-                        this.classList.add('active');
-                    }
-                    
-                    // Hide all pages
-                    pages.forEach(page => {
-                        page.classList.remove('active');
-                    });
-                    
-                    // Show selected page
-                    const pageId = this.dataset.page;
-                    document.getElementById(pageId).classList.add('active');
-                    
-                    // Close mobile menu if open
-                    navMenu.classList.remove('active');
-                });
-            });
-            
-            // Daily Motivation functionality
-            const quotes = [
-                {
-                    text: "The only way to do great work is to love what you do.",
-                    author: "Steve Jobs"
-                },
-                {
-                    text: "Believe you can and you're halfway there.",
-                    author: "Theodore Roosevelt"
-                },
-                {
-                    text: "Your time is limited, don't waste it living someone else's life.",
-                    author: "Steve Jobs"
-                },
-                {
-                    text: "It does not matter how slowly you go as long as you do not stop.",
-                    author: "Confucius"
-                },
-                {
-                    text: "The future belongs to those who believe in the beauty of their dreams.",
-                    author: "Eleanor Roosevelt"
-                },
-                {
-                    text: "Don't watch the clock; do what it does. Keep going.",
-                    author: "Sam Levenson"
-                },
-                {
-                    text: "You are never too old to set another goal or to dream a new dream.",
-                    author: "C.S. Lewis"
-                },
-                {
-                    text: "The only limit to our realization of tomorrow will be our doubts of today.",
-                    author: "Franklin D. Roosevelt"
-                }
-            ];
-            
-            const quoteText = document.getElementById('quote-text');
-            const quoteAuthor = document.getElementById('quote-author');
-            const newQuoteBtn = document.getElementById('new-quote');
-            const saveQuoteBtn = document.getElementById('save-quote');
-            const savedQuotesList = document.getElementById('saved-quotes-list');
-            
-            // Load saved quotes from localStorage
-            let savedQuotes = JSON.parse(localStorage.getItem('savedQuotes')) || [];
-            renderSavedQuotes();
-            
-            // Display random quote
-            function displayRandomQuote() {
-                const randomIndex = Math.floor(Math.random() * quotes.length);
-                quoteText.textContent = `"${quotes[randomIndex].text}"`;
-                quoteAuthor.textContent = `- ${quotes[randomIndex].author}`;
-            }
-            
-            // Save current quote
-            saveQuoteBtn.addEventListener('click', function() {
-                const currentQuote = {
-                    text: quoteText.textContent.replace(/"/g, ''),
-                    author: quoteAuthor.textContent.replace(/- /, '')
-                };
-                
-                // Check if quote is already saved
-                const isAlreadySaved = savedQuotes.some(quote => 
-                    quote.text === currentQuote.text && quote.author === currentQuote.author
-                );
-                
-                if (!isAlreadySaved) {
-                    savedQuotes.push(currentQuote);
-                    localStorage.setItem('savedQuotes', JSON.stringify(savedQuotes));
-                    renderSavedQuotes();
-                    alert('Quote saved!');
-                } else {
-                    alert('This quote is already saved.');
-                }
-            });
-            
-            // Render saved quotes
-            function renderSavedQuotes() {
-                savedQuotesList.innerHTML = '';
-                
-                if (savedQuotes.length === 0) {
-                    savedQuotesList.innerHTML = '<p>No saved quotes yet. Save your favorites!</p>';
-                    updateProgressStats();
-                    return;
-                }
-                
-                savedQuotes.forEach((quote, index) => {
-                    const quoteElement = document.createElement('div');
-                    quoteElement.className = 'quote-container';
-                    quoteElement.innerHTML = `
-                        <p class="quote">"${quote.text}"</p>
-                        <p class="author">- ${quote.author}</p>
-                        <button class="btn delete-quote" data-index="${index}">
-                            <i class="fas fa-trash"></i> Remove
-                        </button>
-                    `;
-                    savedQuotesList.appendChild(quoteElement);
-                });
-                
-                // Add event listeners to delete buttons
-                document.querySelectorAll('.delete-quote').forEach(button => {
-                    button.addEventListener('click', function() {
-                        const index = parseInt(this.dataset.index);
-                        savedQuotes.splice(index, 1);
-                        localStorage.setItem('savedQuotes', JSON.stringify(savedQuotes));
-                        renderSavedQuotes();
-                    });
-                });
-                
-                // Update saved quotes count
-                document.getElementById('saved-quotes').textContent = savedQuotes.length;
-            }
-            
-            // New quote button
-            newQuoteBtn.addEventListener('click', displayRandomQuote);
-            
-            // Video functionality
-            const videos = [
-                {
-                    id: 1,
-                    title: "The Power of Belief",
-                    description: "How your mindset can change your reality and help you achieve your goals.",
-                    category: "mindset",
-                    duration: "12:45",
-                    thumbnail: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
-                    videoId: "dQw4w9WgXcQ" // Example YouTube ID
-                },
-                {
-                    id: 2,
-                    title: "Morning Motivation",
-                    description: "Start your day with energy and purpose with this powerful motivational speech.",
-                    category: "speeches",
-                    duration: "15:20",
-                    thumbnail: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
-                    videoId: "dQw4w9WgXcQ"
-                },
-                {
-                    id: 3,
-                    title: "From Failure to Success",
-                    description: "Inspiring stories of people who turned their failures into stepping stones for success.",
-                    category: "success",
-                    duration: "18:30",
-                    thumbnail: "https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
-                    videoId: "dQw4w9WgXcQ"
-                },
-                {
-                    id: 4,
-                    title: "Productivity Hacks",
-                    description: "Learn how to maximize your productivity and achieve more in less time.",
-                    category: "productivity",
-                    duration: "14:15",
-                    thumbnail: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1139&q=80",
-                    videoId: "dQw4w9WgXcQ"
-                },
-                {
-                    id: 5,
-                    title: "Unleash Your Potential",
-                    description: "Discover how to tap into your hidden potential and achieve greatness.",
-                    category: "mindset",
-                    duration: "16:40",
-                    thumbnail: "https://images.unsplash.com/photo-1543362906-acfc16c67564?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1025&q=80",
-                    videoId: "dQw4w9WgXcQ"
-                },
-                {
-                    id: 6,
-                    title: "The Success Mindset",
-                    description: "How successful people think and what you can learn from them.",
-                    category: "success",
-                    duration: "20:10",
-                    thumbnail: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
-                    videoId: "dQw4w9WgXcQ"
-                }
-            ];
-            
-            const videosContainer = document.getElementById('videos-container');
-            const categoryBtns = document.querySelectorAll('.category-btn');
-            const videoSearch = document.getElementById('video-search');
-            const videoModal = document.getElementById('video-modal');
-            const closeModal = document.getElementById('close-modal');
-            const videoPlayer = document.getElementById('video-player');
-            const modalVideoTitle = document.getElementById('modal-video-title');
-            const modalVideoDescription = document.getElementById('modal-video-description');
-            const modalVideoDuration = document.getElementById('modal-video-duration');
-            const modalVideoCategory = document.getElementById('modal-video-category');
-            
-            // Load watched videos from localStorage
-            let watchedVideos = JSON.parse(localStorage.getItem('watchedVideos')) || [];
-            
-            // Render videos
-            function renderVideos(category = 'all', searchTerm = '') {
-                videosContainer.innerHTML = '';
-                
-                let filteredVideos = videos;
-                
-                // Filter by category
-                if (category !== 'all') {
-                    filteredVideos = filteredVideos.filter(video => video.category === category);
-                }
-                
-                // Filter by search term
-                if (searchTerm) {
-                    filteredVideos = filteredVideos.filter(video => 
-                        video.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                        video.description.toLowerCase().includes(searchTerm.toLowerCase())
-                    );
-                }
-                
-                if (filteredVideos.length === 0) {
-                    videosContainer.innerHTML = '<p>No videos found. Try a different search or category.</p>';
-                    return;
-                }
-                
-                filteredVideos.forEach(video => {
-                    const isWatched = watchedVideos.includes(video.id);
-                    const videoCard = document.createElement('div');
-                    videoCard.className = 'video-card';
-                    videoCard.innerHTML = `
-                        <div class="video-thumbnail">
-                            <img src="${video.thumbnail}" alt="${video.title}">
-                            <div class="play-btn" data-id="${video.id}">
-                                <i class="fas fa-play"></i>
-                            </div>
-                            ${isWatched ? '<div class="watched-badge" style="position:absolute; top:10px; right:10px; background:var(--success); color:white; padding:2px 8px; border-radius:4px; font-size:0.8rem;">Watched</div>' : ''}
-                        </div>
-                        <div class="video-content">
-                            <h3>${video.title}</h3>
-                            <p>${video.description}</p>
-                            <div class="video-meta">
-                                <span>${video.duration}</span>
-                                <span>${video.category}</span>
-                            </div>
-                            <div class="video-actions">
-                                <button class="btn btn-outline share-video-btn" data-id="${video.id}">
-                                    <i class="fas fa-share-alt"></i> Share
-                                </button>
-                            </div>
-                        </div>
-                    `;
-                    videosContainer.appendChild(videoCard);
-                });
-                
-                // Add event listeners to play buttons
-                document.querySelectorAll('.play-btn').forEach(button => {
-                    button.addEventListener('click', function() {
-                        const videoId = parseInt(this.dataset.id);
-                        playVideo(videoId);
-                    });
-                });
-                
-                // Add event listeners to share buttons
-                document.querySelectorAll('.share-video-btn').forEach(button => {
-                    button.addEventListener('click', function() {
-                        const videoId = parseInt(this.dataset.id);
-                        const video = videos.find(v => v.id === videoId);
-                        if (video) {
-                            const text = `Check out this motivational video: ${video.title}`;
-                            const url = window.location.href;
-                            shareContent('twitter', text, url);
-                        }
-                    });
-                });
-                
-                updateProgressStats();
-            }
-            
-            // Play video
-            function playVideo(id) {
-                const video = videos.find(v => v.id === id);
-                if (!video) return;
-                
-                // Mark as watched if not already
-                if (!watchedVideos.includes(id)) {
-                    watchedVideos.push(id);
-                    localStorage.setItem('watchedVideos', JSON.stringify(watchedVideos));
-                }
-                
-                // Update modal content
-                modalVideoTitle.textContent = video.title;
-                modalVideoDescription.textContent = video.description;
-                modalVideoDuration.textContent = video.duration;
-                modalVideoCategory.textContent = video.category;
-                
-                // Embed YouTube video (using example ID)
-                videoPlayer.innerHTML = `
-                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/${video.videoId}?autoplay=1" 
-                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen></iframe>
+            filteredQuotes.forEach(quote => {
+                const quoteCard = document.createElement('div');
+                quoteCard.className = 'quote-card fade-in';
+                quoteCard.innerHTML = `
+                    <span class="quote-category">${quote.category.charAt(0).toUpperCase() + quote.category.slice(1)}</span>
+                    <p class="quote-text">${quote.text}</p>
+                    <p class="quote-author">- ${quote.author}</p>
                 `;
-                
-                // Show modal
-                videoModal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                
-                updateProgressStats();
-            }
-            
-            // Close modal
-            closeModal.addEventListener('click', function() {
-                videoModal.classList.remove('active');
-                document.body.style.overflow = 'auto';
-                videoPlayer.innerHTML = '';
+                quotesGrid.appendChild(quoteCard);
             });
+        }
+
+        // Share the current quote
+        function shareQuote() {
+            const quote = quoteElement.textContent;
+            const author = authorElement.textContent;
             
-            // Close modal when clicking outside
-            videoModal.addEventListener('click', function(e) {
-                if (e.target === videoModal) {
-                    videoModal.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                    videoPlayer.innerHTML = '';
-                }
-            });
-            
-            // Category filtering
-            categoryBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    categoryBtns.forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    const category = this.dataset.category;
-                    renderVideos(category, videoSearch.value);
-                });
-            });
-            
-            // Search functionality
-            videoSearch.addEventListener('input', function() {
-                const activeCategory = document.querySelector('.category-btn.active').dataset.category;
-                renderVideos(activeCategory, this.value);
-            });
-            
-            // Goals functionality
-            const goalForm = document.getElementById('goal-form');
-            const goalsContainer = document.getElementById('goals-container');
-            
-            // Load goals from localStorage
-            let goals = JSON.parse(localStorage.getItem('goals')) || [];
-            renderGoals();
-            
-            // Add new goal
-            goalForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                const title = document.getElementById('goal-title').value;
-                const description = document.getElementById('goal-description').value;
-                const deadline = document.getElementById('goal-deadline').value;
-                
-                const newGoal = {
-                    id: Date.now(),
-                    title,
-                    description,
-                    deadline,
-                    completed: false,
-                    createdAt: new Date().toISOString()
-                };
-                
-                goals.push(newGoal);
-                localStorage.setItem('goals', JSON.stringify(goals));
-                renderGoals();
-                
-                // Reset form
-                goalForm.reset();
-            });
-            
-            // Render goals
-            function renderGoals() {
-                goalsContainer.innerHTML = '';
-                
-                if (goals.length === 0) {
-                    goalsContainer.innerHTML = '<p>No goals set yet. Add your first goal above!</p>';
-                    updateProgressStats();
-                    return;
-                }
-                
-                // Sort goals: incomplete first, then by creation date
-                goals.sort((a, b) => {
-                    if (a.completed !== b.completed) {
-                        return a.completed ? 1 : -1;
-                    }
-                    return new Date(b.createdAt) - new Date(a.createdAt);
-                });
-                
-                goals.forEach(goal => {
-                    const goalElement = document.createElement('div');
-                    goalElement.className = `goal-item ${goal.completed ? 'completed' : ''}`;
-                    goalElement.innerHTML = `
-                        <div class="goal-info">
-                            <h3>${goal.title}</h3>
-                            <p>${goal.description}</p>
-                            ${goal.deadline ? `<p><small>Target: ${new Date(goal.deadline).toLocaleDateString()}</small></p>` : ''}
-                        </div>
-                        <div class="goal-actions">
-                            <button class="complete-goal" data-id="${goal.id}">
-                                <i class="fas ${goal.completed ? 'fa-undo' : 'fa-check'}"></i>
-                            </button>
-                            <button class="delete-goal" data-id="${goal.id}">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                            <button class="share-goal" data-id="${goal.id}">
-                                <i class="fas fa-share-alt"></i>
-                            </button>
-                        </div>
-                    `;
-                    goalsContainer.appendChild(goalElement);
-                });
-                
-                // Add event listeners
-                document.querySelectorAll('.complete-goal').forEach(button => {
-                    button.addEventListener('click', function() {
-                        const id = parseInt(this.dataset.id);
-                        toggleGoalCompletion(id);
-                    });
-                });
-                
-                document.querySelectorAll('.delete-goal').forEach(button => {
-                    button.addEventListener('click', function() {
-                        const id = parseInt(this.dataset.id);
-                        deleteGoal(id);
-                    });
-                });
-                
-                document.querySelectorAll('.share-goal').forEach(button => {
-                    button.addEventListener('click', function() {
-                        const id = parseInt(this.dataset.id);
-                        const goal = goals.find(g => g.id === id);
-                        if (goal) {
-                            const text = `I'm working on this goal: ${goal.title}. Join me on Supreme Motive!`;
-                            const url = window.location.href;
-                            shareContent('twitter', text, url);
-                        }
-                    });
-                });
-                
-                updateProgressStats();
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Inspirational Quote',
+                    text: `${quote} ${author}`,
+                })
+                .catch(error => console.log('Error sharing:', error));
+            } else {
+                // Fallback for browsers that don't support Web Share API
+                const textToShare = `${quote} ${author} - Shared from Inspirational Quotes`;
+                navigator.clipboard.writeText(textToShare)
+                    .then(() => alert('Quote copied to clipboard!'))
+                    .catch(err => console.error('Could not copy text: ', err));
             }
-            
-            // Toggle goal completion
-            function toggleGoalCompletion(id) {
-                goals = goals.map(goal => {
-                    if (goal.id === id) {
-                        return { ...goal, completed: !goal.completed };
-                    }
-                    return goal;
-                });
-                
-                localStorage.setItem('goals', JSON.stringify(goals));
-                renderGoals();
-            }
-            
-            // Delete goal
-            function deleteGoal(id) {
-                if (confirm('Are you sure you want to delete this goal?')) {
-                    goals = goals.filter(goal => goal.id !== id);
-                    localStorage.setItem('goals', JSON.stringify(goals));
-                    renderGoals();
-                }
-            }
-            
-            // Update progress stats
-            function updateProgressStats() {
-                const completedGoals = goals.filter(goal => goal.completed).length;
-                document.getElementById('completed-goals').textContent = completedGoals;
-                
-                // Simple streak calculation (for demo purposes)
-                const streak = Math.min(completedGoals * 2, 30);
-                document.getElementById('current-streak').textContent = `${streak} days`;
-                
-                document.getElementById('videos-watched').textContent = watchedVideos.length;
-            }
-            
-            // Initialize with a random quote
-            displayRandomQuote();
-            
-            // Initialize videos
-            renderVideos();
-            
-            // Simple progress chart (using canvas)
-            const progressChart = document.getElementById('progressChart');
-            if (progressChart.getContext) {
-                const ctx = progressChart.getContext('2d');
-                
-                // Set canvas dimensions
-                progressChart.width = progressChart.offsetWidth;
-                progressChart.height = progressChart.offsetHeight;
-                
-                // Draw a simple bar chart
-                const data = [5, 7, 8, 6, 9, 7, 8]; // Example data
-                const maxValue = Math.max(...data);
-                const barWidth = progressChart.width / data.length * 0.7;
-                const barSpacing = progressChart.width / data.length * 0.3;
-                
-                // Draw bars
-                for (let i = 0; i < data.length; i++) {
-                    const barHeight = (data[i] / maxValue) * (progressChart.height - 40);
-                    const x = i * (barWidth + barSpacing) + barSpacing / 2;
-                    const y = progressChart.height - barHeight - 20;
-                    
-                    ctx.fillStyle = `rgba(67, 97, 238, ${0.5 + (data[i] / maxValue) * 0.5})`;
-                    ctx.fillRect(x, y, barWidth, barHeight);
-                    
-                    // Draw value label
-                    ctx.fillStyle = '#333';
-                    ctx.font = '14px Arial';
-                    ctx.textAlign = 'center';
-                    ctx.fillText(data[i], x + barWidth / 2, y - 10);
-                    
-                    // Draw day label
-                    const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-                    ctx.fillText(days[i], x + barWidth / 2, progressChart.height - 5);
-                }
-            }
-        });
+        }
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
 </html>
