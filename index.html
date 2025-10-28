@@ -14,124 +14,97 @@
         }
 
         body {
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: #333;
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            padding: 40px 20px;
+            padding: 20px;
         }
 
         .container {
-            max-width: 1200px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            max-width: 800px;
             width: 100%;
-            margin: 0 auto;
+            position: relative;
         }
 
         header {
-            text-align: center;
-            margin-bottom: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
+            padding: 40px 30px;
+            text-align: center;
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: 700;
         }
 
         .subtitle {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .controls {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 40px;
-        }
-
-        .category-btn {
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            color: white;
-            padding: 12px 24px;
-            border-radius: 50px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .category-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-3px);
-        }
-
-        .category-btn.active {
-            background: white;
-            color: #2575fc;
-            font-weight: 600;
         }
 
         .quote-container {
-            background: white;
-            border-radius: 20px;
             padding: 40px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-            margin-bottom: 30px;
             position: relative;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .quote-container:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
         }
 
         .quote-text {
             font-size: 1.8rem;
             line-height: 1.6;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             color: #333;
+            text-align: center;
             position: relative;
-            padding-left: 30px;
+            padding: 0 20px;
         }
 
-        .quote-text::before {
+        .quote-text::before,
+        .quote-text::after {
             content: """;
-            font-size: 5rem;
-            position: absolute;
-            left: -15px;
-            top: -20px;
-            color: #6a11cb;
+            font-size: 4rem;
+            color: #667eea;
             opacity: 0.3;
+            position: absolute;
             font-family: Georgia, serif;
         }
 
+        .quote-text::before {
+            top: -20px;
+            left: 0;
+        }
+
+        .quote-text::after {
+            bottom: -40px;
+            right: 0;
+            transform: rotate(180deg);
+        }
+
         .quote-author {
-            font-size: 1.2rem;
-            text-align: right;
-            color: #6a11cb;
+            font-size: 1.3rem;
+            text-align: center;
+            color: #667eea;
             font-weight: 600;
-            margin-bottom: 10px;
+            margin-bottom: 30px;
+            font-style: italic;
         }
 
         .quote-category {
             display: inline-block;
             background: #f0f4ff;
-            color: #2575fc;
-            padding: 5px 15px;
+            color: #667eea;
+            padding: 8px 20px;
             border-radius: 50px;
             font-size: 0.9rem;
             margin-bottom: 20px;
+            font-weight: 500;
         }
 
         .actions {
@@ -139,155 +112,295 @@
             justify-content: space-between;
             align-items: center;
             margin-top: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         .btn {
-            background: #6a11cb;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
             padding: 12px 25px;
             border-radius: 50px;
             cursor: pointer;
             font-size: 1rem;
+            font-weight: 600;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
             gap: 8px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
         }
 
         .btn:hover {
-            background: #2575fc;
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
         }
 
         .btn-outline {
             background: transparent;
-            border: 2px solid #6a11cb;
-            color: #6a11cb;
+            border: 2px solid #667eea;
+            color: #667eea;
+            box-shadow: none;
         }
 
         .btn-outline:hover {
-            background: #6a11cb;
+            background: #667eea;
             color: white;
         }
 
-        .quotes-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 20px;
-        }
-
-        .quote-card {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .quote-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .quote-card::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, #6a11cb, #2575fc);
-        }
-
-        .quote-card .quote-text {
-            font-size: 1.2rem;
-            padding-left: 20px;
-            margin-bottom: 15px;
-        }
-
-        .quote-card .quote-text::before {
-            font-size: 3rem;
-            left: -10px;
-            top: -15px;
-        }
-
-        .quote-card .quote-author {
-            font-size: 1rem;
-        }
-
-        .quote-card .quote-category {
-            font-size: 0.8rem;
-        }
-
-        footer {
-            margin-top: 50px;
-            text-align: center;
-            color: white;
-            opacity: 0.8;
-            font-size: 0.9rem;
-        }
-
-        .view-toggle {
+        .controls {
             display: flex;
             justify-content: center;
-            margin-bottom: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50px;
-            padding: 5px;
-            width: fit-content;
-            margin: 0 auto 30px;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+            padding: 0 30px;
         }
 
-        .toggle-btn {
-            background: transparent;
-            border: none;
-            color: white;
+        .category-btn {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            color: #495057;
             padding: 10px 20px;
             border-radius: 50px;
             cursor: pointer;
+            font-size: 0.9rem;
             transition: all 0.3s ease;
+            font-weight: 500;
         }
 
-        .toggle-btn.active {
-            background: white;
-            color: #2575fc;
+        .category-btn:hover {
+            border-color: #667eea;
+            color: #667eea;
+            transform: translateY(-2px);
         }
 
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.2rem;
-            }
-            
-            .quotes-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .quote-text {
-                font-size: 1.4rem;
-            }
-            
-            .controls {
-                gap: 10px;
-            }
-            
-            .category-btn {
-                padding: 10px 18px;
-                font-size: 0.9rem;
-            }
+        .category-btn.active {
+            background: #667eea;
+            border-color: #667eea;
+            color: white;
+        }
+
+        .quote-counter {
+            text-align: center;
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+
+        .favorite-btn {
+            background: transparent;
+            border: none;
+            color: #ddd;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .favorite-btn:hover {
+            color: #ff4757;
+            transform: scale(1.1);
+        }
+
+        .favorite-btn.active {
+            color: #ff4757;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         .fade-in {
-            animation: fadeIn 0.5s ease;
+            animation: fadeIn 0.8s ease;
         }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        .history-panel {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 350px;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s ease;
+            padding: 20px;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+
+        .history-panel.active {
+            right: 0;
+        }
+
+        .history-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .history-title {
+            font-size: 1.3rem;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .close-history {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #6c757d;
+        }
+
+        .history-item {
+            padding: 15px;
+            border-left: 3px solid #667eea;
+            background: #f8f9fa;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .history-quote {
+            font-size: 1rem;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .history-author {
+            font-size: 0.9rem;
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 999;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: none;
+            z-index: 1001;
+        }
+
+        .toast.active {
+            display: block;
+            animation: toastIn 0.3s ease;
+        }
+
+        @keyframes toastIn {
+            from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+            }
+            
+            header {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .quote-container {
+                padding: 30px 20px;
+            }
+            
+            .quote-text {
+                font-size: 1.5rem;
+                padding: 0 10px;
+            }
+            
+            .actions {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .history-panel {
+                width: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .quote-text {
+                font-size: 1.3rem;
+            }
+            
+            .quote-author {
+                font-size: 1.1rem;
+            }
+            
+            .controls {
+                gap: 8px;
+            }
+            
+            .category-btn {
+                padding: 8px 16px;
+                font-size: 0.8rem;
+            }
         }
     </style>
 </head>
@@ -295,49 +408,77 @@
     <div class="container">
         <header>
             <h1>Inspirational Quotes</h1>
-            <p class="subtitle">Discover wisdom and motivation from great minds throughout history</p>
+            <p class="subtitle">Find motivation and wisdom in every word</p>
         </header>
 
-        <div class="view-toggle">
-            <button class="toggle-btn active" id="singleViewBtn"><i class="fas fa-quote-left"></i> Single View</button>
-            <button class="toggle-btn" id="gridViewBtn"><i class="fas fa-th"></i> Grid View</button>
-        </div>
+        <div class="quote-container">
+            <button class="favorite-btn" id="favoriteBtn" title="Add to favorites">
+                <i class="far fa-heart"></i>
+            </button>
+            
+            <span class="quote-category" id="quoteCategory">Motivation</span>
+            
+            <p class="quote-text fade-in" id="quoteText">
+                The only way to do great work is to love what you do.
+            </p>
+            
+            <p class="quote-author fade-in" id="quoteAuthor">
+                - Steve Jobs
+            </p>
 
-        <div class="controls">
-            <button class="category-btn active" data-category="all">All Quotes</button>
-            <button class="category-btn" data-category="motivation">Motivation</button>
-            <button class="category-btn" data-category="life">Life</button>
-            <button class="category-btn" data-category="success">Success</button>
-            <button class="category-btn" data-category="wisdom">Wisdom</button>
-            <button class="category-btn" data-category="love">Love</button>
-        </div>
+            <div class="controls">
+                <button class="category-btn active" data-category="all">All</button>
+                <button class="category-btn" data-category="motivation">Motivation</button>
+                <button class="category-btn" data-category="success">Success</button>
+                <button class="category-btn" data-category="life">Life</button>
+                <button class="category-btn" data-category="wisdom">Wisdom</button>
+                <button class="category-btn" data-category="love">Love</button>
+            </div>
 
-        <div id="singleView">
-            <div class="quote-container fade-in">
-                <span class="quote-category">Motivation</span>
-                <p class="quote-text" id="quote">The only way to do great work is to love what you do.</p>
-                <p class="quote-author" id="author">- Steve Jobs</p>
-                <div class="actions">
-                    <button class="btn" id="newQuote">
-                        <i class="fas fa-sync-alt"></i> New Quote
-                    </button>
-                    <button class="btn btn-outline" id="shareQuote">
-                        <i class="fas fa-share-alt"></i> Share
-                    </button>
-                </div>
+            <div class="actions">
+                <button class="btn" id="newQuoteBtn">
+                    <i class="fas fa-sync-alt"></i> New Quote
+                </button>
+                <button class="btn btn-outline" id="shareBtn">
+                    <i class="fas fa-share-alt"></i> Share
+                </button>
+                <button class="btn btn-outline" id="historyBtn">
+                    <i class="fas fa-history"></i> History
+                </button>
+                <button class="btn btn-outline" id="copyBtn">
+                    <i class="fas fa-copy"></i> Copy
+                </button>
+            </div>
+
+            <div class="quote-counter" id="quoteCounter">
+                Quote 1 of 25
             </div>
         </div>
 
-        <div id="gridView" style="display: none;">
-            <div class="quotes-grid" id="quotesGrid">
-                <!-- Quotes will be populated by JavaScript -->
-            </div>
+        <div class="loading" id="loading">
+            <div class="loading-spinner"></div>
+            <p style="margin-top: 15px;">Loading inspiration...</p>
         </div>
     </div>
 
-    <footer>
-        <p>Made with <i class="fas fa-heart" style="color: #ff4d8d;"></i> | Inspirational Quotes Collection</p>
-    </footer>
+    <!-- History Panel -->
+    <div class="history-panel" id="historyPanel">
+        <div class="history-header">
+            <h3 class="history-title">Quote History</h3>
+            <button class="close-history" id="closeHistory">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div id="historyList">
+            <!-- History items will be added here -->
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">Quote copied to clipboard!</div>
 
     <script>
         // Extensive quotes database
@@ -470,28 +611,42 @@
         ];
 
         // DOM Elements
-        const quoteElement = document.getElementById('quote');
-        const authorElement = document.getElementById('author');
-        const newQuoteBtn = document.getElementById('newQuote');
-        const shareQuoteBtn = document.getElementById('shareQuote');
+        const quoteText = document.getElementById('quoteText');
+        const quoteAuthor = document.getElementById('quoteAuthor');
+        const quoteCategory = document.getElementById('quoteCategory');
+        const quoteCounter = document.getElementById('quoteCounter');
+        const favoriteBtn = document.getElementById('favoriteBtn');
+        const newQuoteBtn = document.getElementById('newQuoteBtn');
+        const shareBtn = document.getElementById('shareBtn');
+        const historyBtn = document.getElementById('historyBtn');
+        const copyBtn = document.getElementById('copyBtn');
         const categoryButtons = document.querySelectorAll('.category-btn');
-        const singleViewBtn = document.getElementById('singleViewBtn');
-        const gridViewBtn = document.getElementById('gridViewBtn');
-        const singleView = document.getElementById('singleView');
-        const gridView = document.getElementById('gridView');
-        const quotesGrid = document.getElementById('quotesGrid');
+        const loading = document.getElementById('loading');
+        const historyPanel = document.getElementById('historyPanel');
+        const closeHistory = document.getElementById('closeHistory');
+        const historyList = document.getElementById('historyList');
+        const overlay = document.getElementById('overlay');
+        const toast = document.getElementById('toast');
 
+        // App State
         let currentCategory = 'all';
         let currentQuoteIndex = 0;
+        let quoteHistory = [];
+        let favorites = JSON.parse(localStorage.getItem('favoriteQuotes')) || [];
 
         // Initialize the app
         function init() {
             displayRandomQuote();
-            populateGrid();
+            updateFavoriteButton();
             
             // Event listeners
             newQuoteBtn.addEventListener('click', displayRandomQuote);
-            shareQuoteBtn.addEventListener('click', shareQuote);
+            shareBtn.addEventListener('click', shareQuote);
+            copyBtn.addEventListener('click', copyQuote);
+            historyBtn.addEventListener('click', toggleHistoryPanel);
+            closeHistory.addEventListener('click', toggleHistoryPanel);
+            overlay.addEventListener('click', toggleHistoryPanel);
+            favoriteBtn.addEventListener('click', toggleFavorite);
             
             categoryButtons.forEach(button => {
                 button.addEventListener('click', function() {
@@ -500,99 +655,220 @@
                     this.classList.add('active');
                     
                     currentCategory = this.getAttribute('data-category');
-                    
-                    // Update views based on current view mode
-                    if (singleView.style.display !== 'none') {
-                        displayRandomQuote();
-                    } else {
-                        populateGrid();
-                    }
+                    displayRandomQuote();
                 });
             });
             
-            // View toggle event listeners
-            singleViewBtn.addEventListener('click', function() {
-                singleViewBtn.classList.add('active');
-                gridViewBtn.classList.remove('active');
-                singleView.style.display = 'block';
-                gridView.style.display = 'none';
-            });
-            
-            gridViewBtn.addEventListener('click', function() {
-                gridViewBtn.classList.add('active');
-                singleViewBtn.classList.remove('active');
-                gridView.style.display = 'block';
-                singleView.style.display = 'none';
-                populateGrid();
-            });
+            // Load history from localStorage
+            const savedHistory = localStorage.getItem('quoteHistory');
+            if (savedHistory) {
+                quoteHistory = JSON.parse(savedHistory);
+                updateHistoryPanel();
+            }
         }
 
         // Display a random quote
         function displayRandomQuote() {
-            let filteredQuotes = currentCategory === 'all' 
-                ? quotes 
-                : quotes.filter(quote => quote.category === currentCategory);
+            showLoading();
             
-            if (filteredQuotes.length === 0) return;
-            
-            // Ensure we don't show the same quote twice in a row
-            let newIndex;
-            do {
-                newIndex = Math.floor(Math.random() * filteredQuotes.length);
-            } while (filteredQuotes.length > 1 && newIndex === currentQuoteIndex);
-            
-            currentQuoteIndex = newIndex;
-            const quote = filteredQuotes[currentQuoteIndex];
-            
-            // Add fade animation
-            const container = document.querySelector('.quote-container');
-            container.classList.remove('fade-in');
-            void container.offsetWidth; // Trigger reflow
-            container.classList.add('fade-in');
-            
-            quoteElement.textContent = quote.text;
-            authorElement.textContent = `- ${quote.author}`;
-            document.querySelector('.quote-category').textContent = quote.category.charAt(0).toUpperCase() + quote.category.slice(1);
+            setTimeout(() => {
+                let filteredQuotes = currentCategory === 'all' 
+                    ? quotes 
+                    : quotes.filter(quote => quote.category === currentCategory);
+                
+                if (filteredQuotes.length === 0) return;
+                
+                // Ensure we don't show the same quote twice in a row
+                let newIndex;
+                do {
+                    newIndex = Math.floor(Math.random() * filteredQuotes.length);
+                } while (filteredQuotes.length > 1 && newIndex === currentQuoteIndex);
+                
+                currentQuoteIndex = newIndex;
+                const quote = filteredQuotes[currentQuoteIndex];
+                
+                // Add to history
+                addToHistory(quote);
+                
+                // Update UI with animation
+                quoteText.classList.remove('fade-in');
+                quoteAuthor.classList.remove('fade-in');
+                
+                setTimeout(() => {
+                    quoteText.textContent = quote.text;
+                    quoteAuthor.textContent = `- ${quote.author}`;
+                    quoteCategory.textContent = quote.category.charAt(0).toUpperCase() + quote.category.slice(1);
+                    
+                    quoteText.classList.add('fade-in');
+                    quoteAuthor.classList.add('fade-in');
+                    
+                    // Update counter
+                    const totalQuotes = filteredQuotes.length;
+                    const currentPosition = filteredQuotes.indexOf(quote) + 1;
+                    quoteCounter.textContent = `Quote ${currentPosition} of ${totalQuotes}`;
+                    
+                    // Update favorite button
+                    updateFavoriteButton();
+                    
+                    hideLoading();
+                }, 300);
+            }, 800);
         }
 
-        // Populate the grid view with quotes
-        function populateGrid() {
-            quotesGrid.innerHTML = '';
+        // Show loading state
+        function showLoading() {
+            loading.style.display = 'block';
+            quoteText.style.opacity = '0.5';
+            quoteAuthor.style.opacity = '0.5';
+        }
+
+        // Hide loading state
+        function hideLoading() {
+            loading.style.display = 'none';
+            quoteText.style.opacity = '1';
+            quoteAuthor.style.opacity = '1';
+        }
+
+        // Add quote to history
+        function addToHistory(quote) {
+            // Check if quote is already in history
+            const isDuplicate = quoteHistory.some(
+                item => item.text === quote.text && item.author === quote.author
+            );
             
-            let filteredQuotes = currentCategory === 'all' 
-                ? quotes 
-                : quotes.filter(quote => quote.category === currentCategory);
+            if (!isDuplicate) {
+                quoteHistory.unshift(quote);
+                
+                // Keep only last 10 quotes in history
+                if (quoteHistory.length > 10) {
+                    quoteHistory.pop();
+                }
+                
+                // Save to localStorage
+                localStorage.setItem('quoteHistory', JSON.stringify(quoteHistory));
+                
+                // Update history panel
+                updateHistoryPanel();
+            }
+        }
+
+        // Update history panel
+        function updateHistoryPanel() {
+            historyList.innerHTML = '';
             
-            filteredQuotes.forEach(quote => {
-                const quoteCard = document.createElement('div');
-                quoteCard.className = 'quote-card fade-in';
-                quoteCard.innerHTML = `
-                    <span class="quote-category">${quote.category.charAt(0).toUpperCase() + quote.category.slice(1)}</span>
-                    <p class="quote-text">${quote.text}</p>
-                    <p class="quote-author">- ${quote.author}</p>
+            if (quoteHistory.length === 0) {
+                historyList.innerHTML = '<p style="text-align: center; color: #6c757d; padding: 20px;">No quote history yet</p>';
+                return;
+            }
+            
+            quoteHistory.forEach(quote => {
+                const historyItem = document.createElement('div');
+                historyItem.className = 'history-item';
+                historyItem.innerHTML = `
+                    <p class="history-quote">${quote.text}</p>
+                    <p class="history-author">- ${quote.author}</p>
                 `;
-                quotesGrid.appendChild(quoteCard);
+                historyList.appendChild(historyItem);
             });
         }
 
-        // Share the current quote
+        // Toggle history panel
+        function toggleHistoryPanel() {
+            historyPanel.classList.toggle('active');
+            overlay.classList.toggle('active');
+            document.body.style.overflow = historyPanel.classList.contains('active') ? 'hidden' : '';
+        }
+
+        // Toggle favorite
+        function toggleFavorite() {
+            const currentQuote = {
+                text: quoteText.textContent,
+                author: quoteAuthor.textContent.replace('- ', ''),
+                category: quoteCategory.textContent.toLowerCase()
+            };
+            
+            const isFavorite = favorites.some(
+                fav => fav.text === currentQuote.text && fav.author === currentQuote.author
+            );
+            
+            if (isFavorite) {
+                // Remove from favorites
+                favorites = favorites.filter(
+                    fav => !(fav.text === currentQuote.text && fav.author === currentQuote.author)
+                );
+                favoriteBtn.innerHTML = '<i class="far fa-heart"></i>';
+                showToast('Removed from favorites');
+            } else {
+                // Add to favorites
+                favorites.push(currentQuote);
+                favoriteBtn.innerHTML = '<i class="fas fa-heart"></i>';
+                showToast('Added to favorites');
+            }
+            
+            // Save to localStorage
+            localStorage.setItem('favoriteQuotes', JSON.stringify(favorites));
+        }
+
+        // Update favorite button state
+        function updateFavoriteButton() {
+            const currentQuote = {
+                text: quoteText.textContent,
+                author: quoteAuthor.textContent.replace('- ', '')
+            };
+            
+            const isFavorite = favorites.some(
+                fav => fav.text === currentQuote.text && fav.author === currentQuote.author
+            );
+            
+            if (isFavorite) {
+                favoriteBtn.innerHTML = '<i class="fas fa-heart"></i>';
+                favoriteBtn.classList.add('active');
+            } else {
+                favoriteBtn.innerHTML = '<i class="far fa-heart"></i>';
+                favoriteBtn.classList.remove('active');
+            }
+        }
+
+        // Share quote
         function shareQuote() {
-            const quote = quoteElement.textContent;
-            const author = authorElement.textContent;
+            const quote = quoteText.textContent;
+            const author = quoteAuthor.textContent;
             
             if (navigator.share) {
                 navigator.share({
                     title: 'Inspirational Quote',
                     text: `${quote} ${author}`,
                 })
+                .then(() => showToast('Quote shared successfully'))
                 .catch(error => console.log('Error sharing:', error));
             } else {
                 // Fallback for browsers that don't support Web Share API
                 const textToShare = `${quote} ${author} - Shared from Inspirational Quotes`;
                 navigator.clipboard.writeText(textToShare)
-                    .then(() => alert('Quote copied to clipboard!'))
+                    .then(() => showToast('Quote copied to clipboard!'))
                     .catch(err => console.error('Could not copy text: ', err));
             }
+        }
+
+        // Copy quote to clipboard
+        function copyQuote() {
+            const quote = quoteText.textContent;
+            const author = quoteAuthor.textContent;
+            const textToCopy = `${quote} ${author}`;
+            
+            navigator.clipboard.writeText(textToCopy)
+                .then(() => showToast('Quote copied to clipboard!'))
+                .catch(err => console.error('Could not copy text: ', err));
+        }
+
+        // Show toast notification
+        function showToast(message) {
+            toast.textContent = message;
+            toast.classList.add('active');
+            
+            setTimeout(() => {
+                toast.classList.remove('active');
+            }, 3000);
         }
 
         // Initialize the application
