@@ -3,876 +3,1663 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inspirational Quotes</title>
+    <title>Supreme Motive | Elevate Your Mind, Transform Your Life</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* Base Styles */
+        :root {
+            --primary: #6C63FF;
+            --primary-dark: #554fd8;
+            --secondary: #2A2D43;
+            --accent: #FF6584;
+            --accent-dark: #e55a76;
+            --light: #F8F9FF;
+            --dark: #1A1C2B;
+            --success: #36D1DC;
+            --warning: #FFB347;
+            --gray: #8A8DAB;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --bg-color: #F8F9FF;
+            --text-color: #2A2D43;
+            --card-bg: #FFFFFF;
+            --header-bg: rgba(255, 255, 255, 0.95);
+            --footer-bg: #1A1C2B;
+            --footer-text: #F8F9FF;
+            --shadow: 0 10px 30px rgba(108, 99, 255, 0.1);
+            --shadow-hover: 0 20px 40px rgba(108, 99, 255, 0.15);
+        }
+
+        .dark-mode {
+            --bg-color: #121420;
+            --text-color: #E2E4F0;
+            --card-bg: #1A1C2B;
+            --header-bg: rgba(26, 28, 43, 0.95);
+            --footer-bg: #0D0E17;
+            --footer-text: #E2E4F0;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #333;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            overflow-x: hidden;
+            transition: var(--transition);
+            font-family: 'Poppins', sans-serif;
         }
-
+        
         .container {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            max-width: 800px;
             width: 100%;
-            position: relative;
-        }
-
-        header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 40px 30px;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        .subtitle {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
-        .quote-container {
-            padding: 40px;
-            position: relative;
-        }
-
-        .quote-text {
-            font-size: 1.8rem;
-            line-height: 1.6;
-            margin-bottom: 25px;
-            color: #333;
-            text-align: center;
-            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 0 20px;
         }
-
-        .quote-text::before,
-        .quote-text::after {
-            content: """;
-            font-size: 4rem;
-            color: #667eea;
-            opacity: 0.3;
-            position: absolute;
-            font-family: Georgia, serif;
+        
+        section {
+            min-height: 100vh;
+            padding: 120px 0;
+            display: none;
+            position: relative;
         }
-
-        .quote-text::before {
-            top: -20px;
-            left: 0;
+        
+        section.active {
+            display: block;
+            animation: fadeInUp 0.8s ease;
         }
-
-        .quote-text::after {
-            bottom: -40px;
-            right: 0;
-            transform: rotate(180deg);
+        
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0);
+            }
         }
-
-        .quote-author {
-            font-size: 1.3rem;
-            text-align: center;
-            color: #667eea;
+        
+        h1, h2, h3, h4 {
+            margin-bottom: 1.2rem;
+            color: var(--secondary);
+            font-family: 'Playfair Display', serif;
             font-weight: 600;
-            margin-bottom: 30px;
-            font-style: italic;
         }
-
-        .quote-category {
-            display: inline-block;
-            background: #f0f4ff;
-            color: #667eea;
-            padding: 8px 20px;
+        
+        h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+        }
+        
+        h2 {
+            font-size: 2.8rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border: none;
             border-radius: 50px;
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
         }
-
-        .actions {
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .btn-accent {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--header-bg);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+        
+        .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 30px;
-            flex-wrap: wrap;
+            padding: 18px 20px;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-img {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-item {
+            margin-left: 28px;
+            position: relative;
+        }
+        
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 8px 0;
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary);
+        }
+        
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .header-controls {
+            display: flex;
+            align-items: center;
             gap: 15px;
         }
-
-        .btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+        
+        .theme-toggle {
+            background: var(--card-bg);
             border: none;
-            padding: 12px 25px;
-            border-radius: 50px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
-        }
-
-        .btn:active {
-            transform: translateY(-1px);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 2px solid #667eea;
-            color: #667eea;
-            box-shadow: none;
-        }
-
-        .btn-outline:hover {
-            background: #667eea;
-            color: white;
-        }
-
-        .controls {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin: 20px 0;
-            padding: 0 30px;
-        }
-
-        .category-btn {
-            background: #f8f9fa;
-            border: 2px solid #e9ecef;
-            color: #495057;
-            padding: 10px 20px;
-            border-radius: 50px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-
-        .category-btn:hover {
-            border-color: #667eea;
-            color: #667eea;
-            transform: translateY(-2px);
-        }
-
-        .category-btn.active {
-            background: #667eea;
-            border-color: #667eea;
-            color: white;
-        }
-
-        .quote-counter {
-            text-align: center;
-            color: #6c757d;
-            font-size: 0.9rem;
-            margin-top: 20px;
-        }
-
-        .favorite-btn {
-            background: transparent;
-            border: none;
-            color: #ddd;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: absolute;
-            top: 20px;
-            right: 20px;
-        }
-
-        .favorite-btn:hover {
-            color: #ff4757;
-            transform: scale(1.1);
-        }
-
-        .favorite-btn.active {
-            color: #ff4757;
-        }
-
-        .loading {
-            display: none;
-            text-align: center;
-            padding: 20px;
-        }
-
-        .loading-spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #667eea;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .fade-in {
-            animation: fadeIn 0.8s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .history-panel {
-            position: fixed;
-            top: 0;
-            right: -400px;
-            width: 350px;
-            height: 100vh;
-            background: white;
-            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-            transition: right 0.3s ease;
-            padding: 20px;
-            overflow-y: auto;
-            z-index: 1000;
-        }
-
-        .history-panel.active {
-            right: 0;
-        }
-
-        .history-header {
-            display: flex;
-            justify-content: between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .history-title {
             font-size: 1.3rem;
-            color: #333;
-            font-weight: 600;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow);
         }
-
-        .close-history {
+        
+        .theme-toggle:hover {
+            transform: rotate(15deg);
+            color: var(--primary);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
             background: none;
             border: none;
             font-size: 1.5rem;
+            color: var(--text-color);
             cursor: pointer;
-            color: #6c757d;
         }
-
-        .history-item {
-            padding: 15px;
-            border-left: 3px solid #667eea;
-            background: #f8f9fa;
-            margin-bottom: 15px;
-            border-radius: 0 8px 8px 0;
+        
+        /* Hero Section */
+        #home {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
         }
-
-        .history-quote {
-            font-size: 1rem;
-            margin-bottom: 8px;
-            line-height: 1.4;
-        }
-
-        .history-author {
-            font-size: 0.9rem;
-            color: #667eea;
-            font-weight: 500;
-        }
-
-        .overlay {
-            position: fixed;
+        
+        #home::before {
+            content: '';
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            display: none;
-            z-index: 999;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" opacity="0.05"><polygon fill="white" points="0,1000 1000,0 1000,1000"/></svg>');
+            background-size: cover;
         }
-
-        .overlay.active {
-            display: block;
+        
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
-
-        .toast {
-            position: fixed;
-            bottom: 20px;
+        
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            color: white;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        /* Section Common Styles */
+        .section-title {
+            position: relative;
+            margin-bottom: 4rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
-            background: #333;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+        
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            border: 1px solid rgba(108, 99, 255, 0.1);
+        }
+        
+        .card:hover {
+            transform: translateY(-12px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .card:hover .card-img {
+            transform: scale(1.05);
+        }
+        
+        .card-content {
+            padding: 25px;
+        }
+        
+        .card-title {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            color: var(--secondary);
+        }
+        
+        .card-text {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+        
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(108, 99, 255, 0.1);
+        }
+        
+        /* Quote Cards */
+        .quote-card {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+            position: relative;
+            border-left: 5px solid var(--primary);
+            transition: var(--transition);
+        }
+        
+        .quote-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .quote-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-size: 5rem;
+            color: var(--primary);
+            opacity: 0.2;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .quote-text {
+            font-size: 1.3rem;
+            font-style: italic;
+            margin-bottom: 20px;
+            color: var(--text-color);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .quote-author {
+            text-align: right;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .quote-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .quote-btn {
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            cursor: pointer;
+            color: var(--gray);
+            transition: var(--transition);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .quote-btn:hover {
+            color: var(--accent);
+            background: rgba(255, 101, 132, 0.1);
+        }
+        
+        /* Dictionary Section */
+        .dictionary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .dictionary-card {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+            border: 1px solid rgba(108, 99, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .dictionary-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+        }
+        
+        .dictionary-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .word {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+        
+        .meaning {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+        
+        /* Video Section */
+        .video-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+        
+        .filter-btn {
+            padding: 10px 20px;
+            background-color: var(--card-bg);
+            border: 1px solid rgba(108, 99, 255, 0.2);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text-color);
+            font-weight: 500;
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: white;
-            padding: 12px 25px;
-            border-radius: 50px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            display: none;
-            z-index: 1001;
+            border-color: var(--primary);
         }
-
-        .toast.active {
+        
+        .video-card {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .video-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .video-thumbnail {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .video-card:hover .video-thumbnail {
+            transform: scale(1.05);
+        }
+        
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.7));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .video-card:hover .video-overlay {
+            opacity: 1;
+        }
+        
+        .play-btn {
+            background-color: var(--accent);
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: var(--transition);
+            transform: scale(0.9);
+        }
+        
+        .video-card:hover .play-btn {
+            transform: scale(1);
+        }
+        
+        .play-btn:hover {
+            background-color: var(--accent-dark);
+            transform: scale(1.1);
+        }
+        
+        /* E-Books Section */
+        .ebook-categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+        
+        .category-btn {
+            padding: 10px 20px;
+            background-color: var(--card-bg);
+            border: 1px solid rgba(108, 99, 255, 0.2);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text-color);
+            font-weight: 500;
+        }
+        
+        .category-btn.active, .category-btn:hover {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .book-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+        
+        /* Support Section */
+        .support-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+        
+        .contact-form {
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-label {
             display: block;
-            animation: toastIn 0.3s ease;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: var(--text-color);
         }
-
-        @keyframes toastIn {
-            from { opacity: 0; transform: translateX(-50%) translateY(20px); }
-            to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px 20px;
+            border: 1px solid rgba(108, 99, 255, 0.2);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: var(--transition);
+            background-color: var(--card-bg);
+            color: var(--text-color);
         }
-
-        @media (max-width: 768px) {
-            .container {
-                margin: 10px;
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .payment-methods {
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+        }
+        
+        .payment-option {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            border: 1px solid rgba(108, 99, 255, 0.1);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+        
+        .payment-option:hover {
+            border-color: var(--primary);
+            background: rgba(108, 99, 255, 0.05);
+            transform: translateX(5px);
+        }
+        
+        .payment-icon {
+            font-size: 2rem;
+            margin-right: 20px;
+            color: var(--primary);
+        }
+        
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .founder-img {
+            width: 100%;
+            max-width: 450px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .founder-img:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .mission-statement {
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            margin-top: 40px;
+            border-left: 5px solid var(--accent);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mission-statement::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--accent) 0%, transparent 70%);
+            border-radius: 0 0 0 100px;
+            opacity: 0.1;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--footer-bg);
+            color: var(--footer-text);
+            padding: 70px 0 30px;
+            transition: var(--transition);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            color: var(--footer-text);
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .social-link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 45px;
+            height: 45px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .social-link:hover {
+            background-color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #adb5bd;
+            font-size: 0.9rem;
+        }
+        
+        /* Floating YouTube Icon */
+        .floating-yt {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #FF0000, #CC0000);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 2rem;
+            box-shadow: 0 10px 25px rgba(255, 0, 0, 0.3);
+            z-index: 999;
+            transition: var(--transition);
+            animation: pulse 2s infinite;
+        }
+        
+        .floating-yt:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 15px 30px rgba(255, 0, 0, 0.4);
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 0, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
+        }
+        
+        /* Particles Background */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+        
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
             }
-            
-            header {
-                padding: 30px 20px;
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
             }
-            
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 1100px) {
             h1 {
-                font-size: 2rem;
+                font-size: 3rem;
             }
             
-            .quote-container {
-                padding: 30px 20px;
+            h2 {
+                font-size: 2.4rem;
             }
             
-            .quote-text {
-                font-size: 1.5rem;
-                padding: 0 10px;
+            .hero-content h1 {
+                font-size: 3.2rem;
             }
-            
-            .actions {
+        }
+        
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 85%;
+                height: calc(100vh - 80px);
+                background-color: var(--header-bg);
                 flex-direction: column;
+                align-items: center;
+                padding-top: 60px;
+                transition: var(--transition);
+                box-shadow: 5px 0 25px rgba(0, 0, 0, 0.1);
+                z-index: 999;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-item {
+                margin: 0 0 30px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
             }
             
             .btn {
                 width: 100%;
+                max-width: 280px;
+                text-align: center;
                 justify-content: center;
             }
             
-            .history-panel {
-                width: 300px;
+            .floating-yt {
+                bottom: 20px;
+                right: 20px;
+                width: 60px;
+                height: 60px;
+                font-size: 1.7rem;
+            }
+            
+            section {
+                padding: 100px 0;
             }
         }
-
-        @media (max-width: 480px) {
+        
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 15px;
+            }
+            
             h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
                 font-size: 1.8rem;
             }
             
-            .quote-text {
-                font-size: 1.3rem;
+            .cards-grid {
+                grid-template-columns: 1fr;
             }
             
-            .quote-author {
-                font-size: 1.1rem;
+            .hero-content h1 {
+                font-size: 2.2rem;
             }
             
-            .controls {
-                gap: 8px;
+            .quote-card {
+                padding: 25px;
             }
             
-            .category-btn {
-                padding: 8px 16px;
-                font-size: 0.8rem;
+            .contact-form, .payment-methods {
+                padding: 25px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Inspirational Quotes</h1>
-            <p class="subtitle">Find motivation and wisdom in every word</p>
-        </header>
+    <!-- Floating YouTube Icon -->
+    <a href="https://www.youtube.com/c/SupremeMotive" target="_blank" class="floating-yt">
+        <i class="fab fa-youtube"></i>
+    </a>
 
-        <div class="quote-container">
-            <button class="favorite-btn" id="favoriteBtn" title="Add to favorites">
-                <i class="far fa-heart"></i>
-            </button>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="nav-container">
+            <div class="logo-container">
+                <div class="logo-img">SM</div>
+                <a href="#" class="logo">Supreme<span>Motive</span></a>
+            </div>
             
-            <span class="quote-category" id="quoteCategory">Motivation</span>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item"><a href="#home" class="nav-link active" data-section="home">Home</a></li>
+                <li class="nav-item"><a href="#motivation" class="nav-link" data-section="motivation">Motivation</a></li>
+                <li class="nav-item"><a href="#life-quotes" class="nav-link" data-section="life-quotes">Life Quotes</a></li>
+                <li class="nav-item"><a href="#love-quotes" class="nav-link" data-section="love-quotes">Love Quotes</a></li>
+                <li class="nav-item"><a href="#dictionary" class="nav-link" data-section="dictionary">Dictionary</a></li>
+                <li class="nav-item"><a href="#ebooks" class="nav-link" data-section="ebooks">E-Books</a></li>
+                <li class="nav-item"><a href="#videos" class="nav-link" data-section="videos">Videos</a></li>
+                <li class="nav-item"><a href="#support" class="nav-link" data-section="support">Support</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link" data-section="about">About</a></li>
+            </ul>
             
-            <p class="quote-text fade-in" id="quoteText">
-                The only way to do great work is to love what you do.
-            </p>
-            
-            <p class="quote-author fade-in" id="quoteAuthor">
-                - Steve Jobs
-            </p>
+            <div class="header-controls">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
 
-            <div class="controls">
+    <!-- Home Section -->
+    <section id="home" class="active">
+        <div class="particles" id="particles"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Elevate Your Mind, Transform Your Life</h1>
+                <p>Welcome to Supreme Motive - your ultimate destination for daily inspiration, transformative resources, and a community dedicated to personal growth and success.</p>
+                <div class="hero-btns">
+                    <a href="#motivation" class="btn" data-section="motivation">
+                        <i class="fas fa-bolt"></i> Get Inspired
+                    </a>
+                    <a href="#videos" class="btn btn-accent" data-section="videos">
+                        <i class="fas fa-play-circle"></i> Watch Videos
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Motivation Section -->
+    <section id="motivation">
+        <div class="container">
+            <h2 class="section-title">Daily Motivation</h2>
+            <p class="text-center">Start your day with powerful quotes to inspire action and positive thinking.</p>
+            
+            <div class="quote-card">
+                <p class="quote-text">"The only way to do great work is to love what you do. If you haven't found it yet, keep looking. Don't settle."</p>
+                <p class="quote-author">- Steve Jobs</p>
+                <div class="quote-actions">
+                    <button class="quote-btn"><i class="far fa-heart"></i></button>
+                    <button class="quote-btn"><i class="far fa-bookmark"></i></button>
+                    <button class="quote-btn"><i class="fas fa-share-alt"></i></button>
+                </div>
+            </div>
+            
+            <div class="quote-card">
+                <p class="quote-text">"Success is not final, failure is not fatal: it is the courage to continue that counts."</p>
+                <p class="quote-author">- Winston Churchill</p>
+                <div class="quote-actions">
+                    <button class="quote-btn"><i class="far fa-heart"></i></button>
+                    <button class="quote-btn"><i class="far fa-bookmark"></i></button>
+                    <button class="quote-btn"><i class="fas fa-share-alt"></i></button>
+                </div>
+            </div>
+            
+            <div class="text-center" style="margin-top: 40px;">
+                <button class="btn btn-outline">
+                    <i class="fas fa-sync-alt"></i> Load More Quotes
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Life Quotes Section -->
+    <section id="life-quotes">
+        <div class="container">
+            <h2 class="section-title">Life Quotes</h2>
+            <p class="text-center">Wisdom and insights about life's journey, challenges, and meaning.</p>
+            
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-content">
+                        <p class="quote-text">"Life is 10% what happens to you and 90% how you react to it."</p>
+                        <p class="quote-author">- Charles R. Swindoll</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-content">
+                        <p class="quote-text">"The purpose of our lives is to be happy."</p>
+                        <p class="quote-author">- Dalai Lama</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-content">
+                        <p class="quote-text">"Life is what happens when you're busy making other plans."</p>
+                        <p class="quote-author">- John Lennon</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Love Quotes Section -->
+    <section id="love-quotes">
+        <div class="container">
+            <h2 class="section-title">Love Quotes</h2>
+            <p class="text-center">Expressions of love, romance, and meaningful connections.</p>
+            
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-content">
+                        <p class="quote-text">"The best thing to hold onto in life is each other."</p>
+                        <p class="quote-author">- Audrey Hepburn</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-content">
+                        <p class="quote-text">"Love is composed of a single soul inhabiting two bodies."</p>
+                        <p class="quote-author">- Aristotle</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-content">
+                        <p class="quote-text">"To love and be loved is to feel the sun from both sides."</p>
+                        <p class="quote-author">- David Viscott</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dictionary Section -->
+    <section id="dictionary">
+        <div class="container">
+            <h2 class="section-title">Motivational Dictionary</h2>
+            <p class="text-center">Explore powerful words and their meanings to expand your motivational vocabulary.</p>
+            
+            <div class="dictionary-grid">
+                <div class="dictionary-card">
+                    <h3 class="word">Perseverance</h3>
+                    <p class="meaning">Steadfastness in doing something despite difficulty or delay in achieving success.</p>
+                    <button class="btn">Read Story</button>
+                </div>
+                
+                <div class="dictionary-card">
+                    <h3 class="word">Resilience</h3>
+                    <p class="meaning">The capacity to recover quickly from difficulties; toughness.</p>
+                    <button class="btn">Read Story</button>
+                </div>
+                
+                <div class="dictionary-card">
+                    <h3 class="word">Ambition</h3>
+                    <p class="meaning">A strong desire to do or achieve something, typically requiring determination and hard work.</p>
+                    <button class="btn">Read Story</button>
+                </div>
+                
+                <div class="dictionary-card">
+                    <h3 class="word">Integrity</h3>
+                    <p class="meaning">The quality of being honest and having strong moral principles.</p>
+                    <button class="btn">Read Story</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- E-Books Section -->
+    <section id="ebooks">
+        <div class="container">
+            <h2 class="section-title">Motivational E-Books</h2>
+            <p class="text-center">Expand your mind with these powerful books on personal development and success.</p>
+            
+            <div class="ebook-categories">
                 <button class="category-btn active" data-category="all">All</button>
-                <button class="category-btn" data-category="motivation">Motivation</button>
                 <button class="category-btn" data-category="success">Success</button>
-                <button class="category-btn" data-category="life">Life</button>
-                <button class="category-btn" data-category="wisdom">Wisdom</button>
-                <button class="category-btn" data-category="love">Love</button>
+                <button class="category-btn" data-category="leadership">Leadership</button>
+                <button class="category-btn" data-category="mindset">Mindset</button>
+                <button class="category-btn" data-category="productivity">Productivity</button>
             </div>
-
-            <div class="actions">
-                <button class="btn" id="newQuoteBtn">
-                    <i class="fas fa-sync-alt"></i> New Quote
-                </button>
-                <button class="btn btn-outline" id="shareBtn">
-                    <i class="fas fa-share-alt"></i> Share
-                </button>
-                <button class="btn btn-outline" id="historyBtn">
-                    <i class="fas fa-history"></i> History
-                </button>
-                <button class="btn btn-outline" id="copyBtn">
-                    <i class="fas fa-copy"></i> Copy
-                </button>
+            
+            <div class="cards-grid">
+                <div class="card" data-category="success mindset">
+                    <div style="position: relative;">
+                        <img src="https://via.placeholder.com/400x220/6C63FF/ffffff?text=Atomic+Habits" alt="Book Cover" class="card-img">
+                        <span class="book-badge">Bestseller</span>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Atomic Habits</h3>
+                        <p class="card-text">Tiny changes, remarkable results. Learn how to build good habits and break bad ones.</p>
+                        <div class="card-footer">
+                            <span class="price">$12.99</span>
+                            <button class="btn">Read Preview</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card" data-category="leadership">
+                    <div style="position: relative;">
+                        <img src="https://via.placeholder.com/400x220/2A2D43/ffffff?text=Leaders+Eat+Last" alt="Book Cover" class="card-img">
+                        <span class="book-badge">New</span>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Leaders Eat Last</h3>
+                        <p class="card-text">Why some teams pull together and others don't. Discover the secrets of great leadership.</p>
+                        <div class="card-footer">
+                            <span class="price">$14.99</span>
+                            <button class="btn">Read Preview</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card" data-category="mindset">
+                    <img src="https://via.placeholder.com/400x220/FF6584/ffffff?text=Mindset" alt="Book Cover" class="card-img">
+                    <div class="card-content">
+                        <h3 class="card-title">Mindset: The New Psychology of Success</h3>
+                        <p class="card-text">Discover how a simple idea about the brain can create a love of learning and resilience.</p>
+                        <div class="card-footer">
+                            <span class="price">$10.99</span>
+                            <button class="btn">Read Preview</button>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
+    </section>
 
-            <div class="quote-counter" id="quoteCounter">
-                Quote 1 of 25
+    <!-- Videos Section -->
+    <section id="videos">
+        <div class="container">
+            <h2 class="section-title">Motivational Videos</h2>
+            <p class="text-center">Watch inspiring videos to boost your motivation and learn new strategies for success.</p>
+            
+            <div class="video-filters">
+                <button class="filter-btn active" data-category="all">All Videos</button>
+                <button class="filter-btn" data-category="motivation">Motivation</button>
+                <button class="filter-btn" data-category="life">Life</button>
+                <button class="filter-btn" data-category="business">Business</button>
+                <button class="filter-btn" data-category="strategy">Strategy</button>
+                <button class="filter-btn" data-category="love">Love & Family</button>
+            </div>
+            
+            <div class="cards-grid">
+                <div class="card video-card" data-category="motivation">
+                    <img src="https://via.placeholder.com/400x220/6C63FF/ffffff?text=Power+of+Belief" alt="Video Thumbnail" class="video-thumbnail">
+                    <div class="video-overlay">
+                        <div class="play-btn">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">The Power of Belief</h3>
+                        <p class="card-text">How your mindset shapes your reality and determines your success.</p>
+                        <div class="card-footer">
+                            <span><i class="far fa-clock"></i> 15:42</span>
+                            <span><i class="fas fa-eye"></i> 24K</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card video-card" data-category="life">
+                    <img src="https://via.placeholder.com/400x220/2A2D43/ffffff?text=Life+Lessons" alt="Video Thumbnail" class="video-thumbnail">
+                    <div class="video-overlay">
+                        <div class="play-btn">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">10 Life Lessons Everyone Should Learn</h3>
+                        <p class="card-text">Wisdom from decades of experience that can transform your perspective.</p>
+                        <div class="card-footer">
+                            <span><i class="far fa-clock"></i> 22:18</span>
+                            <span><i class="fas fa-eye"></i> 18K</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card video-card" data-category="business">
+                    <img src="https://via.placeholder.com/400x220/FF6584/ffffff?text=Business+Success" alt="Video Thumbnail" class="video-thumbnail">
+                    <div class="video-overlay">
+                        <div class="play-btn">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Business Mindset for Success</h3>
+                        <p class="card-text">Develop the entrepreneurial thinking that leads to business growth.</p>
+                        <div class="card-footer">
+                            <span><i class="far fa-clock"></i> 28:05</span>
+                            <span><i class="fas fa-eye"></i> 32K</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+    </section>
 
-        <div class="loading" id="loading">
-            <div class="loading-spinner"></div>
-            <p style="margin-top: 15px;">Loading inspiration...</p>
+    <!-- Support Section -->
+    <section id="support">
+        <div class="container">
+            <h2 class="section-title">Support & Contact</h2>
+            <p class="text-center">We're here to help! Reach out for assistance, suggestions, or to support our mission.</p>
+            
+            <div class="support-container">
+                <div class="contact-form">
+                    <h3>Send us a Message</h3>
+                    <form id="supportForm">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Your Name</label>
+                            <input type="text" id="name" class="form-control" placeholder="Enter your name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" id="email" class="form-control" placeholder="Enter your email">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject" class="form-label">Subject</label>
+                            <select id="subject" class="form-control">
+                                <option value="">Select a topic</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="support">Technical Support</option>
+                                <option value="suggestion">Content Suggestion</option>
+                                <option value="partnership">Partnership</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea id="message" class="form-control" placeholder="How can we help you?"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="payment-methods">
+                    <h3>Support Our Mission</h3>
+                    <p>Your contributions help us create more inspirational content and reach more people.</p>
+                    
+                    <div class="payment-option">
+                        <div class="payment-icon">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <div>
+                            <h4>Bank Transfer</h4>
+                            <p>Account: Supreme Motive Foundation</p>
+                            <p>Routing: 021000021 • Account: 4000123456</p>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-option">
+                        <div class="payment-icon">
+                            <i class="fab fa-paypal"></i>
+                        </div>
+                        <div>
+                            <h4>PayPal</h4>
+                            <p>Send to: support@suprememotive.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-option">
+                        <div class="payment-icon">
+                            <i class="fab fa-bitcoin"></i>
+                        </div>
+                        <div>
+                            <h4>Cryptocurrency</h4>
+                            <p>BTC: 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa</p>
+                            <p>ETH: 0x7424A7b6c5aBc5B9C3Bf5c5C7b9B3C5b3C7b9B3C</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <!-- History Panel -->
-    <div class="history-panel" id="historyPanel">
-        <div class="history-header">
-            <h3 class="history-title">Quote History</h3>
-            <button class="close-history" id="closeHistory">
-                <i class="fas fa-times"></i>
-            </button>
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Us</h2>
+            
+            <div class="about-content">
+                <div>
+                    <h3>Our Mission</h3>
+                    <p>Supreme Motive was founded with a simple yet powerful mission: to inspire millions through daily motivation, actionable insights, and transformative resources.</p>
+                    <p>We believe that everyone has untapped potential waiting to be unleashed, and our platform serves as a catalyst for personal growth and positive change.</p>
+                    
+                    <h3>Our Vision</h3>
+                    <p>To create a global community where individuals support each other in pursuing their dreams and living purposeful, fulfilling lives.</p>
+                </div>
+                
+                <div>
+                    <img src="https://via.placeholder.com/500x500/6C63FF/ffffff?text=Founder" alt="Founder" class="founder-img">
+                </div>
+            </div>
+            
+            <div class="mission-statement">
+                <h3>From the Founder</h3>
+                <p>"I started Supreme Motive during a challenging period in my life when I needed inspiration the most. What began as a personal collection of quotes and resources has grown into a platform that now serves thousands worldwide.</p>
+                <p>My vision is to continue expanding our offerings, creating more original content, and building a supportive community where everyone can find the motivation they need to overcome obstacles and achieve their goals."</p>
+                <p><strong>- [Your Name], Founder & CEO</strong></p>
+            </div>
         </div>
-        <div id="historyList">
-            <!-- History items will be added here -->
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Supreme Motive</h3>
+                    <p>Your daily source of inspiration and personal growth resources.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/c/SupremeMotive" target="_blank" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home" data-section="home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="#motivation" data-section="motivation"><i class="fas fa-chevron-right"></i> Daily Motivation</a></li>
+                        <li><a href="#ebooks" data-section="ebooks"><i class="fas fa-chevron-right"></i> E-Books</a></li>
+                        <li><a href="#videos" data-section="videos"><i class="fas fa-chevron-right"></i> Videos</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#dictionary" data-section="dictionary"><i class="fas fa-chevron-right"></i> Motivational Dictionary</a></li>
+                        <li><a href="#life-quotes" data-section="life-quotes"><i class="fas fa-chevron-right"></i> Life Quotes</a></li>
+                        <li><a href="#love-quotes" data-section="love-quotes"><i class="fas fa-chevron-right"></i> Love Quotes</a></li>
+                        <li><a href="#support" data-section="support"><i class="fas fa-chevron-right"></i> Support</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> hello@suprememotive.com</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Inspiration Street, Motivation City</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Supreme Motive. All rights reserved. | Designed with <i class="fas fa-heart" style="color: var(--accent);"></i> for your inspiration</p>
+            </div>
         </div>
-    </div>
-
-    <!-- Overlay -->
-    <div class="overlay" id="overlay"></div>
-
-    <!-- Toast Notification -->
-    <div class="toast" id="toast">Quote copied to clipboard!</div>
+    </footer>
 
     <script>
-        // Extensive quotes database
-        const quotes = [
-            {
-                text: "The only way to do great work is to love what you do.",
-                author: "Steve Jobs",
-                category: "motivation"
-            },
-            {
-                text: "Life is what happens to you while you're busy making other plans.",
-                author: "John Lennon",
-                category: "life"
-            },
-            {
-                text: "The future belongs to those who believe in the beauty of their dreams.",
-                author: "Eleanor Roosevelt",
-                category: "success"
-            },
-            {
-                text: "In the middle of difficulty lies opportunity.",
-                author: "Albert Einstein",
-                category: "wisdom"
-            },
-            {
-                text: "The only thing we have to fear is fear itself.",
-                author: "Franklin D. Roosevelt",
-                category: "wisdom"
-            },
-            {
-                text: "It is during our darkest moments that we must focus to see the light.",
-                author: "Aristotle",
-                category: "motivation"
-            },
-            {
-                text: "Do not go where the path may lead, go instead where there is no path and leave a trail.",
-                author: "Ralph Waldo Emerson",
-                category: "success"
-            },
-            {
-                text: "Be yourself; everyone else is already taken.",
-                author: "Oscar Wilde",
-                category: "life"
-            },
-            {
-                text: "You miss 100% of the shots you don't take.",
-                author: "Wayne Gretzky",
-                category: "motivation"
-            },
-            {
-                text: "The greatest glory in living lies not in never falling, but in rising every time we fall.",
-                author: "Nelson Mandela",
-                category: "success"
-            },
-            {
-                text: "The way to get started is to quit talking and begin doing.",
-                author: "Walt Disney",
-                category: "success"
-            },
-            {
-                text: "Your time is limited, so don't waste it living someone else's life.",
-                author: "Steve Jobs",
-                category: "life"
-            },
-            {
-                text: "If life were predictable it would cease to be life, and be without flavor.",
-                author: "Eleanor Roosevelt",
-                category: "life"
-            },
-            {
-                text: "If you look at what you have in life, you'll always have more.",
-                author: "Oprah Winfrey",
-                category: "wisdom"
-            },
-            {
-                text: "Life is a succession of lessons which must be lived to be understood.",
-                author: "Ralph Waldo Emerson",
-                category: "wisdom"
-            },
-            {
-                text: "You will face many defeats in life, but never let yourself be defeated.",
-                author: "Maya Angelou",
-                category: "motivation"
-            },
-            {
-                text: "The only impossible journey is the one you never begin.",
-                author: "Tony Robbins",
-                category: "motivation"
-            },
-            {
-                text: "In this life we cannot do great things. We can only do small things with great love.",
-                author: "Mother Teresa",
-                category: "love"
-            },
-            {
-                text: "Only a life lived for others is a life worthwhile.",
-                author: "Albert Einstein",
-                category: "life"
-            },
-            {
-                text: "The purpose of our lives is to be happy.",
-                author: "Dalai Lama",
-                category: "life"
-            },
-            {
-                text: "Love is composed of a single soul inhabiting two bodies.",
-                author: "Aristotle",
-                category: "love"
-            },
-            {
-                text: "Being deeply loved by someone gives you strength, while loving someone deeply gives you courage.",
-                author: "Lao Tzu",
-                category: "love"
-            },
-            {
-                text: "Success is not final, failure is not fatal: it is the courage to continue that counts.",
-                author: "Winston Churchill",
-                category: "success"
-            },
-            {
-                text: "The road to success and the road to failure are almost exactly the same.",
-                author: "Colin R. Davis",
-                category: "success"
-            },
-            {
-                text: "Success usually comes to those who are too busy to be looking for it.",
-                author: "Henry David Thoreau",
-                category: "success"
+        // Navigation functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navMenu = document.getElementById('navMenu');
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = themeToggle.querySelector('i');
+            
+            // Function to show a specific section
+            function showSection(sectionId) {
+                // Hide all sections
+                document.querySelectorAll('section').forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                // Show the selected section
+                document.getElementById(sectionId).classList.add('active');
+                
+                // Update active nav link
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('data-section') === sectionId) {
+                        link.classList.add('active');
+                    }
+                });
+                
+                // Close mobile menu if open
+                navMenu.classList.remove('active');
             }
-        ];
-
-        // DOM Elements
-        const quoteText = document.getElementById('quoteText');
-        const quoteAuthor = document.getElementById('quoteAuthor');
-        const quoteCategory = document.getElementById('quoteCategory');
-        const quoteCounter = document.getElementById('quoteCounter');
-        const favoriteBtn = document.getElementById('favoriteBtn');
-        const newQuoteBtn = document.getElementById('newQuoteBtn');
-        const shareBtn = document.getElementById('shareBtn');
-        const historyBtn = document.getElementById('historyBtn');
-        const copyBtn = document.getElementById('copyBtn');
-        const categoryButtons = document.querySelectorAll('.category-btn');
-        const loading = document.getElementById('loading');
-        const historyPanel = document.getElementById('historyPanel');
-        const closeHistory = document.getElementById('closeHistory');
-        const historyList = document.getElementById('historyList');
-        const overlay = document.getElementById('overlay');
-        const toast = document.getElementById('toast');
-
-        // App State
-        let currentCategory = 'all';
-        let currentQuoteIndex = 0;
-        let quoteHistory = [];
-        let favorites = JSON.parse(localStorage.getItem('favoriteQuotes')) || [];
-
-        // Initialize the app
-        function init() {
-            displayRandomQuote();
-            updateFavoriteButton();
             
-            // Event listeners
-            newQuoteBtn.addEventListener('click', displayRandomQuote);
-            shareBtn.addEventListener('click', shareQuote);
-            copyBtn.addEventListener('click', copyQuote);
-            historyBtn.addEventListener('click', toggleHistoryPanel);
-            closeHistory.addEventListener('click', toggleHistoryPanel);
-            overlay.addEventListener('click', toggleHistoryPanel);
-            favoriteBtn.addEventListener('click', toggleFavorite);
-            
-            categoryButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // Update active category button
-                    categoryButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    currentCategory = this.getAttribute('data-category');
-                    displayRandomQuote();
+            // Add click event to navigation links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const sectionId = this.getAttribute('data-section');
+                    showSection(sectionId);
                 });
             });
             
-            // Load history from localStorage
-            const savedHistory = localStorage.getItem('quoteHistory');
-            if (savedHistory) {
-                quoteHistory = JSON.parse(savedHistory);
-                updateHistoryPanel();
-            }
-        }
-
-        // Display a random quote
-        function displayRandomQuote() {
-            showLoading();
-            
-            setTimeout(() => {
-                let filteredQuotes = currentCategory === 'all' 
-                    ? quotes 
-                    : quotes.filter(quote => quote.category === currentCategory);
-                
-                if (filteredQuotes.length === 0) return;
-                
-                // Ensure we don't show the same quote twice in a row
-                let newIndex;
-                do {
-                    newIndex = Math.floor(Math.random() * filteredQuotes.length);
-                } while (filteredQuotes.length > 1 && newIndex === currentQuoteIndex);
-                
-                currentQuoteIndex = newIndex;
-                const quote = filteredQuotes[currentQuoteIndex];
-                
-                // Add to history
-                addToHistory(quote);
-                
-                // Update UI with animation
-                quoteText.classList.remove('fade-in');
-                quoteAuthor.classList.remove('fade-in');
-                
-                setTimeout(() => {
-                    quoteText.textContent = quote.text;
-                    quoteAuthor.textContent = `- ${quote.author}`;
-                    quoteCategory.textContent = quote.category.charAt(0).toUpperCase() + quote.category.slice(1);
-                    
-                    quoteText.classList.add('fade-in');
-                    quoteAuthor.classList.add('fade-in');
-                    
-                    // Update counter
-                    const totalQuotes = filteredQuotes.length;
-                    const currentPosition = filteredQuotes.indexOf(quote) + 1;
-                    quoteCounter.textContent = `Quote ${currentPosition} of ${totalQuotes}`;
-                    
-                    // Update favorite button
-                    updateFavoriteButton();
-                    
-                    hideLoading();
-                }, 300);
-            }, 800);
-        }
-
-        // Show loading state
-        function showLoading() {
-            loading.style.display = 'block';
-            quoteText.style.opacity = '0.5';
-            quoteAuthor.style.opacity = '0.5';
-        }
-
-        // Hide loading state
-        function hideLoading() {
-            loading.style.display = 'none';
-            quoteText.style.opacity = '1';
-            quoteAuthor.style.opacity = '1';
-        }
-
-        // Add quote to history
-        function addToHistory(quote) {
-            // Check if quote is already in history
-            const isDuplicate = quoteHistory.some(
-                item => item.text === quote.text && item.author === quote.author
-            );
-            
-            if (!isDuplicate) {
-                quoteHistory.unshift(quote);
-                
-                // Keep only last 10 quotes in history
-                if (quoteHistory.length > 10) {
-                    quoteHistory.pop();
-                }
-                
-                // Save to localStorage
-                localStorage.setItem('quoteHistory', JSON.stringify(quoteHistory));
-                
-                // Update history panel
-                updateHistoryPanel();
-            }
-        }
-
-        // Update history panel
-        function updateHistoryPanel() {
-            historyList.innerHTML = '';
-            
-            if (quoteHistory.length === 0) {
-                historyList.innerHTML = '<p style="text-align: center; color: #6c757d; padding: 20px;">No quote history yet</p>';
-                return;
-            }
-            
-            quoteHistory.forEach(quote => {
-                const historyItem = document.createElement('div');
-                historyItem.className = 'history-item';
-                historyItem.innerHTML = `
-                    <p class="history-quote">${quote.text}</p>
-                    <p class="history-author">- ${quote.author}</p>
-                `;
-                historyList.appendChild(historyItem);
+            // Mobile menu toggle
+            mobileMenuBtn.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
             });
-        }
-
-        // Toggle history panel
-        function toggleHistoryPanel() {
-            historyPanel.classList.toggle('active');
-            overlay.classList.toggle('active');
-            document.body.style.overflow = historyPanel.classList.contains('active') ? 'hidden' : '';
-        }
-
-        // Toggle favorite
-        function toggleFavorite() {
-            const currentQuote = {
-                text: quoteText.textContent,
-                author: quoteAuthor.textContent.replace('- ', ''),
-                category: quoteCategory.textContent.toLowerCase()
-            };
             
-            const isFavorite = favorites.some(
-                fav => fav.text === currentQuote.text && fav.author === currentQuote.author
-            );
+            // Theme toggle functionality
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+                if (document.body.classList.contains('dark-mode')) {
+                    themeIcon.classList.remove('fa-moon');
+                    themeIcon.classList.add('fa-sun');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    themeIcon.classList.remove('fa-sun');
+                    themeIcon.classList.add('fa-moon');
+                    localStorage.setItem('theme', 'light');
+                }
+            });
             
-            if (isFavorite) {
-                // Remove from favorites
-                favorites = favorites.filter(
-                    fav => !(fav.text === currentQuote.text && fav.author === currentQuote.author)
-                );
-                favoriteBtn.innerHTML = '<i class="far fa-heart"></i>';
-                showToast('Removed from favorites');
-            } else {
-                // Add to favorites
-                favorites.push(currentQuote);
-                favoriteBtn.innerHTML = '<i class="fas fa-heart"></i>';
-                showToast('Added to favorites');
+            // Check for saved theme preference
+            if (localStorage.getItem('theme') === 'dark') {
+                document.body.classList.add('dark-mode');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
             }
             
-            // Save to localStorage
-            localStorage.setItem('favoriteQuotes', JSON.stringify(favorites));
-        }
-
-        // Update favorite button state
-        function updateFavoriteButton() {
-            const currentQuote = {
-                text: quoteText.textContent,
-                author: quoteAuthor.textContent.replace('- ', '')
-            };
+            // Video filtering
+            const videoFilters = document.querySelectorAll('.video-filters .filter-btn');
+            const videoCards = document.querySelectorAll('#videos .video-card');
             
-            const isFavorite = favorites.some(
-                fav => fav.text === currentQuote.text && fav.author === currentQuote.author
-            );
+            videoFilters.forEach(filter => {
+                filter.addEventListener('click', function() {
+                    // Update active filter
+                    videoFilters.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const category = this.getAttribute('data-category');
+                    
+                    // Filter videos
+                    videoCards.forEach(card => {
+                        if (category === 'all' || card.getAttribute('data-category') === category) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
             
-            if (isFavorite) {
-                favoriteBtn.innerHTML = '<i class="fas fa-heart"></i>';
-                favoriteBtn.classList.add('active');
-            } else {
-                favoriteBtn.innerHTML = '<i class="far fa-heart"></i>';
-                favoriteBtn.classList.remove('active');
+            // E-book filtering
+            const ebookCategories = document.querySelectorAll('.ebook-categories .category-btn');
+            const ebookCards = document.querySelectorAll('#ebooks .card');
+            
+            ebookCategories.forEach(categoryBtn => {
+                categoryBtn.addEventListener('click', function() {
+                    // Update active category
+                    ebookCategories.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const category = this.getAttribute('data-category');
+                    
+                    // Filter e-books
+                    ebookCards.forEach(card => {
+                        if (category === 'all' || card.getAttribute('data-category').includes(category)) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Support form submission
+            const supportForm = document.getElementById('supportForm');
+            if (supportForm) {
+                supportForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Thank you for your message! We will get back to you soon.');
+                    supportForm.reset();
+                });
             }
-        }
-
-        // Share quote
-        function shareQuote() {
-            const quote = quoteText.textContent;
-            const author = quoteAuthor.textContent;
             
-            if (navigator.share) {
-                navigator.share({
-                    title: 'Inspirational Quote',
-                    text: `${quote} ${author}`,
-                })
-                .then(() => showToast('Quote shared successfully'))
-                .catch(error => console.log('Error sharing:', error));
-            } else {
-                // Fallback for browsers that don't support Web Share API
-                const textToShare = `${quote} ${author} - Shared from Inspirational Quotes`;
-                navigator.clipboard.writeText(textToShare)
-                    .then(() => showToast('Quote copied to clipboard!'))
-                    .catch(err => console.error('Could not copy text: ', err));
+            // Create particles for home section
+            function createParticles() {
+                const particlesContainer = document.getElementById('particles');
+                const particleCount = 30;
+                
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    
+                    // Random properties
+                    const size = Math.random() * 10 + 5;
+                    const posX = Math.random() * 100;
+                    const delay = Math.random() * 15;
+                    const duration = Math.random() * 10 + 10;
+                    
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.left = `${posX}%`;
+                    particle.style.animationDelay = `${delay}s`;
+                    particle.style.animationDuration = `${duration}s`;
+                    
+                    particlesContainer.appendChild(particle);
+                }
             }
-        }
-
-        // Copy quote to clipboard
-        function copyQuote() {
-            const quote = quoteText.textContent;
-            const author = quoteAuthor.textContent;
-            const textToCopy = `${quote} ${author}`;
             
-            navigator.clipboard.writeText(textToCopy)
-                .then(() => showToast('Quote copied to clipboard!'))
-                .catch(err => console.error('Could not copy text: ', err));
-        }
-
-        // Show toast notification
-        function showToast(message) {
-            toast.textContent = message;
-            toast.classList.add('active');
+            // Initialize particles
+            createParticles();
             
-            setTimeout(() => {
-                toast.classList.remove('active');
-            }, 3000);
-        }
-
-        // Initialize the application
-        document.addEventListener('DOMContentLoaded', init);
+            // Set home as active section by default
+            showSection('home');
+        });
     </script>
 </body>
 </html>
