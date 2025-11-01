@@ -420,213 +420,6 @@
             border-top: 1px solid rgba(108, 99, 255, 0.1);
         }
         
-        /* Quote Cards */
-        .quote-card {
-            background-color: var(--card-bg);
-            border-radius: 16px;
-            padding: 40px;
-            box-shadow: var(--shadow);
-            margin-bottom: 30px;
-            position: relative;
-            border-left: 5px solid var(--primary);
-            transition: var(--transition);
-        }
-        
-        .quote-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
-        }
-        
-        .quote-card::before {
-            content: '"';
-            position: absolute;
-            top: 20px;
-            left: 30px;
-            font-size: 5rem;
-            color: var(--primary);
-            opacity: 0.2;
-            font-family: 'Playfair Display', serif;
-        }
-        
-        .quote-text {
-            font-size: 1.3rem;
-            font-style: italic;
-            margin-bottom: 20px;
-            color: var(--text-color);
-            position: relative;
-            z-index: 1;
-        }
-        
-        .quote-author {
-            text-align: right;
-            font-weight: 600;
-            color: var(--primary);
-        }
-        
-        .quote-actions {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .quote-btn {
-            background: none;
-            border: none;
-            font-size: 1.3rem;
-            cursor: pointer;
-            color: var(--gray);
-            transition: var(--transition);
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .quote-btn:hover {
-            color: var(--accent);
-            background: rgba(255, 101, 132, 0.1);
-        }
-        
-        /* Dictionary Section */
-        .dictionary-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-        }
-        
-        .dictionary-card {
-            background-color: var(--card-bg);
-            border-radius: 16px;
-            padding: 25px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            cursor: pointer;
-            border: 1px solid rgba(108, 99, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .dictionary-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 5px;
-            height: 100%;
-            background: linear-gradient(to bottom, var(--primary), var(--accent));
-        }
-        
-        .dictionary-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-hover);
-        }
-        
-        .word {
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 12px;
-        }
-        
-        .meaning {
-            color: var(--gray);
-            margin-bottom: 20px;
-        }
-        
-        /* Video Section */
-        .video-filters {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-bottom: 40px;
-        }
-        
-        .filter-btn {
-            padding: 10px 20px;
-            background-color: var(--card-bg);
-            border: 1px solid rgba(108, 99, 255, 0.2);
-            border-radius: 30px;
-            cursor: pointer;
-            transition: var(--transition);
-            color: var(--text-color);
-            font-weight: 500;
-        }
-        
-        .filter-btn.active, .filter-btn:hover {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            border-color: var(--primary);
-        }
-        
-        .video-card {
-            position: relative;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-        
-        .video-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-hover);
-        }
-        
-        .video-thumbnail {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-        
-        .video-card:hover .video-thumbnail {
-            transform: scale(1.05);
-        }
-        
-        .video-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.7));
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: var(--transition);
-        }
-        
-        .video-card:hover .video-overlay {
-            opacity: 1;
-        }
-        
-        .play-btn {
-            background-color: var(--accent);
-            color: white;
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.8rem;
-            cursor: pointer;
-            transition: var(--transition);
-            transform: scale(0.9);
-        }
-        
-        .video-card:hover .play-btn {
-            transform: scale(1);
-        }
-        
-        .play-btn:hover {
-            background-color: var(--accent-dark);
-            transform: scale(1.1);
-        }
-        
         /* E-Books Section */
         .ebook-categories {
             display: flex;
@@ -666,198 +459,340 @@
             z-index: 2;
         }
         
-        /* Support Section */
-        .support-container {
+        /* Ebook Library Styles */
+        .ebooks-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
         }
         
-        .contact-form {
-            background-color: var(--card-bg);
-            padding: 40px;
-            border-radius: 16px;
+        .ebook-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
             box-shadow: var(--shadow);
-        }
-        
-        .form-group {
-            margin-bottom: 25px;
-        }
-        
-        .form-label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: 500;
-            color: var(--text-color);
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 15px 20px;
-            border: 1px solid rgba(108, 99, 255, 0.2);
-            border-radius: 10px;
-            font-size: 1rem;
             transition: var(--transition);
-            background-color: var(--card-bg);
-            color: var(--text-color);
+            cursor: pointer;
+            position: relative;
         }
         
-        .form-control:focus {
-            border-color: var(--primary);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
+        .ebook-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
         }
         
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
+        .ebook-card::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
         }
         
-        .payment-methods {
-            background-color: var(--card-bg);
-            padding: 40px;
-            border-radius: 16px;
-            box-shadow: var(--shadow);
+        .ebook-cover {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(108, 99, 255, 0.1);
+            transition: transform 0.5s ease;
         }
         
-        .payment-option {
+        .ebook-card:hover .ebook-cover {
+            transform: scale(1.05);
+        }
+        
+        .ebook-info {
+            padding: 1.5rem;
+        }
+        
+        .ebook-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .ebook-description {
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .ebook-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+        
+        .ebook-category {
+            background: rgba(108, 99, 255, 0.1);
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+        
+        .modal-content {
+            background: var(--card-bg);
+            max-width: 800px;
+            margin: 2rem auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: modalFade 0.4s;
+        }
+        
+        @keyframes modalFade {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .modal-header {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            padding: 20px;
-            border: 1px solid rgba(108, 99, 255, 0.1);
-            border-radius: 12px;
-            margin-bottom: 20px;
+            justify-content: center;
+        }
+        
+        .close-btn:hover {
+            transform: rotate(90deg);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .modal-body {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .modal-cover-container {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .modal-cover {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+        
+        .modal-intro {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-color);
+            text-align: justify;
+        }
+        
+        .ebook-stats {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(108, 99, 255, 0.05);
+            padding: 0.8rem;
+            border-radius: 8px;
+            min-width: 80px;
+        }
+        
+        .stat-value {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+        
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+        
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            text-align: center;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            box-shadow: 0 4px 15px rgba(108, 99, 255, 0.4);
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(108, 99, 255, 0.5);
+        }
+        
+        /* Support Button */
+        .support-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            z-index: 100;
             transition: var(--transition);
         }
         
-        .payment-option:hover {
-            border-color: var(--primary);
+        .support-btn:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .support-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1100;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+        
+        .support-content {
+            background: var(--card-bg);
+            max-width: 500px;
+            margin: 2rem auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: modalFade 0.4s;
+        }
+        
+        .support-header {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .support-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .support-body {
+            padding: 2rem;
+        }
+        
+        .support-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .support-option {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border: 1px solid rgba(108, 99, 255, 0.1);
+            border-radius: 8px;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .support-option:hover {
             background: rgba(108, 99, 255, 0.05);
             transform: translateX(5px);
         }
         
-        .payment-icon {
-            font-size: 2rem;
-            margin-right: 20px;
+        .support-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(108, 99, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
             color: var(--primary);
         }
         
-        /* About Section */
-        .about-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 50px;
-            align-items: center;
+        .support-info h3 {
+            color: var(--primary);
+            margin-bottom: 0.3rem;
         }
         
-        .founder-img {
-            width: 100%;
-            max-width: 450px;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-        
-        .founder-img:hover {
-            transform: scale(1.02);
-            box-shadow: var(--shadow-hover);
-        }
-        
-        .mission-statement {
-            background-color: var(--card-bg);
-            padding: 40px;
-            border-radius: 16px;
-            box-shadow: var(--shadow);
-            margin-top: 40px;
-            border-left: 5px solid var(--accent);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .mission-statement::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(135deg, var(--accent) 0%, transparent 70%);
-            border-radius: 0 0 0 100px;
-            opacity: 0.1;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--footer-bg);
-            color: var(--footer-text);
-            padding: 70px 0 30px;
-            transition: var(--transition);
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-        
-        .footer-column h3 {
-            color: var(--footer-text);
-            margin-bottom: 25px;
-            font-size: 1.5rem;
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-        
-        .footer-links a {
-            color: #adb5bd;
-            text-decoration: none;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .footer-links a:hover {
-            color: white;
-            padding-left: 5px;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 25px;
-        }
-        
-        .social-link {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 45px;
-            height: 45px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: white;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-        
-        .social-link:hover {
-            background-color: var(--primary);
-            transform: translateY(-5px);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #adb5bd;
+        .support-info p {
+            color: var(--gray);
             font-size: 0.9rem;
         }
         
@@ -865,7 +800,7 @@
         .floating-yt {
             position: fixed;
             bottom: 30px;
-            right: 30px;
+            right: 100px;
             width: 70px;
             height: 70px;
             background: linear-gradient(135deg, #FF0000, #CC0000);
@@ -986,14 +921,31 @@
             
             .floating-yt {
                 bottom: 20px;
-                right: 20px;
+                right: 90px;
                 width: 60px;
                 height: 60px;
                 font-size: 1.7rem;
             }
             
+            .support-btn {
+                bottom: 20px;
+                right: 20px;
+            }
+            
             section {
                 padding: 100px 0;
+            }
+            
+            .ebooks-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .modal-content, .support-content {
+                margin: 1rem;
+            }
+            
+            .modal-body, .support-body {
+                padding: 1.5rem;
             }
         }
         
@@ -1018,12 +970,8 @@
                 font-size: 2.2rem;
             }
             
-            .quote-card {
-                padding: 25px;
-            }
-            
-            .contact-form, .payment-methods {
-                padding: 25px;
+            .ebooks-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -1033,6 +981,11 @@
     <a href="https://www.youtube.com/c/SupremeMotive" target="_blank" class="floating-yt">
         <i class="fab fa-youtube"></i>
     </a>
+
+    <!-- Support Button -->
+    <div class="support-btn" id="supportBtn">
+        <i class="fas fa-headset"></i>
+    </div>
 
     <!-- Header & Navigation -->
     <header>
@@ -1076,8 +1029,8 @@
                     <a href="#motivation" class="btn" data-section="motivation">
                         <i class="fas fa-bolt"></i> Get Inspired
                     </a>
-                    <a href="#videos" class="btn btn-accent" data-section="videos">
-                        <i class="fas fa-play-circle"></i> Watch Videos
+                    <a href="#ebooks" class="btn btn-accent" data-section="ebooks">
+                        <i class="fas fa-book"></i> Explore E-Books
                     </a>
                 </div>
             </div>
@@ -1218,58 +1171,19 @@
     <section id="ebooks">
         <div class="container">
             <h2 class="section-title">Motivational E-Books</h2>
-            <p class="text-center">Expand your mind with these powerful books on personal development and success.</p>
+            <p class="text-center">Expand your mind with our collection of transformative ebooks on personal development and success.</p>
             
             <div class="ebook-categories">
                 <button class="category-btn active" data-category="all">All</button>
-                <button class="category-btn" data-category="success">Success</button>
-                <button class="category-btn" data-category="leadership">Leadership</button>
-                <button class="category-btn" data-category="mindset">Mindset</button>
+                <button class="category-btn" data-category="life">Life</button>
                 <button class="category-btn" data-category="productivity">Productivity</button>
+                <button class="category-btn" data-category="motivation">Motivation</button>
+                <button class="category-btn" data-category="love">Love</button>
+                <button class="category-btn" data-category="business">Business</button>
             </div>
             
-            <div class="cards-grid">
-                <div class="card" data-category="success mindset">
-                    <div style="position: relative;">
-                        <img src="https://via.placeholder.com/400x220/6C63FF/ffffff?text=Atomic+Habits" alt="Book Cover" class="card-img">
-                        <span class="book-badge">Bestseller</span>
-                    </div>
-                    <div class="card-content">
-                        <h3 class="card-title">Atomic Habits</h3>
-                        <p class="card-text">Tiny changes, remarkable results. Learn how to build good habits and break bad ones.</p>
-                        <div class="card-footer">
-                            <span class="price">$12.99</span>
-                            <button class="btn">Read Preview</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="card" data-category="leadership">
-                    <div style="position: relative;">
-                        <img src="https://via.placeholder.com/400x220/2A2D43/ffffff?text=Leaders+Eat+Last" alt="Book Cover" class="card-img">
-                        <span class="book-badge">New</span>
-                    </div>
-                    <div class="card-content">
-                        <h3 class="card-title">Leaders Eat Last</h3>
-                        <p class="card-text">Why some teams pull together and others don't. Discover the secrets of great leadership.</p>
-                        <div class="card-footer">
-                            <span class="price">$14.99</span>
-                            <button class="btn">Read Preview</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="card" data-category="mindset">
-                    <img src="https://via.placeholder.com/400x220/FF6584/ffffff?text=Mindset" alt="Book Cover" class="card-img">
-                    <div class="card-content">
-                        <h3 class="card-title">Mindset: The New Psychology of Success</h3>
-                        <p class="card-text">Discover how a simple idea about the brain can create a love of learning and resilience.</p>
-                        <div class="card-footer">
-                            <span class="price">$10.99</span>
-                            <button class="btn">Read Preview</button>
-                        </div>
-                    </div>
-                </div>
+            <div class="ebooks-grid" id="ebooksContainer">
+                <!-- Ebooks will be dynamically inserted here -->
             </div>
         </div>
     </section>
@@ -1507,7 +1421,319 @@
         </div>
     </footer>
 
+    <!-- Ebook Modal -->
+    <div class="modal" id="ebookModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalEbookTitle">Book Title</h2>
+                <button class="close-btn" id="closeEbookModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-cover-container">
+                    <img src="" alt="Book Cover" class="modal-cover" id="modalEbookCover">
+                </div>
+                <p class="modal-intro" id="modalEbookIntro">Book introduction will appear here...</p>
+                
+                <div class="ebook-stats">
+                    <div class="stat">
+                        <span class="stat-value" id="statPages">250</span>
+                        <span class="stat-label">Pages</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value" id="statRating">4.8</span>
+                        <span class="stat-label">Rating</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value" id="statDownloads">1.2K</span>
+                        <span class="stat-label">Downloads</span>
+                    </div>
+                </div>
+                
+                <button class="download-btn" id="downloadEbookBtn">
+                    <i class="fas fa-download"></i> Download PDF
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Support Modal -->
+    <div class="support-modal" id="supportModal">
+        <div class="support-content">
+            <div class="support-header">
+                <h2 class="support-title">How Can We Help You?</h2>
+                <button class="close-btn" id="closeSupportModal">&times;</button>
+            </div>
+            <div class="support-body">
+                <div class="support-options">
+                    <div class="support-option" id="supportChat">
+                        <div class="support-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <div class="support-info">
+                            <h3>Live Chat</h3>
+                            <p>Chat with our support team in real-time</p>
+                        </div>
+                    </div>
+                    <div class="support-option" id="supportEmail">
+                        <div class="support-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="support-info">
+                            <h3>Email Support</h3>
+                            <p>Send us an email and we'll respond within 24 hours</p>
+                        </div>
+                    </div>
+                    <div class="support-option" id="supportPhone">
+                        <div class="support-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="support-info">
+                            <h3>Phone Support</h3>
+                            <p>Call us directly during business hours</p>
+                        </div>
+                    </div>
+                    <div class="support-option" id="supportFaq">
+                        <div class="support-icon">
+                            <i class="fas fa-question-circle"></i>
+                        </div>
+                        <div class="support-info">
+                            <h3>FAQ</h3>
+                            <p>Browse our frequently asked questions</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // Enhanced book data with more details
+        const ebooks = [
+            {
+                id: 1,
+                title: "The Art of Living Mindfully",
+                category: "life",
+                cover: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+                description: "Discover the secrets to a more mindful and fulfilling existence in this transformative guide.",
+                intro: "In a world filled with constant distractions and endless to-do lists, finding true peace can seem impossible. 'The Art of Living Mindfully' takes you on a transformative journey to reclaim your inner calm and live with intention. Through practical exercises and profound insights, you'll learn to navigate life's challenges with grace and cultivate a deep sense of purpose that transcends daily stressors.",
+                pages: 284,
+                rating: 4.7,
+                downloads: 12500,
+                file: "the-art-of-living-mindfully.pdf"
+            },
+            {
+                id: 2,
+                title: "Productivity Unleashed",
+                category: "productivity",
+                cover: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+                description: "Master your time and accomplish more with less effort using proven techniques.",
+                intro: "What if you could achieve in 4 hours what currently takes you 8? 'Productivity Unleashed' reveals the neuroscience-backed techniques that top performers use to maximize their output while minimizing stress. From time-blocking strategies to cognitive optimization, this book will transform how you approach your work and life, helping you achieve more while working less.",
+                pages: 320,
+                rating: 4.9,
+                downloads: 18750,
+                file: "productivity-unleashed.pdf"
+            },
+            {
+                id: 3,
+                title: "The Motivation Code",
+                category: "motivation",
+                cover: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+                description: "Unlock the hidden drivers that propel you toward success and lasting achievement.",
+                intro: "Why do some people maintain unwavering motivation while others struggle to get out of bed? 'The Motivation Code' deciphers the psychological patterns that determine our drive and ambition. Through compelling stories and actionable frameworks, you'll discover how to tap into your deepest sources of inspiration and maintain momentum even when challenges arise.",
+                pages: 275,
+                rating: 4.6,
+                downloads: 9320,
+                file: "the-motivation-code.pdf"
+            },
+            {
+                id: 4,
+                title: "Love in the Modern Age",
+                category: "love",
+                cover: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+                description: "Navigate the complexities of modern relationships with wisdom and emotional intelligence.",
+                intro: "In an era of dating apps and fleeting connections, finding lasting love requires new skills and insights. 'Love in the Modern Age' combines psychological research with timeless wisdom to help you build meaningful connections that stand the test of time. Whether you're single or in a relationship, this book will transform how you approach love and intimacy.",
+                pages: 312,
+                rating: 4.5,
+                downloads: 15600,
+                file: "love-in-the-modern-age.pdf"
+            },
+            {
+                id: 5,
+                title: "Startup Success Blueprint",
+                category: "business",
+                cover: "https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+                description: "From idea to IPO: A comprehensive guide to building your business empire.",
+                intro: "The path from startup idea to successful business is filled with pitfalls and challenges that have defeated countless entrepreneurs. 'Startup Success Blueprint' distills the hard-won lessons from founders who have navigated this journey successfully. You'll learn not just what to do, but more importantly, what to avoid as you build the business of your dreams.",
+                pages: 368,
+                rating: 4.8,
+                downloads: 21000,
+                file: "startup-success-blueprint.pdf"
+            },
+            {
+                id: 6,
+                title: "The Mindful Entrepreneur",
+                category: "business",
+                cover: "https://images.unsplash.com/photo-1551836026-d5c2e0c49bcd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+                description: "Balance ambition with inner peace on your entrepreneurial journey.",
+                intro: "Can you build a massively successful business without sacrificing your wellbeing? 'The Mindful Entrepreneur' proves that the answer is a resounding yes. This groundbreaking book shows how mindfulness practices can enhance decision-making, creativity, and leadership while protecting against burnout. Discover how to build not just a successful company, but a successful life.",
+                pages: 295,
+                rating: 4.7,
+                downloads: 14300,
+                file: "the-mindful-entrepreneur.pdf"
+            }
+        ];
+
+        // DOM elements
+        const ebooksContainer = document.getElementById('ebooksContainer');
+        const categoryButtons = document.querySelectorAll('.ebook-categories .category-btn');
+        const ebookModal = document.getElementById('ebookModal');
+        const closeEbookModal = document.getElementById('closeEbookModal');
+        const modalEbookTitle = document.getElementById('modalEbookTitle');
+        const modalEbookCover = document.getElementById('modalEbookCover');
+        const modalEbookIntro = document.getElementById('modalEbookIntro');
+        const downloadEbookBtn = document.getElementById('downloadEbookBtn');
+        const supportBtn = document.getElementById('supportBtn');
+        const supportModal = document.getElementById('supportModal');
+        const closeSupportModal = document.getElementById('closeSupportModal');
+        const statPages = document.getElementById('statPages');
+        const statRating = document.getElementById('statRating');
+        const statDownloads = document.getElementById('statDownloads');
+
+        // Support option elements
+        const supportChat = document.getElementById('supportChat');
+        const supportEmail = document.getElementById('supportEmail');
+        const supportPhone = document.getElementById('supportPhone');
+        const supportFaq = document.getElementById('supportFaq');
+
+        // Current selected ebook
+        let currentEbook = null;
+
+        // Initialize the page with ebooks
+        function initializeEbooks() {
+            displayEbooks(ebooks);
+        }
+
+        // Display ebooks in the grid
+        function displayEbooks(ebooksToDisplay) {
+            ebooksContainer.innerHTML = '';
+            
+            if (ebooksToDisplay.length === 0) {
+                ebooksContainer.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: var(--gray);">
+                        <i class="fas fa-book-open" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                        <h3>No ebooks found in this category</h3>
+                        <p>Try selecting a different category to see more ebooks</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            ebooksToDisplay.forEach(ebook => {
+                const ebookCard = document.createElement('div');
+                ebookCard.className = 'ebook-card';
+                ebookCard.setAttribute('data-category', ebook.category);
+                
+                ebookCard.innerHTML = `
+                    <img src="${ebook.cover}" alt="${ebook.title}" class="ebook-cover">
+                    <div class="ebook-info">
+                        <h3 class="ebook-title">${ebook.title}</h3>
+                        <p class="ebook-description">${ebook.description}</p>
+                        <div class="ebook-meta">
+                            <span class="ebook-category">${ebook.category.charAt(0).toUpperCase() + ebook.category.slice(1)}</span>
+                            <span><i class="fas fa-download"></i> ${formatNumber(ebook.downloads)}</span>
+                        </div>
+                    </div>
+                `;
+                
+                ebookCard.addEventListener('click', () => openEbookModal(ebook));
+                ebooksContainer.appendChild(ebookCard);
+            });
+        }
+
+        // Format numbers with commas
+        function formatNumber(num) {
+            if (num >= 1000) {
+                return (num/1000).toFixed(1) + 'K';
+            }
+            return num.toString();
+        }
+
+        // Open ebook modal
+        function openEbookModal(ebook) {
+            currentEbook = ebook;
+            modalEbookTitle.textContent = ebook.title;
+            modalEbookCover.src = ebook.cover;
+            modalEbookIntro.textContent = ebook.intro;
+            statPages.textContent = ebook.pages;
+            statRating.textContent = ebook.rating;
+            statDownloads.textContent = formatNumber(ebook.downloads);
+            ebookModal.style.display = 'block';
+        }
+
+        // Close ebook modal
+        function closeEbookModalFunc() {
+            ebookModal.style.display = 'none';
+            currentEbook = null;
+        }
+
+        // Download ebook (simulated)
+        function downloadEbook() {
+            if (currentEbook) {
+                // In a real implementation, this would trigger a file download
+                // For demo purposes, we'll show a success message
+                const originalText = downloadEbookBtn.innerHTML;
+                downloadEbookBtn.innerHTML = '<i class="fas fa-check"></i> Downloading...';
+                downloadEbookBtn.style.background = 'var(--success)';
+                
+                setTimeout(() => {
+                    alert(`"${currentEbook.title}" has been downloaded successfully!\n\nFile: ${currentEbook.file}`);
+                    downloadEbookBtn.innerHTML = originalText;
+                    downloadEbookBtn.style.background = '';
+                }, 1500);
+            }
+        }
+
+        // Open support modal
+        function openSupportModal() {
+            supportModal.style.display = 'block';
+        }
+
+        // Close support modal
+        function closeSupportModalFunc() {
+            supportModal.style.display = 'none';
+        }
+
+        // Support option handlers
+        function handleSupportChat() {
+            alert("Opening live chat...\n\nOur support team will be with you shortly.");
+            closeSupportModalFunc();
+        }
+
+        function handleSupportEmail() {
+            alert("Email support: support@suprememotive.com\n\nWe typically respond within 2-4 hours during business days.");
+            closeSupportModalFunc();
+        }
+
+        function handleSupportPhone() {
+            alert("Phone support: 1-800-SUPREME (1-800-787-7363)\n\nAvailable Monday-Friday, 9AM-6PM EST");
+            closeSupportModalFunc();
+        }
+
+        function handleSupportFaq() {
+            alert("Redirecting to FAQ section...\n\nIn a real implementation, this would navigate to an FAQ page.");
+            closeSupportModalFunc();
+        }
+
+        // Filter ebooks by category
+        function filterEbooks(category) {
+            if (category === 'all') {
+                displayEbooks(ebooks);
+            } else {
+                const filteredEbooks = ebooks.filter(ebook => ebook.category === category);
+                displayEbooks(filteredEbooks);
+            }
+        }
+
         // Navigation functionality
         document.addEventListener('DOMContentLoaded', function() {
             const navLinks = document.querySelectorAll('.nav-link');
@@ -1573,6 +1799,18 @@
                 themeIcon.classList.add('fa-sun');
             }
             
+            // Ebook category filtering
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Update active button
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    // Filter ebooks
+                    filterEbooks(button.getAttribute('data-category'));
+                });
+            });
+            
             // Video filtering
             const videoFilters = document.querySelectorAll('.video-filters .filter-btn');
             const videoCards = document.querySelectorAll('#videos .video-card');
@@ -1588,29 +1826,6 @@
                     // Filter videos
                     videoCards.forEach(card => {
                         if (category === 'all' || card.getAttribute('data-category') === category) {
-                            card.style.display = 'block';
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    });
-                });
-            });
-            
-            // E-book filtering
-            const ebookCategories = document.querySelectorAll('.ebook-categories .category-btn');
-            const ebookCards = document.querySelectorAll('#ebooks .card');
-            
-            ebookCategories.forEach(categoryBtn => {
-                categoryBtn.addEventListener('click', function() {
-                    // Update active category
-                    ebookCategories.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    const category = this.getAttribute('data-category');
-                    
-                    // Filter e-books
-                    ebookCards.forEach(card => {
-                        if (category === 'all' || card.getAttribute('data-category').includes(category)) {
                             card.style.display = 'block';
                         } else {
                             card.style.display = 'none';
@@ -1659,6 +1874,31 @@
             
             // Set home as active section by default
             showSection('home');
+            
+            // Initialize ebooks
+            initializeEbooks();
+        });
+
+        // Ebook modal event listeners
+        closeEbookModal.addEventListener('click', closeEbookModalFunc);
+        downloadEbookBtn.addEventListener('click', downloadEbook);
+        supportBtn.addEventListener('click', openSupportModal);
+        closeSupportModal.addEventListener('click', closeSupportModalFunc);
+
+        // Support option event listeners
+        supportChat.addEventListener('click', handleSupportChat);
+        supportEmail.addEventListener('click', handleSupportEmail);
+        supportPhone.addEventListener('click', handleSupportPhone);
+        supportFaq.addEventListener('click', handleSupportFaq);
+
+        // Close modals when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === ebookModal) {
+                closeEbookModalFunc();
+            }
+            if (e.target === supportModal) {
+                closeSupportModalFunc();
+            }
         });
     </script>
 </body>
