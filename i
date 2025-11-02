@@ -1,3 +1,10 @@
+                {
+                    text: "The best way to predict the future is to create it.",
+                    author: "Supreme-motive",
+                    category: "inspiration"
+              
+using this format above add the below quotes in this same way
+
 Do not seek to follow in the footsteps of the wise. Seek what they sought.
 
 
