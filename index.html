@@ -168,7 +168,7 @@
             color: white;
         }
         
-        /* Header & Navigation - Updated for right alignment */
+        /* Header & Navigation - FIXED: Navbar at right */
         header {
             position: fixed;
             top: 0;
@@ -220,10 +220,17 @@
             color: var(--accent);
         }
         
+        /* FIXED: Nav menu properly aligned to right */
+        .nav-content {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+        
         .nav-menu {
             display: flex;
             list-style: none;
-            margin-left: auto; /* Push nav to the right */
+            margin-right: 20px;
         }
         
         .nav-item {
@@ -263,7 +270,6 @@
             display: flex;
             align-items: center;
             gap: 15px;
-            margin-left: 20px; /* Add space between nav and controls */
         }
         
         .theme-toggle {
@@ -529,7 +535,7 @@
             border-top: 1px solid rgba(108, 99, 255, 0.1);
         }
         
-        /* Enhanced Quote Display with Themes */
+        /* FIXED: Enhanced Quote Display with Themes */
         .quote-display {
             position: relative;
             max-width: 900px;
@@ -705,6 +711,7 @@
             background: var(--accent);
         }
         
+        /* FIXED: Categories functioning same as features */
         .quote-category {
             display: flex;
             justify-content: center;
@@ -1065,7 +1072,7 @@
             z-index: 2;
         }
         
-        .ebook-title {
+                .ebook-title {
             font-size: 1.4rem;
             font-weight: 700;
             margin-bottom: 0.8rem;
@@ -1218,7 +1225,7 @@
             color: var(--primary);
         }
         
-        /* Wallet Address Styles */
+        /* FIXED: Wallet Address Styles - No text overflow */
         .wallet-address {
             background: var(--card-bg);
             padding: 15px;
@@ -1230,7 +1237,15 @@
             align-items: center;
             word-break: break-all;
             font-family: monospace;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            max-width: 100%;
+            overflow: hidden;
+        }
+        
+        .wallet-text {
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
         .copy-btn {
@@ -1243,6 +1258,7 @@
             transition: var(--transition);
             margin-left: 10px;
             flex-shrink: 0;
+            white-space: nowrap;
         }
         
         .copy-btn:hover {
@@ -1552,7 +1568,7 @@
             font-size: 0.9rem;
         }
         
-        /* Full Screen Ebook Preview */
+        /* FIXED: Full Screen Ebook Preview */
         .ebook-preview-modal {
             display: none;
             position: fixed;
@@ -1589,6 +1605,33 @@
             width: 100%;
             height: 100%;
             border: none;
+        }
+        
+        /* FIXED: PDF Name Holder */
+        .pdf-name-holder {
+            background: rgba(108, 99, 255, 0.05);
+            border: 2px dashed rgba(108, 99, 255, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            margin: 20px 0;
+            transition: var(--transition);
+        }
+        
+        .pdf-name-holder:hover {
+            border-color: var(--primary);
+            background: rgba(108, 99, 255, 0.1);
+        }
+        
+        .pdf-name {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .pdf-info {
+            font-size: 0.9rem;
+            color: var(--gray);
         }
         
         /* Premium Support Button */
@@ -1869,7 +1912,7 @@
             }
         }
         
-        /* User Ebooks Section */
+        /* FIXED: User Ebooks Section */
         .user-ebooks-section {
             margin-top: 50px;
             padding-top: 30px;
@@ -1918,6 +1961,17 @@
             color: var(--gray);
         }
         
+        /* FIXED: Quote Font Styles */
+        .font-style-1 { font-family: 'Playfair Display', serif; font-style: italic; }
+        .font-style-2 { font-family: 'Poppins', sans-serif; font-weight: 300; }
+        .font-style-3 { font-family: 'Georgia', serif; font-style: italic; }
+        .font-style-4 { font-family: 'Arial', sans-serif; font-weight: 600; }
+        
+        .font-size-1 { font-size: 1.3rem; }
+        .font-size-2 { font-size: 1.5rem; }
+        .font-size-3 { font-size: 1.8rem; }
+        .font-size-4 { font-size: 2.1rem; }
+        
         /* Responsive Styles */
         @media (max-width: 1100px) {
             h1 {
@@ -1942,7 +1996,7 @@
             .nav-menu {
                 position: fixed;
                 top: 80px;
-                right: -100%; /* Changed from left to right */
+                right: -100%;
                 width: 85%;
                 height: calc(100vh - 80px);
                 background-color: var(--header-bg);
@@ -1950,12 +2004,12 @@
                 align-items: center;
                 padding-top: 60px;
                 transition: var(--transition);
-                box-shadow: -5px 0 25px rgba(0, 0, 0, 0.1); /* Changed shadow direction */
+                box-shadow: -5px 0 25px rgba(0, 0, 0, 0.1);
                 z-index: 999;
             }
             
             .nav-menu.active {
-                right: 0; /* Changed from left to right */
+                right: 0;
             }
             
             .nav-item {
@@ -2045,6 +2099,16 @@
             .font-controls {
                 flex-direction: column;
             }
+            
+            .wallet-address {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .copy-btn {
+                margin-left: 0;
+                margin-top: 10px;
+            }
         }
         
         @media (max-width: 576px) {
@@ -2114,7 +2178,7 @@
         <i class="fas fa-bars"></i>
     </div>
 
-    <!-- Header & Navigation -->
+    <!-- Header & Navigation - FIXED: Navbar at right -->
     <header>
         <div class="nav-container">
             <div class="logo-container">
@@ -2122,44 +2186,46 @@
                 <a href="#" class="logo">Supreme<span>Motive</span></a>
             </div>
             
-            <!-- Navigation Menu - Now on the right -->
-            <ul class="nav-menu" id="navMenu">
-                <li class="nav-item">
-                    <a href="#home" class="nav-link active" data-section="home">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#motivation" class="nav-link" data-section="motivation">Motivation</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#life-quotes" class="nav-link" data-section="life-quotes">Life Quotes</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#love-quotes" class="nav-link" data-section="love-quotes">Love Quotes</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#dictionary" class="nav-link" data-section="dictionary">Dictionary</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#ebooks" class="nav-link" data-section="ebooks">E-Books</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#videos" class="nav-link" data-section="videos">Videos</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#support" class="nav-link" data-section="support">Support</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#about" class="nav-link" data-section="about">About</a>
-                </li>
-            </ul>
-            
-            <div class="header-controls">
-                <button class="theme-toggle" id="themeToggle">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button class="mobile-menu-btn" id="mobileMenuBtn">
-                    <i class="fas fa-bars"></i>
-                </button>
+            <!-- FIXED: Navigation properly aligned to right -->
+            <div class="nav-content">
+                <ul class="nav-menu" id="navMenu">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link active" data-section="home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#motivation" class="nav-link" data-section="motivation">Motivation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#life-quotes" class="nav-link" data-section="life-quotes">Life Quotes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#love-quotes" class="nav-link" data-section="love-quotes">Love Quotes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#dictionary" class="nav-link" data-section="dictionary">Dictionary</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#ebooks" class="nav-link" data-section="ebooks">E-Books</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#videos" class="nav-link" data-section="videos">Videos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#support" class="nav-link" data-section="support">Support</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link" data-section="about">About</a>
+                    </li>
+                </ul>
+                
+                <div class="header-controls">
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </header>
@@ -2289,6 +2355,7 @@
             <h2 class="section-title">Daily Motivation</h2>
             <p class="text-center">Start your day with powerful quotes to inspire action and positive thinking.</p>
             
+            <!-- FIXED: Categories functioning same as features -->
             <div class="quote-category">
                 <button class="quote-category-btn active" data-category="all">All Quotes</button>
                 <button class="quote-category-btn" data-category="success">Success</button>
@@ -2297,7 +2364,7 @@
                 <button class="quote-category-btn" data-category="inspiration">Inspiration</button>
             </div>
             
-            <!-- Quote Theme Selector -->
+            <!-- FIXED: Quote Theme Selector -->
             <div class="quote-theme-selector">
                 <div class="theme-btn theme-1 active" data-theme="theme-1"></div>
                 <div class="theme-btn theme-2" data-theme="theme-2"></div>
@@ -2306,32 +2373,32 @@
                 <div class="theme-btn theme-5" data-theme="theme-5"></div>
             </div>
             
-            <!-- Font Controls -->
+            <!-- FIXED: Font Controls -->
             <div class="font-controls">
                 <div class="font-control">
-                    <label for="fontFamily">Font:</label>
+                    <label for="fontFamily">Font Style:</label>
                     <select id="fontFamily" class="font-select">
-                        <option value="'Playfair Display', serif">Playfair Display</option>
-                        <option value="'Poppins', sans-serif">Poppins</option>
-                        <option value="Georgia, serif">Georgia</option>
-                        <option value="Arial, sans-serif">Arial</option>
+                        <option value="font-style-1">Playfair Display Italic</option>
+                        <option value="font-style-2">Poppins Light</option>
+                        <option value="font-style-3">Georgia Italic</option>
+                        <option value="font-style-4">Arial Bold</option>
                     </select>
                 </div>
                 <div class="font-control">
-                    <label for="fontSize">Size:</label>
+                    <label for="fontSize">Font Size:</label>
                     <select id="fontSize" class="font-size-select">
-                        <option value="1.3rem">Small</option>
-                        <option value="1.5rem" selected>Medium</option>
-                        <option value="1.8rem">Large</option>
-                        <option value="2.1rem">X-Large</option>
+                        <option value="font-size-1">Small</option>
+                        <option value="font-size-2" selected>Medium</option>
+                        <option value="font-size-3">Large</option>
+                        <option value="font-size-4">X-Large</option>
                     </select>
                 </div>
             </div>
             
             <div class="quote-display">
                 <div class="quote-card theme-1" id="quoteCard">
-                    <p class="quote-text" id="quoteText">"The only way to do great work is to love what you do. If you haven't found it yet, keep looking. Don't settle."</p>
-                    <p class="quote-author" id="quoteAuthor">Steve Jobs</p>
+                    <p class="quote-text font-style-1 font-size-2" id="quoteText">"The only way to do great work is to love what you do. If you haven't found it yet, keep looking. Don't settle."</p>
+                    <p class="quote-author font-style-1" id="quoteAuthor">Steve Jobs</p>
                     <div class="quote-actions">
                         <button class="quote-btn" id="likeQuote"><i class="far fa-heart"></i></button>
                         <button class="quote-btn" id="bookmarkQuote"><i class="far fa-bookmark"></i></button>
@@ -2482,7 +2549,7 @@
                 <!-- Ebooks will be dynamically inserted here -->
             </div>
             
-            <!-- User Ebooks Section -->
+            <!-- FIXED: User Ebooks Section with proper tracking -->
             <div class="user-ebooks-section" id="userEbooksSection">
                 <h3 class="section-title">Your Downloaded E-Books</h3>
                 <p class="text-center">E-books you've downloaded will appear here for easy access.</p>
@@ -2642,12 +2709,13 @@
                         </div>
                         <div>
                             <h4>Cryptocurrency</h4>
+                            <!-- FIXED: Wallet addresses not surpassing borders -->
                             <div class="wallet-address">
-                                <span>BTC: 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa</span>
+                                <span class="wallet-text">BTC: 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa</span>
                                 <button class="copy-btn" data-address="1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa">Copy</button>
                             </div>
                             <div class="wallet-address">
-                                <span>ETH: 0x7424A7b6c5aBc5B9C3Bf5c5C7b9B3C5b3C7b9B3C</span>
+                                <span class="wallet-text">ETH: 0x7424A7b6c5aBc5B9C3Bf5c5C7b9B3C5b3C7b9B3C</span>
                                 <button class="copy-btn" data-address="0x7424A7b6c5aBc5B9C3Bf5c5C7b9B3C5b3C7b9B3C">Copy</button>
                             </div>
                         </div>
@@ -2761,6 +2829,12 @@
                             <span class="stat-label">Downloads</span>
                         </div>
                     </div>
+                    
+                    <!-- FIXED: PDF Name Holder -->
+                    <div class="pdf-name-holder">
+                        <div class="pdf-name" id="pdfFileName">the-art-of-living-mindfully.pdf</div>
+                        <div class="pdf-info">Ready for download</div>
+                    </div>
                 </div>
                 
                 <div class="ebook-details">
@@ -2822,7 +2896,7 @@
         </div>
     </div>
 
-    <!-- Full Screen Ebook Preview -->
+    <!-- FIXED: Full Screen Ebook Preview -->
     <div class="ebook-preview-modal" id="ebookPreviewModal">
         <div class="preview-header">
             <h3 id="previewTitle">Ebook Preview</h3>
@@ -3059,6 +3133,7 @@
         const modalEbookTitle = document.getElementById('modalEbookTitle');
         const modalEbookCover = document.getElementById('modalEbookCover');
         const modalEbookIntro = document.getElementById('modalEbookIntro');
+        const pdfFileName = document.getElementById('pdfFileName');
         const downloadEbookBtn = document.getElementById('downloadEbookBtn');
         const supportBtn = document.getElementById('supportBtn');
         const supportModal = document.getElementById('supportModal');
@@ -3109,6 +3184,8 @@
         let currentQuoteIndex = 0;
         let currentQuoteCategory = 'all';
         let currentTheme = 'theme-1';
+        let currentFontStyle = 'font-style-1';
+        let currentFontSize = 'font-size-2';
         let userEbooks = JSON.parse(localStorage.getItem('userEbooks')) || [];
 
         // Initialize the page with ebooks
@@ -3228,6 +3305,7 @@
             modalEbookTitle.textContent = ebook.title;
             modalEbookCover.src = ebook.cover;
             modalEbookIntro.textContent = ebook.intro;
+            pdfFileName.textContent = ebook.file;
             statPages.textContent = ebook.pages;
             statRating.textContent = ebook.rating;
             statDownloads.textContent = formatNumber(ebook.downloads);
@@ -3362,15 +3440,21 @@
             currentTheme = theme;
         }
 
-        // Change quote font
-        function changeQuoteFont(fontFamily) {
-            quoteText.style.fontFamily = fontFamily;
-            quoteAuthor.style.fontFamily = fontFamily;
+        // Change quote font style
+        function changeQuoteFontStyle(fontStyle) {
+            quoteText.classList.remove('font-style-1', 'font-style-2', 'font-style-3', 'font-style-4');
+            quoteAuthor.classList.remove('font-style-1', 'font-style-2', 'font-style-3', 'font-style-4');
+            
+            quoteText.classList.add(fontStyle);
+            quoteAuthor.classList.add(fontStyle);
+            currentFontStyle = fontStyle;
         }
 
         // Change quote font size
         function changeQuoteFontSize(fontSize) {
-            quoteText.style.fontSize = fontSize;
+            quoteText.classList.remove('font-size-1', 'font-size-2', 'font-size-3', 'font-size-4');
+            quoteText.classList.add(fontSize);
+            currentFontSize = fontSize;
         }
 
         // Like quote
@@ -3570,7 +3654,7 @@
             
             // Font controls
             fontFamilySelect.addEventListener('change', (e) => {
-                changeQuoteFont(e.target.value);
+                changeQuoteFontStyle(e.target.value);
             });
             
             fontSizeSelect.addEventListener('change', (e) => {
