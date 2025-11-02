@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Supreme Motive | Elevate Your Mind, Transform Your Life</title>
+    <title>Supreme Motive | Premium Ebook Library</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -363,63 +363,6 @@
             border-radius: 2px;
         }
         
-        /* Cards Grid */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .card {
-            background-color: var(--card-bg);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            position: relative;
-            border: 1px solid rgba(108, 99, 255, 0.1);
-        }
-        
-        .card:hover {
-            transform: translateY(-12px);
-            box-shadow: var(--shadow-hover);
-        }
-        
-        .card-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-        
-        .card:hover .card-img {
-            transform: scale(1.05);
-        }
-        
-        .card-content {
-            padding: 25px;
-        }
-        
-        .card-title {
-            font-size: 1.4rem;
-            margin-bottom: 12px;
-            color: var(--secondary);
-        }
-        
-        .card-text {
-            color: var(--gray);
-            margin-bottom: 20px;
-        }
-        
-        .card-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(108, 99, 255, 0.1);
-        }
-        
         /* E-Books Section */
         .ebook-categories {
             display: flex;
@@ -446,7 +389,107 @@
             border-color: var(--primary);
         }
         
-        .book-badge {
+        /* Enhanced Ebook Library Styles */
+        .ebooks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+        
+        .ebook-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            border: 1px solid rgba(108, 99, 255, 0.1);
+        }
+        
+        .ebook-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .ebook-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(108, 99, 255, 0.05), rgba(255, 101, 132, 0.05));
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 1;
+        }
+        
+        .ebook-card:hover::before {
+            opacity: 1;
+        }
+        
+        .ebook-cover-container {
+            position: relative;
+            overflow: hidden;
+            height: 280px;
+        }
+        
+        .ebook-cover {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+        
+        .ebook-card:hover .ebook-cover {
+            transform: scale(1.1);
+        }
+        
+        .ebook-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.7));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .ebook-card:hover .ebook-overlay {
+            opacity: 1;
+        }
+        
+        .quick-view-btn {
+            background-color: var(--accent);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: var(--transition);
+            transform: translateY(20px);
+        }
+        
+        .ebook-card:hover .quick-view-btn {
+            transform: translateY(0);
+        }
+        
+        .quick-view-btn:hover {
+            background-color: var(--accent-dark);
+            transform: scale(1.1);
+        }
+        
+        .ebook-badge {
             position: absolute;
             top: 15px;
             right: 15px;
@@ -457,81 +500,42 @@
             font-size: 0.8rem;
             font-weight: 600;
             z-index: 2;
-        }
-        
-        /* Ebook Library Styles */
-        .ebooks-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .ebook-card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            cursor: pointer;
-            position: relative;
-        }
-        
-        .ebook-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-hover);
-        }
-        
-        .ebook-card::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-        }
-        
-        .ebook-cover {
-            width: 100%;
-            height: 320px;
-            object-fit: cover;
-            border-bottom: 1px solid rgba(108, 99, 255, 0.1);
-            transition: transform 0.5s ease;
-        }
-        
-        .ebook-card:hover .ebook-cover {
-            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(255, 101, 132, 0.3);
         }
         
         .ebook-info {
-            padding: 1.5rem;
+            padding: 1.8rem;
+            position: relative;
+            z-index: 2;
         }
         
         .ebook-title {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: 700;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
             color: var(--primary);
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
+            min-height: 3.5rem;
         }
         
         .ebook-description {
             color: var(--gray);
             font-size: 0.95rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             display: -webkit-box;
             -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
             overflow: hidden;
+            min-height: 4.5rem;
         }
         
         .ebook-meta {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             color: var(--gray);
             font-size: 0.85rem;
         }
@@ -539,12 +543,24 @@
         .ebook-category {
             background: rgba(108, 99, 255, 0.1);
             color: var(--primary);
-            padding: 0.3rem 0.8rem;
+            padding: 0.4rem 1rem;
             border-radius: 20px;
             font-weight: 600;
+            font-size: 0.8rem;
         }
         
-        /* Modal Styles */
+        .ebook-stats {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .ebook-stat {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        
+        /* Premium Modal Styles */
         .modal {
             display: none;
             position: fixed;
@@ -552,39 +568,62 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(0, 0, 0, 0.8);
             z-index: 1000;
             overflow-y: auto;
             padding: 2rem;
+            backdrop-filter: blur(5px);
         }
         
         .modal-content {
             background: var(--card-bg);
-            max-width: 800px;
+            max-width: 900px;
             margin: 2rem auto;
-            border-radius: 15px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            animation: modalFade 0.4s;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            animation: modalFade 0.5s ease;
+            position: relative;
         }
         
         @keyframes modalFade {
-            from { opacity: 0; transform: translateY(-50px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { 
+                opacity: 0; 
+                transform: translateY(-50px) scale(0.9);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0) scale(1);
+            }
         }
         
         .modal-header {
-            padding: 1.5rem;
+            padding: 2rem;
             background: linear-gradient(135deg, var(--primary), var(--accent));
             color: white;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .modal-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
         }
         
         .modal-title {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 700;
+            position: relative;
+            z-index: 1;
         }
         
         .close-btn {
@@ -593,13 +632,15 @@
             color: white;
             font-size: 1.8rem;
             cursor: pointer;
-            transition: transform 0.3s;
-            width: 40px;
-            height: 40px;
+            transition: var(--transition);
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+            z-index: 1;
         }
         
         .close-btn:hover {
@@ -608,33 +649,88 @@
         }
         
         .modal-body {
-            padding: 2rem;
+            padding: 2.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 2.5rem;
+        }
+        
+        .modal-cover-container {
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
         }
         
-        .modal-cover-container {
-            display: flex;
-            justify-content: center;
-        }
-        
         .modal-cover {
             width: 100%;
-            max-height: 400px;
-            object-fit: cover;
-            border-radius: 8px;
+            border-radius: 12px;
             box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .modal-cover:hover {
+            transform: scale(1.03);
+            box-shadow: var(--shadow-hover);
         }
         
         .modal-intro {
             font-size: 1.1rem;
-            line-height: 1.7;
+            line-height: 1.8;
             color: var(--text-color);
             text-align: justify;
         }
         
-        .ebook-stats {
+        .ebook-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .ebook-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem;
+            background: rgba(108, 99, 255, 0.05);
+            border-radius: 10px;
+            transition: var(--transition);
+        }
+        
+        .feature:hover {
+            background: rgba(108, 99, 255, 0.1);
+            transform: translateX(5px);
+        }
+        
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(108, 99, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+        
+        .feature-text h4 {
+            margin-bottom: 0.3rem;
+            font-size: 1rem;
+        }
+        
+        .feature-text p {
+            margin-bottom: 0;
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+        
+        .ebook-stats-modal {
             display: flex;
             gap: 1.5rem;
             flex-wrap: wrap;
@@ -645,20 +741,34 @@
             flex-direction: column;
             align-items: center;
             background: rgba(108, 99, 255, 0.05);
-            padding: 0.8rem;
-            border-radius: 8px;
-            min-width: 80px;
+            padding: 1.2rem 1rem;
+            border-radius: 12px;
+            min-width: 90px;
+            transition: var(--transition);
+        }
+        
+        .stat:hover {
+            background: rgba(108, 99, 255, 0.1);
+            transform: translateY(-5px);
         }
         
         .stat-value {
             font-weight: 700;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             color: var(--primary);
         }
         
         .stat-label {
             font-size: 0.8rem;
             color: var(--gray);
+            margin-top: 0.5rem;
+        }
+        
+        .download-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1.5rem;
         }
         
         .download-btn {
@@ -666,51 +776,82 @@
             align-items: center;
             justify-content: center;
             gap: 0.8rem;
-            padding: 1rem 2rem;
+            padding: 1.2rem 2rem;
             background: linear-gradient(135deg, var(--primary), var(--accent));
             color: white;
             text-decoration: none;
-            border-radius: 30px;
+            border-radius: 50px;
             font-weight: 600;
             text-align: center;
             transition: var(--transition);
             border: none;
             cursor: pointer;
             font-size: 1.1rem;
-            margin-top: 1rem;
-            box-shadow: 0 4px 15px rgba(108, 99, 255, 0.4);
+            box-shadow: 0 6px 20px rgba(108, 99, 255, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .download-btn:hover::before {
+            left: 100%;
         }
         
         .download-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(108, 99, 255, 0.5);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(108, 99, 255, 0.5);
         }
         
-        /* Support Button */
+        .download-info {
+            display: flex;
+            justify-content: space-between;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Premium Support Button */
         .support-btn {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             background: linear-gradient(135deg, var(--primary), var(--accent));
             color: white;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 1.5rem;
+            font-size: 1.7rem;
             box-shadow: var(--shadow);
             cursor: pointer;
             z-index: 100;
             transition: var(--transition);
+            animation: pulse 2s infinite;
         }
         
         .support-btn:hover {
-            transform: scale(1.1);
+            transform: scale(1.1) rotate(10deg);
             box-shadow: var(--shadow-hover);
         }
         
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(108, 99, 255, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(108, 99, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(108, 99, 255, 0); }
+        }
+        
+        /* Premium Support Modal */
         .support-modal {
             display: none;
             position: fixed;
@@ -718,38 +859,54 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(0, 0, 0, 0.8);
             z-index: 1100;
             overflow-y: auto;
             padding: 2rem;
+            backdrop-filter: blur(5px);
         }
         
         .support-content {
             background: var(--card-bg);
-            max-width: 500px;
+            max-width: 600px;
             margin: 2rem auto;
-            border-radius: 15px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            animation: modalFade 0.4s;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            animation: modalFade 0.5s ease;
         }
         
         .support-header {
-            padding: 1.5rem;
+            padding: 2rem;
             background: linear-gradient(135deg, var(--primary), var(--accent));
             color: white;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .support-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
         }
         
         .support-title {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: 700;
+            position: relative;
+            z-index: 1;
         }
         
         .support-body {
-            padding: 2rem;
+            padding: 2.5rem;
         }
         
         .support-options {
@@ -761,46 +918,55 @@
         .support-option {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            padding: 1rem;
+            gap: 1.5rem;
+            padding: 1.5rem;
             border: 1px solid rgba(108, 99, 255, 0.1);
-            border-radius: 8px;
+            border-radius: 15px;
             transition: var(--transition);
             cursor: pointer;
         }
         
         .support-option:hover {
             background: rgba(108, 99, 255, 0.05);
-            transform: translateX(5px);
+            transform: translateX(10px);
+            border-color: var(--primary);
         }
         
         .support-icon {
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             background: rgba(108, 99, 255, 0.1);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             color: var(--primary);
+            transition: var(--transition);
+        }
+        
+        .support-option:hover .support-icon {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.1);
         }
         
         .support-info h3 {
             color: var(--primary);
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.5rem;
         }
         
         .support-info p {
             color: var(--gray);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            margin-bottom: 0;
         }
         
         /* Floating YouTube Icon */
         .floating-yt {
             position: fixed;
             bottom: 30px;
-            right: 100px;
+            right: 120px;
             width: 70px;
             height: 70px;
             background: linear-gradient(135deg, #FF0000, #CC0000);
@@ -813,7 +979,7 @@
             box-shadow: 0 10px 25px rgba(255, 0, 0, 0.3);
             z-index: 999;
             transition: var(--transition);
-            animation: pulse 2s infinite;
+            animation: pulse-red 2s infinite;
         }
         
         .floating-yt:hover {
@@ -821,7 +987,7 @@
             box-shadow: 0 15px 30px rgba(255, 0, 0, 0.4);
         }
         
-        @keyframes pulse {
+        @keyframes pulse-red {
             0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7); }
             70% { box-shadow: 0 0 0 15px rgba(255, 0, 0, 0); }
             100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
@@ -868,6 +1034,11 @@
             
             .hero-content h1 {
                 font-size: 3.2rem;
+            }
+            
+            .modal-body {
+                grid-template-columns: 1fr;
+                gap: 2rem;
             }
         }
         
@@ -921,7 +1092,7 @@
             
             .floating-yt {
                 bottom: 20px;
-                right: 90px;
+                right: 100px;
                 width: 60px;
                 height: 60px;
                 font-size: 1.7rem;
@@ -930,6 +1101,9 @@
             .support-btn {
                 bottom: 20px;
                 right: 20px;
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
             }
             
             section {
@@ -937,7 +1111,7 @@
             }
             
             .ebooks-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             }
             
             .modal-content, .support-content {
@@ -946,6 +1120,10 @@
             
             .modal-body, .support-body {
                 padding: 1.5rem;
+            }
+            
+            .ebook-features {
+                grid-template-columns: 1fr;
             }
         }
         
@@ -962,7 +1140,7 @@
                 font-size: 1.8rem;
             }
             
-            .cards-grid {
+            .ebooks-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -970,8 +1148,8 @@
                 font-size: 2.2rem;
             }
             
-            .ebooks-grid {
-                grid-template-columns: 1fr;
+            .ebook-stats-modal {
+                justify-content: center;
             }
         }
     </style>
@@ -982,7 +1160,7 @@
         <i class="fab fa-youtube"></i>
     </a>
 
-    <!-- Support Button -->
+    <!-- Premium Support Button -->
     <div class="support-btn" id="supportBtn">
         <i class="fas fa-headset"></i>
     </div>
@@ -1037,149 +1215,29 @@
         </div>
     </section>
 
-    <!-- Motivation Section -->
-    <section id="motivation">
-        <div class="container">
-            <h2 class="section-title">Daily Motivation</h2>
-            <p class="text-center">Start your day with powerful quotes to inspire action and positive thinking.</p>
-            
-            <div class="quote-card">
-                <p class="quote-text">"The only way to do great work is to love what you do. If you haven't found it yet, keep looking. Don't settle."</p>
-                <p class="quote-author">- Steve Jobs</p>
-                <div class="quote-actions">
-                    <button class="quote-btn"><i class="far fa-heart"></i></button>
-                    <button class="quote-btn"><i class="far fa-bookmark"></i></button>
-                    <button class="quote-btn"><i class="fas fa-share-alt"></i></button>
-                </div>
-            </div>
-            
-            <div class="quote-card">
-                <p class="quote-text">"Success is not final, failure is not fatal: it is the courage to continue that counts."</p>
-                <p class="quote-author">- Winston Churchill</p>
-                <div class="quote-actions">
-                    <button class="quote-btn"><i class="far fa-heart"></i></button>
-                    <button class="quote-btn"><i class="far fa-bookmark"></i></button>
-                    <button class="quote-btn"><i class="fas fa-share-alt"></i></button>
-                </div>
-            </div>
-            
-            <div class="text-center" style="margin-top: 40px;">
-                <button class="btn btn-outline">
-                    <i class="fas fa-sync-alt"></i> Load More Quotes
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Life Quotes Section -->
-    <section id="life-quotes">
-        <div class="container">
-            <h2 class="section-title">Life Quotes</h2>
-            <p class="text-center">Wisdom and insights about life's journey, challenges, and meaning.</p>
-            
-            <div class="cards-grid">
-                <div class="card">
-                    <div class="card-content">
-                        <p class="quote-text">"Life is 10% what happens to you and 90% how you react to it."</p>
-                        <p class="quote-author">- Charles R. Swindoll</p>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <div class="card-content">
-                        <p class="quote-text">"The purpose of our lives is to be happy."</p>
-                        <p class="quote-author">- Dalai Lama</p>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <div class="card-content">
-                        <p class="quote-text">"Life is what happens when you're busy making other plans."</p>
-                        <p class="quote-author">- John Lennon</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Love Quotes Section -->
-    <section id="love-quotes">
-        <div class="container">
-            <h2 class="section-title">Love Quotes</h2>
-            <p class="text-center">Expressions of love, romance, and meaningful connections.</p>
-            
-            <div class="cards-grid">
-                <div class="card">
-                    <div class="card-content">
-                        <p class="quote-text">"The best thing to hold onto in life is each other."</p>
-                        <p class="quote-author">- Audrey Hepburn</p>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <div class="card-content">
-                        <p class="quote-text">"Love is composed of a single soul inhabiting two bodies."</p>
-                        <p class="quote-author">- Aristotle</p>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <div class="card-content">
-                        <p class="quote-text">"To love and be loved is to feel the sun from both sides."</p>
-                        <p class="quote-author">- David Viscott</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Dictionary Section -->
-    <section id="dictionary">
-        <div class="container">
-            <h2 class="section-title">Motivational Dictionary</h2>
-            <p class="text-center">Explore powerful words and their meanings to expand your motivational vocabulary.</p>
-            
-            <div class="dictionary-grid">
-                <div class="dictionary-card">
-                    <h3 class="word">Perseverance</h3>
-                    <p class="meaning">Steadfastness in doing something despite difficulty or delay in achieving success.</p>
-                    <button class="btn">Read Story</button>
-                </div>
-                
-                <div class="dictionary-card">
-                    <h3 class="word">Resilience</h3>
-                    <p class="meaning">The capacity to recover quickly from difficulties; toughness.</p>
-                    <button class="btn">Read Story</button>
-                </div>
-                
-                <div class="dictionary-card">
-                    <h3 class="word">Ambition</h3>
-                    <p class="meaning">A strong desire to do or achieve something, typically requiring determination and hard work.</p>
-                    <button class="btn">Read Story</button>
-                </div>
-                
-                <div class="dictionary-card">
-                    <h3 class="word">Integrity</h3>
-                    <p class="meaning">The quality of being honest and having strong moral principles.</p>
-                    <button class="btn">Read Story</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- E-Books Section -->
     <section id="ebooks">
         <div class="container">
-            <h2 class="section-title">Motivational E-Books</h2>
-            <p class="text-center">Expand your mind with our collection of transformative ebooks on personal development and success.</p>
+            <h2 class="section-title">Premium E-Book Library</h2>
+            <p class="text-center">Discover our collection of transformative ebooks designed to elevate your mindset and accelerate your personal growth journey.</p>
             
             <div class="ebook-categories">
-                <button class="category-btn active" data-category="all">All</button>
-                <button class="category-btn" data-category="life">Life</button>
-                <button class="category-btn" data-category="productivity">Productivity</button>
-                <button class="category-btn" data-category="motivation">Motivation</button>
-                <button class="category-btn" data-category="love">Love</button>
-                <button class="category-btn" data-category="business">Business</button>
+                <button class="category-btn active" data-category="all">All Books</button>
+                <button class="category-btn" data-category="life">
+                    <i class="fas fa-heartbeat"></i> Life
+                </button>
+                <button class="category-btn" data-category="productivity">
+                    <i class="fas fa-tasks"></i> Productivity
+                </button>
+                <button class="category-btn" data-category="motivation">
+                    <i class="fas fa-fire"></i> Motivation
+                </button>
+                <button class="category-btn" data-category="love">
+                    <i class="fas fa-heart"></i> Love
+                </button>
+                <button class="category-btn" data-category="business">
+                    <i class="fas fa-chart-line"></i> Business
+                </button>
             </div>
             
             <div class="ebooks-grid" id="ebooksContainer">
@@ -1187,239 +1245,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Videos Section -->
-    <section id="videos">
-        <div class="container">
-            <h2 class="section-title">Motivational Videos</h2>
-            <p class="text-center">Watch inspiring videos to boost your motivation and learn new strategies for success.</p>
-            
-            <div class="video-filters">
-                <button class="filter-btn active" data-category="all">All Videos</button>
-                <button class="filter-btn" data-category="motivation">Motivation</button>
-                <button class="filter-btn" data-category="life">Life</button>
-                <button class="filter-btn" data-category="business">Business</button>
-                <button class="filter-btn" data-category="strategy">Strategy</button>
-                <button class="filter-btn" data-category="love">Love & Family</button>
-            </div>
-            
-            <div class="cards-grid">
-                <div class="card video-card" data-category="motivation">
-                    <img src="https://via.placeholder.com/400x220/6C63FF/ffffff?text=Power+of+Belief" alt="Video Thumbnail" class="video-thumbnail">
-                    <div class="video-overlay">
-                        <div class="play-btn">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3 class="card-title">The Power of Belief</h3>
-                        <p class="card-text">How your mindset shapes your reality and determines your success.</p>
-                        <div class="card-footer">
-                            <span><i class="far fa-clock"></i> 15:42</span>
-                            <span><i class="fas fa-eye"></i> 24K</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="card video-card" data-category="life">
-                    <img src="https://via.placeholder.com/400x220/2A2D43/ffffff?text=Life+Lessons" alt="Video Thumbnail" class="video-thumbnail">
-                    <div class="video-overlay">
-                        <div class="play-btn">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3 class="card-title">10 Life Lessons Everyone Should Learn</h3>
-                        <p class="card-text">Wisdom from decades of experience that can transform your perspective.</p>
-                        <div class="card-footer">
-                            <span><i class="far fa-clock"></i> 22:18</span>
-                            <span><i class="fas fa-eye"></i> 18K</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="card video-card" data-category="business">
-                    <img src="https://via.placeholder.com/400x220/FF6584/ffffff?text=Business+Success" alt="Video Thumbnail" class="video-thumbnail">
-                    <div class="video-overlay">
-                        <div class="play-btn">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3 class="card-title">Business Mindset for Success</h3>
-                        <p class="card-text">Develop the entrepreneurial thinking that leads to business growth.</p>
-                        <div class="card-footer">
-                            <span><i class="far fa-clock"></i> 28:05</span>
-                            <span><i class="fas fa-eye"></i> 32K</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Support Section -->
-    <section id="support">
-        <div class="container">
-            <h2 class="section-title">Support & Contact</h2>
-            <p class="text-center">We're here to help! Reach out for assistance, suggestions, or to support our mission.</p>
-            
-            <div class="support-container">
-                <div class="contact-form">
-                    <h3>Send us a Message</h3>
-                    <form id="supportForm">
-                        <div class="form-group">
-                            <label for="name" class="form-label">Your Name</label>
-                            <input type="text" id="name" class="form-control" placeholder="Enter your name">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email" class="form-label">Email Address</label>
-                            <input type="email" id="email" class="form-control" placeholder="Enter your email">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="subject" class="form-label">Subject</label>
-                            <select id="subject" class="form-control">
-                                <option value="">Select a topic</option>
-                                <option value="general">General Inquiry</option>
-                                <option value="support">Technical Support</option>
-                                <option value="suggestion">Content Suggestion</option>
-                                <option value="partnership">Partnership</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message" class="form-label">Message</label>
-                            <textarea id="message" class="form-control" placeholder="How can we help you?"></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn">
-                            <i class="fas fa-paper-plane"></i> Send Message
-                        </button>
-                    </form>
-                </div>
-                
-                <div class="payment-methods">
-                    <h3>Support Our Mission</h3>
-                    <p>Your contributions help us create more inspirational content and reach more people.</p>
-                    
-                    <div class="payment-option">
-                        <div class="payment-icon">
-                            <i class="fas fa-university"></i>
-                        </div>
-                        <div>
-                            <h4>Bank Transfer</h4>
-                            <p>Account: Supreme Motive Foundation</p>
-                            <p>Routing: 021000021 • Account: 4000123456</p>
-                        </div>
-                    </div>
-                    
-                    <div class="payment-option">
-                        <div class="payment-icon">
-                            <i class="fab fa-paypal"></i>
-                        </div>
-                        <div>
-                            <h4>PayPal</h4>
-                            <p>Send to: support@suprememotive.com</p>
-                        </div>
-                    </div>
-                    
-                    <div class="payment-option">
-                        <div class="payment-icon">
-                            <i class="fab fa-bitcoin"></i>
-                        </div>
-                        <div>
-                            <h4>Cryptocurrency</h4>
-                            <p>BTC: 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa</p>
-                            <p>ETH: 0x7424A7b6c5aBc5B9C3Bf5c5C7b9B3C5b3C7b9B3C</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <h2 class="section-title">About Us</h2>
-            
-            <div class="about-content">
-                <div>
-                    <h3>Our Mission</h3>
-                    <p>Supreme Motive was founded with a simple yet powerful mission: to inspire millions through daily motivation, actionable insights, and transformative resources.</p>
-                    <p>We believe that everyone has untapped potential waiting to be unleashed, and our platform serves as a catalyst for personal growth and positive change.</p>
-                    
-                    <h3>Our Vision</h3>
-                    <p>To create a global community where individuals support each other in pursuing their dreams and living purposeful, fulfilling lives.</p>
-                </div>
-                
-                <div>
-                    <img src="https://via.placeholder.com/500x500/6C63FF/ffffff?text=Founder" alt="Founder" class="founder-img">
-                </div>
-            </div>
-            
-            <div class="mission-statement">
-                <h3>From the Founder</h3>
-                <p>"I started Supreme Motive during a challenging period in my life when I needed inspiration the most. What began as a personal collection of quotes and resources has grown into a platform that now serves thousands worldwide.</p>
-                <p>My vision is to continue expanding our offerings, creating more original content, and building a supportive community where everyone can find the motivation they need to overcome obstacles and achieve their goals."</p>
-                <p><strong>- [Your Name], Founder & CEO</strong></p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Supreme Motive</h3>
-                    <p>Your daily source of inspiration and personal growth resources.</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.youtube.com/c/SupremeMotive" target="_blank" class="social-link"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home" data-section="home"><i class="fas fa-chevron-right"></i> Home</a></li>
-                        <li><a href="#motivation" data-section="motivation"><i class="fas fa-chevron-right"></i> Daily Motivation</a></li>
-                        <li><a href="#ebooks" data-section="ebooks"><i class="fas fa-chevron-right"></i> E-Books</a></li>
-                        <li><a href="#videos" data-section="videos"><i class="fas fa-chevron-right"></i> Videos</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Resources</h3>
-                    <ul class="footer-links">
-                        <li><a href="#dictionary" data-section="dictionary"><i class="fas fa-chevron-right"></i> Motivational Dictionary</a></li>
-                        <li><a href="#life-quotes" data-section="life-quotes"><i class="fas fa-chevron-right"></i> Life Quotes</a></li>
-                        <li><a href="#love-quotes" data-section="love-quotes"><i class="fas fa-chevron-right"></i> Love Quotes</a></li>
-                        <li><a href="#support" data-section="support"><i class="fas fa-chevron-right"></i> Support</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <ul class="footer-links">
-                        <li><i class="fas fa-envelope"></i> hello@suprememotive.com</li>
-                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
-                        <li><i class="fas fa-map-marker-alt"></i> Inspiration Street, Motivation City</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="copyright">
-                <p>&copy; 2023 Supreme Motive. All rights reserved. | Designed with <i class="fas fa-heart" style="color: var(--accent);"></i> for your inspiration</p>
-            </div>
-        </div>
-    </footer>
 
     <!-- Ebook Modal -->
     <div class="modal" id="ebookModal">
@@ -1431,32 +1256,82 @@
             <div class="modal-body">
                 <div class="modal-cover-container">
                     <img src="" alt="Book Cover" class="modal-cover" id="modalEbookCover">
-                </div>
-                <p class="modal-intro" id="modalEbookIntro">Book introduction will appear here...</p>
-                
-                <div class="ebook-stats">
-                    <div class="stat">
-                        <span class="stat-value" id="statPages">250</span>
-                        <span class="stat-label">Pages</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-value" id="statRating">4.8</span>
-                        <span class="stat-label">Rating</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-value" id="statDownloads">1.2K</span>
-                        <span class="stat-label">Downloads</span>
+                    <div class="ebook-stats-modal">
+                        <div class="stat">
+                            <span class="stat-value" id="statPages">250</span>
+                            <span class="stat-label">Pages</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value" id="statRating">4.8</span>
+                            <span class="stat-label">Rating</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value" id="statDownloads">1.2K</span>
+                            <span class="stat-label">Downloads</span>
+                        </div>
                     </div>
                 </div>
                 
-                <button class="download-btn" id="downloadEbookBtn">
-                    <i class="fas fa-download"></i> Download PDF
-                </button>
+                <div class="ebook-details">
+                    <p class="modal-intro" id="modalEbookIntro">Book introduction will appear here...</p>
+                    
+                    <div class="ebook-features">
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Mindset Shifts</h4>
+                                <p>Transform your thinking patterns</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Practical Strategies</h4>
+                                <p>Actionable steps for results</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Exercises & Tools</h4>
+                                <p>Interactive self-assessment</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-infinity"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Lifetime Access</h4>
+                                <p>Download and keep forever</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="download-section">
+                        <button class="download-btn" id="downloadEbookBtn">
+                            <i class="fas fa-download"></i> Download PDF Now
+                        </button>
+                        <div class="download-info">
+                            <span><i class="fas fa-file-pdf"></i> PDF Format</span>
+                            <span><i class="fas fa-mobile-alt"></i> Mobile Friendly</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Support Modal -->
+    <!-- Premium Support Modal -->
     <div class="support-modal" id="supportModal">
         <div class="support-content">
             <div class="support-header">
@@ -1470,8 +1345,8 @@
                             <i class="fas fa-comments"></i>
                         </div>
                         <div class="support-info">
-                            <h3>Live Chat</h3>
-                            <p>Chat with our support team in real-time</p>
+                            <h3>Live Chat Support</h3>
+                            <p>Get instant help from our support team in real-time</p>
                         </div>
                     </div>
                     <div class="support-option" id="supportEmail">
@@ -1480,7 +1355,7 @@
                         </div>
                         <div class="support-info">
                             <h3>Email Support</h3>
-                            <p>Send us an email and we'll respond within 24 hours</p>
+                            <p>Send us a detailed message and receive a response within 24 hours</p>
                         </div>
                     </div>
                     <div class="support-option" id="supportPhone">
@@ -1489,7 +1364,7 @@
                         </div>
                         <div class="support-info">
                             <h3>Phone Support</h3>
-                            <p>Call us directly during business hours</p>
+                            <p>Call us directly for immediate assistance during business hours</p>
                         </div>
                     </div>
                     <div class="support-option" id="supportFaq">
@@ -1497,8 +1372,8 @@
                             <i class="fas fa-question-circle"></i>
                         </div>
                         <div class="support-info">
-                            <h3>FAQ</h3>
-                            <p>Browse our frequently asked questions</p>
+                            <h3>FAQ & Resources</h3>
+                            <p>Browse our comprehensive knowledge base for quick answers</p>
                         </div>
                     </div>
                 </div>
@@ -1514,72 +1389,78 @@
                 title: "The Art of Living Mindfully",
                 category: "life",
                 cover: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-                description: "Discover the secrets to a more mindful and fulfilling existence in this transformative guide.",
-                intro: "In a world filled with constant distractions and endless to-do lists, finding true peace can seem impossible. 'The Art of Living Mindfully' takes you on a transformative journey to reclaim your inner calm and live with intention. Through practical exercises and profound insights, you'll learn to navigate life's challenges with grace and cultivate a deep sense of purpose that transcends daily stressors.",
+                description: "Discover the secrets to a more mindful and fulfilling existence in this transformative guide to conscious living.",
+                intro: "In a world filled with constant distractions and endless to-do lists, finding true peace can seem impossible. 'The Art of Living Mindfully' takes you on a transformative journey to reclaim your inner calm and live with intention. Through practical exercises and profound insights, you'll learn to navigate life's challenges with grace and cultivate a deep sense of purpose that transcends daily stressors. This book offers a roadmap to living more fully in each moment, with greater awareness and appreciation for the beauty of ordinary experiences.",
                 pages: 284,
                 rating: 4.7,
                 downloads: 12500,
-                file: "the-art-of-living-mindfully.pdf"
+                file: "the-art-of-living-mindfully.pdf",
+                badge: "Bestseller"
             },
             {
                 id: 2,
                 title: "Productivity Unleashed",
                 category: "productivity",
                 cover: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-                description: "Master your time and accomplish more with less effort using proven techniques.",
-                intro: "What if you could achieve in 4 hours what currently takes you 8? 'Productivity Unleashed' reveals the neuroscience-backed techniques that top performers use to maximize their output while minimizing stress. From time-blocking strategies to cognitive optimization, this book will transform how you approach your work and life, helping you achieve more while working less.",
+                description: "Master your time and accomplish more with less effort using neuroscience-backed productivity techniques.",
+                intro: "What if you could achieve in 4 hours what currently takes you 8? 'Productivity Unleashed' reveals the neuroscience-backed techniques that top performers use to maximize their output while minimizing stress. From time-blocking strategies to cognitive optimization, this book will transform how you approach your work and life, helping you achieve more while working less. Discover how to eliminate distractions, focus deeply on important tasks, and create systems that make productivity effortless and sustainable.",
                 pages: 320,
                 rating: 4.9,
                 downloads: 18750,
-                file: "productivity-unleashed.pdf"
+                file: "productivity-unleashed.pdf",
+                badge: "New Release"
             },
             {
                 id: 3,
                 title: "The Motivation Code",
                 category: "motivation",
                 cover: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-                description: "Unlock the hidden drivers that propel you toward success and lasting achievement.",
-                intro: "Why do some people maintain unwavering motivation while others struggle to get out of bed? 'The Motivation Code' deciphers the psychological patterns that determine our drive and ambition. Through compelling stories and actionable frameworks, you'll discover how to tap into your deepest sources of inspiration and maintain momentum even when challenges arise.",
+                description: "Unlock the hidden drivers that propel you toward success and lasting achievement in all areas of life.",
+                intro: "Why do some people maintain unwavering motivation while others struggle to get out of bed? 'The Motivation Code' deciphers the psychological patterns that determine our drive and ambition. Through compelling stories and actionable frameworks, you'll discover how to tap into your deepest sources of inspiration and maintain momentum even when challenges arise. This book goes beyond surface-level motivation tricks to help you understand the core psychological drivers that fuel sustained action and achievement.",
                 pages: 275,
                 rating: 4.6,
                 downloads: 9320,
-                file: "the-motivation-code.pdf"
+                file: "the-motivation-code.pdf",
+                badge: "Popular"
             },
             {
                 id: 4,
                 title: "Love in the Modern Age",
                 category: "love",
                 cover: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-                description: "Navigate the complexities of modern relationships with wisdom and emotional intelligence.",
-                intro: "In an era of dating apps and fleeting connections, finding lasting love requires new skills and insights. 'Love in the Modern Age' combines psychological research with timeless wisdom to help you build meaningful connections that stand the test of time. Whether you're single or in a relationship, this book will transform how you approach love and intimacy.",
+                description: "Navigate the complexities of modern relationships with wisdom, emotional intelligence, and practical insights.",
+                intro: "In an era of dating apps and fleeting connections, finding lasting love requires new skills and insights. 'Love in the Modern Age' combines psychological research with timeless wisdom to help you build meaningful connections that stand the test of time. Whether you're single or in a relationship, this book will transform how you approach love and intimacy. Learn how to communicate effectively, resolve conflicts constructively, and create the foundation for a partnership that grows stronger with each passing year.",
                 pages: 312,
                 rating: 4.5,
                 downloads: 15600,
-                file: "love-in-the-modern-age.pdf"
+                file: "love-in-the-modern-age.pdf",
+                badge: "Reader's Choice"
             },
             {
                 id: 5,
                 title: "Startup Success Blueprint",
                 category: "business",
                 cover: "https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-                description: "From idea to IPO: A comprehensive guide to building your business empire.",
-                intro: "The path from startup idea to successful business is filled with pitfalls and challenges that have defeated countless entrepreneurs. 'Startup Success Blueprint' distills the hard-won lessons from founders who have navigated this journey successfully. You'll learn not just what to do, but more importantly, what to avoid as you build the business of your dreams.",
+                description: "From idea to IPO: A comprehensive guide to building your business empire with proven strategies.",
+                intro: "The path from startup idea to successful business is filled with pitfalls and challenges that have defeated countless entrepreneurs. 'Startup Success Blueprint' distills the hard-won lessons from founders who have navigated this journey successfully. You'll learn not just what to do, but more importantly, what to avoid as you build the business of your dreams. This comprehensive guide covers everything from validating your idea and securing funding to scaling operations and building a company culture that attracts top talent.",
                 pages: 368,
                 rating: 4.8,
                 downloads: 21000,
-                file: "startup-success-blueprint.pdf"
+                file: "startup-success-blueprint.pdf",
+                badge: "Bestseller"
             },
             {
                 id: 6,
                 title: "The Mindful Entrepreneur",
                 category: "business",
                 cover: "https://images.unsplash.com/photo-1551836026-d5c2e0c49bcd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-                description: "Balance ambition with inner peace on your entrepreneurial journey.",
-                intro: "Can you build a massively successful business without sacrificing your wellbeing? 'The Mindful Entrepreneur' proves that the answer is a resounding yes. This groundbreaking book shows how mindfulness practices can enhance decision-making, creativity, and leadership while protecting against burnout. Discover how to build not just a successful company, but a successful life.",
+                description: "Balance ambition with inner peace on your entrepreneurial journey to sustainable success.",
+                intro: "Can you build a massively successful business without sacrificing your wellbeing? 'The Mindful Entrepreneur' proves that the answer is a resounding yes. This groundbreaking book shows how mindfulness practices can enhance decision-making, creativity, and leadership while protecting against burnout. Discover how to build not just a successful company, but a successful life. Learn practical techniques for managing stress, maintaining focus amidst chaos, and leading with both compassion and conviction.",
                 pages: 295,
                 rating: 4.7,
                 downloads: 14300,
-                file: "the-mindful-entrepreneur.pdf"
+                file: "the-mindful-entrepreneur.pdf",
+                badge: "Editor's Pick"
             }
         ];
 
@@ -1634,13 +1515,30 @@
                 ebookCard.setAttribute('data-category', ebook.category);
                 
                 ebookCard.innerHTML = `
-                    <img src="${ebook.cover}" alt="${ebook.title}" class="ebook-cover">
+                    <div class="ebook-cover-container">
+                        <img src="${ebook.cover}" alt="${ebook.title}" class="ebook-cover">
+                        <div class="ebook-overlay">
+                            <div class="quick-view-btn">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                        </div>
+                        ${ebook.badge ? `<span class="ebook-badge">${ebook.badge}</span>` : ''}
+                    </div>
                     <div class="ebook-info">
                         <h3 class="ebook-title">${ebook.title}</h3>
                         <p class="ebook-description">${ebook.description}</p>
                         <div class="ebook-meta">
                             <span class="ebook-category">${ebook.category.charAt(0).toUpperCase() + ebook.category.slice(1)}</span>
-                            <span><i class="fas fa-download"></i> ${formatNumber(ebook.downloads)}</span>
+                            <div class="ebook-stats">
+                                <div class="ebook-stat">
+                                    <i class="fas fa-star" style="color: var(--warning);"></i>
+                                    <span>${ebook.rating}</span>
+                                </div>
+                                <div class="ebook-stat">
+                                    <i class="fas fa-download" style="color: var(--primary);"></i>
+                                    <span>${formatNumber(ebook.downloads)}</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 `;
@@ -1689,6 +1587,7 @@
                     alert(`"${currentEbook.title}" has been downloaded successfully!\n\nFile: ${currentEbook.file}`);
                     downloadEbookBtn.innerHTML = originalText;
                     downloadEbookBtn.style.background = '';
+                    closeEbookModalFunc();
                 }, 1500);
             }
         }
@@ -1810,39 +1709,6 @@
                     filterEbooks(button.getAttribute('data-category'));
                 });
             });
-            
-            // Video filtering
-            const videoFilters = document.querySelectorAll('.video-filters .filter-btn');
-            const videoCards = document.querySelectorAll('#videos .video-card');
-            
-            videoFilters.forEach(filter => {
-                filter.addEventListener('click', function() {
-                    // Update active filter
-                    videoFilters.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    const category = this.getAttribute('data-category');
-                    
-                    // Filter videos
-                    videoCards.forEach(card => {
-                        if (category === 'all' || card.getAttribute('data-category') === category) {
-                            card.style.display = 'block';
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    });
-                });
-            });
-            
-            // Support form submission
-            const supportForm = document.getElementById('supportForm');
-            if (supportForm) {
-                supportForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    alert('Thank you for your message! We will get back to you soon.');
-                    supportForm.reset();
-                });
-            }
             
             // Create particles for home section
             function createParticles() {
