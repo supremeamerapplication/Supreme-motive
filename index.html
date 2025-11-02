@@ -168,7 +168,7 @@
             color: white;
         }
         
-        /* Header & Navigation */
+        /* Header & Navigation - Updated for right alignment */
         header {
             position: fixed;
             top: 0;
@@ -223,6 +223,7 @@
         .nav-menu {
             display: flex;
             list-style: none;
+            margin-left: auto; /* Push nav to the right */
         }
         
         .nav-item {
@@ -262,6 +263,7 @@
             display: flex;
             align-items: center;
             gap: 15px;
+            margin-left: 20px; /* Add space between nav and controls */
         }
         
         .theme-toggle {
@@ -527,7 +529,7 @@
             border-top: 1px solid rgba(108, 99, 255, 0.1);
         }
         
-        /* Enhanced Quote Display */
+        /* Enhanced Quote Display with Themes */
         .quote-display {
             position: relative;
             max-width: 900px;
@@ -546,6 +548,53 @@
             transition: var(--transition);
             transform-style: preserve-3d;
             animation: fadeInQuote 1s ease;
+            background-size: cover;
+            background-position: center;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .quote-card.theme-1 {
+            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            color: white;
+        }
+        
+        .quote-card.theme-2 {
+            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            color: white;
+        }
+        
+        .quote-card.theme-3 {
+            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            color: white;
+        }
+        
+        .quote-card.theme-4 {
+            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            color: white;
+        }
+        
+        .quote-card.theme-5 {
+            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            color: white;
+        }
+        
+        .quote-card.theme-1 .quote-text,
+        .quote-card.theme-2 .quote-text,
+        .quote-card.theme-3 .quote-text,
+        .quote-card.theme-4 .quote-text,
+        .quote-card.theme-5 .quote-text {
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+        }
+        
+        .quote-card.theme-1 .quote-author,
+        .quote-card.theme-2 .quote-author,
+        .quote-card.theme-3 .quote-author,
+        .quote-card.theme-4 .quote-author,
+        .quote-card.theme-5 .quote-author {
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
         }
         
         @keyframes fadeInQuote {
@@ -679,6 +728,74 @@
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: white;
             border-color: var(--primary);
+        }
+        
+        /* Quote Theme Selector */
+        .quote-theme-selector {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+        
+        .theme-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .theme-btn.active {
+            border-color: var(--primary);
+            transform: scale(1.1);
+        }
+        
+        .theme-btn.theme-1 {
+            background: linear-gradient(135deg, #6C63FF, #2A2D43);
+        }
+        
+        .theme-btn.theme-2 {
+            background: linear-gradient(135deg, #FF6584, #2A2D43);
+        }
+        
+        .theme-btn.theme-3 {
+            background: linear-gradient(135deg, #36D1DC, #2A2D43);
+        }
+        
+        .theme-btn.theme-4 {
+            background: linear-gradient(135deg, #FFB347, #2A2D43);
+        }
+        
+        .theme-btn.theme-5 {
+            background: linear-gradient(135deg, #8A8DAB, #2A2D43);
+        }
+        
+        /* Font Controls */
+        .font-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .font-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .font-select, .font-size-select {
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: 1px solid rgba(108, 99, 255, 0.2);
+            background: var(--card-bg);
+            color: var(--text-color);
+            font-family: 'Poppins', sans-serif;
         }
         
         /* Dictionary Section */
@@ -1101,6 +1218,37 @@
             color: var(--primary);
         }
         
+        /* Wallet Address Styles */
+        .wallet-address {
+            background: var(--card-bg);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(108, 99, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            word-break: break-all;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+        
+        .copy-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-left: 10px;
+            flex-shrink: 0;
+        }
+        
+        .copy-btn:hover {
+            background: var(--primary-dark);
+        }
+        
         /* About Section */
         .about-content {
             display: grid;
@@ -1404,6 +1552,45 @@
             font-size: 0.9rem;
         }
         
+        /* Full Screen Ebook Preview */
+        .ebook-preview-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-color);
+            z-index: 1100;
+            overflow: hidden;
+        }
+        
+        .preview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: var(--header-bg);
+            box-shadow: var(--shadow);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1;
+        }
+        
+        .preview-content {
+            width: 100%;
+            height: 100%;
+            padding-top: 80px;
+        }
+        
+        .preview-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
         /* Premium Support Button */
         .support-btn {
             position: fixed;
@@ -1682,6 +1869,55 @@
             }
         }
         
+        /* User Ebooks Section */
+        .user-ebooks-section {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(108, 99, 255, 0.2);
+        }
+        
+        .user-ebooks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .user-ebook-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .user-ebook-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .user-ebook-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .user-ebook-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--text-color);
+        }
+        
+        .user-ebook-date {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+        
         /* Responsive Styles */
         @media (max-width: 1100px) {
             h1 {
@@ -1706,7 +1942,7 @@
             .nav-menu {
                 position: fixed;
                 top: 80px;
-                left: -100%;
+                right: -100%; /* Changed from left to right */
                 width: 85%;
                 height: calc(100vh - 80px);
                 background-color: var(--header-bg);
@@ -1714,12 +1950,12 @@
                 align-items: center;
                 padding-top: 60px;
                 transition: var(--transition);
-                box-shadow: 5px 0 25px rgba(0, 0, 0, 0.1);
+                box-shadow: -5px 0 25px rgba(0, 0, 0, 0.1); /* Changed shadow direction */
                 z-index: 999;
             }
             
             .nav-menu.active {
-                left: 0;
+                right: 0; /* Changed from left to right */
             }
             
             .nav-item {
@@ -1805,6 +2041,10 @@
             .sidebar {
                 width: 280px;
             }
+            
+            .font-controls {
+                flex-direction: column;
+            }
         }
         
         @media (max-width: 576px) {
@@ -1851,6 +2091,10 @@
             .sidebar {
                 width: 260px;
             }
+            
+            .user-ebooks-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -1870,8 +2114,6 @@
         <i class="fas fa-bars"></i>
     </div>
 
-
-
     <!-- Header & Navigation -->
     <header>
         <div class="nav-container">
@@ -1879,7 +2121,50 @@
                 <div class="logo-img">SM</div>
                 <a href="#" class="logo">Supreme<span>Motive</span></a>
             </div>
-                <!-- Sidebar -->
+            
+            <!-- Navigation Menu - Now on the right -->
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link active" data-section="home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#motivation" class="nav-link" data-section="motivation">Motivation</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#life-quotes" class="nav-link" data-section="life-quotes">Life Quotes</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#love-quotes" class="nav-link" data-section="love-quotes">Love Quotes</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#dictionary" class="nav-link" data-section="dictionary">Dictionary</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#ebooks" class="nav-link" data-section="ebooks">E-Books</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#videos" class="nav-link" data-section="videos">Videos</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#support" class="nav-link" data-section="support">Support</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link" data-section="about">About</a>
+                </li>
+            </ul>
+            
+            <div class="header-controls">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
         <ul class="sidebar-nav">
             <li class="sidebar-nav-item">
@@ -1976,19 +2261,8 @@
                 <i class="fas fa-brain"></i>
                 <span>Mindset & Growth</span>
             </div>
-            <div class="header-controls">
-                <button class="theme-toggle" id="themeToggle">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button class="mobile-menu-btn" id="mobileMenuBtn">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
         </div>
     </div>
-        
-        </div>
-    </header>
 
     <!-- Home Section -->
     <section id="home" class="active">
@@ -2023,23 +2297,55 @@
                 <button class="quote-category-btn" data-category="inspiration">Inspiration</button>
             </div>
             
+            <!-- Quote Theme Selector -->
+            <div class="quote-theme-selector">
+                <div class="theme-btn theme-1 active" data-theme="theme-1"></div>
+                <div class="theme-btn theme-2" data-theme="theme-2"></div>
+                <div class="theme-btn theme-3" data-theme="theme-3"></div>
+                <div class="theme-btn theme-4" data-theme="theme-4"></div>
+                <div class="theme-btn theme-5" data-theme="theme-5"></div>
+            </div>
+            
+            <!-- Font Controls -->
+            <div class="font-controls">
+                <div class="font-control">
+                    <label for="fontFamily">Font:</label>
+                    <select id="fontFamily" class="font-select">
+                        <option value="'Playfair Display', serif">Playfair Display</option>
+                        <option value="'Poppins', sans-serif">Poppins</option>
+                        <option value="Georgia, serif">Georgia</option>
+                        <option value="Arial, sans-serif">Arial</option>
+                    </select>
+                </div>
+                <div class="font-control">
+                    <label for="fontSize">Size:</label>
+                    <select id="fontSize" class="font-size-select">
+                        <option value="1.3rem">Small</option>
+                        <option value="1.5rem" selected>Medium</option>
+                        <option value="1.8rem">Large</option>
+                        <option value="2.1rem">X-Large</option>
+                    </select>
+                </div>
+            </div>
+            
             <div class="quote-display">
-                <div class="quote-card">
-                    <p class="quote-text">"The only way to do great work is to love what you do. If you haven't found it yet, keep looking. Don't settle."</p>
-                    <p class="quote-author">Steve Jobs</p>
+                <div class="quote-card theme-1" id="quoteCard">
+                    <p class="quote-text" id="quoteText">"The only way to do great work is to love what you do. If you haven't found it yet, keep looking. Don't settle."</p>
+                    <p class="quote-author" id="quoteAuthor">Steve Jobs</p>
                     <div class="quote-actions">
-                        <button class="quote-btn"><i class="far fa-heart"></i></button>
-                        <button class="quote-btn"><i class="far fa-bookmark"></i></button>
-                        <button class="quote-btn"><i class="fas fa-share-alt"></i></button>
+                        <button class="quote-btn" id="likeQuote"><i class="far fa-heart"></i></button>
+                        <button class="quote-btn" id="bookmarkQuote"><i class="far fa-bookmark"></i></button>
+                        <button class="quote-btn" id="shareQuote"><i class="fas fa-share-alt"></i></button>
+                        <button class="quote-btn" id="copyQuote"><i class="far fa-copy"></i></button>
                     </div>
                 </div>
                 
                 <div class="quote-nav">
-                    <div class="quote-dot active"></div>
-                    <div class="quote-dot"></div>
-                    <div class="quote-dot"></div>
-                    <div class="quote-dot"></div>
-                    <div class="quote-dot"></div>
+                    <div class="quote-dot active" data-index="0"></div>
+                    <div class="quote-dot" data-index="1"></div>
+                    <div class="quote-dot" data-index="2"></div>
+                    <div class="quote-dot" data-index="3"></div>
+                    <div class="quote-dot" data-index="4"></div>
                 </div>
             </div>
             
@@ -2175,6 +2481,20 @@
             <div class="ebooks-grid" id="ebooksContainer">
                 <!-- Ebooks will be dynamically inserted here -->
             </div>
+            
+            <!-- User Ebooks Section -->
+            <div class="user-ebooks-section" id="userEbooksSection">
+                <h3 class="section-title">Your Downloaded E-Books</h3>
+                <p class="text-center">E-books you've downloaded will appear here for easy access.</p>
+                
+                <div class="user-ebooks-grid" id="userEbooksGrid">
+                    <!-- User ebooks will be dynamically inserted here -->
+                </div>
+                
+                <div id="noEbooksMessage" class="text-center" style="display: none;">
+                    <p>You haven't downloaded any e-books yet. Browse our collection above and start building your library!</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -2239,8 +2559,8 @@
                         <h3 class="card-title">Business Mindset for Success</h3>
                         <p class="card-text">Develop the entrepreneurial thinking that leads to business growth.</p>
                         <div class="card-footer">
-                           
-                           
+                            <span><i class="far fa-clock"></i> 18:35</span>
+                            <span><i class="fas fa-eye"></i> 32K</span>
                         </div>
                     </div>
                 </div>
@@ -2322,8 +2642,14 @@
                         </div>
                         <div>
                             <h4>Cryptocurrency</h4>
-                            <p>BTC: 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa</p>
-                            <p>ETH: 0x7424A7b6c5aBc5B9C3Bf5c5C7b9B3C5b3C7b9B3C</p>
+                            <div class="wallet-address">
+                                <span>BTC: 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa</span>
+                                <button class="copy-btn" data-address="1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa">Copy</button>
+                            </div>
+                            <div class="wallet-address">
+                                <span>ETH: 0x7424A7b6c5aBc5B9C3Bf5c5C7b9B3C5b3C7b9B3C</span>
+                                <button class="copy-btn" data-address="0x7424A7b6c5aBc5B9C3Bf5c5C7b9B3C5b3C7b9B3C">Copy</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -2496,6 +2822,17 @@
         </div>
     </div>
 
+    <!-- Full Screen Ebook Preview -->
+    <div class="ebook-preview-modal" id="ebookPreviewModal">
+        <div class="preview-header">
+            <h3 id="previewTitle">Ebook Preview</h3>
+            <button class="close-btn" id="closePreviewBtn">&times;</button>
+        </div>
+        <div class="preview-content">
+            <iframe src="" class="preview-iframe" id="previewIframe"></iframe>
+        </div>
+    </div>
+
     <!-- Premium Support Modal -->
     <div class="support-modal" id="supportModal">
         <div class="support-content">
@@ -2560,7 +2897,8 @@
                 rating: 4.7,
                 downloads: 12500,
                 file: "the-art-of-living-mindfully.pdf",
-                badge: "Bestseller"
+                badge: "Bestseller",
+                previewUrl: "https://example.com/preview/the-art-of-living-mindfully"
             },
             {
                 id: 2,
@@ -2573,7 +2911,8 @@
                 rating: 4.9,
                 downloads: 18750,
                 file: "productivity-unleashed.pdf",
-                badge: "New Release"
+                badge: "New Release",
+                previewUrl: "https://example.com/preview/productivity-unleashed"
             },
             {
                 id: 3,
@@ -2586,7 +2925,8 @@
                 rating: 4.6,
                 downloads: 9320,
                 file: "the-motivation-code.pdf",
-                badge: "Popular"
+                badge: "Popular",
+                previewUrl: "https://example.com/preview/the-motivation-code"
             },
             {
                 id: 4,
@@ -2599,7 +2939,8 @@
                 rating: 4.5,
                 downloads: 15600,
                 file: "love-in-the-modern-age.pdf",
-                badge: "Reader's Choice"
+                badge: "Reader's Choice",
+                previewUrl: "https://example.com/preview/love-in-the-modern-age"
             },
             {
                 id: 5,
@@ -2612,7 +2953,8 @@
                 rating: 4.8,
                 downloads: 21000,
                 file: "startup-success-blueprint.pdf",
-                badge: "Bestseller"
+                badge: "Bestseller",
+                previewUrl: "https://example.com/preview/startup-success-blueprint"
             },
             {
                 id: 6,
@@ -2625,7 +2967,8 @@
                 rating: 4.7,
                 downloads: 14300,
                 file: "the-mindful-entrepreneur.pdf",
-                badge: "Editor's Pick"
+                badge: "Editor's Pick",
+                previewUrl: "https://example.com/preview/the-mindful-entrepreneur"
             }
         ];
 
@@ -2730,10 +3073,27 @@
 
         // Quote elements
         const quoteCategoryButtons = document.querySelectorAll('.quote-category-btn');
-        const quoteCards = document.querySelectorAll('.quote-card');
-        const quoteTexts = document.querySelectorAll('.quote-text');
-        const quoteAuthors = document.querySelectorAll('.quote-author');
+        const quoteCard = document.getElementById('quoteCard');
+        const quoteText = document.getElementById('quoteText');
+        const quoteAuthor = document.getElementById('quoteAuthor');
         const quoteDots = document.querySelectorAll('.quote-dot');
+        const themeButtons = document.querySelectorAll('.theme-btn');
+        const fontFamilySelect = document.getElementById('fontFamily');
+        const fontSizeSelect = document.getElementById('fontSize');
+        const likeQuoteBtn = document.getElementById('likeQuote');
+        const bookmarkQuoteBtn = document.getElementById('bookmarkQuote');
+        const shareQuoteBtn = document.getElementById('shareQuote');
+        const copyQuoteBtn = document.getElementById('copyQuote');
+
+        // Ebook preview elements
+        const ebookPreviewModal = document.getElementById('ebookPreviewModal');
+        const closePreviewBtn = document.getElementById('closePreviewBtn');
+        const previewIframe = document.getElementById('previewIframe');
+        const previewTitle = document.getElementById('previewTitle');
+
+        // User ebooks elements
+        const userEbooksGrid = document.getElementById('userEbooksGrid');
+        const noEbooksMessage = document.getElementById('noEbooksMessage');
 
         // Support option elements
         const supportChat = document.getElementById('supportChat');
@@ -2741,14 +3101,20 @@
         const supportPhone = document.getElementById('supportPhone');
         const supportFaq = document.getElementById('supportFaq');
 
+        // Copy buttons for wallet addresses
+        const copyButtons = document.querySelectorAll('.copy-btn');
+
         // Current selected ebook
         let currentEbook = null;
         let currentQuoteIndex = 0;
         let currentQuoteCategory = 'all';
+        let currentTheme = 'theme-1';
+        let userEbooks = JSON.parse(localStorage.getItem('userEbooks')) || [];
 
         // Initialize the page with ebooks
         function initializeEbooks() {
             displayEbooks(ebooks);
+            displayUserEbooks();
         }
 
         // Display ebooks in the grid
@@ -2775,7 +3141,7 @@
                     <div class="ebook-cover-container">
                         <img src="${ebook.cover}" alt="${ebook.title}" class="ebook-cover">
                         <div class="ebook-overlay">
-                            <div class="quick-view-btn">
+                            <div class="quick-view-btn" data-preview="${ebook.previewUrl}">
                                 <i class="fas fa-eye"></i>
                             </div>
                         </div>
@@ -2801,7 +3167,50 @@
                 `;
                 
                 ebookCard.addEventListener('click', () => openEbookModal(ebook));
+                
+                // Add preview functionality
+                const previewBtn = ebookCard.querySelector('.quick-view-btn');
+                previewBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    openEbookPreview(ebook);
+                });
+                
                 ebooksContainer.appendChild(ebookCard);
+            });
+        }
+
+        // Display user's downloaded ebooks
+        function displayUserEbooks() {
+            userEbooksGrid.innerHTML = '';
+            
+            if (userEbooks.length === 0) {
+                noEbooksMessage.style.display = 'block';
+                return;
+            }
+            
+            noEbooksMessage.style.display = 'none';
+            
+            userEbooks.forEach(ebook => {
+                const userEbookCard = document.createElement('div');
+                userEbookCard.className = 'user-ebook-card';
+                
+                userEbookCard.innerHTML = `
+                    <div class="user-ebook-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h4 class="user-ebook-title">${ebook.title}</h4>
+                    <p class="user-ebook-date">Downloaded: ${ebook.downloadDate}</p>
+                    <button class="btn btn-outline" style="margin-top: 10px; padding: 8px 15px;" data-preview="${ebook.previewUrl}">
+                        <i class="fas fa-eye"></i> Preview
+                    </button>
+                `;
+                
+                const previewBtn = userEbookCard.querySelector('button');
+                previewBtn.addEventListener('click', () => {
+                    openEbookPreview(ebook);
+                });
+                
+                userEbooksGrid.appendChild(userEbookCard);
             });
         }
 
@@ -2831,7 +3240,20 @@
             currentEbook = null;
         }
 
-        // Download ebook (simulated)
+        // Open ebook preview in full screen
+        function openEbookPreview(ebook) {
+            previewTitle.textContent = `Preview: ${ebook.title}`;
+            previewIframe.src = ebook.previewUrl;
+            ebookPreviewModal.style.display = 'block';
+        }
+
+        // Close ebook preview
+        function closeEbookPreview() {
+            ebookPreviewModal.style.display = 'none';
+            previewIframe.src = '';
+        }
+
+        // Download ebook and record in user's library
         function downloadEbook() {
             if (currentEbook) {
                 // In a real implementation, this would trigger a file download
@@ -2841,6 +3263,25 @@
                 downloadEbookBtn.style.background = 'var(--success)';
                 
                 setTimeout(() => {
+                    // Add to user's ebooks if not already there
+                    const alreadyDownloaded = userEbooks.some(ebook => ebook.id === currentEbook.id);
+                    
+                    if (!alreadyDownloaded) {
+                        const downloadDate = new Date().toLocaleDateString();
+                        userEbooks.push({
+                            id: currentEbook.id,
+                            title: currentEbook.title,
+                            downloadDate: downloadDate,
+                            previewUrl: currentEbook.previewUrl
+                        });
+                        
+                        // Save to localStorage
+                        localStorage.setItem('userEbooks', JSON.stringify(userEbooks));
+                        
+                        // Update display
+                        displayUserEbooks();
+                    }
+                    
                     alert(`"${currentEbook.title}" has been downloaded successfully!\n\nFile: ${currentEbook.file}`);
                     downloadEbookBtn.innerHTML = originalText;
                     downloadEbookBtn.style.background = '';
@@ -2895,30 +3336,104 @@
             const quoteData = quotes[category][index];
             if (!quoteData) return;
             
-            const quoteCard = document.querySelector(`#${category} .quote-card`);
-            const quoteText = document.querySelector(`#${category} .quote-text`);
-            const quoteAuthor = document.querySelector(`#${category} .quote-author`);
-            const quoteDots = document.querySelectorAll(`#${category} .quote-dot`);
+            // Add fade out animation
+            quoteCard.style.opacity = '0';
+            quoteCard.style.transform = 'translateY(20px)';
             
-            if (quoteCard && quoteText && quoteAuthor) {
-                // Add fade out animation
-                quoteCard.style.opacity = '0';
-                quoteCard.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+                quoteText.textContent = quoteData.text;
+                quoteAuthor.textContent = quoteData.author;
                 
-                setTimeout(() => {
-                    quoteText.textContent = quoteData.text;
-                    quoteAuthor.textContent = quoteData.author;
-                    
-                    // Update active dot
-                    quoteDots.forEach((dot, i) => {
-                        dot.classList.toggle('active', i === index);
-                    });
-                    
-                    // Add fade in animation
-                    quoteCard.style.opacity = '1';
-                    quoteCard.style.transform = 'translateY(0)';
-                }, 300);
+                // Update active dot
+                quoteDots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                });
+                
+                // Add fade in animation
+                quoteCard.style.opacity = '1';
+                quoteCard.style.transform = 'translateY(0)';
+            }, 300);
+        }
+
+        // Change quote theme
+        function changeQuoteTheme(theme) {
+            quoteCard.classList.remove('theme-1', 'theme-2', 'theme-3', 'theme-4', 'theme-5');
+            quoteCard.classList.add(theme);
+            currentTheme = theme;
+        }
+
+        // Change quote font
+        function changeQuoteFont(fontFamily) {
+            quoteText.style.fontFamily = fontFamily;
+            quoteAuthor.style.fontFamily = fontFamily;
+        }
+
+        // Change quote font size
+        function changeQuoteFontSize(fontSize) {
+            quoteText.style.fontSize = fontSize;
+        }
+
+        // Like quote
+        function likeQuote() {
+            likeQuoteBtn.classList.toggle('active');
+            const icon = likeQuoteBtn.querySelector('i');
+            if (likeQuoteBtn.classList.contains('active')) {
+                icon.classList.remove('far');
+                icon.classList.add('fas');
+                alert("Quote added to favorites!");
+            } else {
+                icon.classList.remove('fas');
+                icon.classList.add('far');
             }
+        }
+
+        // Bookmark quote
+        function bookmarkQuote() {
+            bookmarkQuoteBtn.classList.toggle('active');
+            const icon = bookmarkQuoteBtn.querySelector('i');
+            if (bookmarkQuoteBtn.classList.contains('active')) {
+                icon.classList.remove('far');
+                icon.classList.add('fas');
+                alert("Quote bookmarked!");
+            } else {
+                icon.classList.remove('fas');
+                icon.classList.add('far');
+            }
+        }
+
+        // Share quote
+        function shareQuote() {
+            const text = `"${quoteText.textContent}" - ${quoteAuthor.textContent}`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Inspirational Quote',
+                    text: text,
+                    url: window.location.href,
+                })
+                .then(() => console.log('Successful share'))
+                .catch((error) => console.log('Error sharing:', error));
+            } else {
+                // Fallback for browsers that don't support Web Share API
+                navigator.clipboard.writeText(text).then(() => {
+                    alert("Quote copied to clipboard!");
+                });
+            }
+        }
+
+        // Copy quote
+        function copyQuote() {
+            const text = `"${quoteText.textContent}" - ${quoteAuthor.textContent}`;
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Quote copied to clipboard!");
+            });
+        }
+
+        // Copy wallet address
+        function copyWalletAddress(address) {
+            navigator.clipboard.writeText(address).then(() => {
+                alert("Wallet address copied to clipboard!");
+            });
         }
 
         // Sidebar toggle functionality
@@ -3041,11 +3556,46 @@
                 });
             });
             
+            // Quote theme selection
+            themeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Update active button
+                    themeButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    // Change theme
+                    changeQuoteTheme(button.getAttribute('data-theme'));
+                });
+            });
+            
+            // Font controls
+            fontFamilySelect.addEventListener('change', (e) => {
+                changeQuoteFont(e.target.value);
+            });
+            
+            fontSizeSelect.addEventListener('change', (e) => {
+                changeQuoteFontSize(e.target.value);
+            });
+            
+            // Quote action buttons
+            likeQuoteBtn.addEventListener('click', likeQuote);
+            bookmarkQuoteBtn.addEventListener('click', bookmarkQuote);
+            shareQuoteBtn.addEventListener('click', shareQuote);
+            copyQuoteBtn.addEventListener('click', copyQuote);
+            
             // Quote navigation dots
             document.querySelectorAll('.quote-dot').forEach((dot, index) => {
                 dot.addEventListener('click', () => {
                     currentQuoteIndex = index;
                     changeQuote('motivation', currentQuoteIndex);
+                });
+            });
+            
+            // Copy wallet address buttons
+            copyButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const address = button.getAttribute('data-address');
+                    copyWalletAddress(address);
                 });
             });
             
@@ -3106,6 +3656,7 @@
         downloadEbookBtn.addEventListener('click', downloadEbook);
         supportBtn.addEventListener('click', openSupportModal);
         closeSupportModal.addEventListener('click', closeSupportModalFunc);
+        closePreviewBtn.addEventListener('click', closeEbookPreview);
 
         // Support option event listeners
         supportChat.addEventListener('click', handleSupportChat);
@@ -3120,6 +3671,9 @@
             }
             if (e.target === supportModal) {
                 closeSupportModalFunc();
+            }
+            if (e.target === ebookPreviewModal) {
+                closeEbookPreview();
             }
             if (e.target === sidebar && window.innerWidth <= 768) {
                 sidebar.classList.remove('active');
