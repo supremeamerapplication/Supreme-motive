@@ -363,8 +363,136 @@
             border-radius: 2px;
         }
         
-        /* E-Books Section */
-        .ebook-categories {
+        /* Enhanced Quote Display */
+        .quote-display {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto 3rem;
+            perspective: 1000px;
+        }
+        
+        .quote-card {
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+            position: relative;
+            border-left: 6px solid var(--primary);
+            transition: var(--transition);
+            transform-style: preserve-3d;
+            animation: fadeInQuote 1s ease;
+        }
+        
+        @keyframes fadeInQuote {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px) rotateX(10deg);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0) rotateX(0);
+            }
+        }
+        
+        .quote-card:hover {
+            transform: translateY(-10px) rotateX(2deg);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .quote-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-size: 6rem;
+            color: var(--primary);
+            opacity: 0.2;
+            font-family: 'Playfair Display', serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 1.5rem;
+            font-style: italic;
+            margin-bottom: 25px;
+            color: var(--text-color);
+            position: relative;
+            z-index: 1;
+            line-height: 1.6;
+        }
+        
+        .quote-author {
+            text-align: right;
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 1.2rem;
+            position: relative;
+        }
+        
+        .quote-author::before {
+            content: '— ';
+        }
+        
+        .quote-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            justify-content: flex-end;
+        }
+        
+        .quote-btn {
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            cursor: pointer;
+            color: var(--gray);
+            transition: var(--transition);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .quote-btn:hover {
+            color: var(--accent);
+            background: rgba(255, 101, 132, 0.1);
+            transform: scale(1.1);
+        }
+        
+        .quote-btn.active {
+            color: var(--accent);
+            background: rgba(255, 101, 132, 0.1);
+        }
+        
+        .quote-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .quote-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--gray);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .quote-dot.active {
+            background: var(--primary);
+            transform: scale(1.3);
+        }
+        
+        .quote-dot:hover {
+            background: var(--accent);
+        }
+        
+        .quote-category {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
@@ -372,7 +500,7 @@
             margin-bottom: 40px;
         }
         
-        .category-btn {
+        .quote-category-btn {
             padding: 10px 20px;
             background-color: var(--card-bg);
             border: 1px solid rgba(108, 99, 255, 0.2);
@@ -383,7 +511,7 @@
             font-weight: 500;
         }
         
-        .category-btn.active, .category-btn:hover {
+        .quote-category-btn.active, .quote-category-btn:hover {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: white;
             border-color: var(--primary);
@@ -406,7 +534,16 @@
             cursor: pointer;
             position: relative;
             border: 1px solid rgba(108, 99, 255, 0.1);
+            animation: fadeInUp 0.6s ease;
+            animation-fill-mode: both;
         }
+        
+        .ebook-card:nth-child(1) { animation-delay: 0.1s; }
+        .ebook-card:nth-child(2) { animation-delay: 0.2s; }
+        .ebook-card:nth-child(3) { animation-delay: 0.3s; }
+        .ebook-card:nth-child(4) { animation-delay: 0.4s; }
+        .ebook-card:nth-child(5) { animation-delay: 0.5s; }
+        .ebook-card:nth-child(6) { animation-delay: 0.6s; }
         
         .ebook-card:hover {
             transform: translateY(-12px) scale(1.02);
@@ -558,6 +695,32 @@
             display: flex;
             align-items: center;
             gap: 0.4rem;
+        }
+        
+        /* E-Books Section */
+        .ebook-categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+        
+        .category-btn {
+            padding: 10px 20px;
+            background-color: var(--card-bg);
+            border: 1px solid rgba(108, 99, 255, 0.2);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text-color);
+            font-weight: 500;
+        }
+        
+        .category-btn.active, .category-btn:hover {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border-color: var(--primary);
         }
         
         /* Premium Modal Styles */
@@ -1125,6 +1288,14 @@
             .ebook-features {
                 grid-template-columns: 1fr;
             }
+            
+            .quote-card {
+                padding: 30px;
+            }
+            
+            .quote-text {
+                font-size: 1.3rem;
+            }
         }
         
         @media (max-width: 576px) {
@@ -1150,6 +1321,14 @@
             
             .ebook-stats-modal {
                 justify-content: center;
+            }
+            
+            .quote-card {
+                padding: 25px;
+            }
+            
+            .quote-text {
+                font-size: 1.2rem;
             }
         }
     </style>
@@ -1210,6 +1389,100 @@
                     <a href="#ebooks" class="btn btn-accent" data-section="ebooks">
                         <i class="fas fa-book"></i> Explore E-Books
                     </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Motivation Section -->
+    <section id="motivation">
+        <div class="container">
+            <h2 class="section-title">Daily Motivation</h2>
+            <p class="text-center">Start your day with powerful quotes to inspire action and positive thinking.</p>
+            
+            <div class="quote-category">
+                <button class="quote-category-btn active" data-category="all">All Quotes</button>
+                <button class="quote-category-btn" data-category="success">Success</button>
+                <button class="quote-category-btn" data-category="perseverance">Perseverance</button>
+                <button class="quote-category-btn" data-category="mindset">Mindset</button>
+                <button class="quote-category-btn" data-category="inspiration">Inspiration</button>
+            </div>
+            
+            <div class="quote-display">
+                <div class="quote-card">
+                    <p class="quote-text">"The only way to do great work is to love what you do. If you haven't found it yet, keep looking. Don't settle."</p>
+                    <p class="quote-author">Steve Jobs</p>
+                    <div class="quote-actions">
+                        <button class="quote-btn"><i class="far fa-heart"></i></button>
+                        <button class="quote-btn"><i class="far fa-bookmark"></i></button>
+                        <button class="quote-btn"><i class="fas fa-share-alt"></i></button>
+                    </div>
+                </div>
+                
+                <div class="quote-nav">
+                    <div class="quote-dot active"></div>
+                    <div class="quote-dot"></div>
+                    <div class="quote-dot"></div>
+                    <div class="quote-dot"></div>
+                    <div class="quote-dot"></div>
+                </div>
+            </div>
+            
+            <div class="text-center" style="margin-top: 40px;">
+                <button class="btn btn-outline" id="loadMoreQuotes">
+                    <i class="fas fa-sync-alt"></i> Load More Quotes
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Life Quotes Section -->
+    <section id="life-quotes">
+        <div class="container">
+            <h2 class="section-title">Life Quotes</h2>
+            <p class="text-center">Wisdom and insights about life's journey, challenges, and meaning.</p>
+            
+            <div class="quote-display">
+                <div class="quote-card">
+                    <p class="quote-text">"Life is 10% what happens to you and 90% how you react to it."</p>
+                    <p class="quote-author">Charles R. Swindoll</p>
+                    <div class="quote-actions">
+                        <button class="quote-btn"><i class="far fa-heart"></i></button>
+                        <button class="quote-btn"><i class="far fa-bookmark"></i></button>
+                        <button class="quote-btn"><i class="fas fa-share-alt"></i></button>
+                    </div>
+                </div>
+                
+                <div class="quote-nav">
+                    <div class="quote-dot active"></div>
+                    <div class="quote-dot"></div>
+                    <div class="quote-dot"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Love Quotes Section -->
+    <section id="love-quotes">
+        <div class="container">
+            <h2 class="section-title">Love Quotes</h2>
+            <p class="text-center">Expressions of love, romance, and meaningful connections.</p>
+            
+            <div class="quote-display">
+                <div class="quote-card">
+                    <p class="quote-text">"The best thing to hold onto in life is each other."</p>
+                    <p class="quote-author">Audrey Hepburn</p>
+                    <div class="quote-actions">
+                        <button class="quote-btn"><i class="far fa-heart"></i></button>
+                        <button class="quote-btn"><i class="far fa-bookmark"></i></button>
+                        <button class="quote-btn"><i class="fas fa-share-alt"></i></button>
+                    </div>
+                </div>
+                
+                <div class="quote-nav">
+                    <div class="quote-dot active"></div>
+                    <div class="quote-dot"></div>
+                    <div class="quote-dot"></div>
                 </div>
             </div>
         </div>
@@ -1464,6 +1737,85 @@
             }
         ];
 
+        // Enhanced quote data with categories
+        const quotes = {
+            all: [
+                {
+                    text: "The only way to do great work is to love what you do. If you haven't found it yet, keep looking. Don't settle.",
+                    author: "Steve Jobs",
+                    category: "success"
+                },
+                {
+                    text: "Success is not final, failure is not fatal: it is the courage to continue that counts.",
+                    author: "Winston Churchill",
+                    category: "perseverance"
+                },
+                {
+                    text: "Your time is limited, don't waste it living someone else's life.",
+                    author: "Steve Jobs",
+                    category: "mindset"
+                },
+                {
+                    text: "The future belongs to those who believe in the beauty of their dreams.",
+                    author: "Eleanor Roosevelt",
+                    category: "inspiration"
+                },
+                {
+                    text: "It does not matter how slowly you go as long as you do not stop.",
+                    author: "Confucius",
+                    category: "perseverance"
+                }
+            ],
+            success: [
+                {
+                    text: "Success is not the key to happiness. Happiness is the key to success. If you love what you are doing, you will be successful.",
+                    author: "Albert Schweitzer",
+                    category: "success"
+                },
+                {
+                    text: "The only place where success comes before work is in the dictionary.",
+                    author: "Vidal Sassoon",
+                    category: "success"
+                }
+            ],
+            perseverance: [
+                {
+                    text: "Perseverance is not a long race; it is many short races one after the other.",
+                    author: "Walter Elliot",
+                    category: "perseverance"
+                },
+                {
+                    text: "It's not that I'm so smart, it's just that I stay with problems longer.",
+                    author: "Albert Einstein",
+                    category: "perseverance"
+                }
+            ],
+            mindset: [
+                {
+                    text: "Whether you think you can or you think you can't, you're right.",
+                    author: "Henry Ford",
+                    category: "mindset"
+                },
+                {
+                    text: "The mind is everything. What you think you become.",
+                    author: "Buddha",
+                    category: "mindset"
+                }
+            ],
+            inspiration: [
+                {
+                    text: "The best way to predict the future is to create it.",
+                    author: "Peter Drucker",
+                    category: "inspiration"
+                },
+                {
+                    text: "Innovation distinguishes between a leader and a follower.",
+                    author: "Steve Jobs",
+                    category: "inspiration"
+                }
+            ]
+        };
+
         // DOM elements
         const ebooksContainer = document.getElementById('ebooksContainer');
         const categoryButtons = document.querySelectorAll('.ebook-categories .category-btn');
@@ -1479,6 +1831,14 @@
         const statPages = document.getElementById('statPages');
         const statRating = document.getElementById('statRating');
         const statDownloads = document.getElementById('statDownloads');
+        const loadMoreQuotes = document.getElementById('loadMoreQuotes');
+
+        // Quote elements
+        const quoteCategoryButtons = document.querySelectorAll('.quote-category-btn');
+        const quoteCards = document.querySelectorAll('.quote-card');
+        const quoteTexts = document.querySelectorAll('.quote-text');
+        const quoteAuthors = document.querySelectorAll('.quote-author');
+        const quoteDots = document.querySelectorAll('.quote-dot');
 
         // Support option elements
         const supportChat = document.getElementById('supportChat');
@@ -1488,6 +1848,8 @@
 
         // Current selected ebook
         let currentEbook = null;
+        let currentQuoteIndex = 0;
+        let currentQuoteCategory = 'all';
 
         // Initialize the page with ebooks
         function initializeEbooks() {
@@ -1633,6 +1995,37 @@
             }
         }
 
+        // Quote functionality
+        function changeQuote(category, index) {
+            const quoteData = quotes[category][index];
+            if (!quoteData) return;
+            
+            const quoteCard = document.querySelector(`#${category} .quote-card`);
+            const quoteText = document.querySelector(`#${category} .quote-text`);
+            const quoteAuthor = document.querySelector(`#${category} .quote-author`);
+            const quoteDots = document.querySelectorAll(`#${category} .quote-dot`);
+            
+            if (quoteCard && quoteText && quoteAuthor) {
+                // Add fade out animation
+                quoteCard.style.opacity = '0';
+                quoteCard.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    quoteText.textContent = quoteData.text;
+                    quoteAuthor.textContent = quoteData.author;
+                    
+                    // Update active dot
+                    quoteDots.forEach((dot, i) => {
+                        dot.classList.toggle('active', i === index);
+                    });
+                    
+                    // Add fade in animation
+                    quoteCard.style.opacity = '1';
+                    quoteCard.style.transform = 'translateY(0)';
+                }, 300);
+            }
+        }
+
         // Navigation functionality
         document.addEventListener('DOMContentLoaded', function() {
             const navLinks = document.querySelectorAll('.nav-link');
@@ -1709,6 +2102,44 @@
                     filterEbooks(button.getAttribute('data-category'));
                 });
             });
+            
+            // Quote category filtering
+            quoteCategoryButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Update active button
+                    quoteCategoryButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    currentQuoteCategory = button.getAttribute('data-category');
+                    currentQuoteIndex = 0;
+                    changeQuote('motivation', currentQuoteIndex);
+                });
+            });
+            
+            // Quote navigation dots
+            document.querySelectorAll('.quote-dot').forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    currentQuoteIndex = index;
+                    changeQuote('motivation', currentQuoteIndex);
+                });
+            });
+            
+            // Load more quotes button
+            if (loadMoreQuotes) {
+                loadMoreQuotes.addEventListener('click', () => {
+                    // In a real implementation, this would load more quotes from an API
+                    alert("Loading more inspirational quotes...");
+                });
+            }
+            
+            // Quote auto-rotation
+            setInterval(() => {
+                if (currentQuoteCategory === 'all') {
+                    const quoteCount = quotes.all.length;
+                    currentQuoteIndex = (currentQuoteIndex + 1) % quoteCount;
+                    changeQuote('motivation', currentQuoteIndex);
+                }
+            }, 8000);
             
             // Create particles for home section
             function createParticles() {
