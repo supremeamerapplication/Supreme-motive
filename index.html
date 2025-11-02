@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Supreme Motive | Premium Ebook Library</title>
+    <title>Supreme Motive | Elevate Your Mind, Transform Your Life</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -294,32 +294,110 @@
             cursor: pointer;
         }
         
-        /* Section Backgrounds */
-        .section-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.1;
+        /* Sidebar Toggle */
+        .sidebar-toggle {
+            position: fixed;
+            top: 100px;
+            left: 20px;
+            background: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: var(--shadow);
             transition: var(--transition);
         }
         
-        .section-bg-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .sidebar-toggle:hover {
+            transform: scale(1.1);
+            background: var(--primary-dark);
         }
         
-        .section-overlay {
-            position: absolute;
+        .sidebar {
+            position: fixed;
             top: 0;
-            left: 0;
-            width: 100%;
+            left: -300px;
+            width: 300px;
             height: 100%;
-            background: linear-gradient(135deg, rgba(108, 99, 255, 0.05), rgba(255, 101, 132, 0.05));
-            z-index: -1;
+            background: var(--card-bg);
+            box-shadow: 5px 0 25px rgba(0, 0, 0, 0.1);
+            z-index: 998;
+            transition: var(--transition);
+            padding: 80px 20px 20px;
+            overflow-y: auto;
+        }
+        
+        .sidebar.active {
+            left: 0;
+        }
+        
+        .sidebar-nav {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .sidebar-nav-item {
+            margin-bottom: 15px;
+        }
+        
+        .sidebar-nav-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            color: var(--text-color);
+            text-decoration: none;
+            border-radius: 10px;
+            transition: var(--transition);
+        }
+        
+        .sidebar-nav-link:hover, .sidebar-nav-link.active {
+            background: rgba(108, 99, 255, 0.1);
+            color: var(--primary);
+        }
+        
+        .sidebar-nav-link i {
+            width: 20px;
+            text-align: center;
+        }
+        
+        .sidebar-section {
+            margin-bottom: 30px;
+        }
+        
+        .sidebar-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+            padding-left: 15px;
+            border-left: 3px solid var(--accent);
+        }
+        
+        .sidebar-feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            background: rgba(108, 99, 255, 0.05);
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+        
+        .sidebar-feature:hover {
+            background: rgba(108, 99, 255, 0.1);
+            transform: translateX(5px);
+        }
+        
+        .sidebar-feature i {
+            color: var(--primary);
+            font-size: 1.2rem;
         }
         
         /* Hero Section */
@@ -392,6 +470,63 @@
             border-radius: 2px;
         }
         
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            border: 1px solid rgba(108, 99, 255, 0.1);
+        }
+        
+        .card:hover {
+            transform: translateY(-12px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .card:hover .card-img {
+            transform: scale(1.05);
+        }
+        
+        .card-content {
+            padding: 25px;
+        }
+        
+        .card-title {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            color: var(--secondary);
+        }
+        
+        .card-text {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+        
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(108, 99, 255, 0.1);
+        }
+        
         /* Enhanced Quote Display */
         .quote-display {
             position: relative;
@@ -411,8 +546,6 @@
             transition: var(--transition);
             transform-style: preserve-3d;
             animation: fadeInQuote 1s ease;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(108, 99, 255, 0.1);
         }
         
         @keyframes fadeInQuote {
@@ -548,6 +681,144 @@
             border-color: var(--primary);
         }
         
+        /* Dictionary Section */
+        .dictionary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .dictionary-card {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+            border: 1px solid rgba(108, 99, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .dictionary-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+        }
+        
+        .dictionary-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .word {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+        
+        .meaning {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+        
+        /* Video Section */
+        .video-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+        
+        .filter-btn {
+            padding: 10px 20px;
+            background-color: var(--card-bg);
+            border: 1px solid rgba(108, 99, 255, 0.2);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text-color);
+            font-weight: 500;
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .video-card {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .video-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .video-thumbnail {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .video-card:hover .video-thumbnail {
+            transform: scale(1.05);
+        }
+        
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.7));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .video-card:hover .video-overlay {
+            opacity: 1;
+        }
+        
+        .play-btn {
+            background-color: var(--accent);
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: var(--transition);
+            transform: scale(0.9);
+        }
+        
+        .video-card:hover .play-btn {
+            transform: scale(1);
+        }
+        
+        .play-btn:hover {
+            background-color: var(--accent-dark);
+            transform: scale(1.1);
+        }
+        
         /* Enhanced Ebook Library Styles */
         .ebooks-grid {
             display: grid;
@@ -567,7 +838,6 @@
             border: 1px solid rgba(108, 99, 255, 0.1);
             animation: fadeInUp 0.6s ease;
             animation-fill-mode: both;
-            backdrop-filter: blur(10px);
         }
         
         .ebook-card:nth-child(1) { animation-delay: 0.1s; }
@@ -753,6 +1023,126 @@
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: white;
             border-color: var(--primary);
+        }
+        
+        /* Support Section */
+        .support-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+        
+        .contact-form {
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px 20px;
+            border: 1px solid rgba(108, 99, 255, 0.2);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: var(--transition);
+            background-color: var(--card-bg);
+            color: var(--text-color);
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .payment-methods {
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+        }
+        
+        .payment-option {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            border: 1px solid rgba(108, 99, 255, 0.1);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+        
+        .payment-option:hover {
+            border-color: var(--primary);
+            background: rgba(108, 99, 255, 0.05);
+            transform: translateX(5px);
+        }
+        
+        .payment-icon {
+            font-size: 2rem;
+            margin-right: 20px;
+            color: var(--primary);
+        }
+        
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .founder-img {
+            width: 100%;
+            max-width: 450px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .founder-img:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .mission-statement {
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            margin-top: 40px;
+            border-left: 5px solid var(--accent);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mission-statement::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--accent) 0%, transparent 70%);
+            border-radius: 0 0 0 100px;
+            opacity: 0.1;
         }
         
         /* Premium Modal Styles */
@@ -1188,6 +1578,81 @@
             100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
         }
         
+        /* Footer */
+        footer {
+            background-color: var(--footer-bg);
+            color: var(--footer-text);
+            padding: 70px 0 30px;
+            transition: var(--transition);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            color: var(--footer-text);
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .social-link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 45px;
+            height: 45px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .social-link:hover {
+            background-color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #adb5bd;
+            font-size: 0.9rem;
+        }
+        
         /* Particles Background */
         .particles {
             position: absolute;
@@ -1328,6 +1793,18 @@
             .quote-text {
                 font-size: 1.3rem;
             }
+            
+            .sidebar-toggle {
+                top: 90px;
+                left: 15px;
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+            }
+            
+            .sidebar {
+                width: 280px;
+            }
         }
         
         @media (max-width: 576px) {
@@ -1362,6 +1839,18 @@
             .quote-text {
                 font-size: 1.2rem;
             }
+            
+            .sidebar-toggle {
+                top: 85px;
+                left: 10px;
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            
+            .sidebar {
+                width: 260px;
+            }
         }
     </style>
 </head>
@@ -1374,6 +1863,111 @@
     <!-- Premium Support Button -->
     <div class="support-btn" id="supportBtn">
         <i class="fas fa-headset"></i>
+    </div>
+
+    <!-- Sidebar Toggle -->
+    <div class="sidebar-toggle" id="sidebarToggle">
+        <i class="fas fa-bars"></i>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+                <a href="#home" class="sidebar-nav-link active" data-section="home">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a href="#motivation" class="sidebar-nav-link" data-section="motivation">
+                    <i class="fas fa-bolt"></i>
+                    <span>Motivation</span>
+                </a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a href="#life-quotes" class="sidebar-nav-link" data-section="life-quotes">
+                    <i class="fas fa-heartbeat"></i>
+                    <span>Life Quotes</span>
+                </a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a href="#love-quotes" class="sidebar-nav-link" data-section="love-quotes">
+                    <i class="fas fa-heart"></i>
+                    <span>Love Quotes</span>
+                </a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a href="#dictionary" class="sidebar-nav-link" data-section="dictionary">
+                    <i class="fas fa-book"></i>
+                    <span>Dictionary</span>
+                </a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a href="#ebooks" class="sidebar-nav-link" data-section="ebooks">
+                    <i class="fas fa-book-open"></i>
+                    <span>E-Books</span>
+                </a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a href="#videos" class="sidebar-nav-link" data-section="videos">
+                    <i class="fas fa-play-circle"></i>
+                    <span>Videos</span>
+                </a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a href="#support" class="sidebar-nav-link" data-section="support">
+                    <i class="fas fa-headset"></i>
+                    <span>Support</span>
+                </a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a href="#about" class="sidebar-nav-link" data-section="about">
+                    <i class="fas fa-info-circle"></i>
+                    <span>About</span>
+                </a>
+            </li>
+        </ul>
+        
+        <div class="sidebar-section">
+            <h3>Quick Features</h3>
+            <div class="sidebar-feature">
+                <i class="fas fa-download"></i>
+                <span>Download E-Books</span>
+            </div>
+            <div class="sidebar-feature">
+                <i class="fas fa-share-alt"></i>
+                <span>Share Quotes</span>
+            </div>
+            <div class="sidebar-feature">
+                <i class="fas fa-bookmark"></i>
+                <span>Save Favorites</span>
+            </div>
+            <div class="sidebar-feature">
+                <i class="fas fa-history"></i>
+                <span>Reading History</span>
+            </div>
+        </div>
+        
+        <div class="sidebar-section">
+            <h3>Categories</h3>
+            <div class="sidebar-feature">
+                <i class="fas fa-fire"></i>
+                <span>Motivation</span>
+            </div>
+            <div class="sidebar-feature">
+                <i class="fas fa-heart"></i>
+                <span>Love & Relationships</span>
+            </div>
+            <div class="sidebar-feature">
+                <i class="fas fa-briefcase"></i>
+                <span>Business & Success</span>
+            </div>
+            <div class="sidebar-feature">
+                <i class="fas fa-brain"></i>
+                <span>Mindset & Growth</span>
+            </div>
+        </div>
     </div>
 
     <!-- Header & Navigation -->
@@ -1428,10 +2022,6 @@
 
     <!-- Motivation Section -->
     <section id="motivation">
-        <div class="section-bg">
-            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Mountain peak" class="section-bg-img">
-        </div>
-        <div class="section-overlay"></div>
         <div class="container">
             <h2 class="section-title">Daily Motivation</h2>
             <p class="text-center">Start your day with powerful quotes to inspire action and positive thinking.</p>
@@ -1474,29 +2064,30 @@
 
     <!-- Life Quotes Section -->
     <section id="life-quotes">
-        <div class="section-bg">
-            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Mountain peak" class="section-bg-img">
-        </div>
-        <div class="section-overlay"></div>
         <div class="container">
             <h2 class="section-title">Life Quotes</h2>
             <p class="text-center">Wisdom and insights about life's journey, challenges, and meaning.</p>
             
-            <div class="quote-display">
-                <div class="quote-card">
-                    <p class="quote-text">"Life is 10% what happens to you and 90% how you react to it."</p>
-                    <p class="quote-author">Charles R. Swindoll</p>
-                    <div class="quote-actions">
-                        <button class="quote-btn"><i class="far fa-heart"></i></button>
-                        <button class="quote-btn"><i class="far fa-bookmark"></i></button>
-                        <button class="quote-btn"><i class="fas fa-share-alt"></i></button>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-content">
+                        <p class="quote-text">"Life is 10% what happens to you and 90% how you react to it."</p>
+                        <p class="quote-author">- Charles R. Swindoll</p>
                     </div>
                 </div>
                 
-                <div class="quote-nav">
-                    <div class="quote-dot active"></div>
-                    <div class="quote-dot"></div>
-                    <div class="quote-dot"></div>
+                <div class="card">
+                    <div class="card-content">
+                        <p class="quote-text">"The purpose of our lives is to be happy."</p>
+                        <p class="quote-author">- Dalai Lama</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-content">
+                        <p class="quote-text">"Life is what happens when you're busy making other plans."</p>
+                        <p class="quote-author">- John Lennon</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1504,29 +2095,64 @@
 
     <!-- Love Quotes Section -->
     <section id="love-quotes">
-        <div class="section-bg">
-            <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Couple silhouette at sunset" class="section-bg-img">
-        </div>
-        <div class="section-overlay"></div>
         <div class="container">
             <h2 class="section-title">Love Quotes</h2>
             <p class="text-center">Expressions of love, romance, and meaningful connections.</p>
             
-            <div class="quote-display">
-                <div class="quote-card">
-                    <p class="quote-text">"The best thing to hold onto in life is each other."</p>
-                    <p class="quote-author">Audrey Hepburn</p>
-                    <div class="quote-actions">
-                        <button class="quote-btn"><i class="far fa-heart"></i></button>
-                        <button class="quote-btn"><i class="far fa-bookmark"></i></button>
-                        <button class="quote-btn"><i class="fas fa-share-alt"></i></button>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-content">
+                        <p class="quote-text">"The best thing to hold onto in life is each other."</p>
+                        <p class="quote-author">- Audrey Hepburn</p>
                     </div>
                 </div>
                 
-                <div class="quote-nav">
-                    <div class="quote-dot active"></div>
-                    <div class="quote-dot"></div>
-                    <div class="quote-dot"></div>
+                <div class="card">
+                    <div class="card-content">
+                        <p class="quote-text">"Love is composed of a single soul inhabiting two bodies."</p>
+                        <p class="quote-author">- Aristotle</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-content">
+                        <p class="quote-text">"To love and be loved is to feel the sun from both sides."</p>
+                        <p class="quote-author">- David Viscott</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dictionary Section -->
+    <section id="dictionary">
+        <div class="container">
+            <h2 class="section-title">Motivational Dictionary</h2>
+            <p class="text-center">Explore powerful words and their meanings to expand your motivational vocabulary.</p>
+            
+            <div class="dictionary-grid">
+                <div class="dictionary-card">
+                    <h3 class="word">Perseverance</h3>
+                    <p class="meaning">Steadfastness in doing something despite difficulty or delay in achieving success.</p>
+                    <button class="btn">Read Story</button>
+                </div>
+                
+                <div class="dictionary-card">
+                    <h3 class="word">Resilience</h3>
+                    <p class="meaning">The capacity to recover quickly from difficulties; toughness.</p>
+                    <button class="btn">Read Story</button>
+                </div>
+                
+                <div class="dictionary-card">
+                    <h3 class="word">Ambition</h3>
+                    <p class="meaning">A strong desire to do or achieve something, typically requiring determination and hard work.</p>
+                    <button class="btn">Read Story</button>
+                </div>
+                
+                <div class="dictionary-card">
+                    <h3 class="word">Integrity</h3>
+                    <p class="meaning">The quality of being honest and having strong moral principles.</p>
+                    <button class="btn">Read Story</button>
                 </div>
             </div>
         </div>
@@ -1534,10 +2160,6 @@
 
     <!-- E-Books Section -->
     <section id="ebooks">
-        <div class="section-bg">
-            <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2028&q=80" alt="Bookshelf" class="section-bg-img">
-        </div>
-        <div class="section-overlay"></div>
         <div class="container">
             <h2 class="section-title">Premium E-Book Library</h2>
             <p class="text-center">Discover our collection of transformative ebooks designed to elevate your mindset and accelerate your personal growth journey.</p>
@@ -1566,6 +2188,239 @@
             </div>
         </div>
     </section>
+
+    <!-- Videos Section -->
+    <section id="videos">
+        <div class="container">
+            <h2 class="section-title">Motivational Videos</h2>
+            <p class="text-center">Watch inspiring videos to boost your motivation and learn new strategies for success.</p>
+            
+            <div class="video-filters">
+                <button class="filter-btn active" data-category="all">All Videos</button>
+                <button class="filter-btn" data-category="motivation">Motivation</button>
+                <button class="filter-btn" data-category="life">Life</button>
+                <button class="filter-btn" data-category="business">Business</button>
+                <button class="filter-btn" data-category="strategy">Strategy</button>
+                <button class="filter-btn" data-category="love">Love & Family</button>
+            </div>
+            
+            <div class="cards-grid">
+                <div class="card video-card" data-category="motivation">
+                    <img src="https://via.placeholder.com/400x220/6C63FF/ffffff?text=Power+of+Belief" alt="Video Thumbnail" class="video-thumbnail">
+                    <div class="video-overlay">
+                        <div class="play-btn">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">The Power of Belief</h3>
+                        <p class="card-text">How your mindset shapes your reality and determines your success.</p>
+                        <div class="card-footer">
+                            <span><i class="far fa-clock"></i> 15:42</span>
+                            <span><i class="fas fa-eye"></i> 24K</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card video-card" data-category="life">
+                    <img src="https://via.placeholder.com/400x220/2A2D43/ffffff?text=Life+Lessons" alt="Video Thumbnail" class="video-thumbnail">
+                    <div class="video-overlay">
+                        <div class="play-btn">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">10 Life Lessons Everyone Should Learn</h3>
+                        <p class="card-text">Wisdom from decades of experience that can transform your perspective.</p>
+                        <div class="card-footer">
+                            <span><i class="far fa-clock"></i> 22:18</span>
+                            <span><i class="fas fa-eye"></i> 18K</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card video-card" data-category="business">
+                    <img src="https://via.placeholder.com/400x220/FF6584/ffffff?text=Business+Success" alt="Video Thumbnail" class="video-thumbnail">
+                    <div class="video-overlay">
+                        <div class="play-btn">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Business Mindset for Success</h3>
+                        <p class="card-text">Develop the entrepreneurial thinking that leads to business growth.</p>
+                        <div class="card-footer">
+                            <span><i class="far fa-clock"></i> 28:05</span>
+                            <span><i class="fas fa-eye"></i> 32K</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Section -->
+    <section id="support">
+        <div class="container">
+            <h2 class="section-title">Support & Contact</h2>
+            <p class="text-center">We're here to help! Reach out for assistance, suggestions, or to support our mission.</p>
+            
+            <div class="support-container">
+                <div class="contact-form">
+                    <h3>Send us a Message</h3>
+                    <form id="supportForm">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Your Name</label>
+                            <input type="text" id="name" class="form-control" placeholder="Enter your name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" id="email" class="form-control" placeholder="Enter your email">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject" class="form-label">Subject</label>
+                            <select id="subject" class="form-control">
+                                <option value="">Select a topic</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="support">Technical Support</option>
+                                <option value="suggestion">Content Suggestion</option>
+                                <option value="partnership">Partnership</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea id="message" class="form-control" placeholder="How can we help you?"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="payment-methods">
+                    <h3>Support Our Mission</h3>
+                    <p>Your contributions help us create more inspirational content and reach more people.</p>
+                    
+                    <div class="payment-option">
+                        <div class="payment-icon">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <div>
+                            <h4>Bank Transfer</h4>
+                            <p>Account: Supreme Motive Foundation</p>
+                            <p>Routing: 021000021 • Account: 4000123456</p>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-option">
+                        <div class="payment-icon">
+                            <i class="fab fa-paypal"></i>
+                        </div>
+                        <div>
+                            <h4>PayPal</h4>
+                            <p>Send to: support@suprememotive.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-option">
+                        <div class="payment-icon">
+                            <i class="fab fa-bitcoin"></i>
+                        </div>
+                        <div>
+                            <h4>Cryptocurrency</h4>
+                            <p>BTC: 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa</p>
+                            <p>ETH: 0x7424A7b6c5aBc5B9C3Bf5c5C7b9B3C5b3C7b9B3C</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Us</h2>
+            
+            <div class="about-content">
+                <div>
+                    <h3>Our Mission</h3>
+                    <p>Supreme Motive was founded with a simple yet powerful mission: to inspire millions through daily motivation, actionable insights, and transformative resources.</p>
+                    <p>We believe that everyone has untapped potential waiting to be unleashed, and our platform serves as a catalyst for personal growth and positive change.</p>
+                    
+                    <h3>Our Vision</h3>
+                    <p>To create a global community where individuals support each other in pursuing their dreams and living purposeful, fulfilling lives.</p>
+                </div>
+                
+                <div>
+                    <img src="https://via.placeholder.com/500x500/6C63FF/ffffff?text=Founder" alt="Founder" class="founder-img">
+                </div>
+            </div>
+            
+            <div class="mission-statement">
+                <h3>From the Founder</h3>
+                <p>"I started Supreme Motive during a challenging period in my life when I needed inspiration the most. What began as a personal collection of quotes and resources has grown into a platform that now serves thousands worldwide.</p>
+                <p>My vision is to continue expanding our offerings, creating more original content, and building a supportive community where everyone can find the motivation they need to overcome obstacles and achieve their goals."</p>
+                <p><strong>- [Your Name], Founder & CEO</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Supreme Motive</h3>
+                    <p>Your daily source of inspiration and personal growth resources.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/c/SupremeMotive" target="_blank" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home" data-section="home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="#motivation" data-section="motivation"><i class="fas fa-chevron-right"></i> Daily Motivation</a></li>
+                        <li><a href="#ebooks" data-section="ebooks"><i class="fas fa-chevron-right"></i> E-Books</a></li>
+                        <li><a href="#videos" data-section="videos"><i class="fas fa-chevron-right"></i> Videos</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#dictionary" data-section="dictionary"><i class="fas fa-chevron-right"></i> Motivational Dictionary</a></li>
+                        <li><a href="#life-quotes" data-section="life-quotes"><i class="fas fa-chevron-right"></i> Life Quotes</a></li>
+                        <li><a href="#love-quotes" data-section="love-quotes"><i class="fas fa-chevron-right"></i> Love Quotes</a></li>
+                        <li><a href="#support" data-section="support"><i class="fas fa-chevron-right"></i> Support</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> hello@suprememotive.com</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Inspiration Street, Motivation City</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Supreme Motive. All rights reserved. | Designed with <i class="fas fa-heart" style="color: var(--accent);"></i> for your inspiration</p>
+            </div>
+        </div>
+    </footer>
 
     <!-- Ebook Modal -->
     <div class="modal" id="ebookModal">
@@ -1880,6 +2735,9 @@
         const statRating = document.getElementById('statRating');
         const statDownloads = document.getElementById('statDownloads');
         const loadMoreQuotes = document.getElementById('loadMoreQuotes');
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarNavLinks = document.querySelectorAll('.sidebar-nav-link');
 
         // Quote elements
         const quoteCategoryButtons = document.querySelectorAll('.quote-category-btn');
@@ -2074,6 +2932,11 @@
             }
         }
 
+        // Sidebar toggle functionality
+        function toggleSidebar() {
+            sidebar.classList.toggle('active');
+        }
+
         // Navigation functionality
         document.addEventListener('DOMContentLoaded', function() {
             const navLinks = document.querySelectorAll('.nav-link');
@@ -2100,8 +2963,21 @@
                     }
                 });
                 
+                // Update active sidebar link
+                sidebarNavLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('data-section') === sectionId) {
+                        link.classList.add('active');
+                    }
+                });
+                
                 // Close mobile menu if open
                 navMenu.classList.remove('active');
+                
+                // Close sidebar on mobile
+                if (window.innerWidth <= 768) {
+                    sidebar.classList.remove('active');
+                }
             }
             
             // Add click event to navigation links
@@ -2113,10 +2989,22 @@
                 });
             });
             
+            // Add click event to sidebar navigation links
+            sidebarNavLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const sectionId = this.getAttribute('data-section');
+                    showSection(sectionId);
+                });
+            });
+            
             // Mobile menu toggle
             mobileMenuBtn.addEventListener('click', function() {
                 navMenu.classList.toggle('active');
             });
+            
+            // Sidebar toggle
+            sidebarToggle.addEventListener('click', toggleSidebar);
             
             // Theme toggle functionality
             themeToggle.addEventListener('click', function() {
@@ -2243,6 +3131,9 @@
             }
             if (e.target === supportModal) {
                 closeSupportModalFunc();
+            }
+            if (e.target === sidebar && window.innerWidth <= 768) {
+                sidebar.classList.remove('active');
             }
         });
     </script>
