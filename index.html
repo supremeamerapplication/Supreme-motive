@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Supreme Motive - Your daily source of inspiration, motivation, and personal growth resources. Elevate your mind and transform your life.">
+    <meta name="keywords" content="motivation, inspiration, quotes, ebooks, personal growth, self-improvement">
+    <meta name="author" content="Supreme Motive">
     <title>Supreme Motive | Elevate Your Mind, Transform Your Life</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -1891,6 +1894,276 @@
             }
         }
         
+        /* NEW: Loading Animation */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        
+        .loading-content {
+            text-align: center;
+            color: white;
+        }
+        
+        .loading-logo {
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2.5rem;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+        
+        .loading-text {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .loading-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        
+        .loading-progress {
+            height: 100%;
+            background: white;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        /* NEW: Search Functionality */
+        .search-container {
+            position: relative;
+            margin: 20px auto 40px;
+            max-width: 500px;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            border: 1px solid rgba(108, 99, 255, 0.2);
+            border-radius: 50px;
+            font-size: 1rem;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            transition: var(--transition);
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
+        }
+        
+        .search-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .search-btn:hover {
+            color: var(--accent);
+        }
+        
+        /* NEW: Toast Notifications */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--card-bg);
+            color: var(--text-color);
+            padding: 15px 25px;
+            border-radius: 50px;
+            box-shadow: var(--shadow);
+            z-index: 1001;
+            transition: transform 0.4s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+        
+        .toast.success {
+            border-left: 4px solid var(--success);
+        }
+        
+        .toast.error {
+            border-left: 4px solid var(--accent);
+        }
+        
+        .toast.info {
+            border-left: 4px solid var(--primary);
+        }
+        
+        /* NEW: Progress Bar */
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            z-index: 1001;
+            transition: width 0.3s ease;
+        }
+        
+        /* NEW: Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 99;
+            box-shadow: var(--shadow);
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-5px);
+        }
+        
+        /* NEW: Achievement System */
+        .achievement-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
+            background: rgba(108, 99, 255, 0.1);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--primary);
+            margin: 5px;
+        }
+        
+        .achievement-icon {
+            color: var(--warning);
+        }
+        
+        /* NEW: Reading Timer */
+        .reading-timer {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 15px;
+            background: rgba(108, 99, 255, 0.05);
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .timer-icon {
+            color: var(--primary);
+        }
+        
+        /* NEW: Content Rating */
+        .content-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin: 10px 0;
+        }
+        
+        .rating-star {
+            color: var(--gray);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .rating-star.active {
+            color: var(--warning);
+        }
+        
+        .rating-star:hover {
+            color: var(--warning);
+        }
+        
+        /* NEW: Content Filtering */
+        .content-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .content-filter {
+            padding: 8px 15px;
+            background: var(--card-bg);
+            border: 1px solid rgba(108, 99, 255, 0.2);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+        
+        .content-filter.active, .content-filter:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* NEW: Reading Progress Indicator */
+        .reading-progress-indicator {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: rgba(108, 99, 255, 0.1);
+            z-index: 999;
+        }
+        
+        .reading-progress-bar {
+            height: 100%;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
         /* Responsive Styles */
         @media (max-width: 1100px) {
             h1 {
@@ -1973,6 +2246,13 @@
                 width: 60px;
                 height: 60px;
                 font-size: 1.5rem;
+            }
+            
+            .back-to-top {
+                bottom: 90px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
             }
             
             section {
@@ -2064,6 +2344,28 @@
     </style>
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="loading-logo">SM</div>
+            <div class="loading-text">Loading Supreme Motive...</div>
+            <div class="loading-bar">
+                <div class="loading-progress" id="loadingProgress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reading Progress Bar -->
+    <div class="reading-progress" id="readingProgress"></div>
+
+    <!-- Toast Notifications -->
+    <div class="toast" id="toast"></div>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
     <!-- Floating YouTube Icon -->
     <a href="https://www.youtube.com/c/SupremeMotive" target="_blank" class="floating-yt">
         <i class="fab fa-youtube"></i>
@@ -2217,6 +2519,23 @@
                 <span>Mindset & Growth</span>
             </div>
         </div>
+        
+        <!-- NEW: User Stats in Sidebar -->
+        <div class="sidebar-section">
+            <h3>Your Progress</h3>
+            <div class="sidebar-feature">
+                <i class="fas fa-book"></i>
+                <span id="sidebarEbookCount">0 E-Books Read</span>
+            </div>
+            <div class="sidebar-feature">
+                <i class="fas fa-quote-right"></i>
+                <span id="sidebarQuoteCount">0 Quotes Saved</span>
+            </div>
+            <div class="sidebar-feature">
+                <i class="fas fa-clock"></i>
+                <span id="sidebarReadingTime">0h Reading</span>
+            </div>
+        </div>
     </div>
 
     <!-- Home Section -->
@@ -2243,6 +2562,14 @@
         <div class="container">
             <h2 class="section-title">Daily Motivation</h2>
             <p class="text-center">Start your day with powerful quotes to inspire action and positive thinking.</p>
+            
+            <!-- NEW: Search Bar -->
+            <div class="search-container">
+                <input type="text" class="search-input" id="quoteSearch" placeholder="Search for quotes...">
+                <button class="search-btn" id="searchQuoteBtn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
             
             <div class="quote-category">
                 <button class="quote-category-btn active" data-category="all">All Quotes</button>
@@ -2397,6 +2724,14 @@
             <h2 class="section-title">Premium E-Book Library</h2>
             <p class="text-center">Discover our collection of transformative ebooks designed to elevate your mindset and accelerate your personal growth journey.</p>
             
+            <!-- NEW: Search and Filter -->
+            <div class="search-container">
+                <input type="text" class="search-input" id="ebookSearch" placeholder="Search for ebooks...">
+                <button class="search-btn" id="searchEbookBtn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            
             <div class="ebook-categories">
                 <button class="category-btn active" data-category="all">All Books</button>
                 <button class="category-btn" data-category="life">
@@ -2427,6 +2762,12 @@
         <div class="container">
             <h2 class="section-title">My E-Books</h2>
             <p class="text-center">Access your downloaded ebooks and continue your personal growth journey.</p>
+            
+            <!-- NEW: Reading Stats -->
+            <div class="reading-timer">
+                <i class="fas fa-clock timer-icon"></i>
+                <span>Total Reading Time: <strong id="totalReadingTime">0 hours</strong></span>
+            </div>
             
             <div class="user-ebooks-container">
                 <div id="userEbooksGrid" class="user-ebooks-grid">
@@ -3006,6 +3347,19 @@
         const sidebarNavLinks = document.querySelectorAll('.sidebar-nav-link');
         const userEbooksGrid = document.getElementById('userEbooksGrid');
         const noEbooksMessage = document.getElementById('noEbooksMessage');
+        const loadingScreen = document.getElementById('loadingScreen');
+        const loadingProgress = document.getElementById('loadingProgress');
+        const backToTop = document.getElementById('backToTop');
+        const readingProgress = document.getElementById('readingProgress');
+        const toast = document.getElementById('toast');
+        const quoteSearch = document.getElementById('quoteSearch');
+        const searchQuoteBtn = document.getElementById('searchQuoteBtn');
+        const ebookSearch = document.getElementById('ebookSearch');
+        const searchEbookBtn = document.getElementById('searchEbookBtn');
+        const totalReadingTime = document.getElementById('totalReadingTime');
+        const sidebarEbookCount = document.getElementById('sidebarEbookCount');
+        const sidebarQuoteCount = document.getElementById('sidebarQuoteCount');
+        const sidebarReadingTime = document.getElementById('sidebarReadingTime');
 
         // Quote elements
         const quoteCategoryButtons = document.querySelectorAll('.quote-category-btn');
@@ -3036,11 +3390,20 @@
 
         // User data
         let userEbooks = JSON.parse(localStorage.getItem('userEbooks')) || [];
+        let userStats = JSON.parse(localStorage.getItem('userStats')) || {
+            ebooksRead: 0,
+            quotesSaved: 0,
+            readingTime: 0,
+            achievements: []
+        };
+        let likedQuotes = JSON.parse(localStorage.getItem('likedQuotes')) || [];
+        let bookmarkedQuotes = JSON.parse(localStorage.getItem('bookmarkedQuotes')) || [];
 
         // Initialize the page with ebooks
         function initializeEbooks() {
             displayEbooks(ebooks);
             displayUserEbooks();
+            updateUserStats();
         }
 
         // Display ebooks in the grid
@@ -3196,11 +3559,23 @@
                         downloadDate: new Date().toISOString()
                     });
                     
+                    // Update user stats
+                    userStats.ebooksRead = userEbooks.length;
+                    
                     // Save to localStorage
                     localStorage.setItem('userEbooks', JSON.stringify(userEbooks));
+                    localStorage.setItem('userStats', JSON.stringify(userStats));
                     
                     // Update display
                     displayUserEbooks();
+                    updateUserStats();
+                    
+                    // Show achievement if applicable
+                    if (userEbooks.length === 1) {
+                        showToast("Achievement Unlocked: First Ebook!", "success");
+                        userStats.achievements.push("First Ebook");
+                        localStorage.setItem('userStats', JSON.stringify(userStats));
+                    }
                 }
                 
                 // In a real implementation, this would trigger a file download
@@ -3210,7 +3585,7 @@
                 downloadEbookBtn.style.background = 'var(--success)';
                 
                 setTimeout(() => {
-                    alert(`"${ebookToDownload.title}" has been downloaded successfully!\n\nFile: ${ebookToDownload.file}\n\nYou can now find it in your "My E-Books" section.`);
+                    showToast(`"${ebookToDownload.title}" has been downloaded successfully!`, "success");
                     downloadEbookBtn.innerHTML = originalText;
                     downloadEbookBtn.style.background = '';
                     closeEbookModalFunc();
@@ -3261,7 +3636,7 @@
 
         // Quote functionality
         function changeQuote(category, index) {
-            const quoteData = quotes[category][index];
+            const quoteData = quotes.all[index];
             if (!quoteData) return;
             
             quoteText.textContent = quoteData.text;
@@ -3301,8 +3676,27 @@
             likeQuoteBtn.classList.toggle('active');
             if (likeQuoteBtn.classList.contains('active')) {
                 likeQuoteBtn.innerHTML = '<i class="fas fa-heart"></i>';
+                likedQuotes.push({
+                    text: quoteText.textContent,
+                    author: quoteAuthor.textContent,
+                    date: new Date().toISOString()
+                });
+                userStats.quotesSaved = likedQuotes.length;
+                localStorage.setItem('likedQuotes', JSON.stringify(likedQuotes));
+                localStorage.setItem('userStats', JSON.stringify(userStats));
+                updateUserStats();
+                showToast("Quote added to favorites!", "success");
             } else {
                 likeQuoteBtn.innerHTML = '<i class="far fa-heart"></i>';
+                // Remove from liked quotes
+                const index = likedQuotes.findIndex(q => q.text === quoteText.textContent);
+                if (index !== -1) {
+                    likedQuotes.splice(index, 1);
+                    userStats.quotesSaved = likedQuotes.length;
+                    localStorage.setItem('likedQuotes', JSON.stringify(likedQuotes));
+                    localStorage.setItem('userStats', JSON.stringify(userStats));
+                    updateUserStats();
+                }
             }
         }
 
@@ -3311,8 +3705,22 @@
             bookmarkQuoteBtn.classList.toggle('active');
             if (bookmarkQuoteBtn.classList.contains('active')) {
                 bookmarkQuoteBtn.innerHTML = '<i class="fas fa-bookmark"></i>';
+                bookmarkedQuotes.push({
+                    text: quoteText.textContent,
+                    author: quoteAuthor.textContent,
+                    date: new Date().toISOString()
+                });
+                localStorage.setItem('bookmarkedQuotes', JSON.stringify(bookmarkedQuotes));
+                showToast("Quote bookmarked!", "success");
             } else {
                 bookmarkQuoteBtn.innerHTML = '<i class="far fa-bookmark"></i>';
+                // Remove from bookmarked quotes
+                const index = bookmarkedQuotes.findIndex(q => q.text === quoteText.textContent);
+                if (index !== -1) {
+                    bookmarkedQuotes.splice(index, 1);
+                    localStorage.setItem('bookmarkedQuotes', JSON.stringify(bookmarkedQuotes));
+                showToast("Quote removed from bookmarks", "info");
+                }
             }
         }
 
@@ -3333,7 +3741,7 @@
             } else {
                 // Fallback for browsers that don't support the Web Share API
                 navigator.clipboard.writeText(textToShare).then(() => {
-                    alert('Quote copied to clipboard!');
+                    showToast('Quote copied to clipboard!', 'success');
                 });
             }
         }
@@ -3350,6 +3758,8 @@
                     button.textContent = originalText;
                     button.classList.remove('copied');
                 }, 2000);
+                
+                showToast('Address copied to clipboard!', 'success');
             });
         }
 
@@ -3358,13 +3768,156 @@
             sidebar.classList.toggle('active');
         }
 
-        // Navigation functionality
+        // Show toast notification
+        function showToast(message, type = 'info') {
+            toast.textContent = message;
+            toast.className = `toast ${type}`;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Update user stats in sidebar
+        function updateUserStats() {
+            const hours = Math.floor(userStats.readingTime / 60);
+            const minutes = userStats.readingTime % 60;
+            
+            sidebarEbookCount.textContent = `${userStats.ebooksRead} E-Books Read`;
+            sidebarQuoteCount.textContent = `${userStats.quotesSaved} Quotes Saved`;
+            sidebarReadingTime.textContent = `${hours}h ${minutes}m Reading`;
+            totalReadingTime.textContent = `${hours} hours ${minutes} minutes`;
+        }
+
+        // Search quotes
+        function searchQuotes(query) {
+            if (!query) {
+                changeQuote('motivation', currentQuoteIndex);
+                return;
+            }
+            
+            const allQuotes = [...quotes.all, ...quotes.success, ...quotes.perseverance, ...quotes.mindset, ...quotes.inspiration];
+            const filteredQuotes = allQuotes.filter(quote => 
+                quote.text.toLowerCase().includes(query.toLowerCase()) || 
+                quote.author.toLowerCase().includes(query.toLowerCase())
+            );
+            
+            if (filteredQuotes.length > 0) {
+                quoteText.textContent = filteredQuotes[0].text;
+                quoteAuthor.textContent = filteredQuotes[0].author;
+                showToast(`Found ${filteredQuotes.length} matching quotes`, 'success');
+            } else {
+                showToast('No quotes found matching your search', 'error');
+            }
+        }
+
+        // Search ebooks
+        function searchEbooks(query) {
+            if (!query) {
+                displayEbooks(ebooks);
+                return;
+            }
+            
+            const filteredEbooks = ebooks.filter(ebook => 
+                ebook.title.toLowerCase().includes(query.toLowerCase()) || 
+                ebook.description.toLowerCase().includes(query.toLowerCase()) ||
+                ebook.category.toLowerCase().includes(query.toLowerCase())
+            );
+            
+            displayEbooks(filteredEbooks);
+            
+            if (filteredEbooks.length > 0) {
+                showToast(`Found ${filteredEbooks.length} matching ebooks`, 'success');
+            } else {
+                showToast('No ebooks found matching your search', 'error');
+            }
+        }
+
+        // Simulate loading progress
+        function simulateLoading() {
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 15;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        loadingScreen.style.opacity = '0';
+                        setTimeout(() => {
+                            loadingScreen.style.display = 'none';
+                        }, 500);
+                    }, 500);
+                }
+                loadingProgress.style.width = `${progress}%`;
+            }, 200);
+        }
+
+        // Update reading progress based on scroll
+        function updateReadingProgress() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            readingProgress.style.width = scrolled + "%";
+        }
+
+        // Show/hide back to top button
+        function toggleBackToTop() {
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        }
+
+        // Scroll to top
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Initialize the application
         document.addEventListener('DOMContentLoaded', function() {
             const navLinks = document.querySelectorAll('.nav-link');
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
             const navMenu = document.getElementById('navMenu');
             const themeToggle = document.getElementById('themeToggle');
             const themeIcon = themeToggle.querySelector('i');
+            
+            // Start loading simulation
+            simulateLoading();
+            
+            // Set up scroll events
+            window.addEventListener('scroll', () => {
+                updateReadingProgress();
+                toggleBackToTop();
+            });
+            
+            // Back to top button
+            backToTop.addEventListener('click', scrollToTop);
+            
+            // Search functionality
+            searchQuoteBtn.addEventListener('click', () => {
+                searchQuotes(quoteSearch.value);
+            });
+            
+            quoteSearch.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    searchQuotes(quoteSearch.value);
+                }
+            });
+            
+            searchEbookBtn.addEventListener('click', () => {
+                searchEbooks(ebookSearch.value);
+            });
+            
+            ebookSearch.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    searchEbooks(ebookSearch.value);
+                }
+            });
             
             // Function to show a specific section
             function showSection(sectionId) {
@@ -3399,6 +3952,9 @@
                 if (window.innerWidth <= 768) {
                     sidebar.classList.remove('active');
                 }
+                
+                // Scroll to top when changing sections
+                window.scrollTo(0, 0);
             }
             
             // Add click event to navigation links
@@ -3539,7 +4095,7 @@
             if (loadMoreQuotes) {
                 loadMoreQuotes.addEventListener('click', () => {
                     // In a real implementation, this would load more quotes from an API
-                    alert("Loading more inspirational quotes...");
+                    showToast("Loading more inspirational quotes...", "info");
                 });
             }
             
