@@ -2164,6 +2164,144 @@
             transition: width 0.3s ease;
         }
         
+        /* NEW: Enhanced Navigation */
+        .nav-indicator {
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            width: 0;
+        }
+        
+        /* NEW: Enhanced Animations */
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        /* NEW: Enhanced Cards */
+        .enhanced-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            background: var(--card-bg);
+        }
+        
+        .enhanced-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, transparent 70%);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 1;
+        }
+        
+        .enhanced-card:hover::before {
+            opacity: 0.1;
+        }
+        
+        .enhanced-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        /* NEW: Enhanced Buttons */
+        .enhanced-btn {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .enhanced-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+            z-index: -1;
+        }
+        
+        .enhanced-btn:hover::after {
+            transform: translateX(0);
+        }
+        
+        /* NEW: Enhanced Section Transitions */
+        .section-transition {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .section-transition.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* NEW: Enhanced Typography */
+        .enhanced-heading {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .enhanced-heading::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+        
         /* Responsive Styles */
         @media (max-width: 1100px) {
             h1 {
@@ -2546,10 +2684,10 @@
                 <h1>Elevate Your Mind, Transform Your Life</h1>
                 <p>Welcome to Supreme Motive - your ultimate destination for daily inspiration, transformative resources, and a community dedicated to personal growth and success.</p>
                 <div class="hero-btns">
-                    <a href="#motivation" class="btn" data-section="motivation">
+                    <a href="#motivation" class="btn enhanced-btn" data-section="motivation">
                         <i class="fas fa-bolt"></i> Get Inspired
                     </a>
-                    <a href="#ebooks" class="btn btn-accent" data-section="ebooks">
+                    <a href="#ebooks" class="btn btn-accent enhanced-btn" data-section="ebooks">
                         <i class="fas fa-book"></i> Explore E-Books
                     </a>
                 </div>
@@ -2560,7 +2698,7 @@
     <!-- Motivation Section -->
     <section id="motivation">
         <div class="container">
-            <h2 class="section-title">Daily Motivation</h2>
+            <h2 class="section-title enhanced-heading">Daily Motivation</h2>
             <p class="text-center">Start your day with powerful quotes to inspire action and positive thinking.</p>
             
             <!-- NEW: Search Bar -->
@@ -2595,7 +2733,7 @@
             </div>
             
             <div class="quote-display">
-                <div class="quote-card theme-nature">
+                <div class="quote-card theme-nature enhanced-card">
                     <p class="quote-text">"The only way to do great work is to love what you do. If you haven't found it yet, keep looking. Don't settle."</p>
                     <p class="quote-author">Steve Jobs</p>
                     <div class="quote-actions">
@@ -2615,7 +2753,7 @@
             </div>
             
             <div class="text-center" style="margin-top: 40px;">
-                <button class="btn btn-outline" id="loadMoreQuotes">
+                <button class="btn btn-outline enhanced-btn" id="loadMoreQuotes">
                     <i class="fas fa-sync-alt"></i> Load More Quotes
                 </button>
             </div>
@@ -2625,25 +2763,25 @@
     <!-- Life Quotes Section -->
     <section id="life-quotes">
         <div class="container">
-            <h2 class="section-title">Life Quotes</h2>
+            <h2 class="section-title enhanced-heading">Life Quotes</h2>
             <p class="text-center">Wisdom and insights about life's journey, challenges, and meaning.</p>
             
             <div class="cards-grid">
-                <div class="card">
+                <div class="card enhanced-card">
                     <div class="card-content">
                         <p class="quote-text">"Life is 10% what happens to you and 90% how you react to it."</p>
                         <p class="quote-author">- Charles R. Swindoll</p>
                     </div>
                 </div>
                 
-                <div class="card">
+                <div class="card enhanced-card">
                     <div class="card-content">
                         <p class="quote-text">"The purpose of our lives is to be happy."</p>
                         <p class="quote-author">- Dalai Lama</p>
                     </div>
                 </div>
                 
-                <div class="card">
+                <div class="card enhanced-card">
                     <div class="card-content">
                         <p class="quote-text">"Life is what happens when you're busy making other plans."</p>
                         <p class="quote-author">- John Lennon</p>
@@ -2656,25 +2794,25 @@
     <!-- Love Quotes Section -->
     <section id="love-quotes">
         <div class="container">
-            <h2 class="section-title">Love Quotes</h2>
+            <h2 class="section-title enhanced-heading">Love Quotes</h2>
             <p class="text-center">Expressions of love, romance, and meaningful connections.</p>
             
             <div class="cards-grid">
-                <div class="card">
+                <div class="card enhanced-card">
                     <div class="card-content">
                         <p class="quote-text">"The best thing to hold onto in life is each other."</p>
                         <p class="quote-author">- Audrey Hepburn</p>
                     </div>
                 </div>
                 
-                <div class="card">
+                <div class="card enhanced-card">
                     <div class="card-content">
                         <p class="quote-text">"Love is composed of a single soul inhabiting two bodies."</p>
                         <p class="quote-author">- Aristotle</p>
                     </div>
                 </div>
                 
-                <div class="card">
+                <div class="card enhanced-card">
                     <div class="card-content">
                         <p class="quote-text">"To love and be loved is to feel the sun from both sides."</p>
                         <p class="quote-author">- David Viscott</p>
@@ -2687,32 +2825,32 @@
     <!-- Dictionary Section -->
     <section id="dictionary">
         <div class="container">
-            <h2 class="section-title">Motivational Dictionary</h2>
+            <h2 class="section-title enhanced-heading">Motivational Dictionary</h2>
             <p class="text-center">Explore powerful words and their meanings to expand your motivational vocabulary.</p>
             
             <div class="dictionary-grid">
-                <div class="dictionary-card">
+                <div class="dictionary-card enhanced-card">
                     <h3 class="word">Perseverance</h3>
                     <p class="meaning">Steadfastness in doing something despite difficulty or delay in achieving success.</p>
-                    <button class="btn">Read Story</button>
+                    <button class="btn enhanced-btn">Read Story</button>
                 </div>
                 
-                <div class="dictionary-card">
+                <div class="dictionary-card enhanced-card">
                     <h3 class="word">Resilience</h3>
                     <p class="meaning">The capacity to recover quickly from difficulties; toughness.</p>
-                    <button class="btn">Read Story</button>
+                    <button class="btn enhanced-btn">Read Story</button>
                 </div>
                 
-                <div class="dictionary-card">
+                <div class="dictionary-card enhanced-card">
                     <h3 class="word">Ambition</h3>
                     <p class="meaning">A strong desire to do or achieve something, typically requiring determination and hard work.</p>
-                    <button class="btn">Read Story</button>
+                    <button class="btn enhanced-btn">Read Story</button>
                 </div>
                 
-                <div class="dictionary-card">
+                <div class="dictionary-card enhanced-card">
                     <h3 class="word">Integrity</h3>
                     <p class="meaning">The quality of being honest and having strong moral principles.</p>
-                    <button class="btn">Read Story</button>
+                    <button class="btn enhanced-btn">Read Story</button>
                 </div>
             </div>
         </div>
@@ -2721,7 +2859,7 @@
     <!-- E-Books Section -->
     <section id="ebooks">
         <div class="container">
-            <h2 class="section-title">Premium E-Book Library</h2>
+            <h2 class="section-title enhanced-heading">Premium E-Book Library</h2>
             <p class="text-center">Discover our collection of transformative ebooks designed to elevate your mindset and accelerate your personal growth journey.</p>
             
             <!-- NEW: Search and Filter -->
@@ -2760,7 +2898,7 @@
     <!-- My E-Books Section -->
     <section id="my-ebooks">
         <div class="container">
-            <h2 class="section-title">My E-Books</h2>
+            <h2 class="section-title enhanced-heading">My E-Books</h2>
             <p class="text-center">Access your downloaded ebooks and continue your personal growth journey.</p>
             
             <!-- NEW: Reading Stats -->
@@ -2778,7 +2916,7 @@
                     <i class="fas fa-book-open" style="font-size: 3rem; margin-bottom: 1rem;"></i>
                     <h3>No ebooks downloaded yet</h3>
                     <p>Browse our ebook library and start building your personal collection</p>
-                    <a href="#ebooks" class="btn" data-section="ebooks" style="margin-top: 1.5rem;">
+                    <a href="#ebooks" class="btn enhanced-btn" data-section="ebooks" style="margin-top: 1.5rem;">
                         <i class="fas fa-book"></i> Explore E-Books
                     </a>
                 </div>
@@ -2789,7 +2927,7 @@
     <!-- Videos Section -->
     <section id="videos">
         <div class="container">
-            <h2 class="section-title">Motivational Videos</h2>
+            <h2 class="section-title enhanced-heading">Motivational Videos</h2>
             <p class="text-center">Watch inspiring videos to boost your motivation and learn new strategies for success.</p>
             
             <div class="video-filters">
@@ -2802,7 +2940,7 @@
             </div>
             
             <div class="cards-grid">
-                <div class="card video-card" data-category="motivation">
+                <div class="card video-card enhanced-card" data-category="motivation">
                     <img src="https://via.placeholder.com/400x220/6C63FF/ffffff?text=Power+of+Belief" alt="Video Thumbnail" class="video-thumbnail">
                     <div class="video-overlay">
                         <div class="play-btn">
@@ -2819,7 +2957,7 @@
                     </div>
                 </div>
                 
-                <div class="card video-card" data-category="life">
+                <div class="card video-card enhanced-card" data-category="life">
                     <img src="https://via.placeholder.com/400x220/2A2D43/ffffff?text=Life+Lessons" alt="Video Thumbnail" class="video-thumbnail">
                     <div class="video-overlay">
                         <div class="play-btn">
@@ -2836,7 +2974,7 @@
                     </div>
                 </div>
                 
-                <div class="card video-card" data-category="business">
+                <div class="card video-card enhanced-card" data-category="business">
                     <img src="https://via.placeholder.com/400x220/FF6584/ffffff?text=Business+Success" alt="Video Thumbnail" class="video-thumbnail">
                     <div class="video-overlay">
                         <div class="play-btn">
@@ -2859,11 +2997,11 @@
     <!-- Support Section -->
     <section id="support">
         <div class="container">
-            <h2 class="section-title">Support & Contact</h2>
+            <h2 class="section-title enhanced-heading">Support & Contact</h2>
             <p class="text-center">We're here to help! Reach out for assistance, suggestions, or to support our mission.</p>
             
             <div class="support-container">
-                <div class="contact-form">
+                <div class="contact-form enhanced-card">
                     <h3>Send us a Message</h3>
                     <form id="supportForm">
                         <div class="form-group">
@@ -2893,17 +3031,17 @@
                             <textarea id="message" class="form-control" placeholder="How can we help you?"></textarea>
                         </div>
                         
-                        <button type="submit" class="btn">
+                        <button type="submit" class="btn enhanced-btn">
                             <i class="fas fa-paper-plane"></i> Send Message
                         </button>
                     </form>
                 </div>
                 
-                <div class="payment-methods">
+                <div class="payment-methods enhanced-card">
                     <h3>Support Our Mission</h3>
                     <p>Your contributions help us create more inspirational content and reach more people.</p>
                     
-                    <div class="payment-option">
+                    <div class="payment-option enhanced-card">
                         <div class="payment-icon">
                             <i class="fas fa-university"></i>
                         </div>
@@ -2913,11 +3051,11 @@
                             <div class="wallet-address">
                                 Routing: 021000021 • Account: 4000123456
                             </div>
-                            <button class="copy-btn" data-text="Routing: 021000021 • Account: 4000123456">Copy</button>
+                            <button class="copy-btn enhanced-btn" data-text="Routing: 021000021 • Account: 4000123456">Copy</button>
                         </div>
                     </div>
                     
-                    <div class="payment-option">
+                    <div class="payment-option enhanced-card">
                         <div class="payment-icon">
                             <i class="fab fa-paypal"></i>
                         </div>
@@ -2927,11 +3065,11 @@
                             <div class="wallet-address">
                                 support@suprememotive.com
                             </div>
-                            <button class="copy-btn" data-text="support@suprememotive.com">Copy</button>
+                            <button class="copy-btn enhanced-btn" data-text="support@suprememotive.com">Copy</button>
                         </div>
                     </div>
                     
-                    <div class="payment-option">
+                    <div class="payment-option enhanced-card">
                         <div class="payment-icon">
                             <i class="fab fa-bitcoin"></i>
                         </div>
@@ -2941,7 +3079,7 @@
                             <div class="wallet-address">
                                 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa
                             </div>
-                            <button class="copy-btn" data-text="1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa">Copy</button>
+                            <button class="copy-btn enhanced-btn" data-text="1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa">Copy</button>
                         </div>
                     </div>
                 </div>
@@ -2952,7 +3090,7 @@
     <!-- About Section -->
     <section id="about">
         <div class="container">
-            <h2 class="section-title">About Us</h2>
+            <h2 class="section-title enhanced-heading">About Us</h2>
             
             <div class="about-content">
                 <div>
@@ -2965,11 +3103,11 @@
                 </div>
                 
                 <div>
-                    <img src="https://via.placeholder.com/500x500/6C63FF/ffffff?text=Founder" alt="Founder" class="founder-img">
+                    <img src="https://via.placeholder.com/500x500/6C63FF/ffffff?text=Founder" alt="Founder" class="founder-img enhanced-card">
                 </div>
             </div>
             
-            <div class="mission-statement">
+            <div class="mission-statement enhanced-card">
                 <h3>From the Founder</h3>
                 <p>"I started Supreme Motive during a challenging period in my life when I needed inspiration the most. What began as a personal collection of quotes and resources has grown into a platform that now serves thousands worldwide.</p>
                 <p>My vision is to continue expanding our offerings, creating more original content, and building a supportive community where everyone can find the motivation they need to overcome obstacles and achieve their goals."</p>
@@ -3040,15 +3178,15 @@
                 <div class="modal-cover-container">
                     <img src="" alt="Book Cover" class="modal-cover" id="modalEbookCover">
                     <div class="ebook-stats-modal">
-                        <div class="stat">
+                        <div class="stat enhanced-card">
                             <span class="stat-value" id="statPages">250</span>
                             <span class="stat-label">Pages</span>
                         </div>
-                        <div class="stat">
+                        <div class="stat enhanced-card">
                             <span class="stat-value" id="statRating">4.8</span>
                             <span class="stat-label">Rating</span>
                         </div>
-                        <div class="stat">
+                        <div class="stat enhanced-card">
                             <span class="stat-value" id="statDownloads">1.2K</span>
                             <span class="stat-label">Downloads</span>
                         </div>
@@ -3059,7 +3197,7 @@
                     <p class="modal-intro" id="modalEbookIntro">Book introduction will appear here...</p>
                     
                     <div class="ebook-features">
-                        <div class="feature">
+                        <div class="feature enhanced-card">
                             <div class="feature-icon">
                                 <i class="fas fa-brain"></i>
                             </div>
@@ -3069,7 +3207,7 @@
                             </div>
                         </div>
                         
-                        <div class="feature">
+                        <div class="feature enhanced-card">
                             <div class="feature-icon">
                                 <i class="fas fa-chart-line"></i>
                             </div>
@@ -3079,7 +3217,7 @@
                             </div>
                         </div>
                         
-                        <div class="feature">
+                        <div class="feature enhanced-card">
                             <div class="feature-icon">
                                 <i class="fas fa-tools"></i>
                             </div>
@@ -3089,7 +3227,7 @@
                             </div>
                         </div>
                         
-                        <div class="feature">
+                        <div class="feature enhanced-card">
                             <div class="feature-icon">
                                 <i class="fas fa-infinity"></i>
                             </div>
@@ -3101,7 +3239,7 @@
                     </div>
                     
                     <div class="download-section">
-                        <button class="download-btn" id="downloadEbookBtn">
+                        <button class="download-btn enhanced-btn" id="downloadEbookBtn">
                             <i class="fas fa-download"></i> Download PDF Now
                         </button>
                         <div class="download-info">
@@ -3123,7 +3261,7 @@
             </div>
             <div class="support-body">
                 <div class="support-options">
-                    <div class="support-option" id="supportChat">
+                    <div class="support-option enhanced-card" id="supportChat">
                         <div class="support-icon">
                             <i class="fas fa-comments"></i>
                         </div>
@@ -3132,7 +3270,7 @@
                             <p>Get instant help from our support team in real-time</p>
                         </div>
                     </div>
-                    <div class="support-option" id="supportEmail">
+                    <div class="support-option enhanced-card" id="supportEmail">
                         <div class="support-icon">
                             <i class="fas fa-envelope"></i>
                         </div>
@@ -3141,7 +3279,7 @@
                             <p>Send us a detailed message and receive a response within 24 hours</p>
                         </div>
                     </div>
-                    <div class="support-option" id="supportPhone">
+                    <div class="support-option enhanced-card" id="supportPhone">
                         <div class="support-icon">
                             <i class="fas fa-phone"></i>
                         </div>
@@ -3150,7 +3288,7 @@
                             <p>Call us directly for immediate assistance during business hours</p>
                         </div>
                     </div>
-                    <div class="support-option" id="supportFaq">
+                    <div class="support-option enhanced-card" id="supportFaq">
                         <div class="support-icon">
                             <i class="fas fa-question-circle"></i>
                         </div>
@@ -3423,7 +3561,7 @@
             
             ebooksToDisplay.forEach(ebook => {
                 const ebookCard = document.createElement('div');
-                ebookCard.className = 'ebook-card';
+                ebookCard.className = 'ebook-card enhanced-card';
                 ebookCard.setAttribute('data-category', ebook.category);
                 
                 ebookCard.innerHTML = `
@@ -3473,7 +3611,7 @@
             
             userEbooks.forEach(ebook => {
                 const userEbookCard = document.createElement('div');
-                userEbookCard.className = 'user-ebook-card';
+                userEbookCard.className = 'user-ebook-card enhanced-card';
                 
                 userEbookCard.innerHTML = `
                     <h3 class="user-ebook-title">${ebook.title}</h3>
@@ -3482,10 +3620,10 @@
                         <span>${ebook.category}</span>
                     </div>
                     <div class="user-ebook-actions">
-                        <button class="user-ebook-btn read-btn" data-id="${ebook.id}">
+                        <button class="user-ebook-btn read-btn enhanced-btn" data-id="${ebook.id}">
                             <i class="fas fa-book-open"></i> Read
                         </button>
-                        <button class="user-ebook-btn download-again-btn" data-id="${ebook.id}">
+                        <button class="user-ebook-btn download-again-btn enhanced-btn" data-id="${ebook.id}">
                             <i class="fas fa-download"></i> Download
                         </button>
                     </div>
@@ -3651,7 +3789,7 @@
         // Change quote theme
         function changeQuoteTheme(theme) {
             currentQuoteTheme = theme;
-            quoteCard.className = 'quote-card theme-' + theme;
+            quoteCard.className = 'quote-card theme-' + theme + ' enhanced-card';
         }
 
         // Change font size
@@ -3719,7 +3857,7 @@
                 if (index !== -1) {
                     bookmarkedQuotes.splice(index, 1);
                     localStorage.setItem('bookmarkedQuotes', JSON.stringify(bookmarkedQuotes));
-                showToast("Quote removed from bookmarks", "info");
+                    showToast("Quote removed from bookmarks", "info");
                 }
             }
         }
