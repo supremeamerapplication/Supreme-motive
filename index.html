@@ -303,110 +303,14 @@
             cursor: pointer;
         }
         
-        /* Sidebar Toggle */
+        /* Sidebar Toggle - REMOVED */
         .sidebar-toggle {
-            position: fixed;
-            top: 100px;
-            left: 20px;
-            background: var(--primary);
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            cursor: pointer;
-            z-index: 999;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
+            display: none;
         }
         
-        .sidebar-toggle:hover {
-            transform: scale(1.1);
-            background: var(--primary-dark);
-        }
-        
+        /* Sidebar - REMOVED */
         .sidebar {
-            position: fixed;
-            top: 0;
-            left: -300px;
-            width: 300px;
-            height: 100%;
-            background: var(--card-bg);
-            box-shadow: 5px 0 25px rgba(0, 0, 0, 0.1);
-            z-index: 998;
-            transition: var(--transition);
-            padding: 80px 20px 20px;
-            overflow-y: auto;
-        }
-        
-        .sidebar.active {
-            left: 0;
-        }
-        
-        .sidebar-nav {
-            list-style: none;
-            margin-bottom: 30px;
-        }
-        
-        .sidebar-nav-item {
-            margin-bottom: 15px;
-        }
-        
-        .sidebar-nav-link {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 15px;
-            color: var(--text-color);
-            text-decoration: none;
-            border-radius: 10px;
-            transition: var(--transition);
-        }
-        
-        .sidebar-nav-link:hover, .sidebar-nav-link.active {
-            background: rgba(108, 99, 255, 0.1);
-            color: var(--primary);
-        }
-        
-        .sidebar-nav-link i {
-            width: 20px;
-            text-align: center;
-        }
-        
-        .sidebar-section {
-            margin-bottom: 30px;
-        }
-        
-        .sidebar-section h3 {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            color: var(--primary);
-            padding-left: 15px;
-            border-left: 3px solid var(--accent);
-        }
-        
-        .sidebar-feature {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 10px 15px;
-            margin-bottom: 10px;
-            background: rgba(108, 99, 255, 0.05);
-            border-radius: 8px;
-            transition: var(--transition);
-        }
-        
-        .sidebar-feature:hover {
-            background: rgba(108, 99, 255, 0.1);
-            transform: translateX(5px);
-        }
-        
-        .sidebar-feature i {
-            color: var(--primary);
-            font-size: 1.2rem;
+            display: none;
         }
         
         /* Hero Section */
@@ -2302,6 +2206,48 @@
             border-radius: 2px;
         }
         
+        /* NEW: Animated SVG Background */
+        .svg-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+        }
+        
+        .svg-shape {
+            fill: var(--primary);
+            animation: float 20s infinite ease-in-out;
+        }
+        
+        .svg-shape:nth-child(2) {
+            animation-delay: 5s;
+            fill: var(--accent);
+        }
+        
+        .svg-shape:nth-child(3) {
+            animation-delay: 10s;
+            fill: var(--success);
+        }
+        
+        .svg-shape:nth-child(4) {
+            animation-delay: 15s;
+            fill: var(--warning);
+        }
+        
+        /* NEW: Quote sections styling to match motivation section */
+        .quote-section {
+            background-color: var(--bg-color);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .quote-section .quote-display {
+            margin-bottom: 3rem;
+        }
+        
         /* Responsive Styles */
         @media (max-width: 1100px) {
             h1 {
@@ -2420,18 +2366,6 @@
             .quote-text {
                 font-size: 1.3rem;
             }
-            
-            .sidebar-toggle {
-                top: 90px;
-                left: 15px;
-                width: 45px;
-                height: 45px;
-                font-size: 1.3rem;
-            }
-            
-            .sidebar {
-                width: 280px;
-            }
         }
         
         @media (max-width: 576px) {
@@ -2465,18 +2399,6 @@
             
             .quote-text {
                 font-size: 1.2rem;
-            }
-            
-            .sidebar-toggle {
-                top: 85px;
-                left: 10px;
-                width: 40px;
-                height: 40px;
-                font-size: 1.2rem;
-            }
-            
-            .sidebar {
-                width: 260px;
             }
         }
     </style>
@@ -2514,11 +2436,6 @@
         <i class="fas fa-headset"></i>
     </div>
 
-    <!-- Sidebar Toggle -->
-    <div class="sidebar-toggle" id="sidebarToggle">
-        <i class="fas fa-bars"></i>
-    </div>
-
     <!-- Header & Navigation -->
     <header>
         <div class="nav-container">
@@ -2553,132 +2470,17 @@
         </div>
     </header>
 
-    <!-- Sidebar -->
-    <div class="sidebar" id="sidebar">
-        <ul class="sidebar-nav">
-            <li class="sidebar-nav-item">
-                <a href="#home" class="sidebar-nav-link active" data-section="home">
-                    <i class="fas fa-home"></i>
-                    <span>Home</span>
-                </a>
-            </li>
-            <li class="sidebar-nav-item">
-                <a href="#motivation" class="sidebar-nav-link" data-section="motivation">
-                    <i class="fas fa-bolt"></i>
-                    <span>Motivation</span>
-                </a>
-            </li>
-            <li class="sidebar-nav-item">
-                <a href="#life-quotes" class="sidebar-nav-link" data-section="life-quotes">
-                    <i class="fas fa-heartbeat"></i>
-                    <span>Life Quotes</span>
-                </a>
-            </li>
-            <li class="sidebar-nav-item">
-                <a href="#love-quotes" class="sidebar-nav-link" data-section="love-quotes">
-                    <i class="fas fa-heart"></i>
-                    <span>Love Quotes</span>
-                </a>
-            </li>
-            <li class="sidebar-nav-item">
-                <a href="#dictionary" class="sidebar-nav-link" data-section="dictionary">
-                    <i class="fas fa-book"></i>
-                    <span>Dictionary</span>
-                </a>
-            </li>
-            <li class="sidebar-nav-item">
-                <a href="#ebooks" class="sidebar-nav-link" data-section="ebooks">
-                    <i class="fas fa-book-open"></i>
-                    <span>E-Books</span>
-                </a>
-            </li>
-            <li class="sidebar-nav-item">
-                <a href="#my-ebooks" class="sidebar-nav-link" data-section="my-ebooks">
-                    <i class="fas fa-bookmark"></i>
-                    <span>My E-Books</span>
-                </a>
-            </li>
-            <li class="sidebar-nav-item">
-                <a href="#videos" class="sidebar-nav-link" data-section="videos">
-                    <i class="fas fa-play-circle"></i>
-                    <span>Videos</span>
-                </a>
-            </li>
-            <li class="sidebar-nav-item">
-                <a href="#support" class="sidebar-nav-link" data-section="support">
-                    <i class="fas fa-headset"></i>
-                    <span>Support</span>
-                </a>
-            </li>
-            <li class="sidebar-nav-item">
-                <a href="#about" class="sidebar-nav-link" data-section="about">
-                    <i class="fas fa-info-circle"></i>
-                    <span>About</span>
-                </a>
-            </li>
-        </ul>
-        
-        <div class="sidebar-section">
-            <h3>Quick Features</h3>
-            <div class="sidebar-feature">
-                <i class="fas fa-download"></i>
-                <span>Download E-Books</span>
-            </div>
-            <div class="sidebar-feature">
-                <i class="fas fa-share-alt"></i>
-                <span>Share Quotes</span>
-            </div>
-            <div class="sidebar-feature">
-                <i class="fas fa-bookmark"></i>
-                <span>Save Favorites</span>
-            </div>
-            <div class="sidebar-feature">
-                <i class="fas fa-history"></i>
-                <span>Reading History</span>
-            </div>
-        </div>
-        
-        <div class="sidebar-section">
-            <h3>Categories</h3>
-            <div class="sidebar-feature">
-                <i class="fas fa-fire"></i>
-                <span>Motivation</span>
-            </div>
-            <div class="sidebar-feature">
-                <i class="fas fa-heart"></i>
-                <span>Love & Relationships</span>
-            </div>
-            <div class="sidebar-feature">
-                <i class="fas fa-briefcase"></i>
-                <span>Business & Success</span>
-            </div>
-            <div class="sidebar-feature">
-                <i class="fas fa-brain"></i>
-                <span>Mindset & Growth</span>
-            </div>
-        </div>
-        
-        <!-- NEW: User Stats in Sidebar -->
-        <div class="sidebar-section">
-            <h3>Your Progress</h3>
-            <div class="sidebar-feature">
-                <i class="fas fa-book"></i>
-                <span id="sidebarEbookCount">0 E-Books Read</span>
-            </div>
-            <div class="sidebar-feature">
-                <i class="fas fa-quote-right"></i>
-                <span id="sidebarQuoteCount">0 Quotes Saved</span>
-            </div>
-            <div class="sidebar-feature">
-                <i class="fas fa-clock"></i>
-                <span id="sidebarReadingTime">0h Reading</span>
-            </div>
-        </div>
-    </div>
-
     <!-- Home Section -->
     <section id="home" class="active">
         <div class="particles" id="particles"></div>
+        <div class="svg-background">
+            <svg viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+                <path class="svg-shape" d="M800,500 Q900,350 800,200 Q700,50 500,200 Q300,350 300,500 Q300,650 500,800 Q700,950 800,800 Q900,650 800,500Z"/>
+                <path class="svg-shape" d="M600,500 Q650,400 600,300 Q550,200 450,300 Q350,400 350,500 Q350,600 450,700 Q550,800 600,700 Q650,600 600,500Z"/>
+                <path class="svg-shape" d="M400,500 Q450,450 400,400 Q350,350 300,400 Q250,450 250,500 Q250,550 300,600 Q350,650 400,600 Q450,550 400,500Z"/>
+                <path class="svg-shape" d="M200,500 Q250,425 200,350 Q150,275 100,350 Q50,425 50,500 Q50,575 100,650 Q150,725 200,650 Q250,575 200,500Z"/>
+            </svg>
+        </div>
         <div class="container">
             <div class="hero-content">
                 <h1>Elevate Your Mind, Transform Your Life</h1>
@@ -2696,12 +2498,18 @@
     </section>
 
     <!-- Motivation Section -->
-    <section id="motivation">
+    <section id="motivation" class="quote-section">
+        <div class="svg-background">
+            <svg viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+                <path class="svg-shape" d="M200,200 Q350,100 500,200 Q650,300 800,200 Q950,100 800,350 Q650,500 800,650 Q950,800 800,800 Q650,800 500,700 Q350,600 200,700 Q50,800 200,500 Q350,200 200,200Z"/>
+                <path class="svg-shape" d="M300,300 Q400,250 500,300 Q600,350 700,300 Q800,250 700,400 Q600,550 700,700 Q800,850 700,700 Q600,550 500,500 Q400,450 300,500 Q200,550 300,400 Q400,250 300,300Z"/>
+            </svg>
+        </div>
         <div class="container">
             <h2 class="section-title enhanced-heading">Daily Motivation</h2>
             <p class="text-center">Start your day with powerful quotes to inspire action and positive thinking.</p>
             
-            <!-- NEW: Search Bar -->
+            <!-- Search Bar -->
             <div class="search-container">
                 <input type="text" class="search-input" id="quoteSearch" placeholder="Search for quotes...">
                 <button class="search-btn" id="searchQuoteBtn">
@@ -2761,63 +2569,143 @@
     </section>
 
     <!-- Life Quotes Section -->
-    <section id="life-quotes">
+    <section id="life-quotes" class="quote-section">
+        <div class="svg-background">
+            <svg viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+                <path class="svg-shape" d="M100,500 Q200,300 400,300 Q600,300 700,500 Q800,700 600,800 Q400,900 200,800 Q0,700 100,500Z"/>
+                <path class="svg-shape" d="M300,500 Q350,400 450,400 Q550,400 600,500 Q650,600 550,650 Q450,700 350,650 Q250,600 300,500Z"/>
+            </svg>
+        </div>
         <div class="container">
             <h2 class="section-title enhanced-heading">Life Quotes</h2>
             <p class="text-center">Wisdom and insights about life's journey, challenges, and meaning.</p>
             
-            <div class="cards-grid">
-                <div class="card enhanced-card">
-                    <div class="card-content">
-                        <p class="quote-text">"Life is 10% what happens to you and 90% how you react to it."</p>
-                        <p class="quote-author">- Charles R. Swindoll</p>
+            <!-- Search Bar -->
+            <div class="search-container">
+                <input type="text" class="search-input" id="lifeQuoteSearch" placeholder="Search for life quotes...">
+                <button class="search-btn" id="searchLifeQuoteBtn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            
+            <div class="quote-category">
+                <button class="quote-category-btn active" data-category="all">All Life Quotes</button>
+                <button class="quote-category-btn" data-category="wisdom">Wisdom</button>
+                <button class="quote-category-btn" data-category="purpose">Purpose</button>
+                <button class="quote-category-btn" data-category="challenges">Challenges</button>
+                <button class="quote-category-btn" data-category="happiness">Happiness</button>
+            </div>
+            
+            <div class="quote-theme-selector">
+                <div class="theme-option nature active" data-theme="nature"></div>
+                <div class="theme-option abstract" data-theme="abstract"></div>
+                <div class="theme-option space" data-theme="space"></div>
+                <div class="theme-option gradient" data-theme="gradient"></div>
+            </div>
+            
+            <div class="font-controls">
+                <button class="font-control" data-font="small">Small</button>
+                <button class="font-control active" data-font="medium">Medium</button>
+                <button class="font-control" data-font="large">Large</button>
+                <button class="font-control" data-font="playfair">Playfair</button>
+                <button class="font-control" data-font="poppins">Poppins</button>
+            </div>
+            
+            <div class="quote-display">
+                <div class="quote-card theme-nature enhanced-card">
+                    <p class="quote-text">"Life is 10% what happens to you and 90% how you react to it."</p>
+                    <p class="quote-author">Charles R. Swindoll</p>
+                    <div class="quote-actions">
+                        <button class="quote-btn" id="likeLifeQuote"><i class="far fa-heart"></i></button>
+                        <button class="quote-btn" id="bookmarkLifeQuote"><i class="far fa-bookmark"></i></button>
+                        <button class="quote-btn" id="shareLifeQuote"><i class="fas fa-share-alt"></i></button>
                     </div>
                 </div>
                 
-                <div class="card enhanced-card">
-                    <div class="card-content">
-                        <p class="quote-text">"The purpose of our lives is to be happy."</p>
-                        <p class="quote-author">- Dalai Lama</p>
-                    </div>
+                <div class="quote-nav">
+                    <div class="quote-dot active"></div>
+                    <div class="quote-dot"></div>
+                    <div class="quote-dot"></div>
+                    <div class="quote-dot"></div>
+                    <div class="quote-dot"></div>
                 </div>
-                
-                <div class="card enhanced-card">
-                    <div class="card-content">
-                        <p class="quote-text">"Life is what happens when you're busy making other plans."</p>
-                        <p class="quote-author">- John Lennon</p>
-                    </div>
-                </div>
+            </div>
+            
+            <div class="text-center" style="margin-top: 40px;">
+                <button class="btn btn-outline enhanced-btn" id="loadMoreLifeQuotes">
+                    <i class="fas fa-sync-alt"></i> Load More Quotes
+                </button>
             </div>
         </div>
     </section>
 
     <!-- Love Quotes Section -->
-    <section id="love-quotes">
+    <section id="love-quotes" class="quote-section">
+        <div class="svg-background">
+            <svg viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+                <path class="svg-shape" d="M500,200 Q700,100 800,300 Q900,500 700,700 Q500,900 300,700 Q100,500 200,300 Q300,100 500,200Z"/>
+                <path class="svg-shape" d="M400,400 Q500,350 600,400 Q700,450 600,550 Q500,650 400,550 Q300,450 400,400Z"/>
+            </svg>
+        </div>
         <div class="container">
             <h2 class="section-title enhanced-heading">Love Quotes</h2>
             <p class="text-center">Expressions of love, romance, and meaningful connections.</p>
             
-            <div class="cards-grid">
-                <div class="card enhanced-card">
-                    <div class="card-content">
-                        <p class="quote-text">"The best thing to hold onto in life is each other."</p>
-                        <p class="quote-author">- Audrey Hepburn</p>
+            <!-- Search Bar -->
+            <div class="search-container">
+                <input type="text" class="search-input" id="loveQuoteSearch" placeholder="Search for love quotes...">
+                <button class="search-btn" id="searchLoveQuoteBtn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            
+            <div class="quote-category">
+                <button class="quote-category-btn active" data-category="all">All Love Quotes</button>
+                <button class="quote-category-btn" data-category="romance">Romance</button>
+                <button class="quote-category-btn" data-category="family">Family</button>
+                <button class="quote-category-btn" data-category="friendship">Friendship</button>
+                <button class="quote-category-btn" data-category="self-love">Self-Love</button>
+            </div>
+            
+            <div class="quote-theme-selector">
+                <div class="theme-option nature active" data-theme="nature"></div>
+                <div class="theme-option abstract" data-theme="abstract"></div>
+                <div class="theme-option space" data-theme="space"></div>
+                <div class="theme-option gradient" data-theme="gradient"></div>
+            </div>
+            
+            <div class="font-controls">
+                <button class="font-control" data-font="small">Small</button>
+                <button class="font-control active" data-font="medium">Medium</button>
+                <button class="font-control" data-font="large">Large</button>
+                <button class="font-control" data-font="playfair">Playfair</button>
+                <button class="font-control" data-font="poppins">Poppins</button>
+            </div>
+            
+            <div class="quote-display">
+                <div class="quote-card theme-nature enhanced-card">
+                    <p class="quote-text">"The best thing to hold onto in life is each other."</p>
+                    <p class="quote-author">Audrey Hepburn</p>
+                    <div class="quote-actions">
+                        <button class="quote-btn" id="likeLoveQuote"><i class="far fa-heart"></i></button>
+                        <button class="quote-btn" id="bookmarkLoveQuote"><i class="far fa-bookmark"></i></button>
+                        <button class="quote-btn" id="shareLoveQuote"><i class="fas fa-share-alt"></i></button>
                     </div>
                 </div>
                 
-                <div class="card enhanced-card">
-                    <div class="card-content">
-                        <p class="quote-text">"Love is composed of a single soul inhabiting two bodies."</p>
-                        <p class="quote-author">- Aristotle</p>
-                    </div>
+                <div class="quote-nav">
+                    <div class="quote-dot active"></div>
+                    <div class="quote-dot"></div>
+                    <div class="quote-dot"></div>
+                    <div class="quote-dot"></div>
+                    <div class="quote-dot"></div>
                 </div>
-                
-                <div class="card enhanced-card">
-                    <div class="card-content">
-                        <p class="quote-text">"To love and be loved is to feel the sun from both sides."</p>
-                        <p class="quote-author">- David Viscott</p>
-                    </div>
-                </div>
+            </div>
+            
+            <div class="text-center" style="margin-top: 40px;">
+                <button class="btn btn-outline enhanced-btn" id="loadMoreLoveQuotes">
+                    <i class="fas fa-sync-alt"></i> Load More Quotes
+                </button>
             </div>
         </div>
     </section>
@@ -2862,7 +2750,7 @@
             <h2 class="section-title enhanced-heading">Premium E-Book Library</h2>
             <p class="text-center">Discover our collection of transformative ebooks designed to elevate your mindset and accelerate your personal growth journey.</p>
             
-            <!-- NEW: Search and Filter -->
+            <!-- Search and Filter -->
             <div class="search-container">
                 <input type="text" class="search-input" id="ebookSearch" placeholder="Search for ebooks...">
                 <button class="search-btn" id="searchEbookBtn">
@@ -2901,7 +2789,7 @@
             <h2 class="section-title enhanced-heading">My E-Books</h2>
             <p class="text-center">Access your downloaded ebooks and continue your personal growth journey.</p>
             
-            <!-- NEW: Reading Stats -->
+            <!-- Reading Stats -->
             <div class="reading-timer">
                 <i class="fas fa-clock timer-icon"></i>
                 <span>Total Reading Time: <strong id="totalReadingTime">0 hours</strong></span>
@@ -3464,6 +3352,164 @@
             ]
         };
 
+        // Life quotes data
+        const lifeQuotes = {
+            all: [
+                {
+                    text: "Life is 10% what happens to you and 90% how you react to it.",
+                    author: "Charles R. Swindoll",
+                    category: "wisdom"
+                },
+                {
+                    text: "The purpose of our lives is to be happy.",
+                    author: "Dalai Lama",
+                    category: "happiness"
+                },
+                {
+                    text: "Life is what happens when you're busy making other plans.",
+                    author: "John Lennon",
+                    category: "wisdom"
+                },
+                {
+                    text: "Get busy living or get busy dying.",
+                    author: "Stephen King",
+                    category: "purpose"
+                },
+                {
+                    text: "You have within you right now, everything you need to deal with whatever the world can throw at you.",
+                    author: "Brian Tracy",
+                    category: "challenges"
+                }
+            ],
+            wisdom: [
+                {
+                    text: "The unexamined life is not worth living.",
+                    author: "Socrates",
+                    category: "wisdom"
+                },
+                {
+                    text: "Turn your wounds into wisdom.",
+                    author: "Oprah Winfrey",
+                    category: "wisdom"
+                }
+            ],
+            purpose: [
+                {
+                    text: "The two most important days in your life are the day you are born and the day you find out why.",
+                    author: "Mark Twain",
+                    category: "purpose"
+                },
+                {
+                    text: "Your time is limited, so don't waste it living someone else's life.",
+                    author: "Steve Jobs",
+                    category: "purpose"
+                }
+            ],
+            challenges: [
+                {
+                    text: "Life is not about waiting for the storm to pass, it's about learning to dance in the rain.",
+                    author: "Vivian Greene",
+                    category: "challenges"
+                },
+                {
+                    text: "When we are no longer able to change a situation, we are challenged to change ourselves.",
+                    author: "Viktor Frankl",
+                    category: "challenges"
+                }
+            ],
+            happiness: [
+                {
+                    text: "Happiness is not something ready made. It comes from your own actions.",
+                    author: "Dalai Lama",
+                    category: "happiness"
+                },
+                {
+                    text: "The purpose of our lives is to be happy.",
+                    author: "Dalai Lama",
+                    category: "happiness"
+                }
+            ]
+        };
+
+        // Love quotes data
+        const loveQuotes = {
+            all: [
+                {
+                    text: "The best thing to hold onto in life is each other.",
+                    author: "Audrey Hepburn",
+                    category: "romance"
+                },
+                {
+                    text: "Love is composed of a single soul inhabiting two bodies.",
+                    author: "Aristotle",
+                    category: "romance"
+                },
+                {
+                    text: "To love and be loved is to feel the sun from both sides.",
+                    author: "David Viscott",
+                    category: "romance"
+                },
+                {
+                    text: "Family is not an important thing. It's everything.",
+                    author: "Michael J. Fox",
+                    category: "family"
+                },
+                {
+                    text: "A friend is what the heart needs all the time.",
+                    author: "Henry Van Dyke",
+                    category: "friendship"
+                }
+            ],
+            romance: [
+                {
+                    text: "You know you're in love when you can't fall asleep because reality is finally better than your dreams.",
+                    author: "Dr. Seuss",
+                    category: "romance"
+                },
+                {
+                    text: "The best love is the kind that awakens the soul and makes us reach for more, that plants a fire in our hearts and brings peace to our minds.",
+                    author: "Nicholas Sparks",
+                    category: "romance"
+                }
+            ],
+            family: [
+                {
+                    text: "Family is where life begins and love never ends.",
+                    author: "Unknown",
+                    category: "family"
+                },
+                {
+                    text: "The love of a family is life's greatest blessing.",
+                    author: "Unknown",
+                    category: "family"
+                }
+            ],
+            friendship: [
+                {
+                    text: "A real friend is one who walks in when the rest of the world walks out.",
+                    author: "Walter Winchell",
+                    category: "friendship"
+                },
+                {
+                    text: "Friendship is born at that moment when one person says to another, 'What! You too? I thought I was the only one.'",
+                    author: "C.S. Lewis",
+                    category: "friendship"
+                }
+            ],
+            "self-love": [
+                {
+                    text: "To fall in love with yourself is the first secret to happiness.",
+                    author: "Robert Morley",
+                    category: "self-love"
+                },
+                {
+                    text: "Love yourself first and everything else falls into line.",
+                    author: "Lucille Ball",
+                    category: "self-love"
+                }
+            ]
+        };
+
         // DOM elements
         const ebooksContainer = document.getElementById('ebooksContainer');
         const categoryButtons = document.querySelectorAll('.ebook-categories .category-btn');
@@ -3480,9 +3526,6 @@
         const statRating = document.getElementById('statRating');
         const statDownloads = document.getElementById('statDownloads');
         const loadMoreQuotes = document.getElementById('loadMoreQuotes');
-        const sidebarToggle = document.getElementById('sidebarToggle');
-        const sidebar = document.getElementById('sidebar');
-        const sidebarNavLinks = document.querySelectorAll('.sidebar-nav-link');
         const userEbooksGrid = document.getElementById('userEbooksGrid');
         const noEbooksMessage = document.getElementById('noEbooksMessage');
         const loadingScreen = document.getElementById('loadingScreen');
@@ -3495,9 +3538,6 @@
         const ebookSearch = document.getElementById('ebookSearch');
         const searchEbookBtn = document.getElementById('searchEbookBtn');
         const totalReadingTime = document.getElementById('totalReadingTime');
-        const sidebarEbookCount = document.getElementById('sidebarEbookCount');
-        const sidebarQuoteCount = document.getElementById('sidebarQuoteCount');
-        const sidebarReadingTime = document.getElementById('sidebarReadingTime');
 
         // Quote elements
         const quoteCategoryButtons = document.querySelectorAll('.quote-category-btn');
@@ -3510,6 +3550,22 @@
         const likeQuoteBtn = document.getElementById('likeQuote');
         const bookmarkQuoteBtn = document.getElementById('bookmarkQuote');
         const shareQuoteBtn = document.getElementById('shareQuote');
+
+        // Life quote elements
+        const lifeQuoteSearch = document.getElementById('lifeQuoteSearch');
+        const searchLifeQuoteBtn = document.getElementById('searchLifeQuoteBtn');
+        const likeLifeQuoteBtn = document.getElementById('likeLifeQuote');
+        const bookmarkLifeQuoteBtn = document.getElementById('bookmarkLifeQuote');
+        const shareLifeQuoteBtn = document.getElementById('shareLifeQuote');
+        const loadMoreLifeQuotes = document.getElementById('loadMoreLifeQuotes');
+
+        // Love quote elements
+        const loveQuoteSearch = document.getElementById('loveQuoteSearch');
+        const searchLoveQuoteBtn = document.getElementById('searchLoveQuoteBtn');
+        const likeLoveQuoteBtn = document.getElementById('likeLoveQuote');
+        const bookmarkLoveQuoteBtn = document.getElementById('bookmarkLoveQuote');
+        const shareLoveQuoteBtn = document.getElementById('shareLoveQuote');
+        const loadMoreLoveQuotes = document.getElementById('loadMoreLoveQuotes');
 
         // Support option elements
         const supportChat = document.getElementById('supportChat');
@@ -3774,7 +3830,15 @@
 
         // Quote functionality
         function changeQuote(category, index) {
-            const quoteData = quotes.all[index];
+            let quoteData;
+            if (category === 'life') {
+                quoteData = lifeQuotes.all[index];
+            } else if (category === 'love') {
+                quoteData = loveQuotes.all[index];
+            } else {
+                quoteData = quotes.all[index];
+            }
+            
             if (!quoteData) return;
             
             quoteText.textContent = quoteData.text;
@@ -3901,11 +3965,6 @@
             });
         }
 
-        // Sidebar toggle functionality
-        function toggleSidebar() {
-            sidebar.classList.toggle('active');
-        }
-
         // Show toast notification
         function showToast(message, type = 'info') {
             toast.textContent = message;
@@ -3917,25 +3976,29 @@
             }, 3000);
         }
 
-        // Update user stats in sidebar
+        // Update user stats
         function updateUserStats() {
             const hours = Math.floor(userStats.readingTime / 60);
             const minutes = userStats.readingTime % 60;
-            
-            sidebarEbookCount.textContent = `${userStats.ebooksRead} E-Books Read`;
-            sidebarQuoteCount.textContent = `${userStats.quotesSaved} Quotes Saved`;
-            sidebarReadingTime.textContent = `${hours}h ${minutes}m Reading`;
             totalReadingTime.textContent = `${hours} hours ${minutes} minutes`;
         }
 
         // Search quotes
-        function searchQuotes(query) {
+        function searchQuotes(query, quoteType = 'motivation') {
             if (!query) {
-                changeQuote('motivation', currentQuoteIndex);
+                changeQuote(quoteType, currentQuoteIndex);
                 return;
             }
             
-            const allQuotes = [...quotes.all, ...quotes.success, ...quotes.perseverance, ...quotes.mindset, ...quotes.inspiration];
+            let allQuotes;
+            if (quoteType === 'life') {
+                allQuotes = [...lifeQuotes.all, ...lifeQuotes.wisdom, ...lifeQuotes.purpose, ...lifeQuotes.challenges, ...lifeQuotes.happiness];
+            } else if (quoteType === 'love') {
+                allQuotes = [...loveQuotes.all, ...loveQuotes.romance, ...loveQuotes.family, ...loveQuotes.friendship, ...loveQuotes['self-love']];
+            } else {
+                allQuotes = [...quotes.all, ...quotes.success, ...quotes.perseverance, ...quotes.mindset, ...quotes.inspiration];
+            }
+            
             const filteredQuotes = allQuotes.filter(quote => 
                 quote.text.toLowerCase().includes(query.toLowerCase()) || 
                 quote.author.toLowerCase().includes(query.toLowerCase())
@@ -4038,12 +4101,32 @@
             
             // Search functionality
             searchQuoteBtn.addEventListener('click', () => {
-                searchQuotes(quoteSearch.value);
+                searchQuotes(quoteSearch.value, 'motivation');
             });
             
             quoteSearch.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') {
-                    searchQuotes(quoteSearch.value);
+                    searchQuotes(quoteSearch.value, 'motivation');
+                }
+            });
+            
+            searchLifeQuoteBtn.addEventListener('click', () => {
+                searchQuotes(lifeQuoteSearch.value, 'life');
+            });
+            
+            lifeQuoteSearch.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    searchQuotes(lifeQuoteSearch.value, 'life');
+                }
+            });
+            
+            searchLoveQuoteBtn.addEventListener('click', () => {
+                searchQuotes(loveQuoteSearch.value, 'love');
+            });
+            
+            loveQuoteSearch.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    searchQuotes(loveQuoteSearch.value, 'love');
                 }
             });
             
@@ -4075,21 +4158,8 @@
                     }
                 });
                 
-                // Update active sidebar link
-                sidebarNavLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('data-section') === sectionId) {
-                        link.classList.add('active');
-                    }
-                });
-                
                 // Close mobile menu if open
                 navMenu.classList.remove('active');
-                
-                // Close sidebar on mobile
-                if (window.innerWidth <= 768) {
-                    sidebar.classList.remove('active');
-                }
                 
                 // Scroll to top when changing sections
                 window.scrollTo(0, 0);
@@ -4104,22 +4174,10 @@
                 });
             });
             
-            // Add click event to sidebar navigation links
-            sidebarNavLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const sectionId = this.getAttribute('data-section');
-                    showSection(sectionId);
-                });
-            });
-            
             // Mobile menu toggle
             mobileMenuBtn.addEventListener('click', function() {
                 navMenu.classList.toggle('active');
             });
-            
-            // Sidebar toggle
-            sidebarToggle.addEventListener('click', toggleSidebar);
             
             // Theme toggle functionality
             themeToggle.addEventListener('click', function() {
@@ -4213,6 +4271,16 @@
             bookmarkQuoteBtn.addEventListener('click', bookmarkQuote);
             shareQuoteBtn.addEventListener('click', shareQuote);
             
+            // Life quote actions
+            likeLifeQuoteBtn.addEventListener('click', likeQuote);
+            bookmarkLifeQuoteBtn.addEventListener('click', bookmarkQuote);
+            shareLifeQuoteBtn.addEventListener('click', shareQuote);
+            
+            // Love quote actions
+            likeLoveQuoteBtn.addEventListener('click', likeQuote);
+            bookmarkLoveQuoteBtn.addEventListener('click', bookmarkQuote);
+            shareLoveQuoteBtn.addEventListener('click', shareQuote);
+            
             // Quote navigation dots
             quoteDots.forEach((dot, index) => {
                 dot.addEventListener('click', () => {
@@ -4229,11 +4297,22 @@
                 });
             });
             
-            // Load more quotes button
+            // Load more quotes buttons
             if (loadMoreQuotes) {
                 loadMoreQuotes.addEventListener('click', () => {
-                    // In a real implementation, this would load more quotes from an API
                     showToast("Loading more inspirational quotes...", "info");
+                });
+            }
+            
+            if (loadMoreLifeQuotes) {
+                loadMoreLifeQuotes.addEventListener('click', () => {
+                    showToast("Loading more life quotes...", "info");
+                });
+            }
+            
+            if (loadMoreLoveQuotes) {
+                loadMoreLoveQuotes.addEventListener('click', () => {
+                    showToast("Loading more love quotes...", "info");
                 });
             }
             
@@ -4300,9 +4379,6 @@
             }
             if (e.target === supportModal) {
                 closeSupportModalFunc();
-            }
-            if (e.target === sidebar && window.innerWidth <= 768) {
-                sidebar.classList.remove('active');
             }
         });
     </script>
