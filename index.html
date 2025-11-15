@@ -265,7 +265,7 @@
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             text-align: center;
-            max-width: 450px;
+            max-width: 1200px;
             width: 90%;
             transition: all 0.3s;
             position: relative;
@@ -297,128 +297,58 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
-        /* Coin Logo */
-        .logo-container {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 15px auto;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .coin-logo {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            box-shadow: 0 5px 15px rgba(255, 152, 0, 0.4);
-            z-index: 2;
-            position: relative;
-            border: 4px solid var(--primary-color);
-            transition: all 0.3s;
-            animation: pulse 2s infinite;
-        }
-
-        .coin-logo:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 25px rgba(255, 152, 0, 0.6);
-        }
-
-        /* Stats Display */
-        .mined-coins {
-            font-size: 2.5em;
-            margin: 20px 0;
-            color: var(--secondary-color);
-            font-weight: 800;
-            letter-spacing: 1px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .timer {
-            font-size: 1.6em;
-            color: var(--accent-color);
-            margin-bottom: 20px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s;
-            padding: 8px 15px;
-            border-radius: 10px;
-            background: rgba(255, 51, 51, 0.1);
-            display: inline-block;
-        }
-
-        .timer:hover {
-            background: rgba(255, 51, 51, 0.2);
-            transform: scale(1.05);
-        }
-
         /* Buttons */
-        .mine-btn, .withdraw-btn {
-            padding: 16px 40px;
-            background: linear-gradient(90deg, var(--secondary-color) 40%, var(--primary-color) 100%);
-            color: #111;
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #e68900 100%);
+            color: white;
             border: none;
-            border-radius: 12px;
-            font-size: 1.2em;
-            font-weight: bold;
+            border-radius: 50px;
             cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 6px 20px rgba(255, 152, 0, 0.4);
-            margin-bottom: 15px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 152, 0, 0.3);
             position: relative;
             overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
             width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
         }
-
-        .mine-btn:hover, .withdraw-btn:hover {
-            background: linear-gradient(90deg, var(--primary-color) 40%, var(--secondary-color) 100%);
-            box-shadow: 0 8px 25px rgba(255, 152, 0, 0.6);
-            transform: translateY(-3px);
+        
+        .btn:hover::before {
+            left: 100%;
         }
-
-        .mine-btn:active, .withdraw-btn:active {
-            transform: translateY(0);
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(255, 152, 0, 0.4);
         }
-
-        .withdraw-btn[disabled] {
-            opacity: 0.65;
-            cursor: not-allowed;
-            background: #ccc;
-            box-shadow: none;
+        
+        .btn-accent {
+            background: linear-gradient(135deg, var(--accent-color) 0%, #cc0000 100%);
         }
-
-        .withdraw-btn[disabled]:hover {
-            transform: none;
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
         }
-
-        .upgrade-btn {
-            padding: 14px 30px;
-            background: linear-gradient(90deg, #ece9e6 0%, var(--primary-color) 100%);
-            color: #222;
-            border: none;
-            border-radius: 10px;
-            font-size: 1.1em;
-            font-weight: bold;
-            cursor: pointer;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 15px rgba(255, 185, 0, 0.3);
-            transition: all 0.3s;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .upgrade-btn:hover {
-            background: linear-gradient(90deg, #ffe259, #ffa751);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255, 185, 0, 0.5);
+        
+        .btn-outline:hover {
+            background: var(--primary-color);
+            color: white;
         }
 
         /* Particles */
@@ -443,89 +373,6 @@
         @keyframes float {
             0% { transform: translateY(0) rotate(0deg); }
             100% { transform: translateY(-100vh) rotate(360deg); }
-        }
-
-        /* Upgrade Modal */
-        .upgrade-modal {
-            display: none;
-            position: fixed;
-            z-index: 2002;
-            left: 0; 
-            top: 0; 
-            width: 100vw; 
-            height: 100vh;
-            background: rgba(0,0,0,0.7);
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(5px);
-            animation: fadeIn 0.3s;
-        }
-
-        .upgrade-modal-content {
-            background: #fff;
-            color: #222;
-            border-radius: 20px;
-            padding: 25px;
-            max-width: 400px;
-            width: 90vw;
-            text-align: center;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-            position: relative;
-            transform: scale(0.95);
-            animation: modalAppear 0.3s forwards;
-        }
-
-        @keyframes modalAppear {
-            to { transform: scale(1); }
-        }
-
-        .close-btn {
-            position: absolute;
-            right: 20px;
-            top: 15px;
-            font-size: 1.5em;
-            background: none;
-            border: none;
-            color: var(--primary-color);
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .close-btn:hover {
-            transform: rotate(90deg);
-        }
-
-        .upgrade-plan {
-            margin: 20px 0 15px 0;
-            padding: 20px 15px;
-            border-radius: 15px;
-            background: #fffbe6;
-            color: #333;
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
-            transition: all 0.3s;
-            border: 2px solid rgba(255, 152, 0, 0.2);
-        }
-
-        .upgrade-plan:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
-        }
-
-        .plan-title {
-            font-weight: bold;
-            font-size: 1.2em;
-            margin-bottom: 10px;
-            color: var(--primary-color);
-        }
-
-        .plan-desc {
-            font-size: 1em;
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
-
-        .plan-action {
-            margin-top: 15px;
         }
 
         /* Footer */
@@ -596,25 +443,6 @@
             bottom: 75px;
         }
 
-        /* Progress Bar */
-        .progress-container {
-            width: 100%;
-            height: 12px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            margin: 20px 0;
-            overflow: hidden;
-            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-
-        .progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
-            border-radius: 10px;
-            transition: width 0.5s;
-            box-shadow: 0 0 10px rgba(255, 152, 0, 0.5);
-        }
-
         /* Notification */
         .notification {
             position: fixed;
@@ -648,100 +476,6 @@
 
         .notification.info {
             background: var(--info-color);
-        }
-
-        /* Stats Panel */
-        .stats-panel {
-            background: var(--card-bg-dark);
-            padding: 20px;
-            border-radius: 15px;
-            margin: 20px 0;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        body.light .stats-panel {
-            background: var(--card-bg-light);
-        }
-
-        .stat-item {
-            flex: 1;
-            min-width: 120px;
-            text-align: center;
-            padding: 15px 10px;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.05);
-            transition: all 0.3s;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        body.light .stat-item {
-            background: rgba(0, 0, 0, 0.05);
-        }
-
-        .stat-value {
-            font-size: 1.6em;
-            font-weight: bold;
-            color: var(--secondary-color);
-            margin-bottom: 5px;
-        }
-
-        .stat-label {
-            font-size: 0.9em;
-            color: var(--text-dark);
-            font-weight: 600;
-        }
-
-        body.light .stat-label {
-            color: var(--text-light);
-        }
-
-        /* Session Info */
-        .session-info {
-            background: var(--card-bg-dark);
-            padding: 15px 20px;
-            border-radius: 15px;
-            margin: 20px 0;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            border-left: 5px solid var(--primary-color);
-        }
-
-        body.light .session-info {
-            background: var(--card-bg-light);
-        }
-
-        .session-status {
-            font-weight: bold;
-            color: var(--secondary-color);
-            margin-bottom: 8px;
-            font-size: 1.1em;
-        }
-
-        /* Claim Status */
-        .claim-status, .withdraw-status {
-            margin: 7px 0 0 0;
-            color: var(--secondary-color);
-            font-size: 0.97em;
-            min-height: 18px;
-            transition: all 0.3s;
-        }
-
-        .success-message {
-            color: #4CAF50;
-            font-weight: bold;
-        }
-
-        .error-message {
-            color: var(--accent-color);
-            font-weight: bold;
         }
 
         /* Animations */
@@ -808,22 +542,10 @@
                 margin: 15px 0 100px 0;
             }
 
-            .mined-coins {
-                font-size: 2em;
-            }
-
             .footer-btn {
                 width: 50px;
                 height: 50px;
                 font-size: 1.3em;
-            }
-
-            .stats-panel {
-                flex-direction: column;
-            }
-
-            .stat-item {
-                min-width: 100%;
             }
         }
 
@@ -838,15 +560,6 @@
 
             .container {
                 padding: 20px 15px;
-            }
-
-            .mined-coins {
-                font-size: 1.8em;
-            }
-
-            .mine-btn, .withdraw-btn, .upgrade-btn {
-                padding: 14px 20px;
-                font-size: 1.1em;
             }
         }
 
@@ -898,59 +611,6 @@
         p {
             margin-bottom: 1.5rem;
             font-size: 1.1rem;
-        }
-        
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 14px 32px;
-            background: linear-gradient(135deg, var(--primary-color) 0%, #e68900 100%);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(255, 152, 0, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: 0.5s;
-        }
-        
-        .btn:hover::before {
-            left: 100%;
-        }
-        
-        .btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(255, 152, 0, 0.4);
-        }
-        
-        .btn-accent {
-            background: linear-gradient(135deg, var(--accent-color) 0%, #cc0000 100%);
-        }
-        
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color);
-        }
-        
-        .btn-outline:hover {
-            background: var(--primary-color);
-            color: white;
         }
         
         /* Quote Display */
@@ -1480,2315 +1140,403 @@
         .quote-section .quote-display {
             margin-bottom: 3rem;
         }
-        
-        /* Responsive Styles */
-        @media (max-width: 768px) {
-            .nav-menu {
-                position: fixed;
-                top: 80px;
-                left: -100%;
-                width: 85%;
-                height: calc(100vh - 80px);
-                background-color: var(--card-bg-dark);
-                flex-direction: column;
-                align-items: center;
-                padding-top: 60px;
-                transition: all 0.3s ease;
-                box-shadow: 5px 0 25px rgba(0, 0, 0, 0.1);
-                z-index: 999;
-            }
-            
-            body.light .nav-menu {
-                background-color: var(--card-bg-light);
-            }
-            
-            .nav-menu.active {
-                left: 0;
-            }
-            
-            .nav-item {
-                margin: 0 0 30px 0;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero-content p {
-                font-size: 1.1rem;
-            }
-            
-            .hero-btns {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .btn {
-                width: 100%;
-                max-width: 280px;
-                text-align: center;
-                justify-content: center;
-            }
-            
-            section {
-                padding: 100px 0;
-            }
-            
-            .quote-card {
-                padding: 30px;
-            }
-            
-            .quote-text {
-                font-size: 1.3rem;
-            }
+
+        /* E-Books Section */
+        .ebooks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
         }
         
-        @media (max-width: 576px) {
-            .container {
-                padding: 0 15px;
-            }
-            
-            h1 {
-                font-size: 2.2rem;
-            }
-            
-            h2 {
-                font-size: 1.8rem;
-            }
-            
-            .hero-content h1 {
-                font-size: 2.2rem;
-            }
-            
-            .quote-card {
-                padding: 25px;
-            }
-            
-            .quote-text {
-                font-size: 1.2rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- Header & Navigation -->
-    <header class="header">
-        <div class="logo-section">
-            <i class="fas fa-fire logo-icon"></i>
-            <h1 class="header-title">Supreme<span>Motive</span></h1>
-        </div>
-        
-        <ul class="nav-menu" id="navMenu">
-            <li class="nav-item"><a href="#home" class="nav-link active" data-section="home">Home</a></li>
-            <li class="nav-item"><a href="#motivation" class="nav-link" data-section="motivation">Motivation</a></li>
-            <li class="nav-item"><a href="#life-quotes" class="nav-link" data-section="life-quotes">Life Quotes</a></li>
-            <li class="nav-item"><a href="#love-quotes" class="nav-link" data-section="love-quotes">Love Quotes</a></li>
-            <li class="nav-item"><a href="#dictionary" class="nav-link" data-section="dictionary">Dictionary</a></li>
-            <li class="nav-item"><a href="#ebooks" class="nav-link" data-section="ebooks">E-Books</a></li>
-            <li class="nav-item"><a href="#my-ebooks" class="nav-link" data-section="my-ebooks">My E-Books</a></li>
-            <li class="nav-item"><a href="#videos" class="nav-link" data-section="videos">Videos</a></li>
-            <li class="nav-item"><a href="#support" class="nav-link" data-section="support">Support</a></li>
-            <li class="nav-item"><a href="#about" class="nav-link" data-section="about">About</a></li>
-        </ul>
-
-        <div class="header-actions">
-            <button class="theme-toggle" id="themeToggle">
-                <i class="fas fa-moon"></i>
-            </button>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-    </header>
-
-    <!-- Marquee -->
-    <div class="marquee">
-        <div class="marquee-text">
-            Welcome to Supreme Motive - Your daily source of inspiration and motivation! • Transform your mindset • Achieve your goals • Live your best life • 
-        </div>
-    </div>
-
-    <!-- Home Section -->
-    <section id="home" class="active">
-        <div class="particles" id="particles"></div>
-        <div class="container">
-            <div class="hero-content">
-                <h1>Elevate Your Mind, Transform Your Life</h1>
-                <p>Welcome to Supreme Motive - your ultimate destination for daily inspiration, transformative resources, and a community dedicated to personal growth and success.</p>
-                <div class="hero-btns">
-                    <a href="#motivation" class="btn" data-section="motivation">
-                        <i class="fas fa-bolt"></i> Get Inspired
-                    </a>
-                    <a href="#ebooks" class="btn btn-accent" data-section="ebooks">
-                        <i class="fas fa-book"></i> Explore E-Books
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Motivation Section -->
-    <section id="motivation" class="quote-section">
-        <div class="container">
-            <h2 class="section-title">Daily Motivation</h2>
-            <p class="text-center">Start your day with powerful quotes to inspire action and positive thinking.</p>
-            
-            <!-- Search Bar -->
-            <div class="search-container">
-                <input type="text" class="search-input" id="quoteSearch" placeholder="Search for quotes...">
-                <button class="search-btn" id="searchQuoteBtn">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
-            
-            <div class="quote-category">
-                <button class="quote-category-btn active" data-category="all">All Quotes</button>
-                <button class="quote-category-btn" data-category="success">Success</button>
-                <button class="quote-category-btn" data-category="perseverance">Perseverance</button>
-                <button class="quote-category-btn" data-category="mindset">Mindset</button>
-                <button class="quote-category-btn" data-category="inspiration">Inspiration</button>
-            </div>
-            
-            <div class="quote-theme-selector">
-                <div class="theme-option nature active" data-theme="nature"></div>
-                <div class="theme-option abstract" data-theme="abstract"></div>
-                <div class="theme-option space" data-theme="space"></div>
-                <div class="theme-option gradient" data-theme="gradient"></div>
-            </div>
-            
-            <div class="font-controls">
-                <button class="font-control" data-font="small">Small</button>
-                <button class="font-control active" data-font="medium">Medium</button>
-                <button class="font-control" data-font="large">Large</button>
-                <button class="font-control" data-font="playfair">Playfair</button>
-                <button class="font-control" data-font="poppins">Poppins</button>
-            </div>
-            
-            <div class="quote-display">
-                <div class="quote-card">
-                    <p class="quote-text">"The only way to do great work is to love what you do. If you haven't found it yet, keep looking. Don't settle."</p>
-                    <p class="quote-author">Steve Jobs</p>
-                    <div class="quote-actions">
-                        <button class="quote-btn" id="likeQuote"><i class="far fa-heart"></i></button>
-                        <button class="quote-btn" id="bookmarkQuote"><i class="far fa-bookmark"></i></button>
-                        <button class="quote-btn" id="shareQuote"><i class="fas fa-share-alt"></i></button>
-                    </div>
-                </div>
-                
-                <div class="quote-nav">
-                    <div class="quote-dot active"></div>
-                    <div class="quote-dot"></div>
-                    <div class="quote-dot"></div>
-                    <div class="quote-dot"></div>
-                    <div class="quote-dot"></div>
-                </div>
-            </div>
-            
-            <div class="text-center" style="margin-top: 40px;">
-                <button class="btn btn-outline" id="loadMoreQuotes">
-                    <i class="fas fa-sync-alt"></i> Load More Quotes
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Life Quotes Section -->
-    <section id="life-quotes" class="quote-section">
-        <div class="container">
-            <h2 class="section-title">Life Quotes</h2>
-            <p class="text-center">Wisdom and insights about life's journey, challenges, and meaning.</p>
-            
-            <!-- Search Bar -->
-            <div class="search-container">
-                <input type="text" class="search-input" id="lifeQuoteSearch" placeholder="Search for life quotes...">
-                <button class="search-btn" id="searchLifeQuoteBtn">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
-            
-            <div class="quote-category">
-                <button class="quote-category-btn active" data-category="all">All Life Quotes</button>
-                <button class="quote-category-btn" data-category="wisdom">Wisdom</button>
-                <button class="quote-category-btn" data-category="purpose">Purpose</button>
-                <button class="quote-category-btn" data-category="challenges">Challenges</button>
-                <button class="quote-category-btn" data-category="happiness">Happiness</button>
-            </div>
-            
-            <div class="quote-theme-selector">
-                <div class="theme-option nature active" data-theme="nature"></div>
-                <div class="theme-option abstract" data-theme="abstract"></div>
-                <div class="theme-option space" data-theme="space"></div>
-                <div class="theme-option gradient" data-theme="gradient"></div>
-            </div>
-            
-            <div class="font-controls">
-                <button class="font-control" data-font="small">Small</button>
-                <button class="font-control active" data-font="medium">Medium</button>
-                <button class="font-control" data-font="large">Large</button>
-                <button class="font-control" data-font="playfair">Playfair</button>
-                <button class="font-control" data-font="poppins">Poppins</button>
-            </div>
-            
-            <div class="quote-display">
-                <div class="quote-card">
-                    <p class="quote-text">"Life is 10% what happens to you and 90% how you react to it."</p>
-                    <p class="quote-author">Charles R. Swindoll</p>
-                    <div class="quote-actions">
-                        <button class="quote-btn" id="likeLifeQuote"><i class="far fa-heart"></i></button>
-                        <button class="quote-btn" id="bookmarkLifeQuote"><i class="far fa-bookmark"></i></button>
-                        <button class="quote-btn" id="shareLifeQuote"><i class="fas fa-share-alt"></i></button>
-                    </div>
-                </div>
-                
-                <div class="quote-nav">
-                    <div class="quote-dot active"></div>
-                    <div class="quote-dot"></div>
-                    <div class="quote-dot"></div>
-                    <div class="quote-dot"></div>
-                    <div class="quote-dot"></div>
-                </div>
-            </div>
-            
-            <div class="text-center" style="margin-top: 40px;">
-                <button class="btn btn-outline" id="loadMoreLifeQuotes">
-                    <i class="fas fa-sync-alt"></i> Load More Quotes
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Love Quotes Section -->
-    <section id="love-quotes" class="quote-section">
-        <div class="container">
-            <h2 class="section-title">Love Quotes</h2>
-            <p class="text-center">Expressions of love, romance, and meaningful connections.</p>
-            
-            <!-- Search Bar -->
-            <div class="search-container">
-                <input type="text" class="search-input" id="loveQuoteSearch" placeholder="Search for love quotes...">
-                <button class="search-btn" id="searchLoveQuoteBtn">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
-            
-            <div class="quote-category">
-                <button class="quote-category-btn active" data-category="all">All Love Quotes</button>
-                <button class="quote-category-btn" data-category="romance">Romance</button>
-                <button class="quote-category-btn" data-category="family">Family</button>
-                <button class="quote-category-btn" data-category="friendship">Friendship</button>
-                <button class="quote-category-btn" data-category="self-love">Self-Love</button>
-            </div>
-            
-            <div class="quote-theme-selector">
-                <div class="theme-option nature active" data-theme="nature"></div>
-                <div class="theme-option abstract" data-theme="abstract"></div>
-                <div class="theme-option space" data-theme="space"></div>
-                <div class="theme-option gradient" data-theme="gradient"></div>
-            </div>
-            
-            <div class="font-controls">
-                <button class="font-control" data-font="small">Small</button>
-                <button class="font-control active" data-font="medium">Medium</button>
-                <button class="font-control" data-font="large">Large</button>
-                <button class="font-control" data-font="playfair">Playfair</button>
-                <button class="font-control" data-font="poppins">Poppins</button>
-            </div>
-            
-            <div class="quote-display">
-                <div class="quote-card">
-                    <p class="quote-text">"The best thing to hold onto in life is each other."</p>
-                    <p class="quote-author">Audrey Hepburn</p>
-                    <div class="quote-actions">
-                        <button class="quote-btn" id="likeLoveQuote"><i class="far fa-heart"></i></button>
-                        <button class="quote-btn" id="bookmarkLoveQuote"><i class="far fa-bookmark"></i></button>
-                        <button class="quote-btn" id="shareLoveQuote"><i class="fas fa-share-alt"></i></button>
-                    </div>
-                </div>
-                
-                <div class="quote-nav">
-                    <div class="quote-dot active"></div>
-                    <div class="quote-dot"></div>
-                    <div class="quote-dot"></div>
-                    <div class="quote-dot"></div>
-                    <div class="quote-dot"></div>
-                </div>
-            </div>
-            
-            <div class="text-center" style="margin-top: 40px;">
-                <button class="btn btn-outline" id="loadMoreLoveQuotes">
-                    <i class="fas fa-sync-alt"></i> Load More Quotes
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Dictionary Section -->
-    <section id="dictionary">
-        <div class="container">
-            <h2 class="section-title">Motivational Dictionary</h2>
-            <p class="text-center">Explore powerful words and their meanings to expand your motivational vocabulary.</p>
-            
-            <div class="cards-grid">
-                <div class="card">
-                    <div class="card-content">
-                        <h3 class="card-title">Perseverance</h3>
-                        <p class="card-text">Steadfastness in doing something despite difficulty or delay in achieving success.</p>
-                        <button class="btn">Read Story</button>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <div class="card-content">
-                        <h3 class="card-title">Resilience</h3>
-                        <p class="card-text">The capacity to recover quickly from difficulties; toughness.</p>
-                        <button class="btn">Read Story</button>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <div class="card-content">
-                        <h3 class="card-title">Ambition</h3>
-                        <p class="card-text">A strong desire to do or achieve something, typically requiring determination and hard work.</p>
-                        <button class="btn">Read Story</button>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <div class="card-content">
-                        <h3 class="card-title">Integrity</h3>
-                        <p class="card-text">The quality of being honest and having strong moral principles.</p>
-                        <button class="btn">Read Story</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <div class="footer">
-        <button class="footer-btn" data-section="home">
-            <i class="fas fa-home"></i>
-            <span class="tooltip">Home</span>
-        </button>
-        <button class="footer-btn" data-section="motivation">
-            <i class="fas fa-bolt"></i>
-            <span class="tooltip">Motivation</span>
-        </button>
-        <button class="footer-btn" data-section="life-quotes">
-            <i class="fas fa-heartbeat"></i>
-            <span class="tooltip">Life Quotes</span>
-        </button>
-        <button class="footer-btn" data-section="love-quotes">
-            <i class="fas fa-heart"></i>
-            <span class="tooltip">Love Quotes</span>
-        </button>
-        <button class="footer-btn" data-section="ebooks">
-            <i class="fas fa-book"></i>
-            <span class="tooltip">E-Books</span>
-        </button>
-    </div>
-
-    <!-- Particles -->
-    <div class="particles" id="particles"></div>
-
-    <script>
-        // DOM elements
-        const themeToggle = document.getElementById('themeToggle');
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navMenu = document.getElementById('navMenu');
-        const navLinks = document.querySelectorAll('.nav-link');
-        const footerBtns = document.querySelectorAll('.footer-btn');
-        const particlesContainer = document.getElementById('particles');
-        const quoteSearch = document.getElementById('quoteSearch');
-        const searchQuoteBtn = document.getElementById('searchQuoteBtn');
-        const lifeQuoteSearch = document.getElementById('lifeQuoteSearch');
-        const searchLifeQuoteBtn = document.getElementById('searchLifeQuoteBtn');
-        const loveQuoteSearch = document.getElementById('loveQuoteSearch');
-        const searchLoveQuoteBtn = document.getElementById('searchLoveQuoteBtn');
-        const likeQuoteBtn = document.getElementById('likeQuote');
-        const bookmarkQuoteBtn = document.getElementById('bookmarkQuote');
-        const shareQuoteBtn = document.getElementById('shareQuote');
-        const likeLifeQuoteBtn = document.getElementById('likeLifeQuote');
-        const bookmarkLifeQuoteBtn = document.getElementById('bookmarkLifeQuote');
-        const shareLifeQuoteBtn = document.getElementById('shareLifeQuote');
-        const likeLoveQuoteBtn = document.getElementById('likeLoveQuote');
-        const bookmarkLoveQuoteBtn = document.getElementById('bookmarkLoveQuote');
-        const shareLoveQuoteBtn = document.getElementById('shareLoveQuote');
-        const loadMoreQuotes = document.getElementById('loadMoreQuotes');
-        const loadMoreLifeQuotes = document.getElementById('loadMoreLifeQuotes');
-        const loadMoreLoveQuotes = document.getElementById('loadMoreLoveQuotes');
-        const quoteCategoryBtns = document.querySelectorAll('.quote-category-btn');
-        const themeOptions = document.querySelectorAll('.theme-option');
-        const fontControls = document.querySelectorAll('.font-control');
-        const quoteCard = document.querySelector('.quote-card');
-        const quoteText = document.querySelector('.quote-text');
-        const quoteAuthor = document.querySelector('.quote-author');
-        const quoteDots = document.querySelectorAll('.quote-dot');
-
-        // Theme toggle functionality
-        themeToggle.addEventListener('click', function() {
-            document.body.classList.toggle('light');
-            if (document.body.classList.contains('light')) {
-                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-                localStorage.setItem('theme', 'light');
-            } else {
-                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-                localStorage.setItem('theme', 'dark');
-            }
-        });
-
-        // Check for saved theme preference
-        if (localStorage.getItem('theme') === 'light') {
-            document.body.classList.add('light');
-            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-        }
-
-        // Mobile menu toggle
-        mobileMenuBtn.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-        });
-
-        // Function to show a specific section
-        function showSection(sectionId) {
-            // Hide all sections
-            document.querySelectorAll('section').forEach(section => {
-                section.classList.remove('active');
-            });
-            
-            // Show the selected section
-            document.getElementById(sectionId).classList.add('active');
-            
-            // Update active nav link
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('data-section') === sectionId) {
-                    link.classList.add('active');
-                }
-            });
-            
-            // Update active footer button
-            footerBtns.forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.getAttribute('data-section') === sectionId) {
-                    btn.classList.add('active');
-                }
-            });
-            
-            // Close mobile menu if open
-            navMenu.classList.remove('active');
-            
-            // Scroll to top when changing sections
-            window.scrollTo(0, 0);
-        }
-
-        // Add click event to navigation links
-        navLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const sectionId = this.getAttribute('data-section');
-                showSection(sectionId);
-            });
-        });
-
-        // Add click event to footer buttons
-        footerBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                const sectionId = this.getAttribute('data-section');
-                showSection(sectionId);
-            });
-        });
-
-        // Create particles
-        function createParticles() {
-            const particleCount = 50;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                
-                // Random properties
-                const size = Math.random() * 10 + 5;
-                const posX = Math.random() * 100;
-                const delay = Math.random() * 15;
-                const duration = Math.random() * 10 + 10;
-                
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                particle.style.left = `${posX}%`;
-                particle.style.animationDelay = `${delay}s`;
-                particle.style.animationDuration = `${duration}s`;
-                
-                particlesContainer.appendChild(particle);
-            }
-        }
-
-        // Initialize particles
-        createParticles();
-
-        // Quote category filtering
-        quoteCategoryBtns.forEach(button => {
-            button.addEventListener('click', () => {
-                // Update active button
-                quoteCategoryBtns.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-            });
-        });
-
-        // Quote theme selection
-        themeOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                // Update active theme
-                themeOptions.forEach(opt => opt.classList.remove('active'));
-                option.classList.add('active');
-                
-                // Change quote card theme
-                quoteCard.className = 'quote-card';
-                quoteCard.classList.add(`theme-${option.getAttribute('data-theme')}`);
-            });
-        });
-
-        // Font controls
-        fontControls.forEach(control => {
-            control.addEventListener('click', () => {
-                const action = control.getAttribute('data-font');
-                
-                if (action === 'small' || action === 'medium' || action === 'large') {
-                    // Update active font size
-                    fontControls.forEach(c => {
-                        if (c.getAttribute('data-font') === 'small' || 
-                            c.getAttribute('data-font') === 'medium' || 
-                            c.getAttribute('data-font') === 'large') {
-                            c.classList.remove('active');
-                        }
-                    });
-                    control.classList.add('active');
-                    
-                    // Change font size
-                    let fontSize = '1.5rem';
-                    if (action === 'small') fontSize = '1.2rem';
-                    else if (action === 'large') fontSize = '1.8rem';
-                    
-                    quoteText.style.fontSize = fontSize;
-                } else if (action === 'playfair' || action === 'poppins') {
-                    // Update active font family
-                    fontControls.forEach(c => {
-                        if (c.getAttribute('data-font') === 'playfair' || 
-                            c.getAttribute('data-font') === 'poppins') {
-                            c.classList.remove('active');
-                        }
-                    });
-                    control.classList.add('active');
-                    
-                    // Change font family
-                    quoteText.style.fontFamily = action === 'playfair' ? "'Playfair Display', serif" : "'Montserrat', sans-serif";
-                }
-            });
-        });
-
-        // Quote actions
-        likeQuoteBtn.addEventListener('click', function() {
-            this.classList.toggle('active');
-            if (this.classList.contains('active')) {
-                this.innerHTML = '<i class="fas fa-heart"></i>';
-                showNotification('Quote added to favorites!', 'success');
-            } else {
-                this.innerHTML = '<i class="far fa-heart"></i>';
-                showNotification('Quote removed from favorites', 'info');
-            }
-        });
-
-        bookmarkQuoteBtn.addEventListener('click', function() {
-            this.classList.toggle('active');
-            if (this.classList.contains('active')) {
-                this.innerHTML = '<i class="fas fa-bookmark"></i>';
-                showNotification('Quote bookmarked!', 'success');
-            } else {
-                this.innerHTML = '<i class="far fa-bookmark"></i>';
-                showNotification('Quote removed from bookmarks', 'info');
-            }
-        });
-
-        shareQuoteBtn.addEventListener('click', function() {
-            const quote = quoteText.textContent;
-            const author = quoteAuthor.textContent;
-            const textToShare = `${quote} - ${author}`;
-            
-            if (navigator.share) {
-                navigator.share({
-                    title: 'Inspirational Quote',
-                    text: textToShare,
-                    url: window.location.href
-                })
-                .then(() => console.log('Successful share'))
-                .catch((error) => console.log('Error sharing:', error));
-            } else {
-                // Fallback for browsers that don't support the Web Share API
-                navigator.clipboard.writeText(textToShare).then(() => {
-                    showNotification('Quote copied to clipboard!', 'success');
-                });
-            }
-        });
-
-        // Life quote actions
-        likeLifeQuoteBtn.addEventListener('click', function() {
-            this.classList.toggle('active');
-            if (this.classList.contains('active')) {
-                this.innerHTML = '<i class="fas fa-heart"></i>';
-                showNotification('Quote added to favorites!', 'success');
-            } else {
-                this.innerHTML = '<i class="far fa-heart"></i>';
-                showNotification('Quote removed from favorites', 'info');
-            }
-        });
-
-        bookmarkLifeQuoteBtn.addEventListener('click', function() {
-            this.classList.toggle('active');
-            if (this.classList.contains('active')) {
-                this.innerHTML = '<i class="fas fa-bookmark"></i>';
-                showNotification('Quote bookmarked!', 'success');
-            } else {
-                this.innerHTML = '<i class="far fa-bookmark"></i>';
-                showNotification('Quote removed from bookmarks', 'info');
-            }
-        });
-
-        shareLifeQuoteBtn.addEventListener('click', function() {
-            const quote = quoteText.textContent;
-            const author = quoteAuthor.textContent;
-            const textToShare = `${quote} - ${author}`;
-            
-            if (navigator.share) {
-                navigator.share({
-                    title: 'Life Quote',
-                    text: textToShare,
-                    url: window.location.href
-                })
-                .then(() => console.log('Successful share'))
-                .catch((error) => console.log('Error sharing:', error));
-            } else {
-                // Fallback for browsers that don't support the Web Share API
-                navigator.clipboard.writeText(textToShare).then(() => {
-                    showNotification('Quote copied to clipboard!', 'success');
-                });
-            }
-        });
-
-        // Love quote actions
-        likeLoveQuoteBtn.addEventListener('click', function() {
-            this.classList.toggle('active');
-            if (this.classList.contains('active')) {
-                this.innerHTML = '<i class="fas fa-heart"></i>';
-                showNotification('Quote added to favorites!', 'success');
-            } else {
-                this.innerHTML = '<i class="far fa-heart"></i>';
-                showNotification('Quote removed from favorites', 'info');
-            }
-        });
-
-        bookmarkLoveQuoteBtn.addEventListener('click', function() {
-            this.classList.toggle('active');
-            if (this.classList.contains('active')) {
-                this.innerHTML = '<i class="fas fa-bookmark"></i>';
-                showNotification('Quote bookmarked!', 'success');
-            } else {
-                this.innerHTML = '<i class="far fa-bookmark"></i>';
-                showNotification('Quote removed from bookmarks', 'info');
-            }
-        });
-
-        shareLoveQuoteBtn.addEventListener('click', function() {
-            const quote = quoteText.textContent;
-            const author = quoteAuthor.textContent;
-            const textToShare = `${quote} - ${author}`;
-            
-            if (navigator.share) {
-                navigator.share({
-                    title: 'Love Quote',
-                    text: textToShare,
-                    url: window.location.href
-                })
-                .then(() => console.log('Successful share'))
-                .catch((error) => console.log('Error sharing:', error));
-            } else {
-                // Fallback for browsers that don't support the Web Share API
-                navigator.clipboard.writeText(textToShare).then(() => {
-                    showNotification('Quote copied to clipboard!', 'success');
-                });
-            }
-        });
-
-        // Search functionality
-        searchQuoteBtn.addEventListener('click', () => {
-            const query = quoteSearch.value;
-            if (query) {
-                showNotification(`Searching for: ${query}`, 'info');
-            }
-        });
-
-        searchLifeQuoteBtn.addEventListener('click', () => {
-            const query = lifeQuoteSearch.value;
-            if (query) {
-                showNotification(`Searching for: ${query}`, 'info');
-            }
-        });
-
-        searchLoveQuoteBtn.addEventListener('click', () => {
-            const query = loveQuoteSearch.value;
-            if (query) {
-                showNotification(`Searching for: ${query}`, 'info');
-            }
-        });
-
-        // Load more quotes buttons
-        loadMoreQuotes.addEventListener('click', () => {
-            showNotification("Loading more inspirational quotes...", "info");
-        });
-
-        loadMoreLifeQuotes.addEventListener('click', () => {
-            showNotification("Loading more life quotes...", "info");
-        });
-
-        loadMoreLoveQuotes.addEventListener('click', () => {
-            showNotification("Loading more love quotes...", "info");
-        });
-
-        // Quote navigation dots
-        quoteDots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                // Update active dot
-                quoteDots.forEach(d => d.classList.remove('active'));
-                dot.classList.add('active');
-                
-                // In a real implementation, this would change the quote
-                showNotification(`Showing quote ${index + 1}`, "info");
-            });
-        });
-
-        // Quote auto-rotation
-        let currentQuoteIndex = 0;
-        setInterval(() => {
-            currentQuoteIndex = (currentQuoteIndex + 1) % quoteDots.length;
-            quoteDots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === currentQuoteIndex);
-            });
-        }, 8000);
-
-        // Show notification
-        function showNotification(message, type) {
-            // Create notification element
-            const notification = document.createElement('div');
-            notification.className = `notification ${type}`;
-            notification.innerHTML = `
-                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
-                <span>${message}</span>
-            `;
-            
-            // Add to body
-            document.body.appendChild(notification);
-            
-            // Show notification
-            setTimeout(() => {
-                notification.classList.add('show');
-            }, 100);
-            
-            // Hide after 3 seconds
-            setTimeout(() => {
-                notification.classList.remove('show');
-                setTimeout(() => {
-                    document.body.removeChild(notification);
-                }, 400);
-            }, 3000);
-        }
-
-        // Set home as active section by default
-        showSection('home');
-    </script>
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Supreme Motive - Your daily source of inspiration, motivation, and personal growth resources. Elevate your mind and transform your life.">
-    <meta name="keywords" content="motivation, inspiration, quotes, ebooks, personal growth, self-improvement">
-    <meta name="author" content="Supreme Motive">
-    <title>Supreme Motive | Elevate Your Mind, Transform Your Life</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-color: #ff9800;
-            --secondary-color: #fdc500;
-            --accent-color: #ff3333;
-            --dark-bg: #111;
-            --light-bg: #fffde4;
-            --text-dark: #fff;
-            --text-light: #333;
-            --card-bg-dark: rgba(30, 30, 40, 0.95);
-            --card-bg-light: rgba(255,255,255,0.90);
-            --success-color: #4CAF50;
-            --warning-color: #ffc107;
-            --info-color: #2196F3;
-            --header-height: 80px;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Montserrat', Arial, sans-serif;
-            min-height: 100vh;
-            margin: 0;
-            background: linear-gradient(135deg, var(--dark-bg) 70%, var(--primary-color) 100%);
-            color: var(--text-dark);
+        .ebook-card {
+            background: var(--card-bg-dark);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            overflow-x: hidden;
-            padding-top: var(--header-height);
+            cursor: pointer;
+            position: relative;
+            border: 1px solid rgba(255, 152, 0, 0.1);
         }
-
-        body.light {
-            background: linear-gradient(135deg, var(--light-bg) 60%, #f7b733 100%);
+        
+        body.light .ebook-card {
+            background: var(--card-bg-light);
+        }
+        
+        .ebook-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+        }
+        
+        .ebook-cover-container {
+            position: relative;
+            overflow: hidden;
+            height: 280px;
+        }
+        
+        .ebook-cover {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+        
+        .ebook-card:hover .ebook-cover {
+            transform: scale(1.1);
+        }
+        
+        .ebook-info {
+            padding: 1.8rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .ebook-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            color: var(--primary-color);
+        }
+        
+        .ebook-description {
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        body.light .ebook-description {
+            color: var(--text-light);
+        }
+        
+        /* Dictionary Section */
+        .dictionary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .dictionary-card {
+            background-color: var(--card-bg-dark);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid rgba(255, 152, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        body.light .dictionary-card {
+            background-color: var(--card-bg-light);
+        }
+        
+        .dictionary-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary-color), var(--accent-color));
+        }
+        
+        .dictionary-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+        }
+        
+        .word {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 12px;
+        }
+        
+        .meaning {
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+        
+        body.light .meaning {
             color: var(--text-light);
         }
 
-        /* Enhanced Header Styles */
-        .header {
-            width: 100%;
-            height: var(--header-height);
-            padding: 0 20px;
-            background: linear-gradient(90deg, rgba(0,0,0,0.9) 0%, rgba(30,30,40,0.9) 100%);
+        /* Video Section */
+        .video-filters {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 4px 20px rgba(255, 152, 0, 0.3);
-            position: fixed;
-            top: 0;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-            border-bottom: 2px solid var(--primary-color);
-        }
-
-        body.light .header {
-            background: linear-gradient(90deg, rgba(255,255,255,0.95) 0%, rgba(240,240,245,0.95) 100%);
-            border-bottom: 2px solid var(--secondary-color);
-        }
-
-        .logo-section {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo-icon {
-            font-size: 2.5em;
-            color: var(--primary-color);
-            filter: drop-shadow(0 0 5px rgba(255, 152, 0, 0.5));
-        }
-
-        .header-title {
-            font-size: 1.8em;
-            font-weight: 800;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            letter-spacing: 1px;
-        }
-
-        body.light .header-title {
-            text-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);
-        }
-
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        /* Enhanced Profile Dropdown */
-        .profile-container {
-            position: relative;
-        }
-
-        .profile-btn {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
             justify-content: center;
-            font-size: 1.5em;
-            color: #222;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+        
+        .filter-btn {
+            padding: 10px 20px;
+            background-color: var(--card-bg-dark);
+            border: 1px solid rgba(255, 152, 0, 0.2);
+            border-radius: 30px;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(255, 152, 0, 0.3);
+            color: var(--text-dark);
+            font-weight: 500;
         }
-
-        .profile-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 15px rgba(255, 152, 0, 0.5);
+        
+        body.light .filter-btn {
+            background-color: var(--card-bg-light);
+            color: var(--text-light);
         }
-
-        .profile-dropdown {
-            display: none;
+        
+        .filter-btn.active, .filter-btn:hover {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #e68900 100%);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .video-card {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+        }
+        
+        .video-thumbnail {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+        
+        .video-card:hover .video-thumbnail {
+            transform: scale(1.05);
+        }
+        
+        .video-overlay {
             position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.7));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .video-card:hover .video-overlay {
+            opacity: 1;
+        }
+        
+        .play-btn {
+            background-color: var(--accent-color);
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            transform: scale(0.9);
+        }
+        
+        .video-card:hover .play-btn {
+            transform: scale(1);
+        }
+        
+        .play-btn:hover {
+            background-color: #cc0000;
+            transform: scale(1.1);
+        }
+
+        /* Support Section */
+        .support-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+        
+        .contact-form {
+            background-color: var(--card-bg-dark);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        body.light .contact-form {
+            background-color: var(--card-bg-light);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+        
+        body.light .form-label {
+            color: var(--text-light);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px 20px;
+            border: 1px solid rgba(255, 152, 0, 0.2);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background-color: var(--card-bg-dark);
+            color: var(--text-dark);
+        }
+        
+        body.light .form-control {
+            background-color: var(--card-bg-light);
+            color: var(--text-light);
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 152, 0, 0.2);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .payment-methods {
+            background-color: var(--card-bg-dark);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        body.light .payment-methods {
+            background-color: var(--card-bg-light);
+        }
+        
+        .payment-option {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            border: 1px solid rgba(255, 152, 0, 0.1);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .payment-option:hover {
+            border-color: var(--primary-color);
+            background: rgba(255, 152, 0, 0.05);
+            transform: translateX(5px);
+        }
+        
+        .payment-icon {
+            font-size: 2rem;
+            margin-right: 20px;
+            color: var(--primary-color);
+        }
+        
+        .wallet-address {
+            font-family: monospace;
+            background: rgba(255, 152, 0, 0.05);
+            padding: 8px 12px;
+            border-radius: 6px;
+            margin-top: 8px;
+            word-break: break-all;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 152, 0, 0.1);
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .copy-btn {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 6px 12px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .copy-btn:hover {
+            background: #e68900;
+            transform: scale(1.05);
+        }
+        
+        .copy-btn.copied {
+            background: var(--success-color);
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .founder-img {
+            width: 100%;
+            max-width: 450px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+        
+        .founder-img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+        }
+        
+        .mission-statement {
+            background-color: var(--card-bg-dark);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            margin-top: 40px;
+            border-left: 5px solid var(--accent-color);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        body.light .mission-statement {
+            background-color: var(--card-bg-light);
+        }
+        
+        .mission-statement::before {
+            content: '';
+            position: absolute;
+            top: 0;
             right: 0;
-            top: 60px;
-            background: rgba(40, 40, 50, 0.95);
-            min-width: 220px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            z-index: 1001;
-            color: #fff;
-            font-size: 1em;
-            animation: fadeIn 0.3s;
-            text-align: left;
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            overflow: hidden;
-        }
-
-        body.light .profile-dropdown {
-            background: rgba(255, 255, 255, 0.95);
-            color: #222;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-        }
-
-        @keyframes fadeIn { 
-            from { opacity: 0; transform: translateY(-10px); } 
-            to { opacity: 1; transform: translateY(0); } 
-        }
-
-        .profile-header {
-            padding: 15px 20px;
-            background: rgba(255, 152, 0, 0.2);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        body.light .profile-header {
-            background: rgba(255, 152, 0, 0.1);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-        }
-
-        .profile-name {
-            font-weight: bold;
-            font-size: 1.1em;
-            margin-bottom: 5px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .profile-email {
-            font-size: 0.9em;
-            color: var(--secondary-color);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        body.light .profile-email {
-            color: #666;
-        }
-
-        .profile-menu {
-            padding: 10px 0;
-        }
-
-        .profile-menu-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 20px;
-            color: inherit;
-            text-decoration: none;
-            transition: all 0.2s;
-            cursor: pointer;
-        }
-
-        .profile-menu-item:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        body.light .profile-menu-item:hover {
-            background: rgba(0, 0, 0, 0.05);
-        }
-
-        .profile-menu-item i {
-            width: 20px;
-            text-align: center;
-            color: var(--primary-color);
-        }
-
-        .profile-divider {
-            height: 1px;
-            background: rgba(255, 255, 255, 0.1);
-            margin: 8px 0;
-        }
-
-        body.light .profile-divider {
-            background: rgba(0, 0, 0, 0.1);
-        }
-
-        /* Marquee */
-        .marquee {
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--primary-color));
-            color: #222;
-            font-size: 1.1em;
-            padding: 10px 0;
-            white-space: nowrap;
-            overflow: hidden;
-            position: relative;
-            width: 100%;
-            z-index: 999;
-            font-weight: 600;
-        }
-
-        .marquee-text {
-            display: inline-block;
-            padding-left: 100%;
-            animation: marquee 20s linear infinite;
-        }
-
-        @keyframes marquee {
-            0%   { transform: translateX(0); }
-            100% { transform: translateX(-100%); }
-        }
-
-        /* Main Container */
-        .container {
-            background: var(--card-bg-dark);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            text-align: center;
-            max-width: 450px;
-            width: 90%;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-            margin: 20px 0 100px 0;
-        }
-
-        .container::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 184, 0, 0.1) 0%, transparent 70%);
-            z-index: -1;
-            animation: rotate 60s linear infinite;
-        }
-
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        body.light .container {
-            background: var(--card-bg-light);
-            color: var(--text-light);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Coin Logo */
-        .logo-container {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 15px auto;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .coin-logo {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            box-shadow: 0 5px 15px rgba(255, 152, 0, 0.4);
-            z-index: 2;
-            position: relative;
-            border: 4px solid var(--primary-color);
-            transition: all 0.3s;
-            animation: pulse 2s infinite;
-        }
-
-        .coin-logo:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 25px rgba(255, 152, 0, 0.6);
-        }
-
-        /* Stats Display */
-        .mined-coins {
-            font-size: 2.5em;
-            margin: 20px 0;
-            color: var(--secondary-color);
-            font-weight: 800;
-            letter-spacing: 1px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .timer {
-            font-size: 1.6em;
-            color: var(--accent-color);
-            margin-bottom: 20px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s;
-            padding: 8px 15px;
-            border-radius: 10px;
-            background: rgba(255, 51, 51, 0.1);
-            display: inline-block;
-        }
-
-        .timer:hover {
-            background: rgba(255, 51, 51, 0.2);
-            transform: scale(1.05);
-        }
-
-        /* Buttons */
-        .mine-btn, .withdraw-btn {
-            padding: 16px 40px;
-            background: linear-gradient(90deg, var(--secondary-color) 40%, var(--primary-color) 100%);
-            color: #111;
-            border: none;
-            border-radius: 12px;
-            font-size: 1.2em;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 6px 20px rgba(255, 152, 0, 0.4);
-            margin-bottom: 15px;
-            position: relative;
-            overflow: hidden;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .mine-btn:hover, .withdraw-btn:hover {
-            background: linear-gradient(90deg, var(--primary-color) 40%, var(--secondary-color) 100%);
-            box-shadow: 0 8px 25px rgba(255, 152, 0, 0.6);
-            transform: translateY(-3px);
-        }
-
-        .mine-btn:active, .withdraw-btn:active {
-            transform: translateY(0);
-        }
-
-        .withdraw-btn[disabled] {
-            opacity: 0.65;
-            cursor: not-allowed;
-            background: #ccc;
-            box-shadow: none;
-        }
-
-        .withdraw-btn[disabled]:hover {
-            transform: none;
-        }
-
-        .upgrade-btn {
-            padding: 14px 30px;
-            background: linear-gradient(90deg, #ece9e6 0%, var(--primary-color) 100%);
-            color: #222;
-            border: none;
-            border-radius: 10px;
-            font-size: 1.1em;
-            font-weight: bold;
-            cursor: pointer;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 15px rgba(255, 185, 0, 0.3);
-            transition: all 0.3s;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .upgrade-btn:hover {
-            background: linear-gradient(90deg, #ffe259, #ffa751);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255, 185, 0, 0.5);
-        }
-
-        /* Particles */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .particle {
-            position: absolute;
-            background: var(--primary-color);
-            border-radius: 50%;
-            opacity: 0.3;
-            animation: float linear infinite;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0) rotate(0deg); }
-            100% { transform: translateY(-100vh) rotate(360deg); }
-        }
-
-        /* Upgrade Modal */
-        .upgrade-modal {
-            display: none;
-            position: fixed;
-            z-index: 2002;
-            left: 0; 
-            top: 0; 
-            width: 100vw; 
-            height: 100vh;
-            background: rgba(0,0,0,0.7);
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(5px);
-            animation: fadeIn 0.3s;
-        }
-
-        .upgrade-modal-content {
-            background: #fff;
-            color: #222;
-            border-radius: 20px;
-            padding: 25px;
-            max-width: 400px;
-            width: 90vw;
-            text-align: center;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-            position: relative;
-            transform: scale(0.95);
-            animation: modalAppear 0.3s forwards;
-        }
-
-        @keyframes modalAppear {
-            to { transform: scale(1); }
-        }
-
-        .close-btn {
-            position: absolute;
-            right: 20px;
-            top: 15px;
-            font-size: 1.5em;
-            background: none;
-            border: none;
-            color: var(--primary-color);
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .close-btn:hover {
-            transform: rotate(90deg);
-        }
-
-        .upgrade-plan {
-            margin: 20px 0 15px 0;
-            padding: 20px 15px;
-            border-radius: 15px;
-            background: #fffbe6;
-            color: #333;
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
-            transition: all 0.3s;
-            border: 2px solid rgba(255, 152, 0, 0.2);
-        }
-
-        .upgrade-plan:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
-        }
-
-        .plan-title {
-            font-weight: bold;
-            font-size: 1.2em;
-            margin-bottom: 10px;
-            color: var(--primary-color);
-        }
-
-        .plan-desc {
-            font-size: 1em;
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
-
-        .plan-action {
-            margin-top: 15px;
-        }
-
-        /* Footer */
-        .footer {
-            width: 100%;
-            display: flex;
-            justify-content: space-around;
-            padding: 20px 0;
-            background: rgba(255, 184, 0, 0.1);
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            border-radius: 25px 25px 0 0;
-            box-shadow: 0 -5px 20px rgba(255, 152, 0, 0.2);
-            z-index: 999;
-            backdrop-filter: blur(10px);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .footer-btn {
-            background: #fff;
-            color: var(--primary-color);
-            border: none;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            font-size: 1.5em;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 15px rgba(34, 34, 34, 0.15);
-            transition: all 0.3s;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .footer-btn:hover {
-            background: var(--primary-color);
-            color: #fff;
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(255, 152, 0, 0.4);
-        }
-
-        .footer-btn.active {
-            background: var(--primary-color);
-            color: #fff;
-        }
-
-        .tooltip {
-            position: absolute;
-            bottom: 70px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #333;
-            color: #fff;
-            padding: 8px 15px;
-            border-radius: 8px;
-            font-size: 0.9em;
-            white-space: nowrap;
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.3s;
-            font-weight: 600;
-        }
-
-        .footer-btn:hover .tooltip {
-            opacity: 1;
-            bottom: 75px;
-        }
-
-        /* Progress Bar */
-        .progress-container {
-            width: 100%;
-            height: 12px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            margin: 20px 0;
-            overflow: hidden;
-            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-
-        .progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
-            border-radius: 10px;
-            transition: width 0.5s;
-            box-shadow: 0 0 10px rgba(255, 152, 0, 0.5);
-        }
-
-        /* Notification */
-        .notification {
-            position: fixed;
-            top: 30px;
-            right: 30px;
-            background: #333;
-            color: #fff;
-            padding: 18px 25px;
-            border-radius: 12px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-            z-index: 2000;
-            transform: translateX(200%);
-            transition: transform 0.4s;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            max-width: 400px;
-        }
-
-        .notification.show {
-            transform: translateX(0);
-        }
-
-        .notification.success {
-            background: var(--success-color);
-        }
-
-        .notification.error {
-            background: var(--accent-color);
-        }
-
-        .notification.info {
-            background: var(--info-color);
-        }
-
-        /* Stats Panel */
-        .stats-panel {
-            background: var(--card-bg-dark);
-            padding: 20px;
-            border-radius: 15px;
-            margin: 20px 0;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        body.light .stats-panel {
-            background: var(--card-bg-light);
-        }
-
-        .stat-item {
-            flex: 1;
-            min-width: 120px;
-            text-align: center;
-            padding: 15px 10px;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.05);
-            transition: all 0.3s;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        body.light .stat-item {
-            background: rgba(0, 0, 0, 0.05);
-        }
-
-        .stat-value {
-            font-size: 1.6em;
-            font-weight: bold;
-            color: var(--secondary-color);
-            margin-bottom: 5px;
-        }
-
-        .stat-label {
-            font-size: 0.9em;
-            color: var(--text-dark);
-            font-weight: 600;
-        }
-
-        body.light .stat-label {
-            color: var(--text-light);
-        }
-
-        /* Session Info */
-        .session-info {
-            background: var(--card-bg-dark);
-            padding: 15px 20px;
-            border-radius: 15px;
-            margin: 20px 0;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            border-left: 5px solid var(--primary-color);
-        }
-
-        body.light .session-info {
-            background: var(--card-bg-light);
-        }
-
-        .session-status {
-            font-weight: bold;
-            color: var(--secondary-color);
-            margin-bottom: 8px;
-            font-size: 1.1em;
-        }
-
-        /* Claim Status */
-        .claim-status, .withdraw-status {
-            margin: 7px 0 0 0;
-            color: var(--secondary-color);
-            font-size: 0.97em;
-            min-height: 18px;
-            transition: all 0.3s;
-        }
-
-        .success-message {
-            color: #4CAF50;
-            font-weight: bold;
-        }
-
-        .error-message {
-            color: var(--accent-color);
-            font-weight: bold;
-        }
-
-        /* Animations */
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .bounce {
-            animation: bounce 2s infinite;
-        }
-
-        /* Confetti */
-        .confetti {
-            position: fixed;
-            width: 12px;
-            height: 12px;
-            background-color: #f00;
-            opacity: 0;
-            z-index: 2001;
-            animation: confetti-fall 3s linear forwards;
-        }
-
-        @keyframes confetti-fall {
-            0% {
-                transform: translateY(-100vh) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .header {
-                padding: 0 15px;
-                height: 80px;
-            }
-
-            .header-title {
-                font-size: 1.5em;
-            }
-
-            .logo-icon {
-                font-size: 2em;
-            }
-
-            .profile-btn {
-                width: 45px;
-                height: 45px;
-                font-size: 1.3em;
-            }
-
-            .container {
-                padding: 25px 20px;
-                margin: 15px 0 100px 0;
-            }
-
-            .mined-coins {
-                font-size: 2em;
-            }
-
-            .footer-btn {
-                width: 50px;
-                height: 50px;
-                font-size: 1.3em;
-            }
-
-            .stats-panel {
-                flex-direction: column;
-            }
-
-            .stat-item {
-                min-width: 100%;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .header-title {
-                font-size: 1.3em;
-            }
-
-            .logo-icon {
-                font-size: 1.8em;
-            }
-
-            .container {
-                padding: 20px 15px;
-            }
-
-            .mined-coins {
-                font-size: 1.8em;
-            }
-
-            .mine-btn, .withdraw-btn, .upgrade-btn {
-                padding: 14px 20px;
-                font-size: 1.1em;
-            }
-        }
-
-        /* Supreme Motive Specific Styles */
-        section {
-            min-height: 100vh;
-            padding: 120px 0;
-            display: none;
-            position: relative;
-            overflow: hidden;
-            width: 100%;
-        }
-        
-        section.active {
-            display: block;
-            animation: fadeInUp 0.8s ease;
-        }
-        
-        @keyframes fadeInUp {
-            from { 
-                opacity: 0; 
-                transform: translateY(30px);
-            }
-            to { 
-                opacity: 1; 
-                transform: translateY(0);
-            }
-        }
-        
-        h1, h2, h3, h4 {
-            margin-bottom: 1.2rem;
-            color: var(--secondary-color);
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
-        }
-        
-        h1 {
-            font-size: 3.5rem;
-            line-height: 1.2;
-        }
-        
-        h2 {
-            font-size: 2.8rem;
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-        
-        p {
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-        }
-        
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 14px 32px;
-            background: linear-gradient(135deg, var(--primary-color) 0%, #e68900 100%);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(255, 152, 0, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: 0.5s;
-        }
-        
-        .btn:hover::before {
-            left: 100%;
-        }
-        
-        .btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(255, 152, 0, 0.4);
-        }
-        
-        .btn-accent {
-            background: linear-gradient(135deg, var(--accent-color) 0%, #cc0000 100%);
-        }
-        
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color);
-        }
-        
-        .btn-outline:hover {
-            background: var(--primary-color);
-            color: white;
-        }
-        
-        /* Quote Display */
-        .quote-display {
-            position: relative;
-            max-width: 900px;
-            margin: 0 auto 3rem;
-            perspective: 1000px;
-        }
-        
-        .quote-card {
-            background-color: var(--card-bg-dark);
-            border-radius: 20px;
-            padding: 50px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            margin-bottom: 30px;
-            position: relative;
-            border-left: 6px solid var(--primary-color);
-            transition: all 0.3s ease;
-            transform-style: preserve-3d;
-            animation: fadeInQuote 1s ease;
-            min-height: 350px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        
-        body.light .quote-card {
-            background-color: var(--card-bg-light);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        @keyframes fadeInQuote {
-            from { 
-                opacity: 0; 
-                transform: translateY(30px) rotateX(10deg);
-            }
-            to { 
-                opacity: 1; 
-                transform: translateY(0) rotateX(0);
-            }
-        }
-        
-        .quote-card:hover {
-            transform: translateY(-10px) rotateX(2deg);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-        }
-        
-        body.light .quote-card:hover {
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-        
-        .quote-card::before {
-            content: '"';
-            position: absolute;
-            top: 20px;
-            left: 30px;
-            font-size: 6rem;
-            color: var(--primary-color);
-            opacity: 0.2;
-            font-family: 'Playfair Display', serif;
-            line-height: 1;
-        }
-        
-        .quote-text {
-            font-size: 1.5rem;
-            font-style: italic;
-            margin-bottom: 25px;
-            color: var(--text-dark);
-            position: relative;
-            z-index: 1;
-            line-height: 1.6;
-        }
-        
-        body.light .quote-text {
-            color: var(--text-light);
-        }
-        
-        .quote-author {
-            text-align: right;
-            font-weight: 600;
-            color: var(--primary-color);
-            font-size: 1.2rem;
-            position: relative;
-        }
-        
-        .quote-author::before {
-            content: '— ';
-        }
-        
-        .quote-actions {
-            display: flex;
-            gap: 15px;
-            margin-top: 25px;
-            justify-content: flex-end;
-        }
-        
-        .quote-btn {
-            background: none;
-            border: none;
-            font-size: 1.3rem;
-            cursor: pointer;
-            color: var(--secondary-color);
-            transition: all 0.3s ease;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .quote-btn:hover {
-            color: var(--accent-color);
-            background: rgba(255, 101, 132, 0.1);
-            transform: scale(1.1);
-        }
-        
-        .quote-btn.active {
-            color: var(--accent-color);
-            background: rgba(255, 101, 132, 0.1);
-        }
-        
-        .quote-nav {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 30px;
-        }
-        
-        .quote-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--secondary-color);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .quote-dot.active {
-            background: var(--primary-color);
-            transform: scale(1.3);
-        }
-        
-        .quote-dot:hover {
-            background: var(--accent-color);
-        }
-        
-        .quote-category {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-bottom: 40px;
-        }
-        
-        .quote-category-btn {
-            padding: 10px 20px;
-            background-color: var(--card-bg-dark);
-            border: 1px solid rgba(255, 152, 0, 0.2);
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            color: var(--text-dark);
-            font-weight: 500;
-        }
-        
-        body.light .quote-category-btn {
-            background-color: var(--card-bg-light);
-            color: var(--text-light);
-        }
-        
-        .quote-category-btn.active, .quote-category-btn:hover {
-            background: linear-gradient(135deg, var(--primary-color) 0%, #e68900 100%);
-            color: white;
-            border-color: var(--primary-color);
-        }
-        
-        .quote-theme-selector {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 20px 0;
-            flex-wrap: wrap;
-        }
-        
-        .theme-option {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            border: 3px solid transparent;
-            transition: all 0.3s ease;
-        }
-        
-        .theme-option.active {
-            border-color: var(--primary-color);
-            transform: scale(1.1);
-        }
-        
-        .theme-option.nature {
-            background: linear-gradient(135deg, #4CAF50, #8BC34A);
-        }
-        
-        .theme-option.abstract {
-            background: linear-gradient(135deg, #9C27B0, #E91E63);
-        }
-        
-        .theme-option.space {
-            background: linear-gradient(135deg, #2196F3, #3F51B5);
-        }
-        
-        .theme-option.gradient {
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-        }
-        
-        .font-controls {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 20px 0;
-            flex-wrap: wrap;
-        }
-        
-        .font-control {
-            padding: 8px 15px;
-            background-color: var(--card-bg-dark);
-            border: 1px solid rgba(255, 152, 0, 0.2);
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            color: var(--text-dark);
-            font-weight: 500;
-        }
-        
-        body.light .font-control {
-            background-color: var(--card-bg-light);
-            color: var(--text-light);
-        }
-        
-        .font-control.active, .font-control:hover {
-            background: linear-gradient(135deg, var(--primary-color) 0%, #e68900 100%);
-            color: white;
-            border-color: var(--primary-color);
-        }
-        
-        /* Cards Grid */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .card {
-            background-color: var(--card-bg-dark);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            transition: all 0.3s ease;
-            position: relative;
-            border: 1px solid rgba(255, 152, 0, 0.1);
-        }
-        
-        body.light .card {
-            background-color: var(--card-bg-light);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-        }
-        
-        body.light .card:hover {
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-        
-        .card-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            transition: all 0.3s ease;
-        }
-        
-        .card:hover .card-img {
-            transform: scale(1.05);
-        }
-        
-        .card-content {
-            padding: 25px;
-        }
-        
-        .card-title {
-            font-size: 1.4rem;
-            margin-bottom: 12px;
-            color: var(--secondary-color);
-        }
-        
-        .card-text {
-            color: var(--text-dark);
-            margin-bottom: 20px;
-        }
-        
-        body.light .card-text {
-            color: var(--text-light);
-        }
-        
-        .card-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 152, 0, 0.1);
-        }
-        
-        /* Section Common Styles */
-        .section-title {
-            position: relative;
-            margin-bottom: 4rem;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
             width: 100px;
-            height: 4px;
-            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
-            border-radius: 2px;
-        }
-        
-        /* Search Functionality */
-        .search-container {
-            position: relative;
-            margin: 20px auto 40px;
-            max-width: 500px;
-        }
-        
-        .search-input {
-            width: 100%;
-            padding: 15px 50px 15px 20px;
-            border: 1px solid rgba(255, 152, 0, 0.2);
-            border-radius: 50px;
-            font-size: 1rem;
-            background-color: var(--card-bg-dark);
-            color: var(--text-dark);
-            transition: all 0.3s ease;
-        }
-        
-        body.light .search-input {
-            background-color: var(--card-bg-light);
-            color: var(--text-light);
-        }
-        
-        .search-input:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(255, 152, 0, 0.2);
-        }
-        
-        .search-btn {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            color: var(--primary-color);
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .search-btn:hover {
-            color: var(--accent-color);
-        }
-        
-        /* Theme Toggle */
-        .theme-toggle {
-            background: var(--card-bg-dark);
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            font-size: 1.3rem;
-            color: var(--text-dark);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-        
-        body.light .theme-toggle {
-            background: var(--card-bg-light);
-            color: var(--text-light);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .theme-toggle:hover {
-            transform: rotate(15deg);
-            color: var(--primary-color);
-        }
-        
-        /* Mobile Menu */
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--text-dark);
-            cursor: pointer;
-        }
-        
-        body.light .mobile-menu-btn {
-            color: var(--text-light);
-        }
-        
-        /* Navigation Menu */
-        .nav-menu {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-item {
-            margin-left: 28px;
-            position: relative;
-        }
-        
-        .nav-link {
-            text-decoration: none;
-            color: var(--text-dark);
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 8px 0;
-            position: relative;
-        }
-        
-        body.light .nav-link {
-            color: var(--text-light);
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary-color);
-            transition: all 0.3s ease;
-        }
-        
-        .nav-link:hover, .nav-link.active {
-            color: var(--primary-color);
-        }
-        
-        .nav-link:hover::after, .nav-link.active::after {
-            width: 100%;
-        }
-        
-        /* Hero Section */
-        #home {
-            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--primary-color) 100%);
-            color: white;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        body.light #home {
-            background: linear-gradient(135deg, var(--light-bg) 0%, #f7b733 100%);
-            color: var(--text-light);
-        }
-        
-        .hero-content {
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .hero-content h1 {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-            color: white;
-            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        body.light .hero-content h1 {
-            color: var(--text-light);
-        }
-        
-        .hero-content p {
-            font-size: 1.3rem;
-            margin-bottom: 2.5rem;
-            opacity: 0.9;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .hero-btns {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-        
-        /* Quote Sections */
-        .quote-section {
-            background-color: var(--dark-bg);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        body.light .quote-section {
-            background-color: var(--light-bg);
-        }
-        
-        .quote-section .quote-display {
-            margin-bottom: 3rem;
+            height: 100px;
+            background: linear-gradient(135deg, var(--accent-color) 0%, transparent 70%);
+            border-radius: 0 0 0 100px;
+            opacity: 0.1;
         }
         
         /* Responsive Styles */
@@ -4142,38 +1890,300 @@
             <h2 class="section-title">Motivational Dictionary</h2>
             <p class="text-center">Explore powerful words and their meanings to expand your motivational vocabulary.</p>
             
+            <div class="dictionary-grid">
+                <div class="dictionary-card">
+                    <h3 class="word">Perseverance</h3>
+                    <p class="meaning">Steadfastness in doing something despite difficulty or delay in achieving success.</p>
+                    <button class="btn">Read Story</button>
+                </div>
+                
+                <div class="dictionary-card">
+                    <h3 class="word">Resilience</h3>
+                    <p class="meaning">The capacity to recover quickly from difficulties; toughness.</p>
+                    <button class="btn">Read Story</button>
+                </div>
+                
+                <div class="dictionary-card">
+                    <h3 class="word">Ambition</h3>
+                    <p class="meaning">A strong desire to do or achieve something, typically requiring determination and hard work.</p>
+                    <button class="btn">Read Story</button>
+                </div>
+                
+                <div class="dictionary-card">
+                    <h3 class="word">Integrity</h3>
+                    <p class="meaning">The quality of being honest and having strong moral principles.</p>
+                    <button class="btn">Read Story</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- E-Books Section -->
+    <section id="ebooks">
+        <div class="container">
+            <h2 class="section-title">Premium E-Book Library</h2>
+            <p class="text-center">Discover our collection of transformative ebooks designed to elevate your mindset and accelerate your personal growth journey.</p>
+            
+            <!-- Search and Filter -->
+            <div class="search-container">
+                <input type="text" class="search-input" id="ebookSearch" placeholder="Search for ebooks...">
+                <button class="search-btn" id="searchEbookBtn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            
+            <div class="ebook-categories">
+                <button class="quote-category-btn active" data-category="all">All Books</button>
+                <button class="quote-category-btn" data-category="life">
+                    <i class="fas fa-heartbeat"></i> Life
+                </button>
+                <button class="quote-category-btn" data-category="productivity">
+                    <i class="fas fa-tasks"></i> Productivity
+                </button>
+                <button class="quote-category-btn" data-category="motivation">
+                    <i class="fas fa-fire"></i> Motivation
+                </button>
+                <button class="quote-category-btn" data-category="love">
+                    <i class="fas fa-heart"></i> Love
+                </button>
+                <button class="quote-category-btn" data-category="business">
+                    <i class="fas fa-chart-line"></i> Business
+                </button>
+            </div>
+            
+            <div class="ebooks-grid" id="ebooksContainer">
+                <!-- Ebooks will be dynamically inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- My E-Books Section -->
+    <section id="my-ebooks">
+        <div class="container">
+            <h2 class="section-title">My E-Books</h2>
+            <p class="text-center">Access your downloaded ebooks and continue your personal growth journey.</p>
+            
+            <!-- Reading Stats -->
+            <div class="stats-panel">
+                <div class="stat-item">
+                    <div class="stat-value" id="totalEbooks">0</div>
+                    <div class="stat-label">E-Books</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="readingTime">0h</div>
+                    <div class="stat-label">Reading Time</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="savedQuotes">0</div>
+                    <div class="stat-label">Saved Quotes</div>
+                </div>
+            </div>
+            
+            <div class="user-ebooks-container">
+                <div id="userEbooksGrid" class="ebooks-grid">
+                    <!-- User ebooks will be dynamically inserted here -->
+                </div>
+                
+                <div id="noEbooksMessage" class="text-center" style="display: none; padding: 3rem; color: var(--text-dark);">
+                    <i class="fas fa-book-open" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                    <h3>No ebooks downloaded yet</h3>
+                    <p>Browse our ebook library and start building your personal collection</p>
+                    <a href="#ebooks" class="btn" data-section="ebooks" style="margin-top: 1.5rem;">
+                        <i class="fas fa-book"></i> Explore E-Books
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Videos Section -->
+    <section id="videos">
+        <div class="container">
+            <h2 class="section-title">Motivational Videos</h2>
+            <p class="text-center">Watch inspiring videos to boost your motivation and learn new strategies for success.</p>
+            
+            <div class="video-filters">
+                <button class="filter-btn active" data-category="all">All Videos</button>
+                <button class="filter-btn" data-category="motivation">Motivation</button>
+                <button class="filter-btn" data-category="life">Life</button>
+                <button class="filter-btn" data-category="business">Business</button>
+                <button class="filter-btn" data-category="strategy">Strategy</button>
+                <button class="filter-btn" data-category="love">Love & Family</button>
+            </div>
+            
             <div class="cards-grid">
-                <div class="card">
+                <div class="card video-card" data-category="motivation">
+                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Video Thumbnail" class="video-thumbnail">
+                    <div class="video-overlay">
+                        <div class="play-btn">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
                     <div class="card-content">
-                        <h3 class="card-title">Perseverance</h3>
-                        <p class="card-text">Steadfastness in doing something despite difficulty or delay in achieving success.</p>
-                        <button class="btn">Read Story</button>
+                        <h3 class="card-title">The Power of Belief</h3>
+                        <p class="card-text">How your mindset shapes your reality and determines your success.</p>
+                        <div class="card-footer">
+                            <span><i class="far fa-clock"></i> 15:42</span>
+                            <span><i class="fas fa-eye"></i> 24K</span>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="card">
+                <div class="card video-card" data-category="life">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Video Thumbnail" class="video-thumbnail">
+                    <div class="video-overlay">
+                        <div class="play-btn">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
                     <div class="card-content">
-                        <h3 class="card-title">Resilience</h3>
-                        <p class="card-text">The capacity to recover quickly from difficulties; toughness.</p>
-                        <button class="btn">Read Story</button>
+                        <h3 class="card-title">10 Life Lessons Everyone Should Learn</h3>
+                        <p class="card-text">Wisdom from decades of experience that can transform your perspective.</p>
+                        <div class="card-footer">
+                            <span><i class="far fa-clock"></i> 22:18</span>
+                            <span><i class="fas fa-eye"></i> 18K</span>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="card">
-                    <div class="card-content">
-                        <h3 class="card-title">Ambition</h3>
-                        <p class="card-text">A strong desire to do or achieve something, typically requiring determination and hard work.</p>
-                        <button class="btn">Read Story</button>
+                <div class="card video-card" data-category="business">
+                    <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Video Thumbnail" class="video-thumbnail">
+                    <div class="video-overlay">
+                        <div class="play-btn">
+                            <i class="fas fa-play"></i>
+                        </div>
                     </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Business Mindset for Success</h3>
+                        <p class="card-text">Develop the entrepreneurial thinking that leads to business growth.</p>
+                        <div class="card-footer">
+                            <span><i class="far fa-clock"></i> 18:35</span>
+                            <span><i class="fas fa-eye"></i> 32K</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Section -->
+    <section id="support">
+        <div class="container">
+            <h2 class="section-title">Support & Contact</h2>
+            <p class="text-center">We're here to help! Reach out for assistance, suggestions, or to support our mission.</p>
+            
+            <div class="support-container">
+                <div class="contact-form">
+                    <h3>Send us a Message</h3>
+                    <form id="supportForm">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Your Name</label>
+                            <input type="text" id="name" class="form-control" placeholder="Enter your name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" id="email" class="form-control" placeholder="Enter your email">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject" class="form-label">Subject</label>
+                            <select id="subject" class="form-control">
+                                <option value="">Select a topic</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="support">Technical Support</option>
+                                <option value="suggestion">Content Suggestion</option>
+                                <option value="partnership">Partnership</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea id="message" class="form-control" placeholder="How can we help you?"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
                 </div>
                 
-                <div class="card">
-                    <div class="card-content">
-                        <h3 class="card-title">Integrity</h3>
-                        <p class="card-text">The quality of being honest and having strong moral principles.</p>
-                        <button class="btn">Read Story</button>
+                <div class="payment-methods">
+                    <h3>Support Our Mission</h3>
+                    <p>Your contributions help us create more inspirational content and reach more people.</p>
+                    
+                    <div class="payment-option">
+                        <div class="payment-icon">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <div>
+                            <h4>Bank Transfer</h4>
+                            <p>Account: Supreme Motive Foundation</p>
+                            <div class="wallet-address">
+                                Routing: 021000021 • Account: 4000123456
+                            </div>
+                            <button class="copy-btn" data-text="Routing: 021000021 • Account: 4000123456">Copy</button>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-option">
+                        <div class="payment-icon">
+                            <i class="fab fa-paypal"></i>
+                        </div>
+                        <div>
+                            <h4>PayPal</h4>
+                            <p>Send to: support@suprememotive.com</p>
+                            <div class="wallet-address">
+                                support@suprememotive.com
+                            </div>
+                            <button class="copy-btn" data-text="support@suprememotive.com">Copy</button>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-option">
+                        <div class="payment-icon">
+                            <i class="fab fa-bitcoin"></i>
+                        </div>
+                        <div>
+                            <h4>Cryptocurrency</h4>
+                            <p>BTC: 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa</p>
+                            <div class="wallet-address">
+                                1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa
+                            </div>
+                            <button class="copy-btn" data-text="1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa">Copy</button>
+                        </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Us</h2>
+            
+            <div class="about-content">
+                <div>
+                    <h3>Our Mission</h3>
+                    <p>Supreme Motive was founded with a simple yet powerful mission: to inspire millions through daily motivation, actionable insights, and transformative resources.</p>
+                    <p>We believe that everyone has untapped potential waiting to be unleashed, and our platform serves as a catalyst for personal growth and positive change.</p>
+                    
+                    <h3>Our Vision</h3>
+                    <p>To create a global community where individuals support each other in pursuing their dreams and living purposeful, fulfilling lives.</p>
+                </div>
+                
+                <div>
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Founder" class="founder-img">
+                </div>
+            </div>
+            
+            <div class="mission-statement">
+                <h3>From the Founder</h3>
+                <p>"I started Supreme Motive during a challenging period in my life when I needed inspiration the most. What began as a personal collection of quotes and resources has grown into a platform that now serves thousands worldwide.</p>
+                <p>My vision is to continue expanding our offerings, creating more original content, and building a supportive community where everyone can find the motivation they need to overcome obstacles and achieve their goals."</p>
+                <p><strong>- [Your Name], Founder & CEO</strong></p>
             </div>
         </div>
     </section>
@@ -4206,6 +2216,325 @@
     <div class="particles" id="particles"></div>
 
     <script>
+        // Enhanced book data with more details
+        const ebooks = [
+            {
+                id: 1,
+                title: "The Art of Living Mindfully",
+                category: "life",
+                cover: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+                description: "Discover the secrets to a more mindful and fulfilling existence in this transformative guide to conscious living.",
+                intro: "In a world filled with constant distractions and endless to-do lists, finding true peace can seem impossible. 'The Art of Living Mindfully' takes you on a transformative journey to reclaim your inner calm and live with intention. Through practical exercises and profound insights, you'll learn to navigate life's challenges with grace and cultivate a deep sense of purpose that transcends daily stressors. This book offers a roadmap to living more fully in each moment, with greater awareness and appreciation for the beauty of ordinary experiences.",
+                pages: 284,
+                rating: 4.7,
+                downloads: 12500,
+                file: "the-art-of-living-mindfully.pdf",
+                badge: "Bestseller"
+            },
+            {
+                id: 2,
+                title: "Productivity Unleashed",
+                category: "productivity",
+                cover: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+                description: "Master your time and accomplish more with less effort using neuroscience-backed productivity techniques.",
+                intro: "What if you could achieve in 4 hours what currently takes you 8? 'Productivity Unleashed' reveals the neuroscience-backed techniques that top performers use to maximize their output while minimizing stress. From time-blocking strategies to cognitive optimization, this book will transform how you approach your work and life, helping you achieve more while working less. Discover how to eliminate distractions, focus deeply on important tasks, and create systems that make productivity effortless and sustainable.",
+                pages: 320,
+                rating: 4.9,
+                downloads: 18750,
+                file: "productivity-unleashed.pdf",
+                badge: "New Release"
+            },
+            {
+                id: 3,
+                title: "The Motivation Code",
+                category: "motivation",
+                cover: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+                description: "Unlock the hidden drivers that propel you toward success and lasting achievement in all areas of life.",
+                intro: "Why do some people maintain unwavering motivation while others struggle to get out of bed? 'The Motivation Code' deciphers the psychological patterns that determine our drive and ambition. Through compelling stories and actionable frameworks, you'll discover how to tap into your deepest sources of inspiration and maintain momentum even when challenges arise. This book goes beyond surface-level motivation tricks to help you understand the core psychological drivers that fuel sustained action and achievement.",
+                pages: 275,
+                rating: 4.6,
+                downloads: 9320,
+                file: "the-motivation-code.pdf",
+                badge: "Popular"
+            },
+            {
+                id: 4,
+                title: "Love in the Modern Age",
+                category: "love",
+                cover: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+                description: "Navigate the complexities of modern relationships with wisdom, emotional intelligence, and practical insights.",
+                intro: "In an era of dating apps and fleeting connections, finding lasting love requires new skills and insights. 'Love in the Modern Age' combines psychological research with timeless wisdom to help you build meaningful connections that stand the test of time. Whether you're single or in a relationship, this book will transform how you approach love and intimacy. Learn how to communicate effectively, resolve conflicts constructively, and create the foundation for a partnership that grows stronger with each passing year.",
+                pages: 312,
+                rating: 4.5,
+                downloads: 15600,
+                file: "love-in-the-modern-age.pdf",
+                badge: "Reader's Choice"
+            },
+            {
+                id: 5,
+                title: "Startup Success Blueprint",
+                category: "business",
+                cover: "https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+                description: "From idea to IPO: A comprehensive guide to building your business empire with proven strategies.",
+                intro: "The path from startup idea to successful business is filled with pitfalls and challenges that have defeated countless entrepreneurs. 'Startup Success Blueprint' distills the hard-won lessons from founders who have navigated this journey successfully. You'll learn not just what to do, but more importantly, what to avoid as you build the business of your dreams. This comprehensive guide covers everything from validating your idea and securing funding to scaling operations and building a company culture that attracts top talent.",
+                pages: 368,
+                rating: 4.8,
+                downloads: 21000,
+                file: "startup-success-blueprint.pdf",
+                badge: "Bestseller"
+            },
+            {
+                id: 6,
+                title: "The Mindful Entrepreneur",
+                category: "business",
+                cover: "https://images.unsplash.com/photo-1551836026-d5c2e0c49bcd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+                description: "Balance ambition with inner peace on your entrepreneurial journey to sustainable success.",
+                intro: "Can you build a massively successful business without sacrificing your wellbeing? 'The Mindful Entrepreneur' proves that the answer is a resounding yes. This groundbreaking book shows how mindfulness practices can enhance decision-making, creativity, and leadership while protecting against burnout. Discover how to build not just a successful company, but a successful life. Learn practical techniques for managing stress, maintaining focus amidst chaos, and leading with both compassion and conviction.",
+                pages: 295,
+                rating: 4.7,
+                downloads: 14300,
+                file: "the-mindful-entrepreneur.pdf",
+                badge: "Editor's Pick"
+            }
+        ];
+
+        // Enhanced quote data with categories
+        const quotes = {
+            all: [
+                {
+                    text: "The only way to do great work is to love what you do. If you haven't found it yet, keep looking. Don't settle.",
+                    author: "Steve Jobs",
+                    category: "success"
+                },
+                {
+                    text: "Success is not final, failure is not fatal: it is the courage to continue that counts.",
+                    author: "Winston Churchill",
+                    category: "perseverance"
+                },
+                {
+                    text: "Your time is limited, don't waste it living someone else's life.",
+                    author: "Steve Jobs",
+                    category: "mindset"
+                },
+                {
+                    text: "The future belongs to those who believe in the beauty of their dreams.",
+                    author: "Eleanor Roosevelt",
+                    category: "inspiration"
+                },
+                {
+                    text: "It does not matter how slowly you go as long as you do not stop.",
+                    author: "Confucius",
+                    category: "perseverance"
+                }
+            ],
+            success: [
+                {
+                    text: "Success is not the key to happiness. Happiness is the key to success. If you love what you are doing, you will be successful.",
+                    author: "Albert Schweitzer",
+                    category: "success"
+                },
+                {
+                    text: "The only place where success comes before work is in the dictionary.",
+                    author: "Vidal Sassoon",
+                    category: "success"
+                }
+            ],
+            perseverance: [
+                {
+                    text: "Perseverance is not a long race; it is many short races one after the other.",
+                    author: "Walter Elliot",
+                    category: "perseverance"
+                },
+                {
+                    text: "It's not that I'm so smart, it's just that I stay with problems longer.",
+                    author: "Albert Einstein",
+                    category: "perseverance"
+                }
+            ],
+            mindset: [
+                {
+                    text: "Whether you think you can or you think you can't, you're right.",
+                    author: "Henry Ford",
+                    category: "mindset"
+                },
+                {
+                    text: "The mind is everything. What you think you become.",
+                    author: "Buddha",
+                    category: "mindset"
+                }
+            ],
+            inspiration: [
+                {
+                    text: "The best way to predict the future is to create it.",
+                    author: "Peter Drucker",
+                    category: "inspiration"
+                },
+                {
+                    text: "Innovation distinguishes between a leader and a follower.",
+                    author: "Steve Jobs",
+                    category: "inspiration"
+                }
+            ]
+        };
+
+        // Life quotes data
+        const lifeQuotes = {
+            all: [
+                {
+                    text: "Life is 10% what happens to you and 90% how you react to it.",
+                    author: "Charles R. Swindoll",
+                    category: "wisdom"
+                },
+                {
+                    text: "The purpose of our lives is to be happy.",
+                    author: "Dalai Lama",
+                    category: "happiness"
+                },
+                {
+                    text: "Life is what happens when you're busy making other plans.",
+                    author: "John Lennon",
+                    category: "wisdom"
+                },
+                {
+                    text: "Get busy living or get busy dying.",
+                    author: "Stephen King",
+                    category: "purpose"
+                },
+                {
+                    text: "You have within you right now, everything you need to deal with whatever the world can throw at you.",
+                    author: "Brian Tracy",
+                    category: "challenges"
+                }
+            ],
+            wisdom: [
+                {
+                    text: "The unexamined life is not worth living.",
+                    author: "Socrates",
+                    category: "wisdom"
+                },
+                {
+                    text: "Turn your wounds into wisdom.",
+                    author: "Oprah Winfrey",
+                    category: "wisdom"
+                }
+            ],
+            purpose: [
+                {
+                    text: "The two most important days in your life are the day you are born and the day you find out why.",
+                    author: "Mark Twain",
+                    category: "purpose"
+                },
+                {
+                    text: "Your time is limited, so don't waste it living someone else's life.",
+                    author: "Steve Jobs",
+                    category: "purpose"
+                }
+            ],
+            challenges: [
+                {
+                    text: "Life is not about waiting for the storm to pass, it's about learning to dance in the rain.",
+                    author: "Vivian Greene",
+                    category: "challenges"
+                },
+                {
+                    text: "When we are no longer able to change a situation, we are challenged to change ourselves.",
+                    author: "Viktor Frankl",
+                    category: "challenges"
+                }
+            ],
+            happiness: [
+                {
+                    text: "Happiness is not something ready made. It comes from your own actions.",
+                    author: "Dalai Lama",
+                    category: "happiness"
+                },
+                {
+                    text: "The purpose of our lives is to be happy.",
+                    author: "Dalai Lama",
+                    category: "happiness"
+                }
+            ]
+        };
+
+        // Love quotes data
+        const loveQuotes = {
+            all: [
+                {
+                    text: "The best thing to hold onto in life is each other.",
+                    author: "Audrey Hepburn",
+                    category: "romance"
+                },
+                {
+                    text: "Love is composed of a single soul inhabiting two bodies.",
+                    author: "Aristotle",
+                    category: "romance"
+                },
+                {
+                    text: "To love and be loved is to feel the sun from both sides.",
+                    author: "David Viscott",
+                    category: "romance"
+                },
+                {
+                    text: "Family is not an important thing. It's everything.",
+                    author: "Michael J. Fox",
+                    category: "family"
+                },
+                {
+                    text: "A friend is what the heart needs all the time.",
+                    author: "Henry Van Dyke",
+                    category: "friendship"
+                }
+            ],
+            romance: [
+                {
+                    text: "You know you're in love when you can't fall asleep because reality is finally better than your dreams.",
+                    author: "Dr. Seuss",
+                    category: "romance"
+                },
+                {
+                    text: "The best love is the kind that awakens the soul and makes us reach for more, that plants a fire in our hearts and brings peace to our minds.",
+                    author: "Nicholas Sparks",
+                    category: "romance"
+                }
+            ],
+            family: [
+                {
+                    text: "Family is where life begins and love never ends.",
+                    author: "Unknown",
+                    category: "family"
+                },
+                {
+                    text: "The love of a family is life's greatest blessing.",
+                    author: "Unknown",
+                    category: "family"
+                }
+            ],
+            friendship: [
+                {
+                    text: "A real friend is one who walks in when the rest of the world walks out.",
+                    author: "Walter Winchell",
+                    category: "friendship"
+                },
+                {
+                    text: "Friendship is born at that moment when one person says to another, 'What! You too? I thought I was the only one.'",
+                    author: "C.S. Lewis",
+                    category: "friendship"
+                }
+            ],
+            "self-love": [
+                {
+                    text: "To fall in love with yourself is the first secret to happiness.",
+                    author: "Robert Morley",
+                    category: "self-love"
+                },
+                {
+                    text: "Love yourself first and everything else falls into line.",
+                    author: "Lucille Ball",
+                    category: "self-love"
+                }
+            ]
+        };
+
         // DOM elements
         const themeToggle = document.getElementById('themeToggle');
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -4219,6 +2548,8 @@
         const searchLifeQuoteBtn = document.getElementById('searchLifeQuoteBtn');
         const loveQuoteSearch = document.getElementById('loveQuoteSearch');
         const searchLoveQuoteBtn = document.getElementById('searchLoveQuoteBtn');
+        const ebookSearch = document.getElementById('ebookSearch');
+        const searchEbookBtn = document.getElementById('searchEbookBtn');
         const likeQuoteBtn = document.getElementById('likeQuote');
         const bookmarkQuoteBtn = document.getElementById('bookmarkQuote');
         const shareQuoteBtn = document.getElementById('shareQuote');
@@ -4238,6 +2569,27 @@
         const quoteText = document.querySelector('.quote-text');
         const quoteAuthor = document.querySelector('.quote-author');
         const quoteDots = document.querySelectorAll('.quote-dot');
+        const ebooksContainer = document.getElementById('ebooksContainer');
+        const userEbooksGrid = document.getElementById('userEbooksGrid');
+        const noEbooksMessage = document.getElementById('noEbooksMessage');
+        const totalEbooks = document.getElementById('totalEbooks');
+        const readingTime = document.getElementById('readingTime');
+        const savedQuotes = document.getElementById('savedQuotes');
+        const supportForm = document.getElementById('supportForm');
+        const copyButtons = document.querySelectorAll('.copy-btn');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const videoCards = document.querySelectorAll('.video-card');
+
+        // User data
+        let userEbooks = JSON.parse(localStorage.getItem('userEbooks')) || [];
+        let userStats = JSON.parse(localStorage.getItem('userStats')) || {
+            ebooksRead: 0,
+            quotesSaved: 0,
+            readingTime: 0,
+            achievements: []
+        };
+        let likedQuotes = JSON.parse(localStorage.getItem('likedQuotes')) || [];
+        let bookmarkedQuotes = JSON.parse(localStorage.getItem('bookmarkedQuotes')) || [];
 
         // Theme toggle functionality
         themeToggle.addEventListener('click', function() {
@@ -4404,9 +2756,27 @@
             this.classList.toggle('active');
             if (this.classList.contains('active')) {
                 this.innerHTML = '<i class="fas fa-heart"></i>';
+                likedQuotes.push({
+                    text: quoteText.textContent,
+                    author: quoteAuthor.textContent,
+                    date: new Date().toISOString()
+                });
+                userStats.quotesSaved = likedQuotes.length;
+                localStorage.setItem('likedQuotes', JSON.stringify(likedQuotes));
+                localStorage.setItem('userStats', JSON.stringify(userStats));
+                updateUserStats();
                 showNotification('Quote added to favorites!', 'success');
             } else {
                 this.innerHTML = '<i class="far fa-heart"></i>';
+                // Remove from liked quotes
+                const index = likedQuotes.findIndex(q => q.text === quoteText.textContent);
+                if (index !== -1) {
+                    likedQuotes.splice(index, 1);
+                    userStats.quotesSaved = likedQuotes.length;
+                    localStorage.setItem('likedQuotes', JSON.stringify(likedQuotes));
+                    localStorage.setItem('userStats', JSON.stringify(userStats));
+                    updateUserStats();
+                }
                 showNotification('Quote removed from favorites', 'info');
             }
         });
@@ -4415,9 +2785,21 @@
             this.classList.toggle('active');
             if (this.classList.contains('active')) {
                 this.innerHTML = '<i class="fas fa-bookmark"></i>';
+                bookmarkedQuotes.push({
+                    text: quoteText.textContent,
+                    author: quoteAuthor.textContent,
+                    date: new Date().toISOString()
+                });
+                localStorage.setItem('bookmarkedQuotes', JSON.stringify(bookmarkedQuotes));
                 showNotification('Quote bookmarked!', 'success');
             } else {
                 this.innerHTML = '<i class="far fa-bookmark"></i>';
+                // Remove from bookmarked quotes
+                const index = bookmarkedQuotes.findIndex(q => q.text === quoteText.textContent);
+                if (index !== -1) {
+                    bookmarkedQuotes.splice(index, 1);
+                    localStorage.setItem('bookmarkedQuotes', JSON.stringify(bookmarkedQuotes));
+                }
                 showNotification('Quote removed from bookmarks', 'info');
             }
         });
@@ -4448,9 +2830,27 @@
             this.classList.toggle('active');
             if (this.classList.contains('active')) {
                 this.innerHTML = '<i class="fas fa-heart"></i>';
+                likedQuotes.push({
+                    text: quoteText.textContent,
+                    author: quoteAuthor.textContent,
+                    date: new Date().toISOString()
+                });
+                userStats.quotesSaved = likedQuotes.length;
+                localStorage.setItem('likedQuotes', JSON.stringify(likedQuotes));
+                localStorage.setItem('userStats', JSON.stringify(userStats));
+                updateUserStats();
                 showNotification('Quote added to favorites!', 'success');
             } else {
                 this.innerHTML = '<i class="far fa-heart"></i>';
+                // Remove from liked quotes
+                const index = likedQuotes.findIndex(q => q.text === quoteText.textContent);
+                if (index !== -1) {
+                    likedQuotes.splice(index, 1);
+                    userStats.quotesSaved = likedQuotes.length;
+                    localStorage.setItem('likedQuotes', JSON.stringify(likedQuotes));
+                    localStorage.setItem('userStats', JSON.stringify(userStats));
+                    updateUserStats();
+                }
                 showNotification('Quote removed from favorites', 'info');
             }
         });
@@ -4459,9 +2859,21 @@
             this.classList.toggle('active');
             if (this.classList.contains('active')) {
                 this.innerHTML = '<i class="fas fa-bookmark"></i>';
+                bookmarkedQuotes.push({
+                    text: quoteText.textContent,
+                    author: quoteAuthor.textContent,
+                    date: new Date().toISOString()
+                });
+                localStorage.setItem('bookmarkedQuotes', JSON.stringify(bookmarkedQuotes));
                 showNotification('Quote bookmarked!', 'success');
             } else {
                 this.innerHTML = '<i class="far fa-bookmark"></i>';
+                // Remove from bookmarked quotes
+                const index = bookmarkedQuotes.findIndex(q => q.text === quoteText.textContent);
+                if (index !== -1) {
+                    bookmarkedQuotes.splice(index, 1);
+                    localStorage.setItem('bookmarkedQuotes', JSON.stringify(bookmarkedQuotes));
+                }
                 showNotification('Quote removed from bookmarks', 'info');
             }
         });
@@ -4492,9 +2904,27 @@
             this.classList.toggle('active');
             if (this.classList.contains('active')) {
                 this.innerHTML = '<i class="fas fa-heart"></i>';
+                likedQuotes.push({
+                    text: quoteText.textContent,
+                    author: quoteAuthor.textContent,
+                    date: new Date().toISOString()
+                });
+                userStats.quotesSaved = likedQuotes.length;
+                localStorage.setItem('likedQuotes', JSON.stringify(likedQuotes));
+                localStorage.setItem('userStats', JSON.stringify(userStats));
+                updateUserStats();
                 showNotification('Quote added to favorites!', 'success');
             } else {
                 this.innerHTML = '<i class="far fa-heart"></i>';
+                // Remove from liked quotes
+                const index = likedQuotes.findIndex(q => q.text === quoteText.textContent);
+                if (index !== -1) {
+                    likedQuotes.splice(index, 1);
+                    userStats.quotesSaved = likedQuotes.length;
+                    localStorage.setItem('likedQuotes', JSON.stringify(likedQuotes));
+                    localStorage.setItem('userStats', JSON.stringify(userStats));
+                    updateUserStats();
+                }
                 showNotification('Quote removed from favorites', 'info');
             }
         });
@@ -4503,9 +2933,21 @@
             this.classList.toggle('active');
             if (this.classList.contains('active')) {
                 this.innerHTML = '<i class="fas fa-bookmark"></i>';
+                bookmarkedQuotes.push({
+                    text: quoteText.textContent,
+                    author: quoteAuthor.textContent,
+                    date: new Date().toISOString()
+                });
+                localStorage.setItem('bookmarkedQuotes', JSON.stringify(bookmarkedQuotes));
                 showNotification('Quote bookmarked!', 'success');
             } else {
                 this.innerHTML = '<i class="far fa-bookmark"></i>';
+                // Remove from bookmarked quotes
+                const index = bookmarkedQuotes.findIndex(q => q.text === quoteText.textContent);
+                if (index !== -1) {
+                    bookmarkedQuotes.splice(index, 1);
+                    localStorage.setItem('bookmarkedQuotes', JSON.stringify(bookmarkedQuotes));
+                }
                 showNotification('Quote removed from bookmarks', 'info');
             }
         });
@@ -4553,6 +2995,13 @@
             }
         });
 
+        searchEbookBtn.addEventListener('click', () => {
+            const query = ebookSearch.value;
+            if (query) {
+                showNotification(`Searching for: ${query}`, 'info');
+            }
+        });
+
         // Load more quotes buttons
         loadMoreQuotes.addEventListener('click', () => {
             showNotification("Loading more inspirational quotes...", "info");
@@ -4587,6 +3036,215 @@
             });
         }, 8000);
 
+        // Initialize ebooks
+        function initializeEbooks() {
+            displayEbooks(ebooks);
+            displayUserEbooks();
+            updateUserStats();
+        }
+
+        // Display ebooks in the grid
+        function displayEbooks(ebooksToDisplay) {
+            ebooksContainer.innerHTML = '';
+            
+            if (ebooksToDisplay.length === 0) {
+                ebooksContainer.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: var(--text-dark);">
+                        <i class="fas fa-book-open" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                        <h3>No ebooks found in this category</h3>
+                        <p>Try selecting a different category to see more ebooks</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            ebooksToDisplay.forEach(ebook => {
+                const ebookCard = document.createElement('div');
+                ebookCard.className = 'ebook-card';
+                ebookCard.setAttribute('data-category', ebook.category);
+                
+                ebookCard.innerHTML = `
+                    <div class="ebook-cover-container">
+                        <img src="${ebook.cover}" alt="${ebook.title}" class="ebook-cover">
+                    </div>
+                    <div class="ebook-info">
+                        <h3 class="ebook-title">${ebook.title}</h3>
+                        <p class="ebook-description">${ebook.description}</p>
+                        <button class="btn download-ebook-btn" data-id="${ebook.id}">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                    </div>
+                `;
+                
+                ebooksContainer.appendChild(ebookCard);
+            });
+            
+            // Add event listeners to download buttons
+            document.querySelectorAll('.download-ebook-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const ebookId = this.getAttribute('data-id');
+                    const ebook = ebooks.find(e => e.id === parseInt(ebookId));
+                    if (ebook) {
+                        downloadEbook(ebook);
+                    }
+                });
+            });
+        }
+
+        // Display user's downloaded ebooks
+        function displayUserEbooks() {
+            userEbooksGrid.innerHTML = '';
+            
+            if (userEbooks.length === 0) {
+                noEbooksMessage.style.display = 'block';
+                return;
+            }
+            
+            noEbooksMessage.style.display = 'none';
+            
+            userEbooks.forEach(ebook => {
+                const ebookCard = document.createElement('div');
+                ebookCard.className = 'ebook-card';
+                
+                ebookCard.innerHTML = `
+                    <div class="ebook-cover-container">
+                        <img src="${ebook.cover}" alt="${ebook.title}" class="ebook-cover">
+                    </div>
+                    <div class="ebook-info">
+                        <h3 class="ebook-title">${ebook.title}</h3>
+                        <p class="ebook-description">${ebook.description}</p>
+                        <div style="display: flex; gap: 10px;">
+                            <button class="btn read-ebook-btn" data-id="${ebook.id}">
+                                <i class="fas fa-book-open"></i> Read
+                            </button>
+                            <button class="btn btn-outline download-again-btn" data-id="${ebook.id}">
+                                <i class="fas fa-download"></i> Download
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                userEbooksGrid.appendChild(ebookCard);
+            });
+            
+            // Add event listeners to user ebook buttons
+            document.querySelectorAll('.read-ebook-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const ebookId = this.getAttribute('data-id');
+                    const ebook = ebooks.find(e => e.id === parseInt(ebookId));
+                    if (ebook) {
+                        showNotification(`Opening "${ebook.title}"`, 'info');
+                    }
+                });
+            });
+            
+            document.querySelectorAll('.download-again-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const ebookId = this.getAttribute('data-id');
+                    const ebook = ebooks.find(e => e.id === parseInt(ebookId));
+                    if (ebook) {
+                        downloadEbook(ebook);
+                    }
+                });
+            });
+        }
+
+        // Download ebook
+        function downloadEbook(ebook) {
+            // Check if ebook is already in user's collection
+            const existingIndex = userEbooks.findIndex(e => e.id === ebook.id);
+            
+            if (existingIndex === -1) {
+                // Add to user's ebooks
+                userEbooks.push({
+                    id: ebook.id,
+                    title: ebook.title,
+                    category: ebook.category,
+                    cover: ebook.cover,
+                    description: ebook.description,
+                    downloadDate: new Date().toISOString()
+                });
+                
+                // Update user stats
+                userStats.ebooksRead = userEbooks.length;
+                
+                // Save to localStorage
+                localStorage.setItem('userEbooks', JSON.stringify(userEbooks));
+                localStorage.setItem('userStats', JSON.stringify(userStats));
+                
+                // Update display
+                displayUserEbooks();
+                updateUserStats();
+                
+                // Show achievement if applicable
+                if (userEbooks.length === 1) {
+                    showNotification("Achievement Unlocked: First Ebook!", "success");
+                    userStats.achievements.push("First Ebook");
+                    localStorage.setItem('userStats', JSON.stringify(userStats));
+                }
+            }
+            
+            // In a real implementation, this would trigger a file download
+            // For demo purposes, we'll show a success message
+            showNotification(`"${ebook.title}" has been downloaded successfully!`, "success");
+        }
+
+        // Update user stats
+        function updateUserStats() {
+            const hours = Math.floor(userStats.readingTime / 60);
+            const minutes = userStats.readingTime % 60;
+            
+            totalEbooks.textContent = userStats.ebooksRead;
+            readingTime.textContent = `${hours}h ${minutes}m`;
+            savedQuotes.textContent = userStats.quotesSaved;
+        }
+
+        // Support form submission
+        supportForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            showNotification('Your message has been sent successfully! We will get back to you soon.', 'success');
+            this.reset();
+        });
+
+        // Copy wallet address
+        copyButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const textToCopy = this.getAttribute('data-text');
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    const originalText = this.textContent;
+                    this.textContent = 'Copied!';
+                    this.classList.add('copied');
+                    
+                    setTimeout(() => {
+                        this.textContent = originalText;
+                        this.classList.remove('copied');
+                    }, 2000);
+                    
+                    showNotification('Address copied to clipboard!', 'success');
+                });
+            });
+        });
+
+        // Video filters
+        filterBtns.forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active button
+                filterBtns.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                const category = button.getAttribute('data-category');
+                
+                // Filter videos
+                videoCards.forEach(card => {
+                    if (category === 'all' || card.getAttribute('data-category') === category) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
         // Show notification
         function showNotification(message, type) {
             // Create notification element
@@ -4616,6 +3274,9 @@
 
         // Set home as active section by default
         showSection('home');
+        
+        // Initialize ebooks
+        initializeEbooks();
     </script>
 </body>
 </html>
