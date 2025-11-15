@@ -375,74 +375,6 @@
             100% { transform: translateY(-100vh) rotate(360deg); }
         }
 
-        /* Footer */
-        .footer {
-            width: 100%;
-            display: flex;
-            justify-content: space-around;
-            padding: 20px 0;
-            background: rgba(255, 184, 0, 0.1);
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            border-radius: 25px 25px 0 0;
-            box-shadow: 0 -5px 20px rgba(255, 152, 0, 0.2);
-            z-index: 999;
-            backdrop-filter: blur(10px);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .footer-btn {
-            background: #fff;
-            color: var(--primary-color);
-            border: none;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            font-size: 1.5em;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 15px rgba(34, 34, 34, 0.15);
-            transition: all 0.3s;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .footer-btn:hover {
-            background: var(--primary-color);
-            color: #fff;
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(255, 152, 0, 0.4);
-        }
-
-        .footer-btn.active {
-            background: var(--primary-color);
-            color: #fff;
-        }
-
-        .tooltip {
-            position: absolute;
-            bottom: 70px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #333;
-            color: #fff;
-            padding: 8px 15px;
-            border-radius: 8px;
-            font-size: 0.9em;
-            white-space: nowrap;
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.3s;
-            font-weight: 600;
-        }
-
-        .footer-btn:hover .tooltip {
-            opacity: 1;
-            bottom: 75px;
-        }
-
         /* Notification */
         .notification {
             position: fixed;
@@ -540,12 +472,6 @@
             .container {
                 padding: 25px 20px;
                 margin: 15px 0 100px 0;
-            }
-
-            .footer-btn {
-                width: 50px;
-                height: 50px;
-                font-size: 1.3em;
             }
         }
 
@@ -1539,6 +1465,50 @@
             opacity: 0.1;
         }
         
+        /* Stats Panel */
+        .stats-panel {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+            background: var(--card-bg-dark);
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            min-width: 150px;
+            transition: all 0.3s ease;
+        }
+        
+        body.light .stat-item {
+            background: var(--card-bg-light);
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-8px);
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+        
+        body.light .stat-label {
+            color: var(--text-light);
+        }
+        
         /* Responsive Styles */
         @media (max-width: 768px) {
             .nav-menu {
@@ -1603,6 +1573,19 @@
             .quote-text {
                 font-size: 1.3rem;
             }
+            
+            .stats-panel {
+                gap: 20px;
+            }
+            
+            .stat-item {
+                min-width: 120px;
+                padding: 20px;
+            }
+            
+            .stat-value {
+                font-size: 2rem;
+            }
         }
         
         @media (max-width: 576px) {
@@ -1628,6 +1611,16 @@
             
             .quote-text {
                 font-size: 1.2rem;
+            }
+            
+            .stats-panel {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .stat-item {
+                width: 100%;
+                max-width: 200px;
             }
         }
     </style>
@@ -1932,7 +1925,7 @@
                 </button>
             </div>
             
-            <div class="ebook-categories">
+            <div class="quote-category">
                 <button class="quote-category-btn active" data-category="all">All Books</button>
                 <button class="quote-category-btn" data-category="life">
                     <i class="fas fa-heartbeat"></i> Life
@@ -2188,30 +2181,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <div class="footer">
-        <button class="footer-btn" data-section="home">
-            <i class="fas fa-home"></i>
-            <span class="tooltip">Home</span>
-        </button>
-        <button class="footer-btn" data-section="motivation">
-            <i class="fas fa-bolt"></i>
-            <span class="tooltip">Motivation</span>
-        </button>
-        <button class="footer-btn" data-section="life-quotes">
-            <i class="fas fa-heartbeat"></i>
-            <span class="tooltip">Life Quotes</span>
-        </button>
-        <button class="footer-btn" data-section="love-quotes">
-            <i class="fas fa-heart"></i>
-            <span class="tooltip">Love Quotes</span>
-        </button>
-        <button class="footer-btn" data-section="ebooks">
-            <i class="fas fa-book"></i>
-            <span class="tooltip">E-Books</span>
-        </button>
-    </div>
-
     <!-- Particles -->
     <div class="particles" id="particles"></div>
 
@@ -2228,7 +2197,7 @@
                 pages: 284,
                 rating: 4.7,
                 downloads: 12500,
-                file: "the-art-of-living-mindfully.pdf",
+                file: "1.pdf",
                 badge: "Bestseller"
             },
             {
@@ -2241,7 +2210,7 @@
                 pages: 320,
                 rating: 4.9,
                 downloads: 18750,
-                file: "productivity-unleashed.pdf",
+                file: "2.pdf",
                 badge: "New Release"
             },
             {
@@ -2254,7 +2223,7 @@
                 pages: 275,
                 rating: 4.6,
                 downloads: 9320,
-                file: "the-motivation-code.pdf",
+                file: "3.pdf",
                 badge: "Popular"
             },
             {
@@ -2267,7 +2236,7 @@
                 pages: 312,
                 rating: 4.5,
                 downloads: 15600,
-                file: "love-in-the-modern-age.pdf",
+                file: "4.pdf",
                 badge: "Reader's Choice"
             },
             {
@@ -2280,7 +2249,7 @@
                 pages: 368,
                 rating: 4.8,
                 downloads: 21000,
-                file: "startup-success-blueprint.pdf",
+                file: "5.pdf",
                 badge: "Bestseller"
             },
             {
@@ -2293,7 +2262,7 @@
                 pages: 295,
                 rating: 4.7,
                 downloads: 14300,
-                file: "the-mindful-entrepreneur.pdf",
+                file: "6.pdf",
                 badge: "Editor's Pick"
             }
         ];
@@ -2540,7 +2509,6 @@
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const navMenu = document.getElementById('navMenu');
         const navLinks = document.querySelectorAll('.nav-link');
-        const footerBtns = document.querySelectorAll('.footer-btn');
         const particlesContainer = document.getElementById('particles');
         const quoteSearch = document.getElementById('quoteSearch');
         const searchQuoteBtn = document.getElementById('searchQuoteBtn');
@@ -2632,14 +2600,6 @@
                 }
             });
             
-            // Update active footer button
-            footerBtns.forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.getAttribute('data-section') === sectionId) {
-                    btn.classList.add('active');
-                }
-            });
-            
             // Close mobile menu if open
             navMenu.classList.remove('active');
             
@@ -2651,14 +2611,6 @@
         navLinks.forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
-                const sectionId = this.getAttribute('data-section');
-                showSection(sectionId);
-            });
-        });
-
-        // Add click event to footer buttons
-        footerBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
                 const sectionId = this.getAttribute('data-section');
                 showSection(sectionId);
             });
@@ -3070,24 +3022,13 @@
                     <div class="ebook-info">
                         <h3 class="ebook-title">${ebook.title}</h3>
                         <p class="ebook-description">${ebook.description}</p>
-                        <button class="btn download-ebook-btn" data-id="${ebook.id}">
+                        <a href="${ebook.file}" class="btn download-ebook-btn" download="${ebook.title}.pdf">
                             <i class="fas fa-download"></i> Download
-                        </button>
+                        </a>
                     </div>
                 `;
                 
                 ebooksContainer.appendChild(ebookCard);
-            });
-            
-            // Add event listeners to download buttons
-            document.querySelectorAll('.download-ebook-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const ebookId = this.getAttribute('data-id');
-                    const ebook = ebooks.find(e => e.id === parseInt(ebookId));
-                    if (ebook) {
-                        downloadEbook(ebook);
-                    }
-                });
             });
         }
 
@@ -3114,38 +3055,17 @@
                         <h3 class="ebook-title">${ebook.title}</h3>
                         <p class="ebook-description">${ebook.description}</p>
                         <div style="display: flex; gap: 10px;">
-                            <button class="btn read-ebook-btn" data-id="${ebook.id}">
+                            <a href="${ebook.file}" class="btn read-ebook-btn" target="_blank">
                                 <i class="fas fa-book-open"></i> Read
-                            </button>
-                            <button class="btn btn-outline download-again-btn" data-id="${ebook.id}">
+                            </a>
+                            <a href="${ebook.file}" class="btn btn-outline download-again-btn" download="${ebook.title}.pdf">
                                 <i class="fas fa-download"></i> Download
-                            </button>
+                            </a>
                         </div>
                     </div>
                 `;
                 
                 userEbooksGrid.appendChild(ebookCard);
-            });
-            
-            // Add event listeners to user ebook buttons
-            document.querySelectorAll('.read-ebook-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const ebookId = this.getAttribute('data-id');
-                    const ebook = ebooks.find(e => e.id === parseInt(ebookId));
-                    if (ebook) {
-                        showNotification(`Opening "${ebook.title}"`, 'info');
-                    }
-                });
-            });
-            
-            document.querySelectorAll('.download-again-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const ebookId = this.getAttribute('data-id');
-                    const ebook = ebooks.find(e => e.id === parseInt(ebookId));
-                    if (ebook) {
-                        downloadEbook(ebook);
-                    }
-                });
             });
         }
 
