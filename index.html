@@ -32,6 +32,10 @@
             padding: 0;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Montserrat', Arial, sans-serif;
             min-height: 100vh;
@@ -166,6 +170,21 @@
             transform: rotate(15deg);
         }
 
+        /* Mobile Menu Button - FIXED */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        body.light .mobile-menu-btn {
+            color: var(--text-light);
+        }
+
         /* Marquee */
         .marquee {
             background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
@@ -204,7 +223,7 @@
         section {
             display: none;
             animation: fadeIn 0.5s ease;
-            padding: 80px 0;
+            padding: 100px 0 80px;
             width: 100%;
         }
 
@@ -295,7 +314,7 @@
 
         /* Hero Section */
         #home {
-            padding-top: 100px;
+            padding-top: 120px;
             text-align: center;
         }
 
@@ -341,6 +360,11 @@
             position: relative;
             border: 1px solid rgba(255, 152, 0, 0.2);
             margin-bottom: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .quote-card:hover {
+            transform: translateY(-5px);
         }
 
         .quote-text {
@@ -368,6 +392,28 @@
             justify-content: center;
             gap: 15px;
             margin-top: 30px;
+        }
+
+        /* Quote Navigation Dots */
+        .quote-nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .quote-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 152, 0, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quote-dot.active, .quote-dot:hover {
+            background: var(--primary-color);
+            transform: scale(1.2);
         }
 
         /* E-book Cards */
@@ -674,10 +720,56 @@
             }
             
             .nav-menu {
-                display: none;
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: var(--card-bg-dark);
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 100px 30px 30px;
+                transition: right 0.3s ease;
+                box-shadow: -5px 0 25px rgba(0, 0, 0, 0.2);
+                z-index: 999;
+            }
+            
+            body.light .nav-menu {
+                background: var(--card-bg-light);
+            }
+            
+            .nav-menu.active {
+                right: 0;
+            }
+            
+            .nav-item {
+                margin: 0 0 25px 0;
+                width: 100%;
+            }
+            
+            .nav-link {
+                display: block;
+                padding: 10px 0;
+                width: 100%;
             }
             
             .mobile-menu-btn {
+                display: block;
+            }
+
+            /* Mobile Menu Overlay */
+            .mobile-menu-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 998;
+            }
+            
+            .mobile-menu-overlay.active {
                 display: block;
             }
         }
@@ -749,53 +841,6 @@
             
             .quote-text {
                 font-size: 1.3rem;
-            }
-        }
-
-        /* Mobile Menu */
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--text-dark);
-            cursor: pointer;
-        }
-
-        body.light .mobile-menu-btn {
-            color: var(--text-light);
-        }
-
-        @media (max-width: 992px) {
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .nav-menu {
-                position: fixed;
-                top: var(--header-height);
-                left: -100%;
-                width: 85%;
-                height: calc(100vh - var(--header-height));
-                background: var(--card-bg-dark);
-                flex-direction: column;
-                align-items: center;
-                padding-top: 40px;
-                transition: all 0.3s ease;
-                box-shadow: 5px 0 25px rgba(0, 0, 0, 0.1);
-                z-index: 999;
-            }
-            
-            body.light .nav-menu {
-                background: var(--card-bg-light);
-            }
-            
-            .nav-menu.active {
-                left: 0;
-            }
-            
-            .nav-item {
-                margin: 0 0 25px 0;
             }
         }
 
@@ -905,6 +950,26 @@
         .notification.info {
             background: var(--info-color);
         }
+
+        /* Loading Spinner */
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .loading-spinner.active {
+            display: block;
+        }
+
+        .fa-spinner {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
@@ -938,6 +1003,9 @@
         </div>
     </header>
 
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
     <!-- Marquee -->
     <div class="marquee">
         <div class="marquee-text">
@@ -970,21 +1038,34 @@
                         <i class="fas fa-quote-left"></i> Today's Inspiration <i class="fas fa-quote-right"></i>
                     </h3>
                     
-                    <div class="quote-card">
-                        <p class="quote-text">"The only way to do great work is to love what you do. If you haven't found it yet, keep looking. Don't settle."</p>
-                        <p class="quote-author">— Steve Jobs</p>
+                    <div class="quote-card" id="dailyQuoteCard">
+                        <p class="quote-text" id="dailyQuoteText">"The only way to do great work is to love what you do. If you haven't found it yet, keep looking. Don't settle."</p>
+                        <p class="quote-author" id="dailyQuoteAuthor">— Steve Jobs</p>
                         
                         <div class="quote-actions">
-                            <button class="btn like-quote">
+                            <button class="btn like-quote" data-quote-id="1">
                                 <i class="fas fa-heart"></i> Like
                             </button>
-                            <button class="btn btn-outline share-quote">
+                            <button class="btn btn-outline share-quote" data-quote-id="1">
                                 <i class="fas fa-share-alt"></i> Share
                             </button>
-                            <button class="btn btn-outline save-quote">
+                            <button class="btn btn-outline save-quote" data-quote-id="1">
                                 <i class="fas fa-bookmark"></i> Save
                             </button>
                         </div>
+                    </div>
+                    
+                    <div class="quote-nav" id="dailyQuoteNav">
+                        <div class="quote-dot active" data-index="0"></div>
+                        <div class="quote-dot" data-index="1"></div>
+                        <div class="quote-dot" data-index="2"></div>
+                        <div class="quote-dot" data-index="3"></div>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 30px;">
+                        <button class="btn btn-outline" id="refreshDailyQuote">
+                            <i class="fas fa-sync-alt"></i> New Quote
+                        </button>
                     </div>
                 </div>
             </div>
@@ -1005,33 +1086,75 @@
                     </button>
                 </div>
 
-                <div class="category-buttons">
+                <div class="category-buttons" id="motivationCategories">
                     <button class="category-btn active" data-category="all">All Quotes</button>
                     <button class="category-btn" data-category="success">Success</button>
                     <button class="category-btn" data-category="perseverance">Perseverance</button>
                     <button class="category-btn" data-category="mindset">Mindset</button>
                     <button class="category-btn" data-category="inspiration">Inspiration</button>
+                    <button class="category-btn" data-category="growth">Growth</button>
                 </div>
 
-                <div class="quote-card">
-                    <p class="quote-text">"Success is not final, failure is not fatal: it is the courage to continue that counts."</p>
-                    <p class="quote-author">— Winston Churchill</p>
-                    
-                    <div class="quote-actions">
-                        <button class="btn like-quote">
-                            <i class="fas fa-heart"></i> Like
-                        </button>
-                        <button class="btn btn-outline share-quote">
-                            <i class="fas fa-share-alt"></i> Share
-                        </button>
-                        <button class="btn btn-outline save-quote">
-                            <i class="fas fa-bookmark"></i> Save
-                        </button>
+                <div class="loading-spinner" id="motivationLoading">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--primary-color);"></i>
+                    <p style="margin-top: 15px; color: var(--text-dark);">Loading quotes...</p>
+                </div>
+
+                <div id="motivationQuotesContainer">
+                    <div class="quote-card" data-category="success">
+                        <p class="quote-text">"Success is not final, failure is not fatal: it is the courage to continue that counts."</p>
+                        <p class="quote-author">— Winston Churchill</p>
+                        
+                        <div class="quote-actions">
+                            <button class="btn like-quote" data-quote-id="2">
+                                <i class="fas fa-heart"></i> Like
+                            </button>
+                            <button class="btn btn-outline share-quote" data-quote-id="2">
+                                <i class="fas fa-share-alt"></i> Share
+                            </button>
+                            <button class="btn btn-outline save-quote" data-quote-id="2">
+                                <i class="fas fa-bookmark"></i> Save
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="quote-card" data-category="perseverance">
+                        <p class="quote-text">"It does not matter how slowly you go as long as you do not stop."</p>
+                        <p class="quote-author">— Confucius</p>
+                        
+                        <div class="quote-actions">
+                            <button class="btn like-quote" data-quote-id="3">
+                                <i class="fas fa-heart"></i> Like
+                            </button>
+                            <button class="btn btn-outline share-quote" data-quote-id="3">
+                                <i class="fas fa-share-alt"></i> Share
+                            </button>
+                            <button class="btn btn-outline save-quote" data-quote-id="3">
+                                <i class="fas fa-bookmark"></i> Save
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="quote-card" data-category="mindset">
+                        <p class="quote-text">"Whether you think you can or you think you can't, you're right."</p>
+                        <p class="quote-author">— Henry Ford</p>
+                        
+                        <div class="quote-actions">
+                            <button class="btn like-quote" data-quote-id="4">
+                                <i class="fas fa-heart"></i> Like
+                            </button>
+                            <button class="btn btn-outline share-quote" data-quote-id="4">
+                                <i class="fas fa-share-alt"></i> Share
+                            </button>
+                            <button class="btn btn-outline save-quote" data-quote-id="4">
+                                <i class="fas fa-bookmark"></i> Save
+                            </button>
+                        </div>
                     </div>
                 </div>
 
                 <div style="text-align: center; margin-top: 40px;">
-                    <button class="btn load-more-quotes">
+                    <button class="btn" id="loadMoreMotivationQuotes">
                         <i class="fas fa-sync-alt"></i> Load More Quotes
                     </button>
                 </div>
@@ -1053,33 +1176,87 @@
                     </button>
                 </div>
 
-                <div class="category-buttons">
+                <div class="category-buttons" id="lifeCategories">
                     <button class="category-btn active" data-category="all">All Life Quotes</button>
                     <button class="category-btn" data-category="wisdom">Wisdom</button>
                     <button class="category-btn" data-category="purpose">Purpose</button>
                     <button class="category-btn" data-category="challenges">Challenges</button>
                     <button class="category-btn" data-category="happiness">Happiness</button>
+                    <button class="category-btn" data-category="time">Time</button>
                 </div>
 
-                <div class="quote-card">
-                    <p class="quote-text">"Life is 10% what happens to you and 90% how you react to it."</p>
-                    <p class="quote-author">— Charles R. Swindoll</p>
-                    
-                    <div class="quote-actions">
-                        <button class="btn like-quote">
-                            <i class="fas fa-heart"></i> Like
-                        </button>
-                        <button class="btn btn-outline share-quote">
-                            <i class="fas fa-share-alt"></i> Share
-                        </button>
-                        <button class="btn btn-outline save-quote">
-                            <i class="fas fa-bookmark"></i> Save
-                        </button>
+                <div id="lifeQuotesContainer">
+                    <div class="quote-card" data-category="wisdom">
+                        <p class="quote-text">"Life is 10% what happens to you and 90% how you react to it."</p>
+                        <p class="quote-author">— Charles R. Swindoll</p>
+                        
+                        <div class="quote-actions">
+                            <button class="btn like-quote" data-quote-id="5">
+                                <i class="fas fa-heart"></i> Like
+                            </button>
+                            <button class="btn btn-outline share-quote" data-quote-id="5">
+                                <i class="fas fa-share-alt"></i> Share
+                            </button>
+                            <button class="btn btn-outline save-quote" data-quote-id="5">
+                                <i class="fas fa-bookmark"></i> Save
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="quote-card" data-category="purpose">
+                        <p class="quote-text">"The purpose of our lives is to be happy."</p>
+                        <p class="quote-author">— Dalai Lama</p>
+                        
+                        <div class="quote-actions">
+                            <button class="btn like-quote" data-quote-id="6">
+                                <i class="fas fa-heart"></i> Like
+                            </button>
+                            <button class="btn btn-outline share-quote" data-quote-id="6">
+                                <i class="fas fa-share-alt"></i> Share
+                            </button>
+                            <button class="btn btn-outline save-quote" data-quote-id="6">
+                                <i class="fas fa-bookmark"></i> Save
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="quote-card" data-category="challenges">
+                        <p class="quote-text">"Life is not about waiting for the storm to pass, it's about learning to dance in the rain."</p>
+                        <p class="quote-author">— Vivian Greene</p>
+                        
+                        <div class="quote-actions">
+                            <button class="btn like-quote" data-quote-id="7">
+                                <i class="fas fa-heart"></i> Like
+                            </button>
+                            <button class="btn btn-outline share-quote" data-quote-id="7">
+                                <i class="fas fa-share-alt"></i> Share
+                            </button>
+                            <button class="btn btn-outline save-quote" data-quote-id="7">
+                                <i class="fas fa-bookmark"></i> Save
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="quote-card" data-category="time">
+                        <p class="quote-text">"The trouble is, you think you have time."</p>
+                        <p class="quote-author">— Buddha</p>
+                        
+                        <div class="quote-actions">
+                            <button class="btn like-quote" data-quote-id="8">
+                                <i class="fas fa-heart"></i> Like
+                            </button>
+                            <button class="btn btn-outline share-quote" data-quote-id="8">
+                                <i class="fas fa-share-alt"></i> Share
+                            </button>
+                            <button class="btn btn-outline save-quote" data-quote-id="8">
+                                <i class="fas fa-bookmark"></i> Save
+                            </button>
+                        </div>
                     </div>
                 </div>
 
                 <div style="text-align: center; margin-top: 40px;">
-                    <button class="btn load-more-quotes">
+                    <button class="btn" id="loadMoreLifeQuotes">
                         <i class="fas fa-sync-alt"></i> Load More Quotes
                     </button>
                 </div>
@@ -1101,33 +1278,87 @@
                     </button>
                 </div>
 
-                <div class="category-buttons">
+                <div class="category-buttons" id="loveCategories">
                     <button class="category-btn active" data-category="all">All Love Quotes</button>
                     <button class="category-btn" data-category="romance">Romance</button>
                     <button class="category-btn" data-category="family">Family</button>
                     <button class="category-btn" data-category="friendship">Friendship</button>
                     <button class="category-btn" data-category="self-love">Self-Love</button>
+                    <button class="category-btn" data-category="heartbreak">Heartbreak</button>
                 </div>
 
-                <div class="quote-card">
-                    <p class="quote-text">"The best thing to hold onto in life is each other."</p>
-                    <p class="quote-author">— Audrey Hepburn</p>
-                    
-                    <div class="quote-actions">
-                        <button class="btn like-quote">
-                            <i class="fas fa-heart"></i> Like
-                        </button>
-                        <button class="btn btn-outline share-quote">
-                            <i class="fas fa-share-alt"></i> Share
-                        </button>
-                        <button class="btn btn-outline save-quote">
-                            <i class="fas fa-bookmark"></i> Save
-                        </button>
+                <div id="loveQuotesContainer">
+                    <div class="quote-card" data-category="romance">
+                        <p class="quote-text">"The best thing to hold onto in life is each other."</p>
+                        <p class="quote-author">— Audrey Hepburn</p>
+                        
+                        <div class="quote-actions">
+                            <button class="btn like-quote" data-quote-id="9">
+                                <i class="fas fa-heart"></i> Like
+                            </button>
+                            <button class="btn btn-outline share-quote" data-quote-id="9">
+                                <i class="fas fa-share-alt"></i> Share
+                            </button>
+                            <button class="btn btn-outline save-quote" data-quote-id="9">
+                                <i class="fas fa-bookmark"></i> Save
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="quote-card" data-category="romance">
+                        <p class="quote-text">"You know you're in love when you can't fall asleep because reality is finally better than your dreams."</p>
+                        <p class="quote-author">— Dr. Seuss</p>
+                        
+                        <div class="quote-actions">
+                            <button class="btn like-quote" data-quote-id="10">
+                                <i class="fas fa-heart"></i> Like
+                            </button>
+                            <button class="btn btn-outline share-quote" data-quote-id="10">
+                                <i class="fas fa-share-alt"></i> Share
+                            </button>
+                            <button class="btn btn-outline save-quote" data-quote-id="10">
+                                <i class="fas fa-bookmark"></i> Save
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="quote-card" data-category="friendship">
+                        <p class="quote-text">"A real friend is one who walks in when the rest of the world walks out."</p>
+                        <p class="quote-author">— Walter Winchell</p>
+                        
+                        <div class="quote-actions">
+                            <button class="btn like-quote" data-quote-id="11">
+                                <i class="fas fa-heart"></i> Like
+                            </button>
+                            <button class="btn btn-outline share-quote" data-quote-id="11">
+                                <i class="fas fa-share-alt"></i> Share
+                            </button>
+                            <button class="btn btn-outline save-quote" data-quote-id="11">
+                                <i class="fas fa-bookmark"></i> Save
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="quote-card" data-category="self-love">
+                        <p class="quote-text">"To fall in love with yourself is the first secret to happiness."</p>
+                        <p class="quote-author">— Robert Morley</p>
+                        
+                        <div class="quote-actions">
+                            <button class="btn like-quote" data-quote-id="12">
+                                <i class="fas fa-heart"></i> Like
+                            </button>
+                            <button class="btn btn-outline share-quote" data-quote-id="12">
+                                <i class="fas fa-share-alt"></i> Share
+                            </button>
+                            <button class="btn btn-outline save-quote" data-quote-id="12">
+                                <i class="fas fa-bookmark"></i> Save
+                            </button>
+                        </div>
                     </div>
                 </div>
 
                 <div style="text-align: center; margin-top: 40px;">
-                    <button class="btn load-more-quotes">
+                    <button class="btn" id="loadMoreLoveQuotes">
                         <i class="fas fa-sync-alt"></i> Load More Quotes
                     </button>
                 </div>
@@ -1182,6 +1413,26 @@
                             </button>
                         </div>
                     </div>
+
+                    <div class="ebook-card">
+                        <div class="ebook-info">
+                            <h3 class="ebook-title">Courage</h3>
+                            <p class="ebook-description">The ability to do something that frightens one; bravery. Strength in the face of pain, grief, or danger.</p>
+                            <button class="btn read-story-btn" data-word="courage">
+                                <i class="fas fa-book"></i> Read Story
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="ebook-card">
+                        <div class="ebook-info">
+                            <h3 class="ebook-title">Discipline</h3>
+                            <p class="ebook-description">The practice of training people to obey rules or a code of behavior. Self-control and the ability to pursue what one thinks is right despite temptations to abandon it.</p>
+                            <button class="btn read-story-btn" data-word="discipline">
+                                <i class="fas fa-book"></i> Read Story
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1201,12 +1452,13 @@
                     </button>
                 </div>
 
-                <div class="category-buttons">
+                <div class="category-buttons" id="ebookCategories">
                     <button class="category-btn active" data-category="all">All Books</button>
                     <button class="category-btn" data-category="life">Life</button>
                     <button class="category-btn" data-category="productivity">Productivity</button>
                     <button class="category-btn" data-category="motivation">Motivation</button>
                     <button class="category-btn" data-category="business">Business</button>
+                    <button class="category-btn" data-category="love">Love</button>
                 </div>
 
                 <div class="ebooks-grid">
@@ -1301,6 +1553,52 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- E-book 5 -->
+                    <div class="ebook-card" data-category="love">
+                        <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                             alt="Love in Modern Age" class="ebook-cover">
+                        <div class="ebook-info">
+                            <h3 class="ebook-title">Love in the Modern Age</h3>
+                            <div class="ebook-meta">
+                                <span><i class="fas fa-star"></i> 4.5</span>
+                                <span><i class="fas fa-download"></i> 15.6K</span>
+                                <span><i class="fas fa-file-alt"></i> 312 pages</span>
+                            </div>
+                            <p class="ebook-description">Navigate the complexities of modern relationships with wisdom, emotional intelligence, and practical insights for lasting connections.</p>
+                            <div class="ebook-actions">
+                                <button class="btn download-ebook" data-id="5">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                                <button class="btn btn-outline preview-ebook" data-id="5">
+                                    <i class="fas fa-eye"></i> Preview
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- E-book 6 -->
+                    <div class="ebook-card" data-category="life">
+                        <img src="https://images.unsplash.com/photo-1551836026-d5c2e0c49bcd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                             alt="Mindful Entrepreneur" class="ebook-cover">
+                        <div class="ebook-info">
+                            <h3 class="ebook-title">The Mindful Entrepreneur</h3>
+                            <div class="ebook-meta">
+                                <span><i class="fas fa-star"></i> 4.7</span>
+                                <span><i class="fas fa-download"></i> 14.3K</span>
+                                <span><i class="fas fa-file-alt"></i> 295 pages</span>
+                            </div>
+                            <p class="ebook-description">Balance ambition with inner peace on your entrepreneurial journey to sustainable success and wellbeing.</p>
+                            <div class="ebook-actions">
+                                <button class="btn download-ebook" data-id="6">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                                <button class="btn btn-outline preview-ebook" data-id="6">
+                                    <i class="fas fa-eye"></i> Preview
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1352,12 +1650,13 @@
                     <p>Watch inspiring videos to boost your motivation and learn new strategies for success.</p>
                 </div>
 
-                <div class="category-buttons">
+                <div class="category-buttons" id="videoCategories">
                     <button class="category-btn active" data-category="all">All Videos</button>
                     <button class="category-btn" data-category="motivation">Motivation</button>
                     <button class="category-btn" data-category="life">Life Lessons</button>
                     <button class="category-btn" data-category="business">Business</button>
                     <button class="category-btn" data-category="productivity">Productivity</button>
+                    <button class="category-btn" data-category="love">Love & Family</button>
                 </div>
 
                 <div class="videos-grid">
@@ -1396,6 +1695,19 @@
                             <div style="display: flex; justify-content: space-between; color: var(--text-dark); opacity: 0.8; font-size: 0.9rem;">
                                 <span><i class="far fa-clock"></i> 18:35</span>
                                 <span><i class="fas fa-eye"></i> 32K</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="video-card" data-category="productivity">
+                        <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                             alt="Video Thumbnail" class="video-thumbnail">
+                        <div class="video-info">
+                            <h3 class="video-title">Productivity Hacks</h3>
+                            <p style="color: var(--text-dark); font-size: 0.95rem; margin-bottom: 15px;">Simple techniques to get more done in less time.</p>
+                            <div style="display: flex; justify-content: space-between; color: var(--text-dark); opacity: 0.8; font-size: 0.9rem;">
+                                <span><i class="far fa-clock"></i> 12:25</span>
+                                <span><i class="fas fa-eye"></i> 21K</span>
                             </div>
                         </div>
                     </div>
@@ -1576,7 +1888,159 @@
     </footer>
 
     <script>
-        // Data
+        // ====================
+        // DATA COLLECTIONS
+        // ====================
+
+        // Daily Quotes Data
+        const dailyQuotes = [
+            {
+                id: 1,
+                text: "The only way to do great work is to love what you do. If you haven't found it yet, keep looking. Don't settle.",
+                author: "Steve Jobs",
+                category: "success"
+            },
+            {
+                id: 2,
+                text: "Success is not final, failure is not fatal: it is the courage to continue that counts.",
+                author: "Winston Churchill",
+                category: "perseverance"
+            },
+            {
+                id: 3,
+                text: "Your time is limited, don't waste it living someone else's life.",
+                author: "Steve Jobs",
+                category: "life"
+            },
+            {
+                id: 4,
+                text: "The future belongs to those who believe in the beauty of their dreams.",
+                author: "Eleanor Roosevelt",
+                category: "inspiration"
+            }
+        ];
+
+        // Motivation Quotes Data
+        const motivationQuotes = [
+            {
+                id: 5,
+                text: "It does not matter how slowly you go as long as you do not stop.",
+                author: "Confucius",
+                category: "perseverance"
+            },
+            {
+                id: 6,
+                text: "Whether you think you can or you think you can't, you're right.",
+                author: "Henry Ford",
+                category: "mindset"
+            },
+            {
+                id: 7,
+                text: "The mind is everything. What you think you become.",
+                author: "Buddha",
+                category: "mindset"
+            },
+            {
+                id: 8,
+                text: "The best time to plant a tree was 20 years ago. The second best time is now.",
+                author: "Chinese Proverb",
+                category: "growth"
+            },
+            {
+                id: 9,
+                text: "Don't watch the clock; do what it does. Keep going.",
+                author: "Sam Levenson",
+                category: "perseverance"
+            },
+            {
+                id: 10,
+                text: "The only limit to our realization of tomorrow will be our doubts of today.",
+                author: "Franklin D. Roosevelt",
+                category: "inspiration"
+            }
+        ];
+
+        // Life Quotes Data
+        const lifeQuotes = [
+            {
+                id: 11,
+                text: "Life is 10% what happens to you and 90% how you react to it.",
+                author: "Charles R. Swindoll",
+                category: "wisdom"
+            },
+            {
+                id: 12,
+                text: "The purpose of our lives is to be happy.",
+                author: "Dalai Lama",
+                category: "happiness"
+            },
+            {
+                id: 13,
+                text: "Life is what happens when you're busy making other plans.",
+                author: "John Lennon",
+                category: "wisdom"
+            },
+            {
+                id: 14,
+                text: "Get busy living or get busy dying.",
+                author: "Stephen King",
+                category: "purpose"
+            },
+            {
+                id: 15,
+                text: "You have within you right now, everything you need to deal with whatever the world can throw at you.",
+                author: "Brian Tracy",
+                category: "challenges"
+            },
+            {
+                id: 16,
+                text: "The trouble is, you think you have time.",
+                author: "Buddha",
+                category: "time"
+            }
+        ];
+
+        // Love Quotes Data
+        const loveQuotes = [
+            {
+                id: 17,
+                text: "The best thing to hold onto in life is each other.",
+                author: "Audrey Hepburn",
+                category: "romance"
+            },
+            {
+                id: 18,
+                text: "You know you're in love when you can't fall asleep because reality is finally better than your dreams.",
+                author: "Dr. Seuss",
+                category: "romance"
+            },
+            {
+                id: 19,
+                text: "Love is composed of a single soul inhabiting two bodies.",
+                author: "Aristotle",
+                category: "romance"
+            },
+            {
+                id: 20,
+                text: "The best love is the kind that awakens the soul and makes us reach for more.",
+                author: "Nicholas Sparks",
+                category: "romance"
+            },
+            {
+                id: 21,
+                text: "A real friend is one who walks in when the rest of the world walks out.",
+                author: "Walter Winchell",
+                category: "friendship"
+            },
+            {
+                id: 22,
+                text: "To fall in love with yourself is the first secret to happiness.",
+                author: "Robert Morley",
+                category: "self-love"
+            }
+        ];
+
+        // Ebooks Data
         const ebooks = [
             {
                 id: 1,
@@ -1621,17 +2085,44 @@
                 downloads: 15200,
                 pages: 312,
                 intro: "The path from startup idea to successful business is filled with challenges. This book distills lessons from successful founders..."
+            },
+            {
+                id: 5,
+                title: "Love in the Modern Age",
+                category: "love",
+                cover: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                description: "Navigate the complexities of modern relationships with wisdom, emotional intelligence, and practical insights.",
+                rating: 4.5,
+                downloads: 15600,
+                pages: 312,
+                intro: "In an era of dating apps and fleeting connections, finding lasting love requires new skills and insights..."
+            },
+            {
+                id: 6,
+                title: "The Mindful Entrepreneur",
+                category: "life",
+                cover: "https://images.unsplash.com/photo-1551836026-d5c2e0c49bcd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                description: "Balance ambition with inner peace on your entrepreneurial journey to sustainable success.",
+                rating: 4.7,
+                downloads: 14300,
+                pages: 295,
+                intro: "Can you build a massively successful business without sacrificing your wellbeing? This book proves that the answer is yes..."
             }
         ];
 
-        // DOM Elements
+        // ====================
+        // DOM ELEMENTS
+        // ====================
         const themeToggle = document.getElementById('themeToggle');
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
         const navMenu = document.getElementById('navMenu');
         const navLinks = document.querySelectorAll('.nav-link');
         const sections = document.querySelectorAll('section');
         
-        // User data
+        // ====================
+        // STATE MANAGEMENT
+        // ====================
         let userEbooks = JSON.parse(localStorage.getItem('userEbooks')) || [];
         let userStats = JSON.parse(localStorage.getItem('userStats')) || {
             ebooksRead: 0,
@@ -1639,18 +2130,36 @@
             readingTime: 0
         };
         let savedQuotes = JSON.parse(localStorage.getItem('savedQuotes')) || [];
+        let currentDailyQuoteIndex = 0;
+        let motivationPage = 1;
+        let lifePage = 1;
+        let lovePage = 1;
 
-        // Initialize
+        // ====================
+        // INITIALIZATION
+        // ====================
         document.addEventListener('DOMContentLoaded', function() {
+            initializeTheme();
             updateUserStats();
             displayUserEbooks();
             setupEventListeners();
+            setupQuoteNavigation();
+            setupCategoryFiltering();
             
             // Set default section
             showSection('home');
         });
 
-        // Theme toggle
+        // ====================
+        // THEME MANAGEMENT
+        // ====================
+        function initializeTheme() {
+            if (localStorage.getItem('theme') === 'light') {
+                document.body.classList.add('light');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+        }
+
         themeToggle.addEventListener('click', function() {
             document.body.classList.toggle('light');
             if (document.body.classList.contains('light')) {
@@ -1662,18 +2171,21 @@
             }
         });
 
-        // Check saved theme
-        if (localStorage.getItem('theme') === 'light') {
-            document.body.classList.add('light');
-            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-        }
-
-        // Mobile menu toggle
+        // ====================
+        // NAVIGATION MANAGEMENT
+        // ====================
         mobileMenuBtn.addEventListener('click', function() {
             navMenu.classList.toggle('active');
+            mobileMenuOverlay.classList.toggle('active');
+            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : 'auto';
         });
 
-        // Section navigation
+        mobileMenuOverlay.addEventListener('click', function() {
+            navMenu.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
         function showSection(sectionId) {
             sections.forEach(section => {
                 section.classList.remove('active');
@@ -1688,7 +2200,11 @@
                 }
             });
             
+            // Close mobile menu
             navMenu.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            
             window.scrollTo(0, 0);
         }
 
@@ -1710,7 +2226,174 @@
             });
         });
 
-        // Update user stats
+        // ====================
+        // QUOTE SYSTEM
+        // ====================
+        function setupQuoteNavigation() {
+            // Daily quote navigation dots
+            document.querySelectorAll('#dailyQuoteNav .quote-dot').forEach((dot, index) => {
+                dot.addEventListener('click', function() {
+                    currentDailyQuoteIndex = index;
+                    updateDailyQuote();
+                    updateQuoteDots();
+                });
+            });
+
+            // Refresh daily quote button
+            document.getElementById('refreshDailyQuote').addEventListener('click', function() {
+                currentDailyQuoteIndex = (currentDailyQuoteIndex + 1) % dailyQuotes.length;
+                updateDailyQuote();
+                updateQuoteDots();
+                showNotification('New quote loaded!', 'success');
+            });
+
+            // Load more quotes buttons
+            document.getElementById('loadMoreMotivationQuotes').addEventListener('click', loadMoreMotivationQuotes);
+            document.getElementById('loadMoreLifeQuotes').addEventListener('click', loadMoreLifeQuotes);
+            document.getElementById('loadMoreLoveQuotes').addEventListener('click', loadMoreLoveQuotes);
+
+            // Initialize daily quote
+            updateDailyQuote();
+        }
+
+        function updateDailyQuote() {
+            const quote = dailyQuotes[currentDailyQuoteIndex];
+            document.getElementById('dailyQuoteText').textContent = quote.text;
+            document.getElementById('dailyQuoteAuthor').textContent = `— ${quote.author}`;
+            
+            // Update quote actions data attributes
+            document.querySelectorAll('#dailyQuoteCard .like-quote, #dailyQuoteCard .save-quote, #dailyQuoteCard .share-quote').forEach(btn => {
+                btn.setAttribute('data-quote-id', quote.id);
+            });
+        }
+
+        function updateQuoteDots() {
+            document.querySelectorAll('#dailyQuoteNav .quote-dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentDailyQuoteIndex);
+            });
+        }
+
+        function loadMoreMotivationQuotes() {
+            const loadingSpinner = document.getElementById('motivationLoading');
+            const container = document.getElementById('motivationQuotesContainer');
+            
+            loadingSpinner.classList.add('active');
+            
+            setTimeout(() => {
+                // Simulate loading more quotes
+                const newQuotes = [
+                    {
+                        id: motivationPage * 10 + 1,
+                        text: "The way to get started is to quit talking and begin doing.",
+                        author: "Walt Disney",
+                        category: "action"
+                    },
+                    {
+                        id: motivationPage * 10 + 2,
+                        text: "Don't be pushed around by the fears in your mind. Be led by the dreams in your heart.",
+                        author: "Roy T. Bennett",
+                        category: "courage"
+                    }
+                ];
+                
+                newQuotes.forEach(quote => {
+                    const quoteCard = createQuoteCard(quote, 'motivation');
+                    container.appendChild(quoteCard);
+                });
+                
+                motivationPage++;
+                loadingSpinner.classList.remove('active');
+                showNotification('More quotes loaded!', 'success');
+            }, 1000);
+        }
+
+        function loadMoreLifeQuotes() {
+            // Similar implementation for life quotes
+            showNotification('Loading more life quotes...', 'info');
+        }
+
+        function loadMoreLoveQuotes() {
+            // Similar implementation for love quotes
+            showNotification('Loading more love quotes...', 'info');
+        }
+
+        function createQuoteCard(quote, section) {
+            const div = document.createElement('div');
+            div.className = 'quote-card';
+            div.setAttribute('data-category', quote.category);
+            div.innerHTML = `
+                <p class="quote-text">${quote.text}</p>
+                <p class="quote-author">— ${quote.author}</p>
+                <div class="quote-actions">
+                    <button class="btn like-quote" data-quote-id="${quote.id}">
+                        <i class="fas fa-heart"></i> Like
+                    </button>
+                    <button class="btn btn-outline share-quote" data-quote-id="${quote.id}">
+                        <i class="fas fa-share-alt"></i> Share
+                    </button>
+                    <button class="btn btn-outline save-quote" data-quote-id="${quote.id}">
+                        <i class="fas fa-bookmark"></i> Save
+                    </button>
+                </div>
+            `;
+            return div;
+        }
+
+        // ====================
+        // CATEGORY FILTERING
+        // ====================
+        function setupCategoryFiltering() {
+            // Setup category filtering for all sections
+            setupSectionCategoryFiltering('motivation');
+            setupSectionCategoryFiltering('life');
+            setupSectionCategoryFiltering('love');
+            setupSectionCategoryFiltering('ebooks');
+            setupSectionCategoryFiltering('videos');
+        }
+
+        function setupSectionCategoryFiltering(sectionId) {
+            const container = document.getElementById(`${sectionId}Categories`);
+            if (!container) return;
+            
+            container.addEventListener('click', function(e) {
+                if (e.target.classList.contains('category-btn')) {
+                    const category = e.target.getAttribute('data-category');
+                    const section = e.target.closest('section').id;
+                    
+                    // Update active button
+                    container.querySelectorAll('.category-btn').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    e.target.classList.add('active');
+                    
+                    // Filter items
+                    filterItemsByCategory(section, category);
+                }
+            });
+        }
+
+        function filterItemsByCategory(section, category) {
+            let selector = '';
+            if (section === 'motivation' || section === 'life' || section === 'love') {
+                selector = '.quote-card';
+            } else if (section === 'ebooks') {
+                selector = '.ebook-card';
+            } else if (section === 'videos') {
+                selector = '.video-card';
+            }
+            
+            document.querySelectorAll(`#${section} ${selector}`).forEach(item => {
+                if (category === 'all' || item.getAttribute('data-category') === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // ====================
+        // EBOOK MANAGEMENT
+        // ====================
         function updateUserStats() {
             const hours = Math.floor(userStats.readingTime / 60);
             const minutes = userStats.readingTime % 60;
@@ -1720,7 +2403,6 @@
             document.getElementById('savedQuotes').textContent = userStats.quotesSaved;
         }
 
-        // Display user ebooks
         function displayUserEbooks() {
             const userEbooksGrid = document.getElementById('userEbooksGrid');
             const noEbooksMessage = document.getElementById('noEbooksMessage');
@@ -1754,40 +2436,21 @@
             });
         }
 
-        // Setup event listeners
+        // ====================
+        // EVENT LISTENERS
+        // ====================
         function setupEventListeners() {
             // E-book downloads
-            document.querySelectorAll('.download-ebook').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const ebookId = parseInt(this.getAttribute('data-id'));
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.download-ebook')) {
+                    const btn = e.target.closest('.download-ebook');
+                    const ebookId = parseInt(btn.getAttribute('data-id'));
                     const ebook = ebooks.find(e => e.id === ebookId);
                     
                     if (ebook) {
-                        // Check if already downloaded
-                        const alreadyDownloaded = userEbooks.some(e => e.id === ebookId);
-                        
-                        if (!alreadyDownloaded) {
-                            userEbooks.push({
-                                id: ebook.id,
-                                title: ebook.title,
-                                description: ebook.description,
-                                downloadDate: new Date().toISOString()
-                            });
-                            
-                            userStats.ebooksRead = userEbooks.length;
-                            
-                            localStorage.setItem('userEbooks', JSON.stringify(userEbooks));
-                            localStorage.setItem('userStats', JSON.stringify(userStats));
-                            
-                            updateUserStats();
-                            displayUserEbooks();
-                            
-                            showNotification(`"${ebook.title}" has been added to your library!`, 'success');
-                        } else {
-                            showNotification('This ebook is already in your library!', 'info');
-                        }
+                        downloadEbook(ebook);
                     }
-                });
+                }
             });
 
             // Remove e-book
@@ -1810,20 +2473,24 @@
             });
 
             // Like quotes
-            document.querySelectorAll('.like-quote').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const quoteText = this.closest('.quote-card').querySelector('.quote-text').textContent;
-                    const quoteAuthor = this.closest('.quote-card').querySelector('.quote-author').textContent;
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.like-quote')) {
+                    const btn = e.target.closest('.like-quote');
+                    const quoteId = parseInt(btn.getAttribute('data-quote-id'));
+                    const quoteCard = btn.closest('.quote-card');
+                    const quoteText = quoteCard.querySelector('.quote-text').textContent;
+                    const quoteAuthor = quoteCard.querySelector('.quote-author').textContent;
                     
                     // Toggle like
-                    if (this.classList.contains('liked')) {
-                        this.classList.remove('liked');
-                        this.innerHTML = '<i class="fas fa-heart"></i> Like';
-                        savedQuotes = savedQuotes.filter(q => q.text !== quoteText);
+                    if (btn.classList.contains('liked')) {
+                        btn.classList.remove('liked');
+                        btn.innerHTML = '<i class="fas fa-heart"></i> Like';
+                        savedQuotes = savedQuotes.filter(q => q.id !== quoteId);
                     } else {
-                        this.classList.add('liked');
-                        this.innerHTML = '<i class="fas fa-heart"></i> Liked';
+                        btn.classList.add('liked');
+                        btn.innerHTML = '<i class="fas fa-heart"></i> Liked';
                         savedQuotes.push({
+                            id: quoteId,
                             text: quoteText,
                             author: quoteAuthor,
                             date: new Date().toISOString()
@@ -1836,44 +2503,42 @@
                     updateUserStats();
                     
                     showNotification(
-                        this.classList.contains('liked') ? 'Quote saved to favorites!' : 'Quote removed from favorites',
-                        this.classList.contains('liked') ? 'success' : 'info'
+                        btn.classList.contains('liked') ? 'Quote saved to favorites!' : 'Quote removed from favorites',
+                        btn.classList.contains('liked') ? 'success' : 'info'
                     );
-                });
+                }
             });
 
             // Save quotes
-            document.querySelectorAll('.save-quote').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const quoteText = this.closest('.quote-card').querySelector('.quote-text').textContent;
-                    const quoteAuthor = this.closest('.quote-card').querySelector('.quote-author').textContent;
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.save-quote')) {
+                    const btn = e.target.closest('.save-quote');
                     
                     // Toggle save
-                    if (this.classList.contains('saved')) {
-                        this.classList.remove('saved');
-                        this.innerHTML = '<i class="fas fa-bookmark"></i> Save';
+                    if (btn.classList.contains('saved')) {
+                        btn.classList.remove('saved');
+                        btn.innerHTML = '<i class="fas fa-bookmark"></i> Save';
+                        showNotification('Bookmark removed', 'info');
                     } else {
-                        this.classList.add('saved');
-                        this.innerHTML = '<i class="fas fa-bookmark"></i> Saved';
+                        btn.classList.add('saved');
+                        btn.innerHTML = '<i class="fas fa-bookmark"></i> Saved';
+                        showNotification('Quote bookmarked!', 'success');
                     }
-                    
-                    showNotification(
-                        this.classList.contains('saved') ? 'Quote bookmarked!' : 'Bookmark removed',
-                        'info'
-                    );
-                });
+                }
             });
 
             // Share quotes
-            document.querySelectorAll('.share-quote').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const quoteText = this.closest('.quote-card').querySelector('.quote-text').textContent;
-                    const quoteAuthor = this.closest('.quote-card').querySelector('.quote-author').textContent;
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.share-quote')) {
+                    const btn = e.target.closest('.share-quote');
+                    const quoteCard = btn.closest('.quote-card');
+                    const quoteText = quoteCard.querySelector('.quote-text').textContent;
+                    const quoteAuthor = quoteCard.querySelector('.quote-author').textContent;
                     const shareText = `${quoteText} ${quoteAuthor}`;
                     
                     if (navigator.share) {
                         navigator.share({
-                            title: 'Inspirational Quote',
+                            title: 'Inspirational Quote from Supreme Motive',
                             text: shareText,
                             url: window.location.href
                         });
@@ -1882,7 +2547,7 @@
                             showNotification('Quote copied to clipboard!', 'success');
                         });
                     }
-                });
+                }
             });
 
             // Search functionality
@@ -1892,59 +2557,6 @@
                     if (searchInput.value.trim()) {
                         showNotification(`Searching for: ${searchInput.value}`, 'info');
                     }
-                });
-            });
-
-            // Category filtering
-            document.querySelectorAll('.category-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const category = this.getAttribute('data-category');
-                    const section = this.closest('section').id;
-                    
-                    // Update active button
-                    this.parentElement.querySelectorAll('.category-btn').forEach(b => {
-                        b.classList.remove('active');
-                    });
-                    this.classList.add('active');
-                    
-                    if (category === 'all') {
-                        // Show all items
-                        if (section === 'ebooks') {
-                            document.querySelectorAll('.ebook-card').forEach(card => {
-                                card.style.display = 'block';
-                            });
-                        } else if (section === 'videos') {
-                            document.querySelectorAll('.video-card').forEach(card => {
-                                card.style.display = 'block';
-                            });
-                        }
-                    } else {
-                        // Filter by category
-                        if (section === 'ebooks') {
-                            document.querySelectorAll('.ebook-card').forEach(card => {
-                                if (card.getAttribute('data-category') === category) {
-                                    card.style.display = 'block';
-                                } else {
-                                    card.style.display = 'none';
-                                }
-                            });
-                        } else if (section === 'videos') {
-                            document.querySelectorAll('.video-card').forEach(card => {
-                                if (card.getAttribute('data-category') === category) {
-                                    card.style.display = 'block';
-                                } else {
-                                    card.style.display = 'none';
-                                }
-                            });
-                        }
-                    }
-                });
-            });
-
-            // Load more quotes
-            document.querySelectorAll('.load-more-quotes').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    showNotification('Loading more quotes...', 'info');
                 });
             });
 
@@ -1981,24 +2593,6 @@
                 });
             });
 
-            // Support form
-            document.getElementById('supportForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                showNotification('Your message has been sent successfully! We will get back to you soon.', 'success');
-                this.reset();
-            });
-
-            // Newsletter subscription
-            document.getElementById('subscribeBtn').addEventListener('click', function() {
-                const emailInput = document.getElementById('newsletterEmail');
-                if (emailInput.value && emailInput.value.includes('@')) {
-                    showNotification('Thank you for subscribing to our newsletter!', 'success');
-                    emailInput.value = '';
-                } else {
-                    showNotification('Please enter a valid email address', 'error');
-                }
-            });
-
             // Read ebooks from library
             document.addEventListener('click', function(e) {
                 if (e.target.closest('.read-ebook')) {
@@ -2024,9 +2618,55 @@
                     }
                 }
             });
+
+            // Support form
+            document.getElementById('supportForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                showNotification('Your message has been sent successfully! We will get back to you soon.', 'success');
+                this.reset();
+            });
+
+            // Newsletter subscription
+            document.getElementById('subscribeBtn').addEventListener('click', function() {
+                const emailInput = document.getElementById('newsletterEmail');
+                if (emailInput.value && emailInput.value.includes('@')) {
+                    showNotification('Thank you for subscribing to our newsletter!', 'success');
+                    emailInput.value = '';
+                } else {
+                    showNotification('Please enter a valid email address', 'error');
+                }
+            });
         }
 
-        // Show notification
+        function downloadEbook(ebook) {
+            // Check if already downloaded
+            const alreadyDownloaded = userEbooks.some(e => e.id === ebook.id);
+            
+            if (!alreadyDownloaded) {
+                userEbooks.push({
+                    id: ebook.id,
+                    title: ebook.title,
+                    description: ebook.description,
+                    downloadDate: new Date().toISOString()
+                });
+                
+                userStats.ebooksRead = userEbooks.length;
+                
+                localStorage.setItem('userEbooks', JSON.stringify(userEbooks));
+                localStorage.setItem('userStats', JSON.stringify(userStats));
+                
+                updateUserStats();
+                displayUserEbooks();
+                
+                showNotification(`"${ebook.title}" has been added to your library!`, 'success');
+            } else {
+                showNotification('This ebook is already in your library!', 'info');
+            }
+        }
+
+        // ====================
+        // NOTIFICATION SYSTEM
+        // ====================
         function showNotification(message, type = 'info', duration = 3000) {
             const notification = document.createElement('div');
             notification.className = `notification ${type}`;
@@ -2059,46 +2699,13 @@
             }, duration);
         }
 
-        // Auto-rotate quotes on home page
-        let quoteIndex = 0;
-        const quotes = [
-            {
-                text: "The only way to do great work is to love what you do. If you haven't found it yet, keep looking. Don't settle.",
-                author: "Steve Jobs"
-            },
-            {
-                text: "Success is not final, failure is not fatal: it is the courage to continue that counts.",
-                author: "Winston Churchill"
-            },
-            {
-                text: "Your time is limited, don't waste it living someone else's life.",
-                author: "Steve Jobs"
-            },
-            {
-                text: "The future belongs to those who believe in the beauty of their dreams.",
-                author: "Eleanor Roosevelt"
-            }
-        ];
-
+        // ====================
+        // AUTO-ROTATE QUOTES
+        // ====================
         function rotateQuote() {
-            const quoteCard = document.querySelector('#home .quote-card');
-            if (quoteCard) {
-                quoteIndex = (quoteIndex + 1) % quotes.length;
-                const quote = quotes[quoteIndex];
-                
-                quoteCard.querySelector('.quote-text').textContent = quote.text;
-                quoteCard.querySelector('.quote-author').textContent = `— ${quote.author}`;
-                
-                // Reset like/save states
-                quoteCard.querySelectorAll('.like-quote, .save-quote').forEach(btn => {
-                    btn.classList.remove('liked', 'saved');
-                    if (btn.classList.contains('like-quote')) {
-                        btn.innerHTML = '<i class="fas fa-heart"></i> Like';
-                    } else {
-                        btn.innerHTML = '<i class="fas fa-bookmark"></i> Save';
-                    }
-                });
-            }
+            currentDailyQuoteIndex = (currentDailyQuoteIndex + 1) % dailyQuotes.length;
+            updateDailyQuote();
+            updateQuoteDots();
         }
 
         // Rotate quote every 30 seconds if on home page
